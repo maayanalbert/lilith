@@ -15,9 +15,9 @@ import { useRouter } from "next/router"
 import useEventListener from "@/hooks/useEventListener"
 
 /**
- * The card where we offer a signup for the beta
+ * The card where we offer a signup for the alpha
  */
-export default function BetaCard() {
+export default function AlphaCard() {
   const cardSize = useCardSize()
   const isMobile = useIsMobile()
   const cardRef = useRef<HTMLDivElement>(null)
@@ -91,7 +91,7 @@ export default function BetaCard() {
 
       // update the desire page route based on our scroll position
       if (Math.abs(cardDistFromCenter) < cardSize / 2) {
-        setPageRoute("beta")
+        setPageRoute("alpha")
       } else if (cardDistFromCenter < 0) {
         setPageRoute("about")
       } else {
@@ -156,7 +156,7 @@ export default function BetaCard() {
             isMobile ? "font-bold" : "font-semibold"
           } scroll-card-beta-title`}
         >
-          Beta
+          Gain access
         </p>
 
         <div
@@ -167,7 +167,7 @@ export default function BetaCard() {
           <div style={{ color: midColor }}>
             {/* nest this so the opacities don't overlap */}
             <p className="scroll-card-beta-text">
-              We're launching a private beta soon. Join the waitlist:
+              We've launched an alpha. Join the waitlist:
             </p>
           </div>
           <div
