@@ -62,7 +62,6 @@ export default function NavBar() {
                 )
               }
             >
-              {/* <Image src="/logos/eve.svg" alt="" width={25} height={25} /> */}
               <div
                 className="bg-white rounded-full"
                 style={{ width: 15, height: 15 }}

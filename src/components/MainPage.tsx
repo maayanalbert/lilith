@@ -28,7 +28,7 @@ export default function MainPage() {
     // disable routing if we've already scrolled
     if (scrolled) return
 
-    if (page === "beta") {
+    if (page === "alpha") {
       const scrollDist =
         4 * cardSize + window.innerHeight / 2 - (cardSize * 7) / 24
       if (isMobile) {

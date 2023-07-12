@@ -91,7 +91,7 @@ export default function AlphaCard() {
 
       // update the desire page route based on our scroll position
       if (Math.abs(cardDistFromCenter) < cardSize / 2) {
-        setPageRoute("beta")
+        setPageRoute("alpha")
       } else if (cardDistFromCenter < 0) {
         setPageRoute("about")
       } else {
