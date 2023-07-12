@@ -1,7 +1,7 @@
 import Title from "@/components/Title"
 import Line from "@/components/Line"
 import InfoCard from "@/components/InfoCard"
-import BetaCard from "@/components/BetaCard"
+import AlphaCard from "@/components/AlphaCard"
 import AboutCard from "@/components/AboutCard"
 import { useCardSize, useIsMobile } from "@/GlobalsContext"
 import NavBar from "./NavBar"
@@ -59,21 +59,21 @@ export default function MainPage() {
         style={{ paddingTop: (cardSize * 7) / 24 }}
       >
         <InfoCard
-          title="1. Create your own space"
-          body="Fill it with everything on your mind: notes, photos, snippets of the web"
+          title="Enter the Ether"
+          body="Eve is a journalling app for your thoughts"
           index={0}
         />
         <InfoCard
-          title="2. Sketch with AI"
-          body="Use Eve's AI tools to generate music, art, essays, and more"
+          title="Dig deeper"
+          body="Use Eve's AI tools to investigate your own mind"
           index={1}
         />
         <InfoCard
-          title="3. Share your way"
-          body="Every evespace is a standalone site, you choose who gets to see it and what parts remain private"
+          title="Stay safer"
+          body="All Eve entries are fully encrypted, only you can to see them"
           index={2}
         />
-        <BetaCard />
+        <AlphaCard />
         <AboutCard />
         {/* the bottom padding */}
         <div className="relative">

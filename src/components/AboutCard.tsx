@@ -63,7 +63,7 @@ export default function AboutCard() {
       className="flex flex-col justify-center items-center"
       style={{
         height: cardSize,
-        width: 280,
+        width: 270,
       }}
       ref={cardRef}
     >
@@ -74,7 +74,7 @@ export default function AboutCard() {
               isMobile ? "font-bold" : "font-semibold"
             } scroll-card-about-title`}
           >
-            About
+            About us
           </p>
         </div>
         <div
@@ -82,28 +82,11 @@ export default function AboutCard() {
           style={{ color: midColor }}
         >
           <div className="scroll-card-about-body">
-            <p>
-              Based in New York, Eve is bringing authoring environments back to
-              the web.
-            </p>
+            <p>We're a small team based in New York.</p>
+
             <br />
             <p>
-              Inspired by{" "}
-              <Link href="https://hypercard.org/" target="_blank">
-                <u style={{ color: "rgb(255, 255, 255)" }}>Hypercard</u>
-              </Link>{" "}
-              and the team who made the first{" "}
-              <Link
-                href="https://www.folklore.org/ProjectView.py?project=Macintosh&sortOrder=Sort+by+Date]"
-                target="_blank"
-              >
-                <u style={{ color: "rgb(255, 255, 255)" }}>Macintosh</u>
-              </Link>
-              , we’re going to build something amazing.
-            </p>
-            <br />
-            <p>
-              If you’d like to join us, please reach out to{" "}
+              If you’d like to learn more, please reach out to{" "}
               <Link href="mailto:maayan@eve.space" target="_blank">
                 <u style={{ color: "rgb(255, 255, 255)" }}>maayan@eve.space</u>
               </Link>

@@ -10,21 +10,8 @@ export default function Title() {
   const isMobile = useIsMobile()
   const cardSize = useCardSize()
   const fadeInTitle = useFadeInTitle()
-  const [spaceName, setSpaceName] = useState("Your")
-  const [spaceNameWidth, setSpaceNameWidth] = useState(0)
   const [spaceNameEdited, setSpaceNameEdited] = useState(false)
   const spaceNameRef = useRef<HTMLDivElement>(null)
-
-  // set the width of the input to concide with what we're drawing
-  useEffect(() => {
-    const width = spaceNameRef.current?.getBoundingClientRect().width
-    if (width) {
-      setSpaceNameWidth(width)
-    }
-    if (spaceName !== "Your") {
-      setSpaceNameEdited(true)
-    }
-  }, [spaceName])
 
   return (
     <div
@@ -45,7 +32,7 @@ export default function Title() {
             fadeInTitle ? "animate-your" : ""
           } whitespace-nowrap cursor-default select-none`}
         >
-          {spaceName}
+          Your
         </i>
       </div>
       <div
@@ -53,7 +40,7 @@ export default function Title() {
           isMobile ? "font-bold" : "font-medium"
         } select-none cursor-default`}
       >
-        <p className={fadeInTitle ? "animate-space" : ""}>space</p>
+        <p className={fadeInTitle ? "animate-space" : ""}>Space</p>
       </div>
     </div>
   )
