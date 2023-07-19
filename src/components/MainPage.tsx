@@ -60,17 +60,17 @@ export default function MainPage() {
       >
         <InfoCard
           title="Enter the Ether"
-          body="Eve is an app where you can journal and create your own space."
+          body="Eve is a journalling app for your thoughts"
           index={0}
         />
         <InfoCard
-          title="Explore yourself"
-          body="Use Eve's AI tools to investigate your own mind and map your soul."
+          title="Dig deeper"
+          body="Use Eve's AI tools to investigate your own mind"
           index={1}
         />
         <InfoCard
-          title="A space for you"
-          body="Eve is private and secure by design. Only you can read your entries."
+          title="Stay safer"
+          body="All Eve entries are fully encrypted, only you can to see them"
           index={2}
         />
         <AlphaCard />
