@@ -82,7 +82,7 @@ export default function AboutCard() {
           style={{ color: midColor }}
         >
           <div className="scroll-card-about-body">
-            <p>We're a small team based in New York.</p>
+            <p>We’re a small team based in New York.</p>
 
             <br />
             <p>

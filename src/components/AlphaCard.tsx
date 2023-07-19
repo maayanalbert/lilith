@@ -6,7 +6,7 @@ import {
 } from "@/GlobalsContext"
 import { setCardScrollClass } from "@/helpers/setCardScrollClass"
 import { useEffect, useRef, useState } from "react"
-import { useMutation } from "react-query"
+import { UseMutateAsyncFunction, useMutation } from "react-query"
 import axios from "axios"
 import { TailSpin } from "react-loader-spinner"
 import getOnIpad from "@/helpers/getOnIpad"
@@ -44,7 +44,13 @@ export default function AlphaCard() {
   }, [pageRoute])
 
   // mutate call for sending the email
-  const { mutateAsync, error, isLoading } = useMutation(
+  const { mutateAsync, error, isLoading }: { 
+    mutateAsync: UseMutateAsyncFunction<void, unknown, {
+      email: string;
+    }, unknown>,
+    error: any,
+    isLoading: boolean
+} = useMutation(
     (data: { email: string }) => {
       const axiosCall = async () => {
         axios.post(
