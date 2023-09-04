@@ -24,8 +24,6 @@ export default function AlphaCard() {
   const [email, setEmail] = useState("")
   const virtualKeyboardIsOpen = useVirtualKeyboardIsOpen()
   const [emailSubmitted, setEmailSubmitted] = useState<boolean>(false)
-  const midColor = useMidColor()
-  const lowColor = useLowColor()
 
   // mutate call for sending the email
   const {
@@ -136,7 +134,7 @@ export default function AlphaCard() {
       <style>
         {`
           input::placeholder {
-            color: ${lowColor};
+            color: rgb(80, 80, 80);
           }
         `}
       </style>
@@ -154,7 +152,7 @@ export default function AlphaCard() {
             isMobile ? "font-normal" : "font-light"
           } text-white flex flex-col gap-4`}
         >
-          <div style={{ color: midColor }}>
+          <div style={{ color: "gray" }}>
             {/* nest this so the opacities don't overlap */}
             <p className="scroll-card-beta-text">
               We're currently invite only. Request an application:
@@ -178,12 +176,12 @@ export default function AlphaCard() {
                   setEmailSubmitted(false)
                 }}
                 style={{
-                  borderBottomColor: midColor,
+                  borderBottomColor: "gray",
                 }}
               />
               <div>
                 {isLoading ? (
-                  <div style={{ color: midColor }}>
+                  <div style={{ color: "gray" }}>
                     <TailSpin
                       height="20"
                       width="20"
@@ -201,12 +199,7 @@ export default function AlphaCard() {
                   <div
                     className="cursor-default relative"
                     style={{
-                      color:
-                        !!email && isMobile
-                          ? "white"
-                          : !!email
-                          ? midColor
-                          : lowColor,
+                      color: !!email && isMobile ? "white" : "gray",
                       paddingBottom: 3,
                     }}
                     onClick={() => !!email && mutateAsync({ email })}
@@ -224,7 +217,7 @@ export default function AlphaCard() {
             <p
               className="text-sm ease-in transition-opacity"
               style={{
-                color: midColor,
+                color: "gray",
                 opacity: emailSubmitted ? 1 : 0,
               }}
             >

@@ -14,6 +14,7 @@ import { useEffect, useRef, useState } from "react"
 export default function Title() {
   const isMobile = useIsMobile()
   const cardSize = useCardSize()
+  const lowColor = useLowColor()
 
   const [titleText, setTitleText] = useState<string>("")
 
@@ -45,9 +46,9 @@ export default function Title() {
       }}
     >
       <p
-        className={`absolute scroll-space ${
+        className={`absolute ${
           isMobile ? "font-normal" : "font-light"
-        } select-none cursor-default`}
+        } select-none cursor-default scroll-your`}
         style={{
           color: "rgb(50, 50, 50)",
           left: `calc(50% - 300px)`,
@@ -60,7 +61,7 @@ export default function Title() {
         <div
           className="scroll-space rounded-full absolute"
           style={{
-            backgroundColor: "royalblue",
+            backgroundColor: "white",
             height: 110,
             width: 5,
             left: `calc(50% - 304px)`,

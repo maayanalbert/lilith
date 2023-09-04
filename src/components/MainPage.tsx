@@ -19,7 +19,7 @@ export default function MainPage() {
       <div className="flex flex-col justify-center items-center h-full w-full">
         <Title />
       </div>
-      {/* <Line /> */}
+      <Line />
       <div
         className="flex flex-col items-center"
         style={{ paddingTop: (cardSize * 7) / 24 }}

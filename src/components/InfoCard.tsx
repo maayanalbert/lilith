@@ -87,7 +87,7 @@ export default function InfoCard({ title, body, index }: Props) {
             isMobile ? "font-normal" : "font-light"
           } text-white`}
         >
-          <p style={{ color: midColor }}>{body} </p>
+          <p style={{ color: "gray" }}>{body} </p>
         </div>
       </div>
     </div>
