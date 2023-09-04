@@ -59,22 +59,11 @@ export default function MainPage() {
         style={{ paddingTop: (cardSize * 7) / 24 }}
       >
         <InfoCard
-          title="Enter the Ether"
-          body="Eve is an app where you can journal and create your own space."
+          title="Eve is a personal thought partner"
+          body="Built to boost creativity, reframe emotions, and organize the snippets of your mind."
           index={0}
         />
-        <InfoCard
-          title="Explore yourself"
-          body="Use Eve's AI tools to investigate your own mind and map your soul."
-          index={1}
-        />
-        <InfoCard
-          title="A space for you"
-          body="Eve is private and secure by design. Only you can read your entries."
-          index={2}
-        />
         <AlphaCard />
-        <AboutCard />
         {/* the bottom padding */}
         <div className="relative">
           <div style={{ height: `calc(50vh - ${180}px)`, width: "100vw" }} />

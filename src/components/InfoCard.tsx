@@ -67,7 +67,7 @@ export default function InfoCard({ title, body, index }: Props) {
       className="flex flex-col justify-center items-center"
       style={{
         height: cardSize,
-        width: 270,
+        width: 420,
         paddingBottom: isMobile ? cardSize / 3 : 0,
       }}
       ref={cardRef}

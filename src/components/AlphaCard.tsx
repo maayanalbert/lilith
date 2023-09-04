@@ -44,13 +44,22 @@ export default function AlphaCard() {
   }, [pageRoute])
 
   // mutate call for sending the email
-  const { mutateAsync, error, isLoading }: { 
-    mutateAsync: UseMutateAsyncFunction<void, unknown, {
-      email: string;
-    }, unknown>,
-    error: any,
+  const {
+    mutateAsync,
+    error,
+    isLoading,
+  }: {
+    mutateAsync: UseMutateAsyncFunction<
+      void,
+      unknown,
+      {
+        email: string
+      },
+      unknown
+    >
+    error: any
     isLoading: boolean
-} = useMutation(
+  } = useMutation(
     (data: { email: string }) => {
       const axiosCall = async () => {
         axios.post(
@@ -144,7 +153,7 @@ export default function AlphaCard() {
       className="flex flex-col justify-center items-center"
       style={{
         height: cardSize,
-        width: 270,
+        width: 420,
         paddingBottom: isMobile ? cardSize / 3 : 0,
       }}
       ref={cardRef}
@@ -162,7 +171,7 @@ export default function AlphaCard() {
             isMobile ? "font-bold" : "font-semibold"
           } scroll-card-beta-title`}
         >
-          Gain access
+          Apply for access
         </p>
 
         <div
@@ -173,7 +182,7 @@ export default function AlphaCard() {
           <div style={{ color: midColor }}>
             {/* nest this so the opacities don't overlap */}
             <p className="scroll-card-beta-text">
-              We've launched an alpha. Join the waitlist:
+              Eve is invite only. Request an application:
             </p>
           </div>
           <div
