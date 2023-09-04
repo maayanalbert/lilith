@@ -7,7 +7,6 @@ import {
   useLowColor,
   useMidColor,
 } from "@/GlobalsContext"
-import useEventListener from "@/hooks/useEventListener"
 
 /**
  * A wrapper for the main page

@@ -24,33 +24,24 @@ export default function AlphaCard() {
   const [email, setEmail] = useState("")
   const virtualKeyboardIsOpen = useVirtualKeyboardIsOpen()
   const [emailSubmitted, setEmailSubmitted] = useState<boolean>(false)
-  const router = useRouter()
-  const [pageRoute, setPageRoute] = useState<string>()
-  const [scrolled, setScrolled] = useState(false)
-  const midColor = useMidColor()
-  const lowColor = useLowColor()
-
-  // disable the page routing if we've alread scrolled
-  useEventListener("scroll", () => setScrolled(true), [scrolled])
-
-  // update the router based on the desired page route
-  useEffect(() => {
-    if (!scrolled) return
-    if (pageRoute) {
-      router.push({ query: { page: pageRoute } }, undefined, { shallow: true })
-    } else {
-      router.push({}, undefined, { shallow: true })
-    }
-  }, [pageRoute])
 
   // mutate call for sending the email
-  const { mutateAsync, error, isLoading }: { 
-    mutateAsync: UseMutateAsyncFunction<void, unknown, {
-      email: string;
-    }, unknown>,
-    error: any,
+  const {
+    mutateAsync,
+    error,
+    isLoading,
+  }: {
+    mutateAsync: UseMutateAsyncFunction<
+      void,
+      unknown,
+      {
+        email: string
+      },
+      unknown
+    >
+    error: any
     isLoading: boolean
-} = useMutation(
+  } = useMutation(
     (data: { email: string }) => {
       const axiosCall = async () => {
         axios.post(
@@ -95,15 +86,6 @@ export default function AlphaCard() {
       const cardDistFromCenter = cardCenter - screenCenter
       const scrollDurationBase = (window.innerHeight * 4.25) / 5
 
-      // update the desire page route based on our scroll position
-      if (Math.abs(cardDistFromCenter) < cardSize / 2) {
-        setPageRoute("alpha")
-      } else if (cardDistFromCenter < 0) {
-        setPageRoute("about")
-      } else {
-        setPageRoute("")
-      }
-
       if (virtualKeyboardIsOpen) {
         setCardScrollClass(
           0,
@@ -144,7 +126,7 @@ export default function AlphaCard() {
       className="flex flex-col justify-center items-center"
       style={{
         height: cardSize,
-        width: 270,
+        width: 420,
         paddingBottom: isMobile ? cardSize / 3 : 0,
       }}
       ref={cardRef}
@@ -152,7 +134,7 @@ export default function AlphaCard() {
       <style>
         {`
           input::placeholder {
-            color: ${lowColor};
+            color: rgb(80, 80, 80);
           }
         `}
       </style>
@@ -162,7 +144,7 @@ export default function AlphaCard() {
             isMobile ? "font-bold" : "font-semibold"
           } scroll-card-beta-title`}
         >
-          Gain access
+          Apply for access
         </p>
 
         <div
@@ -170,10 +152,10 @@ export default function AlphaCard() {
             isMobile ? "font-normal" : "font-light"
           } text-white flex flex-col gap-4`}
         >
-          <div style={{ color: midColor }}>
+          <div style={{ color: "gray" }}>
             {/* nest this so the opacities don't overlap */}
             <p className="scroll-card-beta-text">
-              We've launched an alpha. Join the waitlist:
+              We're currently invite only. Request an application:
             </p>
           </div>
           <div
@@ -194,12 +176,12 @@ export default function AlphaCard() {
                   setEmailSubmitted(false)
                 }}
                 style={{
-                  borderBottomColor: midColor,
+                  borderBottomColor: "gray",
                 }}
               />
               <div>
                 {isLoading ? (
-                  <div style={{ color: midColor }}>
+                  <div style={{ color: "gray" }}>
                     <TailSpin
                       height="20"
                       width="20"
@@ -217,12 +199,7 @@ export default function AlphaCard() {
                   <div
                     className="cursor-default relative"
                     style={{
-                      color:
-                        !!email && isMobile
-                          ? "white"
-                          : !!email
-                          ? midColor
-                          : lowColor,
+                      color: !!email && isMobile ? "white" : "gray",
                       paddingBottom: 3,
                     }}
                     onClick={() => !!email && mutateAsync({ email })}
@@ -240,7 +217,7 @@ export default function AlphaCard() {
             <p
               className="text-sm ease-in transition-opacity"
               style={{
-                color: midColor,
+                color: "gray",
                 opacity: emailSubmitted ? 1 : 0,
               }}
             >
