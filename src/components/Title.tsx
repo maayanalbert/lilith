@@ -25,17 +25,12 @@ export default function Title() {
 
   const typeCharacter = (i: number) => {
     setTitleText(fullTitleText.substring(0, i))
-    console.log("text", fullTitleText.substring(0, i))
     if (i < fullTitleText.length) {
       const timeoutLen =
         fullTitleText[i] === "?" ? 500 : fullTitleText[i] === " " ? 300 : 100
 
       const iInc =
-        fullTitleText[i + 1] === " " || fullTitleText[i + 1] === "?"
-          ? 1
-          : Math.random() < 0.5
-          ? 2
-          : 1
+        fullTitleText[i + 1] === " " || fullTitleText[i + 1] === "?" ? 1 : 2
 
       setTimeout(() => typeCharacter(i + iInc), timeoutLen)
     }

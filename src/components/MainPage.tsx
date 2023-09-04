@@ -26,7 +26,7 @@ export default function MainPage() {
       >
         <InfoCard
           title="Welcome to your personal thought partner"
-          body="Here to boost your creativity, reframe emotions, and organize the snippets of your mind."
+          body="Here to boost creativity, reframe emotions, and organize the snippets of your mind."
           index={0}
         />
         <AlphaCard />
