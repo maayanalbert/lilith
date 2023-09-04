@@ -182,7 +182,7 @@ export default function AlphaCard() {
           <div style={{ color: midColor }}>
             {/* nest this so the opacities don't overlap */}
             <p className="scroll-card-beta-text">
-              Eve is invite only. Request an application:
+              We're currently invite only. Request an application:
             </p>
           </div>
           <div
