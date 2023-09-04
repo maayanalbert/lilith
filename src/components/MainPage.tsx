@@ -19,13 +19,13 @@ export default function MainPage() {
       <div className="flex flex-col justify-center items-center h-full w-full">
         <Title />
       </div>
-      <Line />
+      {/* <Line /> */}
       <div
         className="flex flex-col items-center"
         style={{ paddingTop: (cardSize * 7) / 24 }}
       >
         <InfoCard
-          title="Eve is a personal thought partner"
+          title="Welcome to your personal thought partner"
           body="Here to boost your creativity, reframe emotions, and organize the snippets of your mind."
           index={0}
         />

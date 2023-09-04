@@ -1,4 +1,9 @@
-import { useCardSize, useIsMobile } from "@/GlobalsContext"
+import {
+  useCardSize,
+  useFadeInTitle,
+  useIsMobile,
+  useLowColor,
+} from "@/GlobalsContext"
 import getBrowserType from "@/helpers/getBrowserType"
 import getOnIpad from "@/helpers/getOnIpad"
 import { useEffect, useRef, useState } from "react"
@@ -10,20 +15,63 @@ export default function Title() {
   const isMobile = useIsMobile()
   const cardSize = useCardSize()
 
+  const [titleText, setTitleText] = useState<string>("")
+
+  const fullTitleText = "What's on your mind?"
+
+  useEffect(() => {
+    typeCharacter(0)
+  }, [])
+
+  const typeCharacter = (i: number) => {
+    setTitleText(fullTitleText.substring(0, i))
+    console.log("text", fullTitleText.substring(0, i))
+    if (i < fullTitleText.length) {
+      const timeoutLen =
+        fullTitleText[i] === "?" ? 500 : fullTitleText[i] === " " ? 300 : 100
+
+      const iInc =
+        fullTitleText[i + 1] === " " || fullTitleText[i + 1] === "?"
+          ? 1
+          : Math.random() < 0.5
+          ? 2
+          : 1
+
+      setTimeout(() => typeCharacter(i + iInc), timeoutLen)
+    }
+  }
+
   return (
     <div
       className="leading-normal sm:text-6xl text-5xl md:w-full sm:w-[400px] w-[250px] 
-    text-center text-white flex flew-row justify-center"
+    justify-center relative"
       style={{
         paddingBottom: isMobile ? cardSize / 3 : 0,
       }}
     >
-      <div
-        className={`scroll-space ${
-          isMobile ? "font-normal" : "font-extralight"
+      <p
+        className={`absolute scroll-space ${
+          isMobile ? "font-normal" : "font-light"
         } select-none cursor-default`}
+        style={{
+          color: "rgb(50, 50, 50)",
+          left: `calc(50% - 300px)`,
+          top: `calc(50% - 28px)`,
+        }}
       >
-        <p style={{ color: "gray" }}>What's on your mind?</p>
+        {titleText}
+      </p>
+      <div className="animate-pulse">
+        <div
+          className="scroll-space rounded-full absolute"
+          style={{
+            backgroundColor: "royalblue",
+            height: 110,
+            width: 5,
+            left: `calc(50% - 304px)`,
+            top: `calc(50% - 65px)`,
+          }}
+        />
       </div>
     </div>
   )
