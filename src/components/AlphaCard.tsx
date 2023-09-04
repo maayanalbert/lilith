@@ -24,24 +24,8 @@ export default function AlphaCard() {
   const [email, setEmail] = useState("")
   const virtualKeyboardIsOpen = useVirtualKeyboardIsOpen()
   const [emailSubmitted, setEmailSubmitted] = useState<boolean>(false)
-  const router = useRouter()
-  const [pageRoute, setPageRoute] = useState<string>()
-  const [scrolled, setScrolled] = useState(false)
   const midColor = useMidColor()
   const lowColor = useLowColor()
-
-  // disable the page routing if we've alread scrolled
-  useEventListener("scroll", () => setScrolled(true), [scrolled])
-
-  // update the router based on the desired page route
-  useEffect(() => {
-    if (!scrolled) return
-    if (pageRoute) {
-      router.push({ query: { page: pageRoute } }, undefined, { shallow: true })
-    } else {
-      router.push({}, undefined, { shallow: true })
-    }
-  }, [pageRoute])
 
   // mutate call for sending the email
   const {
@@ -103,15 +87,6 @@ export default function AlphaCard() {
 
       const cardDistFromCenter = cardCenter - screenCenter
       const scrollDurationBase = (window.innerHeight * 4.25) / 5
-
-      // update the desire page route based on our scroll position
-      if (Math.abs(cardDistFromCenter) < cardSize / 2) {
-        setPageRoute("alpha")
-      } else if (cardDistFromCenter < 0) {
-        setPageRoute("about")
-      } else {
-        setPageRoute("")
-      }
 
       if (virtualKeyboardIsOpen) {
         setCardScrollClass(

@@ -73,7 +73,7 @@ export default function InfoCard({ title, body, index }: Props) {
       ref={cardRef}
     >
       <div className="flex flex-col gap-2">
-        <div className={getScrollCardTitleClass(index)}>
+        <div className={"scroll-card-0-title"}>
           <p
             className={`text-white text-2xl ${
               isMobile ? "font-bold" : "font-semibold"
@@ -83,7 +83,7 @@ export default function InfoCard({ title, body, index }: Props) {
           </p>
         </div>
         <div
-          className={`${getScrollCardBodyClass(index)} ${
+          className={`${"scroll-card-0-body"} ${
             isMobile ? "font-normal" : "font-light"
           } text-white`}
         >
@@ -92,28 +92,4 @@ export default function InfoCard({ title, body, index }: Props) {
       </div>
     </div>
   )
-}
-
-/**
- * We can't use template literals to generate class names so use these helpers instead
- */
-
-function getScrollCardTitleClass(index: number) {
-  if (index === 0) {
-    return "scroll-card-0-title"
-  } else if (index === 1) {
-    return "scroll-card-1-title"
-  } else if (index === 2) {
-    return "scroll-card-2-title"
-  }
-}
-
-function getScrollCardBodyClass(index: number) {
-  if (index === 0) {
-    return "scroll-card-0-body"
-  } else if (index === 1) {
-    return "scroll-card-1-body"
-  } else if (index === 2) {
-    return "scroll-card-2-body"
-  }
 }
