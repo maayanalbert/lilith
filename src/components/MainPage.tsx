@@ -12,7 +12,6 @@ import { useRouter } from "next/router"
  */
 export default function MainPage() {
   const cardSize = useCardSize()
-  const [scrolled, setScrolled] = useState(false)
 
   return (
     <>
@@ -25,8 +24,8 @@ export default function MainPage() {
         style={{ paddingTop: (cardSize * 7) / 24 }}
       >
         <InfoCard
-          title="Welcome to your personal thought partner"
-          body="Here to boost creativity, reframe emotions, and organize the snippets of your mind."
+          title="Your personal thought partner"
+          body="Built to boost creativity, reframe experiences, and organize the snippets of your mind."
           index={0}
         />
         <AlphaCard />

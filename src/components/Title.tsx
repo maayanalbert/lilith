@@ -39,35 +39,33 @@ export default function Title() {
 
   return (
     <div
-      className="leading-normal sm:text-6xl text-5xl md:w-full sm:w-[400px] w-[250px] 
-    justify-center relative"
+      className="leading-normal lg:text-6xl text-4xl flex
+    justify-center items-center h-full w-full"
       style={{
         paddingBottom: isMobile ? cardSize / 3 : 0,
       }}
     >
-      <p
-        className={`absolute ${
-          isMobile ? "font-normal" : "font-light"
-        } select-none cursor-default scroll-your`}
-        style={{
-          color: "rgb(50, 50, 50)",
-          left: `calc(50% - 300px)`,
-          top: `calc(50% - 28px)`,
-        }}
-      >
-        {titleText}
-      </p>
-      <div className="animate-pulse">
-        <div
-          className="scroll-space rounded-full absolute"
+      <div className="lg:w-[601px] lg:h-[60px] w-[366px] h-[30px] relative">
+        <p
+          className={` ${
+            isMobile ? "font-normal" : "font-light"
+          } select-none cursor-default scroll-your`}
           style={{
-            backgroundColor: "white",
-            height: 110,
-            width: 5,
-            left: `calc(50% - 304px)`,
-            top: `calc(50% - 65px)`,
+            color: "rgb(50, 50, 50)",
           }}
-        />
+        >
+          {titleText}
+        </p>
+        <div className="animate-pulse">
+          <div
+            className={`scroll-space rounded-full absolute
+            lg:h-[105px] lg:w-[5px] lg:top-[-31px] lg:left-[-5px]
+            h-[60px] w-[3px] top-[-7px] left-[-3px]`}
+            style={{
+              backgroundColor: "white",
+            }}
+          />
+        </div>
       </div>
     </div>
   )

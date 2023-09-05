@@ -123,10 +123,9 @@ export default function AlphaCard() {
 
   return (
     <div
-      className="flex flex-col justify-center items-center"
+      className="flex flex-col justify-center items-start  sm:w-[420px] w-[300px]"
       style={{
         height: cardSize,
-        width: 420,
         paddingBottom: isMobile ? cardSize / 3 : 0,
       }}
       ref={cardRef}
@@ -163,7 +162,10 @@ export default function AlphaCard() {
               isMobile ? "gap-1.5" : "gap-1"
             } scroll-card-beta-text`}
           >
-            <div className="flex flex-row gap-3.5 items-end">
+            <div
+              className="flex flex-row gap-3.5 items-end"
+              style={{ width: 250 }}
+            >
               <input
                 autoCapitalize="none"
                 value={email}
