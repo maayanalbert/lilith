@@ -1,4 +1,4 @@
-import { useCardSize, useFadeInTitle, useIsMobile } from "@/GlobalsContext"
+import { useFadeInTitle, useIsMobile } from "@/GlobalsContext"
 import useEventListener from "@/hooks/useEventListener"
 import useVirtualKeyboardIsOpen from "@/hooks/useVirtualKeyboardIsOpen"
 

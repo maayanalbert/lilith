@@ -1,11 +1,5 @@
-import {
-  useCardSize,
-  useFadeInTitle,
-  useIsMobile,
-  useLowColor,
-} from "@/GlobalsContext"
-import getBrowserType from "@/helpers/getBrowserType"
-import getOnIpad from "@/helpers/getOnIpad"
+import { useIsMobile, useLowColor } from "@/GlobalsContext"
+import { CARD_HEIGHT } from "@/constants"
 import { useEffect, useRef, useState } from "react"
 
 /**
@@ -13,8 +7,6 @@ import { useEffect, useRef, useState } from "react"
  */
 export default function Title() {
   const isMobile = useIsMobile()
-  const cardSize = useCardSize()
-  const lowColor = useLowColor()
 
   const [titleText, setTitleText] = useState<string>("")
 
@@ -42,7 +34,7 @@ export default function Title() {
       className="leading-normal lg:text-6xl text-3xl flex
     justify-center items-center h-full w-full"
       style={{
-        paddingBottom: isMobile ? cardSize / 3 : 0,
+        paddingBottom: isMobile ? CARD_HEIGHT / 3 : 0,
       }}
     >
       <div className="lg:w-[601px] w-[305px] relative">

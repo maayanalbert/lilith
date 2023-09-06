@@ -1,18 +1,12 @@
 import MainPage from "@/components/MainPage"
 import { use, useEffect, useState } from "react"
 import { useRouter } from "next/router"
-import {
-  useCardSize,
-  useIsMobile,
-  useLowColor,
-  useMidColor,
-} from "@/GlobalsContext"
+import { useIsMobile, useLowColor, useMidColor } from "@/GlobalsContext"
 
 /**
  * A wrapper for the main page
  */
 export default function Home() {
-  const cardSize = useCardSize()
   const isMobile = useIsMobile()
   const midColor = useMidColor()
   const fadeInTitle = useMidColor()
@@ -24,7 +18,6 @@ export default function Home() {
 
   // don't draw anything until we have a tile size
   if (
-    !cardSize ||
     isMobile === undefined ||
     !midColor ||
     fadeInTitle === undefined ||

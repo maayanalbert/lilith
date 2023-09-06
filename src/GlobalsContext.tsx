@@ -9,7 +9,6 @@ import {
 import getBrowserType from "./helpers/getBrowserType"
 
 interface GlobalsContextType {
-  cardSize: number
   isMobile: boolean | undefined
   midColor: string
   lowColor: string
@@ -20,7 +19,6 @@ interface GlobalsContextType {
  * Create the context
  */
 const GlobalsContext = createContext<GlobalsContextType>({
-  cardSize: 0,
   isMobile: undefined,
   midColor: "",
   fadeInTitle: undefined, // fade in the title if we're not on mobile chrome
@@ -35,7 +33,6 @@ interface Props {
  * Create the provider that everything that uses the context should be wrapped in
  */
 export function GlobalsContextProvider({ children }: Props) {
-  const [cardSize, setCardSize] = useState(0)
   const [isMobile, setIsMobile] = useState<boolean | undefined>(undefined) // set to undefined to start so we know if it hasn't been set yet
   const [midColor, setMidColor] = useState<string>("")
   const [fadeInTitle, setFadeInTitle] = useState<boolean | undefined>(undefined)
@@ -44,8 +41,6 @@ export function GlobalsContextProvider({ children }: Props) {
   useEffect(() => {
     const isMobile = window.innerWidth < 640
     setIsMobile(isMobile)
-    const cardSize = 325
-    setCardSize(cardSize)
     setMidColor(isMobile ? "rgb(125, 125, 125)" : "rgb(170, 170, 170)") // on mobile text is thicker and darker for some reason
     setLowColor(isMobile ? "rgb(70, 70, 70)" : "rgb(110, 110, 110)")
     setFadeInTitle(!(isMobile && getBrowserType(navigator) === "Chrome")) // allow as long as we're not on mobile chrome
@@ -54,7 +49,6 @@ export function GlobalsContextProvider({ children }: Props) {
   return (
     <GlobalsContext.Provider
       value={{
-        cardSize: cardSize,
         isMobile,
         midColor,
         fadeInTitle,
@@ -73,15 +67,6 @@ export function GlobalsContextProvider({ children }: Props) {
 function useDynamicContentContext(): GlobalsContextType {
   const context = useContext(GlobalsContext)
   return context
-}
-
-/**
- * Use the card size
- */
-export function useCardSize() {
-  const { cardSize } = useDynamicContentContext()
-
-  return cardSize
 }
 
 /**

@@ -1,9 +1,4 @@
-import {
-  useCardSize,
-  useIsMobile,
-  useLowColor,
-  useMidColor,
-} from "@/GlobalsContext"
+import { useIsMobile, useLowColor, useMidColor } from "@/GlobalsContext"
 import { setCardScrollClass } from "@/helpers/setCardScrollClass"
 import { useEffect, useRef, useState } from "react"
 import { UseMutateAsyncFunction, useMutation } from "react-query"
@@ -13,12 +8,12 @@ import getOnIpad from "@/helpers/getOnIpad"
 import useVirtualKeyboardIsOpen from "@/hooks/useVirtualKeyboardIsOpen"
 import { useRouter } from "next/router"
 import useEventListener from "@/hooks/useEventListener"
+import { CARD_HEIGHT } from "@/constants"
 
 /**
  * The card where we offer a signup for the alpha
  */
 export default function AlphaCard() {
-  const cardSize = useCardSize()
   const isMobile = useIsMobile()
   const cardRef = useRef<HTMLDivElement>(null)
   const [email, setEmail] = useState("")
@@ -79,7 +74,7 @@ export default function AlphaCard() {
       // get the current center of the card
       const cardTopPosition = cardRef.current?.getBoundingClientRect().top
       if (!cardTopPosition) return
-      const cardCenter = cardTopPosition + cardSize / 2
+      const cardCenter = cardTopPosition + CARD_HEIGHT / 2
 
       const screenCenter = window.innerHeight / 2
 
@@ -125,7 +120,7 @@ export default function AlphaCard() {
     <div
       className="flex flex-col justify-center items-start  sm:w-[420px] w-[300px]"
       style={{
-        height: cardSize,
+        height: CARD_HEIGHT,
       }}
       ref={cardRef}
     >

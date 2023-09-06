@@ -1,4 +1,5 @@
-import { useCardSize, useIsMobile, useMidColor } from "@/GlobalsContext"
+import { useIsMobile } from "@/GlobalsContext"
+import { CARD_HEIGHT } from "@/constants"
 import getOnIpad from "@/helpers/getOnIpad"
 import { setCardScrollClass } from "@/helpers/setCardScrollClass"
 import useEventListener from "@/hooks/useEventListener"
@@ -8,7 +9,6 @@ import { useRef } from "react"
  * A chunk of text providing a bit of information about what the company does
  */
 export default function InfoCard() {
-  const cardSize = useCardSize()
   const isMobile = useIsMobile()
   const cardRef = useRef<HTMLDivElement>(null)
 
@@ -29,7 +29,7 @@ export default function InfoCard() {
       // get the current center of the card
       const cardTopPosition = cardRef.current?.getBoundingClientRect().top
       if (!cardTopPosition) return
-      const cardCenter = cardTopPosition + cardSize / 2
+      const cardCenter = cardTopPosition + CARD_HEIGHT / 2
 
       const screenCenter = window.innerHeight / 2
 
@@ -59,7 +59,7 @@ export default function InfoCard() {
     <div
       className="flex flex-col justify-center items-center sm:w-[420px] w-[300px]"
       style={{
-        height: cardSize,
+        height: CARD_HEIGHT,
       }}
       ref={cardRef}
     >
