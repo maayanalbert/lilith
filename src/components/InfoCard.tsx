@@ -4,20 +4,13 @@ import { setCardScrollClass } from "@/helpers/setCardScrollClass"
 import useEventListener from "@/hooks/useEventListener"
 import { useRef } from "react"
 
-interface Props {
-  title: string
-  body: string
-  index: number
-}
-
 /**
  * A chunk of text providing a bit of information about what the company does
  */
-export default function InfoCard({ title, body, index }: Props) {
+export default function InfoCard() {
   const cardSize = useCardSize()
   const isMobile = useIsMobile()
   const cardRef = useRef<HTMLDivElement>(null)
-  const midColor = useMidColor()
 
   // create an event listener for scrolling animation
   useEventListener(
@@ -26,10 +19,10 @@ export default function InfoCard({ title, body, index }: Props) {
       // disable scroll effects on ipad
       if (getOnIpad(navigator)) {
         // the title
-        setCardScrollClass(0, 200, 200, `--scroll-card-${index}-title`)
+        setCardScrollClass(0, 200, 200, `--scroll-card-0-title`)
 
         // the subtitle
-        setCardScrollClass(0, 200, 200, `--scroll-card-${index}-body`)
+        setCardScrollClass(0, 200, 200, `--scroll-card-0-body`)
         return
       }
 
@@ -48,7 +41,7 @@ export default function InfoCard({ title, body, index }: Props) {
         cardDistFromCenter,
         scrollDurationBase * 0.285,
         scrollDurationBase * 0.3,
-        `--scroll-card-${index}-title`
+        `--scroll-card-0-title`
       )
 
       // the subtitle
@@ -56,7 +49,7 @@ export default function InfoCard({ title, body, index }: Props) {
         cardDistFromCenter,
         scrollDurationBase * 0.3,
         scrollDurationBase * 0.285,
-        `--scroll-card-${index}-body`
+        `--scroll-card-0-body`
       )
     },
     [cardRef]
@@ -67,7 +60,6 @@ export default function InfoCard({ title, body, index }: Props) {
       className="flex flex-col justify-center items-center sm:w-[420px] w-[300px]"
       style={{
         height: cardSize,
-        paddingBottom: isMobile ? cardSize / 3 : 0,
       }}
       ref={cardRef}
     >
@@ -78,7 +70,7 @@ export default function InfoCard({ title, body, index }: Props) {
               isMobile ? "font-bold" : "font-semibold"
             }`}
           >
-            {title}
+            Your personal thought partner
           </p>
         </div>
         <div
@@ -86,7 +78,10 @@ export default function InfoCard({ title, body, index }: Props) {
             isMobile ? "font-normal" : "font-light"
           } text-white`}
         >
-          <p style={{ color: "gray" }}>{body} </p>
+          <p style={{ color: "gray" }}>
+            Built to boost creativity, reframe experiences, and organize the
+            snippets of your mind.
+          </p>
         </div>
       </div>
     </div>

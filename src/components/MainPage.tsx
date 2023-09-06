@@ -6,6 +6,7 @@ import { useCardSize, useIsMobile } from "@/GlobalsContext"
 import { useEffect, useState } from "react"
 import useEventListener from "@/hooks/useEventListener"
 import { useRouter } from "next/router"
+import FooterCard from "./FooterCard"
 
 /**
  * The main page where all of the content is
@@ -23,14 +24,10 @@ export default function MainPage() {
         className="flex flex-col items-center"
         style={{ paddingTop: (cardSize * 7) / 24 }}
       >
-        <InfoCard
-          title="Your personal thought partner"
-          body="Built to boost creativity, reframe experiences, and organize the snippets of your mind."
-          index={0}
-        />
+        <InfoCard />
         <AlphaCard />
         {/* the bottom padding */}
-        <div className="relative">
+        <div className="relative w-full">
           <div style={{ height: `calc(50vh - ${180}px)`, width: "100vw" }} />
         </div>
         {/* */}

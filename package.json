@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "devgrok": "ngrok http 666"
+    "devgrok": "ngrok http --domain=dev.eve.space 666"
   },
   "dependencies": {
     "@heroicons/react": "^2.0.17",

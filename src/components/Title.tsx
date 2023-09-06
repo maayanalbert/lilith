@@ -39,13 +39,13 @@ export default function Title() {
 
   return (
     <div
-      className="leading-normal lg:text-6xl text-4xl flex
+      className="leading-normal lg:text-6xl text-3xl flex
     justify-center items-center h-full w-full"
       style={{
         paddingBottom: isMobile ? cardSize / 3 : 0,
       }}
     >
-      <div className="lg:w-[601px] lg:h-[60px] w-[366px] h-[30px] relative">
+      <div className="lg:w-[601px] w-[305px] relative">
         <p
           className={` ${
             isMobile ? "font-normal" : "font-light"
@@ -60,7 +60,7 @@ export default function Title() {
           <div
             className={`scroll-space rounded-full absolute
             lg:h-[105px] lg:w-[5px] lg:top-[-31px] lg:left-[-5px]
-            h-[60px] w-[3px] top-[-7px] left-[-3px]`}
+            h-[45px] w-[2px] top-[-3px] left-[-3px]`}
             style={{
               backgroundColor: "white",
             }}

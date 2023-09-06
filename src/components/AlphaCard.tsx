@@ -126,7 +126,6 @@ export default function AlphaCard() {
       className="flex flex-col justify-center items-start  sm:w-[420px] w-[300px]"
       style={{
         height: cardSize,
-        paddingBottom: isMobile ? cardSize / 3 : 0,
       }}
       ref={cardRef}
     >
