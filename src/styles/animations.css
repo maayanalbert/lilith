@@ -1,29 +1,12 @@
-/* All of the title/home page animations */
+/* CSS for title page */
 
-.animate-your {
-  animation-name: animate-your;
-  animation-duration: 1000ms;
+.animate-cloud {
+  animation-name: animate-cloud;
+  animation-duration: 5000ms;
   animation-timing-function: ease-in-out;
 }
 
-@keyframes animate-your {
-  0% {
-    opacity: 0;
-    filter: blur(3px);
-  }
-  100% {
-    opacity: 1;
-    filter: blur(0px);
-  }
-}
-
-.animate-space {
-  animation-name: animate-space;
-  animation-duration: 1800ms;
-  animation-timing-function: ease-in-out;
-}
-
-@keyframes animate-space {
+@keyframes animate-cloud {
   0% {
     opacity: 0;
   }
@@ -35,89 +18,26 @@
   }
 }
 
-.animate-line {
-  animation-name: animate-line;
-  animation-duration: 2400ms;
-  animation-timing-function: ease-in-out;
-}
-
-@keyframes animate-line {
-  0% {
-    opacity: 0.3;
-    height: 0%;
-  }
-  60% {
-    opacity: 0.3;
-    height: 0%;
-  }
-  100% {
-    opacity: 1;
-    height: 100%;
-  }
-}
-
-.animate-logo {
-  animation-name: animate-logo;
-  animation-duration: 2400ms;
-  animation-timing-function: ease-in-out;
-}
-
-@keyframes animate-logo {
-  0% {
-    opacity: 0;
-    filter: blur(3px);
-  }
-  56% {
-    opacity: 0;
-    filter: blur(3px);
-  }
-  100% {
-    opacity: 1;
-    filter: blur(0px);
-  }
-}
-
-.animate-nav-items {
-  animation-name: animate-nav-items;
-  animation-duration: 2400ms;
-  animation-timing-function: ease-in-out;
-}
-
-@keyframes animate-nav-items {
-  0% {
-    opacity: 0;
-    filter: blur(3px);
-  }
-  48% {
-    opacity: 0;
-    filter: blur(3px);
-  }
-  100% {
-    opacity: 1;
-    filter: blur(0px);
-  }
-}
-
-.scroll-line-opacity {
-  animation-name: scroll-line-opacity;
+.scroll-cloud {
+  animation-name: scroll-cloud;
   animation-play-state: paused;
-  animation-delay: calc(var(--scroll) * -1s);
+  animation-delay: calc(var(--scroll-cloud) * -1s);
   animation-duration: 1s;
   animation-timing-function: ease-in-out;
 }
 
-@keyframes scroll-line-opacity {
+@keyframes scroll-cloud {
   0% {
-    opacity: 0.35;
+    opacity: 10%;
+    scale: 50%;
   }
-  37% {
-    opacity: 0.85;
-  }
-  70% {
-    opacity: 0;
+  40% {
+    opacity: 100%;
+    scale: 100%;
   }
   100% {
-    opacity: 0;
+    opacity: 0%;
+    scale: 50%;
   }
 }
 

@@ -1,5 +1,6 @@
 import { useIsMobile, useLowColor } from "@/GlobalsContext"
 import { CARD_HEIGHT } from "@/constants"
+import useEventListener from "@/hooks/useEventListener"
 import { useEffect, useRef, useState } from "react"
 
 /**
@@ -11,6 +12,23 @@ export default function Title() {
   const [titleText, setTitleText] = useState<string>("")
 
   const fullTitleText = "What's on your mind?"
+
+  // create an event listener for scrolling animation
+  useEventListener(
+    "scroll",
+    () => {
+      const scrollHeight = window.scrollY / (window.innerHeight + 1)
+
+      // flashes when it hits 1 so bound at .99
+      const boundedScrollHeight = Math.max(Math.min(scrollHeight, 0.99), 0)
+
+      document.documentElement.style.setProperty(
+        "--scroll-title",
+        `${boundedScrollHeight}` // the % of the way you have scrolled to the second page
+      )
+    },
+    []
+  )
 
   useEffect(() => {
     typeCharacter(0)
@@ -41,7 +59,7 @@ export default function Title() {
         <p
           className={` ${
             isMobile ? "font-normal" : "font-light"
-          } select-none cursor-default scroll-your`}
+          } select-none cursor-default scroll-title`}
           style={{
             color: "rgb(50, 50, 50)",
           }}
@@ -50,7 +68,7 @@ export default function Title() {
         </p>
         <div className="animate-pulse">
           <div
-            className={`scroll-space rounded-full absolute
+            className={`scroll-cursor rounded-full absolute
             lg:h-[105px] lg:w-[5px] lg:top-[-31px] lg:left-[-5px]
             h-[45px] w-[2px] top-[-3px] left-[-3px]`}
             style={{

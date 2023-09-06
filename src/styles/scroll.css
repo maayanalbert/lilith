@@ -3,14 +3,14 @@
   height: calc(100% * calc(1 - var(--scroll, 0)));
 }
 
-.scroll-your {
-  filter: blur(calc(var(--scroll) * 4px));
-  opacity: calc(1 - calc(var(--scroll) * 4.25));
+.scroll-title {
+  filter: blur(calc(var(--scroll-title) * 4px));
+  opacity: calc(1 - calc(var(--scroll-title) * 4.25));
 }
 
-.scroll-space {
-  filter: blur(calc(var(--scroll) * 3px));
-  opacity: calc(1 - calc(var(--scroll) * 4.25));
+.scroll-cursor {
+  filter: blur(calc(var(--scroll-title) * 3px));
+  opacity: calc(1 - calc(var(--scroll-title) * 4.25));
 }
 
 /* info card */

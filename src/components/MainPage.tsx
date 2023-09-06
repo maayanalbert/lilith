@@ -1,5 +1,5 @@
 import Title from "@/components/Title"
-import Line from "@/components/Line"
+import Cloud from "@/components/Cloud"
 import InfoCard from "@/components/InfoCard"
 import AlphaCard from "@/components/AlphaCard"
 import { CARD_HEIGHT } from "@/constants"
@@ -12,10 +12,10 @@ export default function MainPage() {
       <div className="flex flex-col justify-center items-center h-full w-full">
         <Title />
       </div>
-      <Line />
+
       <div
         className="flex flex-col items-center"
-        style={{ paddingTop: (CARD_HEIGHT * 7) / 24 }}
+        style={{ paddingTop: "100%" }}
       >
         <InfoCard />
         <AlphaCard />
@@ -25,6 +25,8 @@ export default function MainPage() {
         </div>
         {/* */}
       </div>
+
+      <Cloud />
     </>
   )
 }
