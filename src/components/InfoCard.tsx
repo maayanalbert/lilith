@@ -73,16 +73,28 @@ export default function InfoCard() {
             Notes that talk back
           </p>
         </div>
-        <div className={`scroll-card-0-body flex flex-col gap-[20px]`}>
-          <div style={{ color: "gray" }}>
+        <div className={`scroll-card-0-body`}>
+          <p style={{ color: "gray" }}>
             Eve lets you create thought partners for different facets of your
             life.
+          </p>
+          <div
+            className="w-full h-fit"
+            style={{
+              borderRadius: 10,
+              padding: 20,
+              marginTop: 20,
+              backgroundColor: "rgb(28,28,28)",
+              filter:
+                "drop-shadow(0 10px 8px rgb(255 255 255 / 0.04)) drop-shadow(0 4px 3px rgb(255 255 255 / 0.1))",
+            }}
+          >
+            <div style={{ color: "white" }}>
+              <p>{"Programming -> Forest"}</p>
+              <p>{"GUI -> Manicured Gardens"}</p>
+              <p>{"Conversational UI ->"}</p>
+            </div>
           </div>
-          {/* <div style={{ color: "white" }}>
-            <p>{"Programming -> Forest"}</p>
-            <p>{"GUI -> Manicured Gardens"}</p>
-            <p>{"Conversational UI ->"}</p>
-          </div> */}
         </div>
       </div>
     </div>
