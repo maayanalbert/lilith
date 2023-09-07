@@ -54,10 +54,10 @@ export default function InfoCard() {
         `--scroll-card-0-body`
       )
 
-      // the buttons
+      // the buttons, not using for now
       setCardScrollClass(
         cardDistFromCenter,
-        scrollDurationBase * 0.18,
+        scrollDurationBase * 0.15,
         20000000,
         `--scroll-buttons`
       )
@@ -99,7 +99,6 @@ export default function InfoCard() {
               // padding: 24,
               marginTop: 24,
               gap: 16,
-              height: 100, // hardcoding to keep consistent, bad
             }}
           >
             <ExampleContent />
@@ -159,7 +158,7 @@ function ExampleContent() {
         </div>
       </>
     )
-  } else if (curSpace === "NOTES") {
+  } else if (curSpace === "NOTES" || !curSpace) {
     return (
       <>
         <div

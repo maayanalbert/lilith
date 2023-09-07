@@ -98,7 +98,7 @@ export default function Title() {
         </div>
       </div>
 
-      <div className="absolute w-full flex justify-center items-center h-[20%] bottom-0 scroll-buttons">
+      <div className="absolute w-full flex justify-center items-center h-[20%] bottom-0">
         <div className="flex flex-row items-center justify-between gap-[10px]">
           <SpaceSelectable space="IDEAS" setTitle={setTitleText} />
           <SpaceSelectable space="FEELINGS" setTitle={setTitleText} />
