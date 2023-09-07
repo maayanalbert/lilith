@@ -90,7 +90,7 @@ export default function Title() {
           <div
             className={`scroll-cursor rounded-full absolute
             lg:h-[80px] lg:w-[4px] lg:top-[-20px] lg:left-[0px]
-            h-[45px] w-[2px] top-[-3px] left-[0px]`}
+            h-[45px] w-[3px] top-[-7px] left-[0px]`}
             style={{
               backgroundColor: curSpace ? getSpaceColor(curSpace) : "white",
             }}
@@ -98,8 +98,8 @@ export default function Title() {
         </div>
       </div>
 
-      <div className="absolute w-full flex justify-center items-center h-[20%] bottom-0">
-        <div className="flex flex-row items-center justify-between gap-[20px]">
+      <div className="absolute w-full flex justify-center items-center h-[20%] bottom-0 scroll-buttons">
+        <div className="flex flex-row items-center justify-between gap-[10px]">
           <SpaceSelectable space="IDEAS" setTitle={setTitleText} />
           <SpaceSelectable space="FEELINGS" setTitle={setTitleText} />
           <SpaceSelectable space="NOTES" setTitle={setTitleText} />
