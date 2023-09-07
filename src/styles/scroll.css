@@ -13,6 +13,11 @@
   opacity: calc(1 - calc(var(--scroll-title) * 4.25));
 }
 
+.scroll-buttons {
+  opacity: var(--scroll-buttons, 1);
+  filter: blur(calc((1 - var(--scroll-buttons)) * 1px));
+}
+
 /* info card */
 .scroll-card-0-title {
   opacity: var(--scroll-card-0-title, 0);

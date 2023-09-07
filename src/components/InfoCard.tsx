@@ -1,4 +1,5 @@
 import { useIsMobile } from "@/GlobalsContext"
+import { SpaceType, getSpaceColor, useSpacesContext } from "@/SpaceContext"
 import { CARD_HEIGHT } from "@/constants"
 import getOnIpad from "@/helpers/getOnIpad"
 import { setCardScrollClass } from "@/helpers/setCardScrollClass"
@@ -11,6 +12,7 @@ import { useRef } from "react"
 export default function InfoCard() {
   const isMobile = useIsMobile()
   const cardRef = useRef<HTMLDivElement>(null)
+  const { curSpace } = useSpacesContext()
 
   // create an event listener for scrolling animation
   useEventListener(
@@ -51,6 +53,14 @@ export default function InfoCard() {
         scrollDurationBase * 0.285,
         `--scroll-card-0-body`
       )
+
+      // the buttons, not using for now
+      setCardScrollClass(
+        cardDistFromCenter,
+        scrollDurationBase * 0.15,
+        20000000,
+        `--scroll-buttons`
+      )
     },
     [cardRef]
   )
@@ -73,18 +83,105 @@ export default function InfoCard() {
             Notes that talk back
           </p>
         </div>
-        <div className={`scroll-card-0-body flex flex-col gap-[20px]`}>
-          <div style={{ color: "gray" }}>
+        <div
+          className={`scroll-card-0-body ${
+            isMobile ? "font-normal" : "font-light"
+          }`}
+        >
+          <p style={{ color: "gray" }}>
             Eve lets you create thought partners for different facets of your
             life.
+          </p>
+          <div
+            className={`w-full flex flex-col`}
+            style={{
+              borderRadius: 10,
+              // padding: 24,
+              marginTop: 24,
+              gap: 16,
+            }}
+          >
+            <ExampleContent />
           </div>
-          {/* <div style={{ color: "white" }}>
-            <p>{"Programming -> Forest"}</p>
-            <p>{"GUI -> Manicured Gardens"}</p>
-            <p>{"Conversational UI ->"}</p>
-          </div> */}
         </div>
       </div>
     </div>
   )
+}
+
+function ExampleContent() {
+  const isMobile = useIsMobile()
+  const { curSpace } = useSpacesContext()
+  if (curSpace === "IDEAS") {
+    return (
+      <>
+        <div
+          className={isMobile ? "font-bold" : "font-semibold"}
+          style={{ color: "white" }}
+        >
+          <p>{`"This is so important because [_____]"`}</p>
+        </div>
+        <div style={{ color: "gray" }} className="relative">
+          <p>{"Reference Macintosh 1984 ad?"}</p>
+          <div
+            className="animate-pulse absolute left-0 rounded-full"
+            style={{
+              height: 24,
+              width: 2,
+              top: -2,
+              backgroundColor: curSpace ? getSpaceColor(curSpace) : "white",
+            }}
+          />
+        </div>
+      </>
+    )
+  } else if (curSpace === "FEELINGS") {
+    return (
+      <>
+        <div
+          className={isMobile ? "font-bold" : "font-semibold"}
+          style={{ color: "white" }}
+        >
+          <p>{`"I'm overwhelmed, I want to run away"`}</p>
+        </div>
+        <div style={{ color: "gray" }} className="relative">
+          <p>What are you really afraid of?</p>
+          <div
+            className="animate-pulse absolute left-0 rounded-full"
+            style={{
+              height: 24,
+              width: 2,
+              top: -2,
+              backgroundColor: curSpace ? getSpaceColor(curSpace) : "white",
+            }}
+          />
+        </div>
+      </>
+    )
+  } else if (curSpace === "NOTES" || !curSpace) {
+    return (
+      <>
+        <div
+          className={isMobile ? "font-bold" : "font-semibold"}
+          style={{ color: "white" }}
+        >
+          <p>{`"Groceries: Eggs, Noodles, Broccoli"`}</p>
+        </div>
+        <div style={{ color: "gray" }} className="relative">
+          <p>Chili oil?</p>
+          <div
+            className="animate-pulse absolute left-0 rounded-full"
+            style={{
+              height: 24,
+              width: 2,
+              top: -2,
+              backgroundColor: curSpace ? getSpaceColor(curSpace) : "white",
+            }}
+          />
+        </div>
+      </>
+    )
+  } else {
+    return null
+  }
 }

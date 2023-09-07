@@ -14,7 +14,10 @@ export default function MainPage() {
       </div>
 
       <div className="flex flex-col items-center" style={{ paddingTop: 0 }}>
+        <div style={{ height: "7vh", width: "100vw" }} />
+
         <InfoCard />
+        <div style={{ height: "7vh", width: "100vw" }} />
         <AlphaCard />
         {/* the bottom padding */}
         <div className="relative w-full">

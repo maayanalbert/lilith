@@ -13,8 +13,6 @@ export default function FooterCard() {
   useEventListener(
     "scroll",
     (event) => {
-      // console.log(pixelsLeftToScroll)
-
       // disable scroll effects on ipad
       if (getOnIpad(navigator)) {
         // the title
