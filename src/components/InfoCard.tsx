@@ -66,22 +66,23 @@ export default function InfoCard() {
       <div className="flex flex-col gap-2">
         <div className={"scroll-card-0-title"}>
           <p
-            className={`text-white text-2xl ${
+            className={`text-white text-2xl font-bold ${
               isMobile ? "font-bold" : "font-semibold"
             }`}
           >
-            Your personal thought partner
+            Notes that talk back
           </p>
         </div>
-        <div
-          className={`${"scroll-card-0-body"} ${
-            isMobile ? "font-normal" : "font-light"
-          } text-white`}
-        >
-          <p style={{ color: "gray" }}>
-            Built to boost creativity, reframe experiences, and organize the
-            snippets of your mind.
-          </p>
+        <div className={`scroll-card-0-body flex flex-col gap-[20px]`}>
+          <div style={{ color: "gray" }}>
+            Eve lets you create thought partners for different facets of your
+            life.
+          </div>
+          {/* <div style={{ color: "white" }}>
+            <p>{"Programming -> Forest"}</p>
+            <p>{"GUI -> Manicured Gardens"}</p>
+            <p>{"Conversational UI ->"}</p>
+          </div> */}
         </div>
       </div>
     </div>

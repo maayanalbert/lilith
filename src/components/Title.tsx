@@ -1,17 +1,26 @@
 import { useIsMobile, useLowColor } from "@/GlobalsContext"
+import {
+  SpaceType,
+  getSpaceColor,
+  getSpaceName,
+  getSpacePrompt,
+  useSpacesContext,
+} from "@/SpaceContext"
 import { CARD_HEIGHT } from "@/constants"
 import useEventListener from "@/hooks/useEventListener"
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 
 /**
  * The title text (your space)
  */
 export default function Title() {
   const isMobile = useIsMobile()
+  const { curSpace } = useSpacesContext()
+  const [showTrimmings, setShowTrimmings] = useState<boolean>(false)
 
   const [titleText, setTitleText] = useState<string>("")
 
-  const fullTitleText = "What's on your mind?"
+  const defaultPromptText = "What's on your mind?"
 
   // create an event listener for scrolling animation
   useEventListener(
@@ -35,33 +44,44 @@ export default function Title() {
   }, [])
 
   const typeCharacter = (i: number) => {
-    setTitleText(fullTitleText.substring(0, i))
-    if (i < fullTitleText.length) {
+    setTitleText(defaultPromptText.substring(0, i))
+    if (i < defaultPromptText.length) {
       const timeoutLen =
-        fullTitleText[i] === "?" ? 500 : fullTitleText[i] === " " ? 300 : 100
+        defaultPromptText[i] === "?"
+          ? 500
+          : defaultPromptText[i] === " "
+          ? 300
+          : 100
 
       const iInc =
-        fullTitleText[i + 1] === " " || fullTitleText[i + 1] === "?" ? 1 : 2
+        defaultPromptText[i + 1] === " " || defaultPromptText[i + 1] === "?"
+          ? 1
+          : 2
 
       setTimeout(() => typeCharacter(i + iInc), timeoutLen)
+    } else {
+      setShowTrimmings(true)
     }
   }
 
   return (
     <div
-      className="leading-normal lg:text-6xl text-3xl flex
+      className="leading-normal flex
     justify-center items-center h-full w-full"
       style={{
         paddingBottom: isMobile ? CARD_HEIGHT / 3 : 0,
       }}
     >
-      <div className="lg:w-[601px] w-[305px] relative">
+      <div
+        className={`lg:w-[490px] w-[305px] relative`}
+        style={{ width: curSpace ? "fit-content" : undefined }}
+      >
         <p
           className={` ${
             isMobile ? "font-normal" : "font-light"
-          } select-none cursor-default scroll-title`}
+          } select-none cursor-default scroll-title lg:text-5xl text-3xl`}
           style={{
-            color: "rgb(50, 50, 50)",
+            color: "rgb(100, 100, 100)",
           }}
         >
           {titleText}
@@ -69,14 +89,58 @@ export default function Title() {
         <div className="animate-pulse">
           <div
             className={`scroll-cursor rounded-full absolute
-            lg:h-[105px] lg:w-[5px] lg:top-[-31px] lg:left-[-5px]
-            h-[45px] w-[2px] top-[-3px] left-[-3px]`}
+            lg:h-[80px] lg:w-[4px] lg:top-[-20px] lg:left-[0px]
+            h-[45px] w-[2px] top-[-3px] left-[0px]`}
             style={{
-              backgroundColor: "white",
+              backgroundColor: curSpace ? getSpaceColor(curSpace) : "white",
             }}
           />
         </div>
       </div>
+
+      <div className="absolute w-full flex justify-center items-center h-[20%] bottom-0">
+        <div className="flex flex-row items-center justify-between gap-[20px]">
+          <SpaceSelectable space="IDEAS" setTitle={setTitleText} />
+          <SpaceSelectable space="FEELINGS" setTitle={setTitleText} />
+          <SpaceSelectable space="NOTES" setTitle={setTitleText} />
+        </div>
+      </div>
+    </div>
+  )
+}
+
+interface SpaceSelectableProps {
+  space: SpaceType
+  setTitle: (title: string) => void
+}
+
+function SpaceSelectable({ space, setTitle }: SpaceSelectableProps) {
+  const { curSpace, setCurSpace } = useSpacesContext()
+
+  const accentColor =
+    !curSpace || curSpace === space ? getSpaceColor(space) : "gray"
+
+  const onPress = () => {
+    if (curSpace === space) {
+      setCurSpace()
+      setTitle("What's on your mind?")
+    } else {
+      setCurSpace(space)
+      setTitle(getSpacePrompt(space))
+    }
+  }
+  return (
+    <div
+      className={`rounded text-base border px-[20px] py-[5px] cursor-pointer 
+      hover:scale-105 transition-transform ease-in-out`}
+      style={{
+        color: accentColor,
+        borderColor: accentColor,
+        borderRadius: 7,
+      }}
+      onClick={onPress}
+    >
+      {getSpaceName(space)}
     </div>
   )
 }

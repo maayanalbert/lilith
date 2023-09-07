@@ -5,6 +5,7 @@ import type { AppProps } from "next/app"
 import { GlobalsContextProvider } from "@/GlobalsContext"
 import { useMemo } from "react"
 import { QueryClient, QueryClientProvider } from "react-query"
+import { SpaceContextProvider } from "@/SpaceContext"
 
 export default function App({ Component, pageProps }: AppProps) {
   const queryClient = useMemo(
@@ -23,7 +24,9 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <QueryClientProvider client={queryClient}>
         <GlobalsContextProvider>
-          <Component {...pageProps} />
+          <SpaceContextProvider>
+            <Component {...pageProps} />
+          </SpaceContextProvider>
         </GlobalsContextProvider>
       </QueryClientProvider>
     </>

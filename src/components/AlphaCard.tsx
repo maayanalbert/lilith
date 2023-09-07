@@ -140,11 +140,7 @@ export default function AlphaCard() {
           Apply for access
         </p>
 
-        <div
-          className={`${
-            isMobile ? "font-normal" : "font-light"
-          } text-white flex flex-col gap-4`}
-        >
+        <div className={`text-white flex flex-col gap-4`}>
           <div style={{ color: "gray" }}>
             {/* nest this so the opacities don't overlap */}
             <p className="scroll-card-beta-text">

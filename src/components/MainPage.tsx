@@ -13,10 +13,7 @@ export default function MainPage() {
         <Title />
       </div>
 
-      <div
-        className="flex flex-col items-center"
-        style={{ paddingTop: "100%" }}
-      >
+      <div className="flex flex-col items-center" style={{ paddingTop: 0 }}>
         <InfoCard />
         <AlphaCard />
         {/* the bottom padding */}
@@ -25,8 +22,6 @@ export default function MainPage() {
         </div>
         {/* */}
       </div>
-
-      {/* <Cloud /> */}
     </>
   )
 }
