@@ -26,7 +26,7 @@ export default function MainPage() {
         {/* */}
       </div>
 
-      <Cloud />
+      {/* <Cloud /> */}
     </>
   )
 }
