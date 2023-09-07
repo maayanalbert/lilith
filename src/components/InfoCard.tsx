@@ -145,7 +145,7 @@ function ExampleContent() {
           <p>{`"I'm overwhelmed, I want to run away"`}</p>
         </div>
         <div style={{ color: "gray" }} className="relative">
-          <p>What are you really afraid of?</p>
+          <p>Why?</p>
           <div
             className="animate-pulse absolute left-0 rounded-full"
             style={{
