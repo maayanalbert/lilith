@@ -112,14 +112,14 @@ export default function InfoCard() {
 function ExampleContent() {
   const isMobile = useIsMobile()
   const { curSpace } = useSpacesContext()
-  if (curSpace === "IDEAS") {
+  if (curSpace === "IDEAS" || !curSpace) {
     return (
       <>
         <div
           className={isMobile ? "font-bold" : "font-semibold"}
           style={{ color: "white" }}
         >
-          <p>{`"This is important because [_____]"`}</p>
+          <p>{`"Need to end presentation on a high note"`}</p>
         </div>
         <div style={{ color: "gray" }} className="relative">
           <p>{"Reference Macintosh 1984 ad?"}</p>
@@ -142,7 +142,7 @@ function ExampleContent() {
           className={isMobile ? "font-bold" : "font-semibold"}
           style={{ color: "white" }}
         >
-          <p>{`"I'm overwhelmed, I want to run away"`}</p>
+          <p>{`"I'm overwhelmed, I want to run"`}</p>
         </div>
         <div style={{ color: "gray" }} className="relative">
           <p>Why?</p>
@@ -158,14 +158,14 @@ function ExampleContent() {
         </div>
       </>
     )
-  } else if (curSpace === "NOTES" || !curSpace) {
+  } else if (curSpace === "NOTES") {
     return (
       <>
         <div
           className={isMobile ? "font-bold" : "font-semibold"}
           style={{ color: "white" }}
         >
-          <p>{`"Groceries: Eggs, Noodles, Broccoli"`}</p>
+          <p>{`"Groceries: eggs, boodles, broccoli"`}</p>
         </div>
         <div style={{ color: "gray" }} className="relative">
           <p>Chili oil?</p>
