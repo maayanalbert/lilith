@@ -119,7 +119,7 @@ function ExampleContent() {
           className={isMobile ? "font-bold" : "font-semibold"}
           style={{ color: "white" }}
         >
-          <p>{`"This is so important because [_____]"`}</p>
+          <p>{`"This is important because [_____]"`}</p>
         </div>
         <div style={{ color: "gray" }} className="relative">
           <p>{"Reference Macintosh 1984 ad?"}</p>
