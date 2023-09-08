@@ -43,14 +43,14 @@ export function useSpacesContext(): SpaceContextType {
 
 export type SpaceType = "IDEAS" | "FEELINGS" | "NOTES"
 
-export function getSpaceColor(type: SpaceType) {
+export function getSpaceColor(type?: SpaceType) {
   switch (type) {
     case "IDEAS":
-      return "#377AE7"
+      return "#0097FE"
     case "FEELINGS":
-      return "#FC3258"
+      return "#7D5BED"
     case "NOTES":
-      return "#E4AF0A"
+      return "#E8BA2A"
     default:
       return "gray"
   }
