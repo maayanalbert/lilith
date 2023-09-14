@@ -13,7 +13,7 @@ import { CARD_HEIGHT } from "@/constants"
 /**
  * The card where we offer a signup for the alpha
  */
-export default function AlphaCard() {
+export default function AccessCard() {
   const isMobile = useIsMobile()
   const cardRef = useRef<HTMLDivElement>(null)
   const [email, setEmail] = useState("")
@@ -63,11 +63,7 @@ export default function AlphaCard() {
     () => {
       // disable scroll effects on ipad
       if (getOnIpad(navigator)) {
-        // the title
-        setCardScrollClass(0, 200, 200, `--scroll-card-beta-title`)
-
-        // the subtitle
-        setCardScrollClass(0, 200, 200, `--scroll-card-beta-text`)
+        setCardScrollClass(0, 200, 200, `--scroll-access`)
         return
       }
 
@@ -84,15 +80,9 @@ export default function AlphaCard() {
       if (virtualKeyboardIsOpen) {
         setCardScrollClass(
           0,
-          scrollDurationBase * 0.285,
           scrollDurationBase * 0.3,
-          `--scroll-card-beta-title`
-        )
-        setCardScrollClass(
-          0,
           scrollDurationBase * 0.3,
-          scrollDurationBase * 0.285,
-          `--scroll-card-beta-text`
+          `--scroll-access`
         )
         return
       }
@@ -100,17 +90,9 @@ export default function AlphaCard() {
       // the text
       setCardScrollClass(
         cardDistFromCenter,
-        scrollDurationBase * 0.285,
         scrollDurationBase * 0.3,
-        `--scroll-card-beta-title`
-      )
-
-      // the input
-      setCardScrollClass(
-        cardDistFromCenter,
         scrollDurationBase * 0.3,
-        scrollDurationBase * 0.285,
-        `--scroll-card-beta-text`
+        `--scroll-access`
       )
     },
     [cardRef, virtualKeyboardIsOpen]
@@ -118,7 +100,7 @@ export default function AlphaCard() {
 
   return (
     <div
-      className="flex flex-col justify-center items-start  sm:w-[420px] w-[300px]"
+      className="flex flex-col justify-center items-start  sm:w-[420px] w-[300px] scroll-access"
       style={{
         height: CARD_HEIGHT,
       }}
@@ -135,7 +117,7 @@ export default function AlphaCard() {
         <p
           className={`text-white text-2xl ${
             isMobile ? "font-bold" : "font-semibold"
-          } scroll-card-beta-title`}
+          }`}
         >
           Apply for access
         </p>
@@ -143,15 +125,9 @@ export default function AlphaCard() {
         <div className={`text-white flex flex-col gap-4`}>
           <div style={{ color: "gray" }}>
             {/* nest this so the opacities don't overlap */}
-            <p className="scroll-card-beta-text">
-              We're currently invite only. Request an application:
-            </p>
+            <p>We're currently invite only. Request an application:</p>
           </div>
-          <div
-            className={`flex flex-col ${
-              isMobile ? "gap-1.5" : "gap-1"
-            } scroll-card-beta-text`}
-          >
+          <div className={`flex flex-col ${isMobile ? "gap-1.5" : "gap-1"}`}>
             <div
               className="flex flex-row gap-3.5 items-end"
               style={{ width: 250 }}

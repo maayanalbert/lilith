@@ -1,7 +1,6 @@
 import Title from "@/components/Title"
-import Cloud from "@/components/Cloud"
 import InfoCard from "@/components/InfoCard"
-import AlphaCard from "@/components/AlphaCard"
+import AccessCard from "@/components/AccessCard"
 import { CARD_HEIGHT } from "@/constants"
 /**
  * The main page where all of the content is
@@ -18,7 +17,7 @@ export default function MainPage() {
 
         <InfoCard />
         <div style={{ height: "7vh", width: "100vw" }} />
-        <AlphaCard />
+        <AccessCard />
         {/* the bottom padding */}
         <div className="relative w-full">
           <div style={{ height: `calc(50vh - ${180}px)`, width: "100vw" }} />

@@ -21,10 +21,7 @@ export default function InfoCard() {
       // disable scroll effects on ipad
       if (getOnIpad(navigator)) {
         // the title
-        setCardScrollClass(0, 200, 200, `--scroll-card-0-title`)
-
-        // the subtitle
-        setCardScrollClass(0, 200, 200, `--scroll-card-0-body`)
+        setCardScrollClass(0, 200, 200, `--scroll-info`)
         return
       }
 
@@ -38,28 +35,11 @@ export default function InfoCard() {
       const cardDistFromCenter = cardCenter - screenCenter
       const scrollDurationBase = (window.innerHeight * 4.25) / 5
 
-      // the title
       setCardScrollClass(
         cardDistFromCenter,
         scrollDurationBase * 0.285,
         scrollDurationBase * 0.3,
-        `--scroll-card-0-title`
-      )
-
-      // the subtitle
-      setCardScrollClass(
-        cardDistFromCenter,
-        scrollDurationBase * 0.3,
-        scrollDurationBase * 0.285,
-        `--scroll-card-0-body`
-      )
-
-      // the buttons, not using for now
-      setCardScrollClass(
-        cardDistFromCenter,
-        scrollDurationBase * 0.15,
-        20000000,
-        `--scroll-buttons`
+        `--scroll-info`
       )
     },
     [cardRef]
@@ -67,14 +47,14 @@ export default function InfoCard() {
 
   return (
     <div
-      className="flex flex-col justify-center items-center sm:w-[420px] w-[300px]"
+      className="flex flex-col justify-center items-center sm:w-[420px] w-[300px] scroll-info"
       style={{
         height: CARD_HEIGHT,
       }}
       ref={cardRef}
     >
       <div className="flex flex-col gap-2">
-        <div className={"scroll-card-0-title"}>
+        <div>
           <p
             className={`text-white text-2xl font-bold ${
               isMobile ? "font-bold" : "font-semibold"
@@ -83,11 +63,7 @@ export default function InfoCard() {
             Notes that talk back
           </p>
         </div>
-        <div
-          className={`scroll-card-0-body ${
-            isMobile ? "font-normal" : "font-light"
-          }`}
-        >
+        <div className={`${isMobile ? "font-normal" : "font-light"}`}>
           <p style={{ color: "gray" }}>
             Eve lets you create thought partners for different facets of your
             life.
