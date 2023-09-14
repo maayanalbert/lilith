@@ -1,6 +1,5 @@
 import { useIsMobile } from "@/GlobalsContext"
 import { SpaceType, getSpaceColor, useSpacesContext } from "@/SpaceContext"
-import { CARD_HEIGHT } from "@/constants"
 import getOnIpad from "@/helpers/getOnIpad"
 import { setCardScrollClass } from "@/helpers/setCardScrollClass"
 import useEventListener from "@/hooks/useEventListener"
@@ -27,8 +26,10 @@ export default function InfoCard() {
 
       // get the current center of the card
       const cardTopPosition = cardRef.current?.getBoundingClientRect().top
-      if (!cardTopPosition) return
-      const cardCenter = cardTopPosition + CARD_HEIGHT / 2
+      const cardHeight = cardRef.current?.getBoundingClientRect().height
+
+      if (!cardTopPosition || !cardHeight) return
+      const cardCenter = cardTopPosition + cardHeight / 2
 
       const screenCenter = window.innerHeight / 2
 
@@ -37,7 +38,7 @@ export default function InfoCard() {
 
       setCardScrollClass(
         cardDistFromCenter,
-        scrollDurationBase * 0.285,
+        scrollDurationBase * 0.3,
         scrollDurationBase * 0.3,
         `--scroll-info`
       )
@@ -47,37 +48,39 @@ export default function InfoCard() {
 
   return (
     <div
-      className="flex flex-col justify-center items-center sm:w-[420px] w-[300px] scroll-info"
-      style={{
-        height: CARD_HEIGHT,
-      }}
-      ref={cardRef}
+      className="flex justify-center items-center"
+      style={{ height: "60vh" }}
     >
-      <div className="flex flex-col gap-2">
-        <div>
-          <p
-            className={`text-white text-2xl font-bold ${
-              isMobile ? "font-bold" : "font-semibold"
-            }`}
-          >
-            Notes that talk back
-          </p>
-        </div>
-        <div className={`${isMobile ? "font-normal" : "font-light"}`}>
-          <p style={{ color: "gray" }}>
-            Eve lets you create thought partners for different facets of your
-            life.
-          </p>
-          <div
-            className={`w-full flex flex-col`}
-            style={{
-              borderRadius: 10,
-              // padding: 24,
-              marginTop: 24,
-              gap: 16,
-            }}
-          >
-            <ExampleContent />
+      <div
+        className="flex flex-col justify-center items-center sm:w-[420px] w-[300px] scroll-info"
+        ref={cardRef}
+      >
+        <div className="flex flex-col gap-2">
+          <div>
+            <p
+              className={`text-white text-2xl font-bold ${
+                isMobile ? "font-bold" : "font-semibold"
+              }`}
+            >
+              Notes that talk back
+            </p>
+          </div>
+          <div className={`${isMobile ? "font-normal" : "font-light"}`}>
+            <p style={{ color: "gray" }}>
+              Eve lets you create thought partners for different facets of your
+              life.
+            </p>
+            <div
+              className={`w-full flex flex-col`}
+              style={{
+                borderRadius: 10,
+                // padding: 24,
+                marginTop: 24,
+                gap: 16,
+              }}
+            >
+              <ExampleContent />
+            </div>
           </div>
         </div>
       </div>
