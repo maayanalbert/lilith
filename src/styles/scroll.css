@@ -1,8 +1,4 @@
 /* title and line */
-.scroll-line-height {
-  height: calc(100% * calc(1 - var(--scroll, 0)));
-}
-
 .scroll-title {
   filter: blur(calc(var(--scroll-title) * 4px));
   opacity: calc(1 - calc(var(--scroll-title) * 4.25));
@@ -13,35 +9,14 @@
   opacity: calc(1 - calc(var(--scroll-title) * 4.25));
 }
 
-.scroll-buttons {
-  opacity: var(--scroll-buttons, 1);
-  filter: blur(calc((1 - var(--scroll-buttons)) * 1px));
+/* info section */
+.scroll-info {
+  opacity: var(--scroll-info, 0);
+  filter: blur(calc((1 - var(--scroll-info)) * 1px));
 }
 
-/* info card */
-.scroll-card-0-title {
-  opacity: var(--scroll-card-0-title, 0);
-  filter: blur(calc((1 - var(--scroll-card-0-title)) * 1px));
-}
-
-.scroll-card-0-body {
-  opacity: var(--scroll-card-0-body, 0);
-  filter: blur(calc((1 - var(--scroll-card-0-body)) * 1px));
-}
-
-/* beta */
-.scroll-card-beta-title {
-  opacity: var(--scroll-card-beta-title, 0);
-  filter: blur(calc((1 - var(--scroll-card-beta-title)) * 1px));
-}
-
-.scroll-card-beta-text {
-  opacity: var(--scroll-card-beta-text, 0);
-  filter: blur(calc((1 - var(--scroll-card-beta-text)) * 1px));
-}
-
-/* footer */
-.scroll-footer {
-  opacity: var(--scroll-footer, 0);
-  filter: blur(calc((1 - var(--scroll-footer)) * 1px));
+/* access section */
+.scroll-access {
+  opacity: var(--scroll-access, 0);
+  filter: blur(calc((1 - var(--scroll-access)) * 1px));
 }

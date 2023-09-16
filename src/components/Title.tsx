@@ -1,13 +1,7 @@
 import { useIsMobile, useLowColor } from "@/GlobalsContext"
-import {
-  SpaceType,
-  getSpaceColor,
-  getSpaceName,
-  getSpacePrompt,
-  useSpacesContext,
-} from "@/SpaceContext"
-import { CARD_HEIGHT } from "@/constants"
+import { getSpaceColor, getSpacePrompt, useSpacesContext } from "@/SpaceContext"
 import useEventListener from "@/hooks/useEventListener"
+import { get } from "lodash"
 import { useEffect, useState } from "react"
 
 /**
@@ -16,7 +10,6 @@ import { useEffect, useState } from "react"
 export default function Title() {
   const isMobile = useIsMobile()
   const { curSpace } = useSpacesContext()
-  const [showTrimmings, setShowTrimmings] = useState<boolean>(false)
 
   const [titleText, setTitleText] = useState<string>("")
 
@@ -40,37 +33,26 @@ export default function Title() {
   )
 
   useEffect(() => {
-    typeCharacter(0)
+    typeCharacter(0, defaultPromptText)
   }, [])
 
-  const typeCharacter = (i: number) => {
-    setTitleText(defaultPromptText.substring(0, i))
-    if (i < defaultPromptText.length) {
+  const typeCharacter = (i: number, fullText: string) => {
+    setTitleText(fullText.substring(0, i))
+    if (i < fullText.length) {
       const timeoutLen =
-        defaultPromptText[i] === "?"
-          ? 500
-          : defaultPromptText[i] === " "
-          ? 300
-          : 100
+        fullText[i] === "?" ? 500 : fullText[i] === " " ? 300 : 100
 
-      const iInc =
-        defaultPromptText[i + 1] === " " || defaultPromptText[i + 1] === "?"
-          ? 1
-          : 2
+      const iInc = fullText[i + 1] === " " || fullText[i + 1] === "?" ? 1 : 2
 
-      setTimeout(() => typeCharacter(i + iInc), timeoutLen)
-    } else {
-      setShowTrimmings(true)
+      setTimeout(() => typeCharacter(i + iInc, fullText), timeoutLen)
     }
   }
 
   return (
     <div
       className="leading-normal flex
-    justify-center items-center h-full w-full"
-      style={{
-        paddingBottom: isMobile ? CARD_HEIGHT / 3 : 0,
-      }}
+    justify-center items-center  w-full"
+      style={{ height: "100vh" }}
     >
       <div
         className={`lg:w-[490px] w-[305px] relative`}
@@ -84,7 +66,7 @@ export default function Title() {
             color: "rgb(100, 100, 100)",
           }}
         >
-          {titleText}
+          {!curSpace ? titleText : getSpacePrompt(curSpace)}
         </p>
         <div className="animate-pulse">
           <div
@@ -97,50 +79,6 @@ export default function Title() {
           />
         </div>
       </div>
-
-      <div className="absolute w-full flex justify-center items-center h-[20%] bottom-0">
-        <div className="flex flex-row items-center justify-between gap-[10px]">
-          <SpaceSelectable space="IDEAS" setTitle={setTitleText} />
-          <SpaceSelectable space="FEELINGS" setTitle={setTitleText} />
-          <SpaceSelectable space="NOTES" setTitle={setTitleText} />
-        </div>
-      </div>
-    </div>
-  )
-}
-
-interface SpaceSelectableProps {
-  space: SpaceType
-  setTitle: (title: string) => void
-}
-
-function SpaceSelectable({ space, setTitle }: SpaceSelectableProps) {
-  const { curSpace, setCurSpace } = useSpacesContext()
-
-  const accentColor =
-    !curSpace || curSpace === space ? getSpaceColor(space) : "gray"
-
-  const onPress = () => {
-    if (curSpace === space) {
-      setCurSpace()
-      setTitle("What's on your mind?")
-    } else {
-      setCurSpace(space)
-      setTitle(getSpacePrompt(space))
-    }
-  }
-  return (
-    <div
-      className={`rounded text-base border px-[20px] py-[5px] cursor-pointer 
-      hover:scale-105 transition-transform ease-in-out`}
-      style={{
-        color: accentColor,
-        borderColor: accentColor,
-        borderRadius: 7,
-      }}
-      onClick={onPress}
-    >
-      {getSpaceName(space)}
     </div>
   )
 }
