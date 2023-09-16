@@ -142,10 +142,10 @@ function ExampleContent() {
           className={isMobile ? "font-bold" : "font-semibold"}
           style={{ color: "white" }}
         >
-          <p>{`"I'm overwhelmed, I want to run"`}</p>
+          <p>{`"Why is setting boundaries so hard? Is it better to be honest and risk rejection, or keep myself safe?"`}</p>
         </div>
         <div style={{ color: "gray" }} className="relative">
-          <p>Why?</p>
+          <p>Are safety and honesty mutually exclusive?</p>
           <div
             className="animate-pulse absolute left-0 rounded-full"
             style={{
