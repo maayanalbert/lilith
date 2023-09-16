@@ -9,7 +9,6 @@ export default function MainPage() {
   return (
     <div className="relative">
       <Title />
-      <SpaceButtons />
       <InfoCard />
       <AccessCard />
     </div>
