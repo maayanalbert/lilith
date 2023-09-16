@@ -11,7 +11,7 @@
 
 /* info section */
 .scroll-info {
-  opacity: var(--scroll-info, 0);
+  opacity: var(--scroll-info, 1);
   filter: blur(calc((1 - var(--scroll-info)) * 1px));
 }
 

@@ -1,4 +1,3 @@
-import Title from "@/components/Title"
 import InfoCard from "@/components/InfoCard"
 import AccessCard from "@/components/AccessCard"
 
@@ -8,7 +7,6 @@ import AccessCard from "@/components/AccessCard"
 export default function MainPage() {
   return (
     <div className="relative">
-      <Title />
       <InfoCard />
       <AccessCard />
     </div>

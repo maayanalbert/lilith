@@ -1,5 +1,5 @@
 import { useIsMobile } from "@/GlobalsContext"
-import { SpaceType, getSpaceColor, useSpacesContext } from "@/SpaceContext"
+import { accentColor } from "@/constants"
 import getOnIpad from "@/helpers/getOnIpad"
 import { setCardScrollClass } from "@/helpers/setCardScrollClass"
 import useEventListener from "@/hooks/useEventListener"
@@ -9,9 +9,7 @@ import { useRef } from "react"
  * A chunk of text providing a bit of information about what the company does
  */
 export default function InfoCard() {
-  const isMobile = useIsMobile()
   const cardRef = useRef<HTMLDivElement>(null)
-  const { curSpace } = useSpacesContext()
 
   // create an event listener for scrolling animation
   useEventListener(
@@ -49,118 +47,34 @@ export default function InfoCard() {
   return (
     <div
       className="flex justify-center items-center"
-      style={{ height: "60vh" }}
+      style={{ height: "100vh" }}
     >
       <div
-        className="flex flex-col justify-center items-center sm:w-[420px] w-[300px] scroll-info"
+        className="flex flex-col justify-center items-center scroll-info w-[300px] sm:w-[540px]"
         ref={cardRef}
       >
-        <div className="flex flex-col gap-2">
-          <div>
-            <p
-              className={`text-white text-2xl font-bold ${
-                isMobile ? "font-bold" : "font-semibold"
-              }`}
-            >
-              Notes that talk back
-            </p>
-          </div>
-          <div className={`${isMobile ? "font-normal" : "font-light"}`}>
-            <p style={{ color: "gray" }}>
-              Eve lets you create thought partners for different facets of your
-              life.
-            </p>
-            <div
-              className={`w-full flex flex-col`}
-              style={{
-                borderRadius: 10,
-                // padding: 24,
-                marginTop: 24,
-                gap: 16,
-              }}
-            >
-              <ExampleContent />
-            </div>
-          </div>
+        <div className="flex flex-col gap-12">
+          <p
+            className="text-5xl"
+            style={{ color: "rgb(64, 64, 64)", font: "Helvetica Neueu" }}
+          >
+            What's on your mind?
+          </p>
+          <p className="text-2xl" style={{ color: "white" }}>
+            Eve is a guided note taking tool for emotional intelligence
+          </p>
         </div>
+        <div
+          className="animate-pulse absolute rounded-full"
+          style={{
+            height: 56,
+            width: 4,
+            top: -8,
+            left: -3,
+            backgroundColor: accentColor,
+          }}
+        />
       </div>
     </div>
   )
-}
-
-function ExampleContent() {
-  const isMobile = useIsMobile()
-  const { curSpace } = useSpacesContext()
-  if (curSpace === "IDEAS" || !curSpace) {
-    return (
-      <>
-        <div
-          className={isMobile ? "font-bold" : "font-semibold"}
-          style={{ color: "white" }}
-        >
-          <p>{`"Need to end presentation on a high note"`}</p>
-        </div>
-        <div style={{ color: "gray" }} className="relative">
-          <p>{"Reference Macintosh 1984 ad?"}</p>
-          <div
-            className="animate-pulse absolute left-0 rounded-full"
-            style={{
-              height: 24,
-              width: 2,
-              top: -2,
-              backgroundColor: curSpace ? getSpaceColor(curSpace) : "white",
-            }}
-          />
-        </div>
-      </>
-    )
-  } else if (curSpace === "FEELINGS") {
-    return (
-      <>
-        <div
-          className={isMobile ? "font-bold" : "font-semibold"}
-          style={{ color: "white" }}
-        >
-          <p>{`"Why is setting boundaries so hard? Is it better to be honest and risk rejection, or keep myself safe?"`}</p>
-        </div>
-        <div style={{ color: "gray" }} className="relative">
-          <p>Are safety and honesty mutually exclusive?</p>
-          <div
-            className="animate-pulse absolute left-0 rounded-full"
-            style={{
-              height: 24,
-              width: 2,
-              top: -2,
-              backgroundColor: curSpace ? getSpaceColor(curSpace) : "white",
-            }}
-          />
-        </div>
-      </>
-    )
-  } else if (curSpace === "NOTES") {
-    return (
-      <>
-        <div
-          className={isMobile ? "font-bold" : "font-semibold"}
-          style={{ color: "white" }}
-        >
-          <p>{`"Groceries: eggs, boodles, broccoli"`}</p>
-        </div>
-        <div style={{ color: "gray" }} className="relative">
-          <p>Chili oil?</p>
-          <div
-            className="animate-pulse absolute left-0 rounded-full"
-            style={{
-              height: 24,
-              width: 2,
-              top: -2,
-              backgroundColor: curSpace ? getSpaceColor(curSpace) : "white",
-            }}
-          />
-        </div>
-      </>
-    )
-  } else {
-    return null
-  }
 }
