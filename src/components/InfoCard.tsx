@@ -3,7 +3,7 @@ import { accentColor } from "@/constants"
 import getOnIpad from "@/helpers/getOnIpad"
 import { setCardScrollClass } from "@/helpers/setCardScrollClass"
 import useEventListener from "@/hooks/useEventListener"
-import { useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 
 /**
  * A chunk of text providing a bit of information about what the company does
@@ -46,34 +46,17 @@ export default function InfoCard() {
 
   return (
     <div
-      className="flex justify-center items-center"
-      style={{ height: "100vh" }}
+      className="flex justify-center items-center "
+      style={{ height: "60vh" }}
     >
       <div
-        className="flex flex-col justify-center items-center scroll-info w-[300px] sm:w-[540px]"
+        className="flex flex-col justify-center items-center scroll-info relative gap-12"
         ref={cardRef}
       >
-        <div className="flex flex-col gap-12">
-          <p
-            className="text-5xl"
-            style={{ color: "rgb(64, 64, 64)", font: "Helvetica Neueu" }}
-          >
-            What's on your mind?
-          </p>
-          <p className="text-2xl" style={{ color: "white" }}>
-            Eve is a guided note taking tool for emotional intelligence
-          </p>
-        </div>
-        <div
-          className="animate-pulse absolute rounded-full"
-          style={{
-            height: 56,
-            width: 4,
-            top: -8,
-            left: -3,
-            backgroundColor: accentColor,
-          }}
-        />
+        <p className="text-xl font-light" style={{ color: "white" }}>
+          Eve is a pre seed, New York based venture building a note taking tool
+          for emotional intelligence.
+        </p>
       </div>
     </div>
   )

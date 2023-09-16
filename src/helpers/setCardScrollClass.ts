@@ -20,6 +20,9 @@ export function setCardScrollClass(
           1
         )
 
+  if (variableName === "--scroll-title")
+    console.log(cardDistFromCenter, upperScrollDuration)
+
   const boundedOpacityKeyframe = Math.max(Math.min(keyframe, 1), 0)
   document.documentElement.style.setProperty(
     variableName,

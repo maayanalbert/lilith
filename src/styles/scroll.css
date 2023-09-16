@@ -1,17 +1,12 @@
-/* title and line */
+/* title */
 .scroll-title {
   filter: blur(calc(var(--scroll-title) * 4px));
   opacity: calc(1 - calc(var(--scroll-title) * 4.25));
 }
 
-.scroll-cursor {
-  filter: blur(calc(var(--scroll-title) * 3px));
-  opacity: calc(1 - calc(var(--scroll-title) * 4.25));
-}
-
 /* info section */
 .scroll-info {
-  opacity: var(--scroll-info, 1);
+  opacity: var(--scroll-info, 0);
   filter: blur(calc((1 - var(--scroll-info)) * 1px));
 }
 

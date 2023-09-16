@@ -125,7 +125,7 @@ export default function AccessCard() {
           <div className={`text-white flex flex-col gap-4`}>
             <div style={{ color: "gray" }}>
               {/* nest this so the opacities don't overlap */}
-              <p>We're a small team based in New</p>
+              <p>We're currently in private alpha. Add your </p>
             </div>
             <div className={`flex flex-col ${isMobile ? "gap-1.5" : "gap-1"}`}>
               <div
