@@ -50,12 +50,12 @@ export default function InfoCard() {
       style={{ height: "60vh" }}
     >
       <div
-        className="flex flex-col justify-center items-center scroll-info relative gap-12"
+        className="flex flex-col justify-center items-center scroll-info relative gap-12 p-12 text-left"
         ref={cardRef}
       >
         <p className="text-xl font-light" style={{ color: "white" }}>
-          Eve is a pre seed, New York based venture building a note taking tool
-          for emotional intelligence.
+          Eve is a seed stage venture building a note taking tool for emotional
+          intelligence
         </p>
       </div>
     </div>

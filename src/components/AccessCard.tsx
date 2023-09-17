@@ -99,99 +99,88 @@ export default function AccessCard() {
 
   return (
     <div
-      className="flex justify-center items-center"
+      className="flex justify-center items-center text-xl font-light"
       style={{ height: "60vh", paddingBottom: "40vh" }}
     >
       <div
-        className="flex flex-col justify-center items-start  sm:w-[420px] w-[300px] scroll-access"
+        className="flex flex-col justify-center items-start scroll-access p-12"
         ref={cardRef}
       >
         <style>
           {`
           input::placeholder {
-            color: rgb(80, 80, 80);
+            color: rgb(64, 64, 64);
           }
         `}
         </style>
-        <div className="flex flex-col gap-2">
-          <p
-            className={`text-white text-2xl ${
-              isMobile ? "font-bold" : "font-semibold"
-            }`}
-          >
-            Apply for access
-          </p>
-
-          <div className={`text-white flex flex-col gap-4`}>
-            <div style={{ color: "gray" }}>
-              {/* nest this so the opacities don't overlap */}
-              <p>We're currently in private alpha. Add your </p>
-            </div>
-            <div className={`flex flex-col ${isMobile ? "gap-1.5" : "gap-1"}`}>
-              <div
-                className="flex flex-row gap-3.5 items-end"
-                style={{ width: 250 }}
-              >
-                <input
-                  autoCapitalize="none"
-                  value={email}
-                  placeholder="email"
-                  className={`bg-transparent border-b ${
-                    isMobile ? "pb-1" : "pb-0.5"
-                  } border-white text-white w-full outline-0 rounded-none`}
-                  onChange={(event) => {
-                    setEmail(event.target.value)
-                    setEmailSubmitted(false)
-                  }}
-                  style={{
-                    borderBottomColor: "gray",
-                  }}
-                />
-                <div>
-                  {isLoading ? (
-                    <div style={{ color: "gray" }}>
-                      <TailSpin
-                        height="20"
-                        width="20"
-                        color="rgba(255, 255, 255, 1)"
-                        ariaLabel="tail-spin-loading"
-                        radius="1"
-                        wrapperStyle={{}}
-                        wrapperClass=""
-                        visible={true}
-                      />
-                    </div>
-                  ) : error ? (
-                    <p className="text-white">{error.toString()}</p> // quick error handling, elaborate later if necessary
-                  ) : (
-                    <div
-                      className="cursor-default relative"
-                      style={{
-                        color: !!email && isMobile ? "white" : "gray",
-                        paddingBottom: 3,
-                      }}
-                      onClick={() => !!email && mutateAsync({ email })}
-                    >
-                      submit
-                      {!!email && ( // show the email hover state if there is one
-                        <p className="absolute top-0 left-0 text-white opacity-0 hover:opacity-100 cursor-pointer transition-opacity">
-                          submit
-                        </p>
-                      )}
-                    </div>
-                  )}
-                </div>
-              </div>
-              <p
-                className="text-sm ease-in transition-opacity"
-                style={{
-                  color: "gray",
-                  opacity: emailSubmitted ? 1 : 0,
+        <div className={`text-white flex sm:flex-row flex-col gap-3.5`}>
+          <div style={{ color: "white" }}>
+            <p>Join the waitlist</p>
+          </div>
+          <div className={`flex flex-col`}>
+            <div
+              className="flex flex-row gap-3.5 items-end"
+              // style={{ width: 500 }}
+            >
+              <input
+                autoCapitalize="none"
+                value={email}
+                placeholder="email"
+                className={`bg-transparent border-b ${
+                  isMobile ? "pb-1" : "pb-0.5"
+                } border-white text-white outline-0 rounded-none`}
+                onChange={(event) => {
+                  setEmail(event.target.value)
+                  setEmailSubmitted(false)
                 }}
-              >
-                email submitted successfully!
-              </p>
+                style={{
+                  borderBottomColor: "gray",
+                }}
+              />
+              <div>
+                {isLoading ? (
+                  <div style={{ color: "gray" }}>
+                    <TailSpin
+                      height="20"
+                      width="20"
+                      color="rgba(255, 255, 255, 1)"
+                      ariaLabel="tail-spin-loading"
+                      radius="1"
+                      wrapperStyle={{}}
+                      wrapperClass=""
+                      visible={true}
+                    />
+                  </div>
+                ) : error ? (
+                  <p className="text-white">{error.toString()}</p> // quick error handling, elaborate later if necessary
+                ) : (
+                  <div
+                    className="cursor-default relative"
+                    style={{
+                      color: !!email && isMobile ? "white" : "gray",
+                      paddingBottom: 3,
+                    }}
+                    onClick={() => !!email && mutateAsync({ email })}
+                  >
+                    submit
+                    {!!email && ( // show the email hover state if there is one
+                      <p className="absolute top-0 left-0 text-white opacity-0 hover:opacity-100 cursor-pointer transition-opacity">
+                        submit
+                      </p>
+                    )}
+                  </div>
+                )}
+              </div>
             </div>
+            <p
+              className="ease-in transition-opacity pt-2 text-base"
+              style={{
+                color: "gray",
+                opacity: emailSubmitted ? 1 : 0,
+              }}
+            >
+              email submitted successfully!
+            </p>
           </div>
         </div>
       </div>

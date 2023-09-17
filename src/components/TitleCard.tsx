@@ -6,10 +6,10 @@ import useEventListener from "@/hooks/useEventListener"
 import { useEffect, useRef, useState } from "react"
 
 export default function TitleCard() {
-  const [title, setTitle] = useState("W")
+  const [title, setTitle] = useState("")
 
   useEffect(() => {
-    typeCharacter(1, "What's on your mind?", setTitle)
+    typeCharacter(0, "What's on your mind?", setTitle)
   }, [])
 
   // create an event listener for scrolling animation
@@ -37,18 +37,15 @@ export default function TitleCard() {
       <div className="flex flex-col justify-center items-center scroll-title relative gap-12">
         <div className="w-[300px] sm:w-[700px] flex flex-col items-start justify-start relative">
           <p
-            className="text-7xl"
+            className="sm:text-7xl text-3xl"
             style={{ color: "rgb(64, 64, 64)", font: "Helvetica Neueu" }}
           >
             {title}
           </p>
           <div
-            className="animate-pulse absolute rounded-full"
+            className={`animate-pulse absolute rounded-full left-0
+            sm:h-[88px] sm:w-[5px] sm:top-[-14px] h-[44px] w-[3px] top-[-6px]`}
             style={{
-              height: 56,
-              width: 4,
-              top: -8,
-              left: 0,
               backgroundColor: accentColor,
             }}
           />
@@ -68,8 +65,6 @@ function typeCharacter(
     const timeoutLen =
       fullText[i] === "?" ? 500 : fullText[i] === " " ? 200 : 100
 
-    const iInc = fullText[i + 1] === " " || fullText[i + 1] === "?" ? 1 : 2
-
-    setTimeout(() => typeCharacter(i + iInc, fullText, setText), timeoutLen)
+    setTimeout(() => typeCharacter(i + 1, fullText, setText), timeoutLen)
   }
 }
