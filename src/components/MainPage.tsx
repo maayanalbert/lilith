@@ -1,6 +1,6 @@
-import Title from "@/components/Title"
 import InfoCard from "@/components/InfoCard"
 import AccessCard from "@/components/AccessCard"
+import TitleCard from "@/components/TitleCard"
 
 /**
  * The main page where all of the content is
@@ -8,7 +8,7 @@ import AccessCard from "@/components/AccessCard"
 export default function MainPage() {
   return (
     <div className="relative">
-      <Title />
+      <TitleCard />
       <InfoCard />
       <AccessCard />
     </div>
