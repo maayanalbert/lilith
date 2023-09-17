@@ -103,7 +103,7 @@ export default function AccessCard() {
       style={{ height: "60vh", paddingBottom: "40vh" }}
     >
       <div
-        className="flex flex-col justify-center items-start scroll-access p-12"
+        className="flex flex-col justify-center items-start scroll-access"
         ref={cardRef}
       >
         <style>
@@ -113,75 +113,14 @@ export default function AccessCard() {
           }
         `}
         </style>
-        <div className={`text-white flex sm:flex-row flex-col gap-3.5`}>
-          <div style={{ color: "white" }}>
-            <p>Join the waitlist</p>
-          </div>
-          <div className={`flex flex-col`}>
-            <div
-              className="flex flex-row gap-3.5 items-end"
-              // style={{ width: 500 }}
-            >
-              <input
-                autoCapitalize="none"
-                value={email}
-                placeholder="email"
-                className={`bg-transparent border-b ${
-                  isMobile ? "pb-1" : "pb-0.5"
-                } border-white text-white outline-0 rounded-none`}
-                onChange={(event) => {
-                  setEmail(event.target.value)
-                  setEmailSubmitted(false)
-                }}
-                style={{
-                  borderBottomColor: "gray",
-                }}
-              />
-              <div>
-                {isLoading ? (
-                  <div style={{ color: "gray" }}>
-                    <TailSpin
-                      height="20"
-                      width="20"
-                      color="rgba(255, 255, 255, 1)"
-                      ariaLabel="tail-spin-loading"
-                      radius="1"
-                      wrapperStyle={{}}
-                      wrapperClass=""
-                      visible={true}
-                    />
-                  </div>
-                ) : error ? (
-                  <p className="text-white">{error.toString()}</p> // quick error handling, elaborate later if necessary
-                ) : (
-                  <div
-                    className="cursor-default relative"
-                    style={{
-                      color: !!email && isMobile ? "white" : "gray",
-                      paddingBottom: 3,
-                    }}
-                    onClick={() => !!email && mutateAsync({ email })}
-                  >
-                    submit
-                    {!!email && ( // show the email hover state if there is one
-                      <p className="absolute top-0 left-0 text-white opacity-0 hover:opacity-100 cursor-pointer transition-opacity">
-                        submit
-                      </p>
-                    )}
-                  </div>
-                )}
-              </div>
-            </div>
-            <p
-              className="ease-in transition-opacity pt-2 text-base"
-              style={{
-                color: "gray",
-                opacity: emailSubmitted ? 1 : 0,
-              }}
-            >
-              email submitted successfully!
-            </p>
-          </div>
+        <div
+          className={`text-white flex sm:flex-row flex-col items-start sm:gap-1.5`}
+        >
+          <p>Contact</p>
+          <a className="underline" href="mailto:maaayan@eve.space">
+            maayan@eve.space
+          </a>
+          <p>for more information</p>
         </div>
       </div>
     </div>

@@ -54,8 +54,7 @@ export default function InfoCard() {
         ref={cardRef}
       >
         <p className="text-xl font-light" style={{ color: "white" }}>
-          Eve is a seed stage venture building a note taking tool for emotional
-          intelligence
+          Eve is a note taking tool for emotional intelligence
         </p>
       </div>
     </div>
