@@ -33,7 +33,7 @@ export default function TitleCard() {
       <div className="w-[300px] sm:w-[695px] flex flex-col items-start justify-start relative scroll-title">
         <p
           className="sm:text-7xl text-3xl font-light"
-          style={{ font: "Helvetica Neueu", color: "rgb(66 70 80)" }}
+          style={{ font: "Helvetica Neueu", color: "rgb(71 75 84)" }}
           // rgb(55 65 81)
           // rgb(51 65 85)
         >
