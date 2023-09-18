@@ -7,7 +7,7 @@ import TitleCard from "@/components/TitleCard"
  */
 export default function MainPage() {
   return (
-    <div className="relative">
+    <div className="relative h-[100%]">
       <TitleCard />
       <InfoCard />
       <AccessCard />

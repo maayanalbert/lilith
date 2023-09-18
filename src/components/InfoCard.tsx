@@ -46,13 +46,10 @@ export default function InfoCard() {
 
   return (
     <div
-      className="flex justify-center items-center "
-      style={{ height: "60vh" }}
+      className="flex justify-center items-center p-12"
+      style={{ height: "50%", marginTop: "-20%", marginBottom: "-20%" }}
     >
-      <div
-        className="flex flex-col justify-center items-center scroll-info relative gap-12 p-12 text-left"
-        ref={cardRef}
-      >
+      <div className="scroll-info" ref={cardRef}>
         <p className="text-xl font-light" style={{ color: "white" }}>
           Eve is a note taking tool for emotional intelligence
         </p>

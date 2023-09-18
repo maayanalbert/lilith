@@ -30,12 +30,9 @@ export default function TitleCard() {
   )
 
   return (
-    <div
-      className="flex justify-center items-center "
-      style={{ height: "60vh", paddingTop: "40vh" }}
-    >
+    <div className="flex justify-center items-center h-[100%]">
       <div className="flex flex-col justify-center items-center scroll-title relative gap-12">
-        <div className="w-[300px] sm:w-[700px] flex flex-col items-start justify-start relative">
+        <div className="w-[300px] sm:w-[695px] flex flex-col items-start justify-start relative">
           <p
             className="sm:text-7xl text-3xl"
             style={{ color: "rgb(64, 64, 64)", font: "Helvetica Neueu" }}

@@ -98,30 +98,16 @@ export default function AccessCard() {
   )
 
   return (
-    <div
-      className="flex justify-center items-center text-xl font-light"
-      style={{ height: "60vh", paddingBottom: "40vh" }}
-    >
+    <div className="flex justify-center items-center text-xl font-light h-[100%]">
       <div
-        className="flex flex-col justify-center items-start scroll-access"
+        className={`text-white flex sm:flex-row flex-col items-start sm:gap-1.5 scroll-access`}
         ref={cardRef}
       >
-        <style>
-          {`
-          input::placeholder {
-            color: rgb(64, 64, 64);
-          }
-        `}
-        </style>
-        <div
-          className={`text-white flex sm:flex-row flex-col items-start sm:gap-1.5`}
-        >
-          <p>Contact</p>
-          <a className="underline" href="mailto:maaayan@eve.space">
-            maayan@eve.space
-          </a>
-          <p>for more information</p>
-        </div>
+        <p>Contact</p>
+        <a className="underline" href="mailto:maaayan@eve.space">
+          maayan@eve.space
+        </a>
+        <p>for access</p>
       </div>
     </div>
   )
