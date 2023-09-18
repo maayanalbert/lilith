@@ -1,11 +1,6 @@
 import { setCardScrollClass } from "@/helpers/setCardScrollClass"
 import { useEffect, useRef, useState } from "react"
-import { UseMutateAsyncFunction, useMutation } from "react-query"
-import axios from "axios"
-import { TailSpin } from "react-loader-spinner"
 import getOnIpad from "@/helpers/getOnIpad"
-import useVirtualKeyboardIsOpen from "@/hooks/useVirtualKeyboardIsOpen"
-import { useRouter } from "next/router"
 import useEventListener from "@/hooks/useEventListener"
 
 /**
