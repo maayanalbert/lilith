@@ -55,7 +55,7 @@ export default function AccessCard() {
         <a className="underline" href="mailto:maaayan@eve.space">
           maayan@eve.space
         </a>
-        <p>for access</p>
+        <p>to learn more</p>
       </div>
     </div>
   )

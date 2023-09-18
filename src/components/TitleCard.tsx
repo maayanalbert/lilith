@@ -29,7 +29,7 @@ export default function TitleCard() {
   )
 
   return (
-    <div className="flex justify-center items-center h-[100%]">
+    <div className="flex justify-center items-center h-[100%] select-none">
       <div className="w-[300px] sm:w-[695px] flex flex-col items-start justify-start relative scroll-title">
         <p
           className="sm:text-7xl text-3xl"
