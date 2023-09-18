@@ -43,7 +43,7 @@ export default function AccessCard() {
   return (
     <div className="flex justify-center items-center text-xl font-light h-[100%]">
       <div
-        className={`text-white flex sm:flex-row flex-col items-center sm:gap-1.5 leading-relaxed scroll-access`}
+        className={`text-white flex sm:flex-row flex-col items-center sm:gap-1.5 leading-normal scroll-access`}
         ref={cardRef}
       >
         <p>Contact</p>
