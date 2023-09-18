@@ -1,4 +1,3 @@
-import { useIsMobile } from "@/GlobalsContext"
 import { accentColor } from "@/constants"
 import getOnIpad from "@/helpers/getOnIpad"
 import { setCardScrollClass } from "@/helpers/setCardScrollClass"
@@ -49,8 +48,11 @@ export default function InfoCard() {
       className="flex justify-center items-center p-12"
       style={{ height: "50%", marginTop: "-20%", marginBottom: "-20%" }}
     >
-      <div className="scroll-info" ref={cardRef}>
-        <p className="text-xl font-light" style={{ color: "white" }}>
+      <div ref={cardRef}>
+        <p
+          className="text-xl font-light text-center leading-relaxed scroll-info"
+          style={{ color: "white" }}
+        >
           Eve is a note taking tool for emotional intelligence
         </p>
       </div>
