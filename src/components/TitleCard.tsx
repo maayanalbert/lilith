@@ -1,4 +1,3 @@
-import { useIsMobile } from "@/GlobalsContext"
 import { accentColor } from "@/constants"
 import getOnIpad from "@/helpers/getOnIpad"
 import { setCardScrollClass } from "@/helpers/setCardScrollClass"
@@ -30,26 +29,21 @@ export default function TitleCard() {
   )
 
   return (
-    <div
-      className="flex justify-center items-center "
-      style={{ height: "60vh", paddingTop: "40vh" }}
-    >
-      <div className="flex flex-col justify-center items-center scroll-title relative gap-12">
-        <div className="w-[300px] sm:w-[700px] flex flex-col items-start justify-start relative">
-          <p
-            className="sm:text-7xl text-3xl"
-            style={{ color: "rgb(64, 64, 64)", font: "Helvetica Neueu" }}
-          >
-            {title}
-          </p>
-          <div
-            className={`animate-pulse absolute rounded-full left-0
+    <div className="flex justify-center items-center h-[100%] select-none">
+      <div className="w-[300px] sm:w-[695px] flex flex-col items-start justify-start relative scroll-title">
+        <p
+          className="sm:text-7xl text-3xl"
+          style={{ color: "rgb(64, 64, 64)", font: "Helvetica Neueu" }}
+        >
+          {title}
+        </p>
+        <div
+          className={`animate-pulse absolute rounded-full left-0
             sm:h-[88px] sm:w-[5px] sm:top-[-14px] h-[44px] w-[3px] top-[-6px]`}
-            style={{
-              backgroundColor: accentColor,
-            }}
-          />
-        </div>
+          style={{
+            backgroundColor: accentColor,
+          }}
+        />
       </div>
     </div>
   )
