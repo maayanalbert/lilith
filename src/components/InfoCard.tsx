@@ -50,10 +50,10 @@ export default function InfoCard() {
     >
       <div ref={cardRef}>
         <p
-          className="sm:text-xl text-xl font-light text-center leading-normal scroll-info"
+          className="sm:text-2xl text-xl font-light text-center leading-normal scroll-info"
           style={{ color: "white" }}
         >
-          Eve is an interface for your intuition
+          Eve is thought partner to help you navigate your emotions
         </p>
       </div>
     </div>
