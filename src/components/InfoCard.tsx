@@ -53,7 +53,7 @@ export default function InfoCard() {
           className="sm:text-2xl text-xl font-light text-center leading-normal scroll-info"
           style={{ color: "white" }}
         >
-          Eve is thought partner to help you navigate your emotions
+          Eve is space for yor intuition
         </p>
       </div>
     </div>
