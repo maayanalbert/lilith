@@ -1,4 +1,3 @@
-import InfoCard from "@/components/InfoCard"
 import AccessCard from "@/components/AccessCard"
 import TitleCard from "@/components/TitleCard"
 
@@ -9,7 +8,6 @@ export default function MainPage() {
   return (
     <div className="relative h-[100%]">
       <TitleCard />
-      <InfoCard />
       <AccessCard />
     </div>
   )

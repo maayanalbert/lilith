@@ -41,16 +41,31 @@ export default function AccessCard() {
   )
 
   return (
-    <div className="flex justify-center items-center sm:text-2xl text-xl font-light h-[100%]">
+    <div
+      className="flex justify-center items-center h-[100%]"
+      style={{ marginTop: "-20%" }}
+    >
       <div
-        className={`text-white flex sm:flex-row flex-col items-center sm:gap-1.5 leading-normal scroll-access`}
+        className={`text-white scroll-access flex flex-col items-center sm:gap-3 gap-1.5`}
         ref={cardRef}
       >
-        <p>Contact</p>
-        <a className="underline" href="mailto:maaayan@eve.space">
-          maayan@eve.space
-        </a>
-        <p>for access</p>
+        <div className="sm:text-3xl text-xl">
+          <p>Eve is a space to talk to yourself</p>
+        </div>
+        <div className="relative w-full">
+          <div
+            className="absolute w-full font-light flex sm:flex-row flex-col items-center justify-center sm:gap-1.5 leading-normal sm:text-xl text-base"
+            style={{ color: "gray" }}
+          >
+            <div className="flex flex-row gap-1.5">
+              <p>Contact</p>
+              <a className="underline" href="mailto:maaayan@eve.space">
+                maayan@eve.space
+              </a>
+            </div>
+            <p>to learn more</p>
+          </div>
+        </div>
       </div>
     </div>
   )

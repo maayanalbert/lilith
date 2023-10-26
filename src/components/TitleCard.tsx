@@ -34,8 +34,6 @@ export default function TitleCard() {
         <p
           className="sm:text-7xl text-3xl font-light"
           style={{ font: "Helvetica Neueu", color: "rgb(71 75 84)" }}
-          // rgb(55 65 81)
-          // rgb(51 65 85)
         >
           {title}
         </p>
@@ -43,7 +41,7 @@ export default function TitleCard() {
           className={`animate-pulse absolute rounded-full left-0
             sm:h-[88px] sm:w-[5px] sm:top-[-14px] h-[44px] w-[3px] top-[-6px]`}
           style={{
-            backgroundColor: accentColor,
+            backgroundColor: "#436BF1",
           }}
         />
       </div>
