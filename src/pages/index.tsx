@@ -1,4 +1,3 @@
-import MainPage from "@/components/MainPage"
 import { use, useEffect, useState } from "react"
 import { useRouter } from "next/router"
 
@@ -10,5 +9,5 @@ export default function Home() {
     document.title = "Eve"
   }, [])
 
-  return <MainPage />
+  return null
 }
