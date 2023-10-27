@@ -13,8 +13,12 @@ export default function Home() {
   const [state, setState] = useState<"CLOSED" | "OPEN" | "FINISHED">("CLOSED")
   const [finishable, setFinishable] = useState(false)
   const [showCursor, setShowCursor] = useState(true)
-  const [copied, setCopied] = useState(false)
-  const [copiedVisible, setCopiedVisible] = useState(true)
+  const [innerWidth, setInnerWidth] = useState(0)
+
+  useEffect(() => {
+    setInnerWidth(window.innerWidth)
+    console.log(window.innerWidth)
+  }, [])
 
   useMouseMove(() => {
     if (state === "OPEN" && finishable) {
@@ -24,7 +28,7 @@ export default function Home() {
   }, [state, finishable])
 
   return (
-    <div className={`${showCursor ? "" : "cursor-none"} h-full w-full`}>
+    <div className={`${showCursor ? "" : "cursor-none"}  h-full w-full`}>
       {state !== "CLOSED" && (
         <div
           className={`h-full w-full flex justify-center items-center absolute`}
@@ -34,26 +38,12 @@ export default function Home() {
             style={{ color: "gray", opacity: state === "FINISHED" ? 1 : 0 }}
           >
             <p>Contact</p>
-            <div>
-              <div className="relative" style={{ opacity: copied ? 1 : 0 }}>
-                <p
-                  className="text-white absolute whitespace-nowrap text-sm transition-all duration-1000 ease-in-out"
-                  style={{ top: 25, left: 5, opacity: copiedVisible ? 1 : 0.5 }}
-                >
-                  Copied to clipboard
-                </p>
-              </div>
-
-              <u
-                className={showCursor ? "cursor-pointer" : ""}
-                onClick={() => {
-                  setCopied(true)
-                  setCopiedVisible(false)
-                }}
-              >
-                maayan@eve.space
-              </u>
-            </div>
+            <a
+              className={`underline ${showCursor ? "" : "cursor-none"}`}
+              href={showCursor ? "mailto:maaayan@eve.space" : undefined}
+            >
+              maayan@eve.space
+            </a>
             <p>to learn more</p>
           </div>
         </div>
@@ -68,7 +58,7 @@ export default function Home() {
             state === "CLOSED"
               ? "h-[66px] w-[66px] hover:h-[77px] hover:w-[77px] duration-300 cursor-pointer"
               : state === "OPEN"
-              ? "h-[500px] w-[500px] duration-700"
+              ? `h-[${Math.min(500, innerWidth)}px] w-[500px] duration-700`
               : "h-0 w-0 duration-700"
           }
          transition-all ease-in-out`}
