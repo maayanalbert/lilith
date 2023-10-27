@@ -1,13 +1,14 @@
 import { Ref, RefObject, useEffect, useState } from "react"
 
 /**
- * Use the current mouse position
+ * Called on mouse move
  */
-export function useMousePosition() {
-  const [mouseX, setMouseX] = useState(0)
-  const [mouseY, setMouseY] = useState(0)
+export function useMouseMove(
+  callback: (event: MouseEvent) => void,
+  deps?: any[]
+) {
   const updateMouse = (event: MouseEvent) => {
-    console.log(event.clientX)
+    callback(event)
   }
 
   useEffect(() => {
@@ -18,7 +19,5 @@ export function useMousePosition() {
     return () => {
       document.removeEventListener("mousemove", updateMouse)
     }
-  }, [])
-
-  return { mouseX, mouseY }
+  }, [...(deps ? deps : [])])
 }
