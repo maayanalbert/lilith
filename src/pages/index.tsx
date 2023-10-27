@@ -13,6 +13,8 @@ export default function Home() {
   const [state, setState] = useState<"CLOSED" | "OPEN" | "FINISHED">("CLOSED")
   const [finishable, setFinishable] = useState(false)
   const [showCursor, setShowCursor] = useState(true)
+  const [copied, setCopied] = useState(false)
+  const [copiedVisible, setCopiedVisible] = useState(true)
 
   useMouseMove(() => {
     if (state === "OPEN" && finishable) {
@@ -32,9 +34,26 @@ export default function Home() {
             style={{ color: "gray", opacity: state === "FINISHED" ? 1 : 0 }}
           >
             <p>Contact</p>
-            <a className="underline" href="mailto:maaayan@eve.space">
-              maayan@eve.space
-            </a>
+            <div>
+              <div className="relative" style={{ opacity: copied ? 1 : 0 }}>
+                <p
+                  className="text-white absolute whitespace-nowrap text-sm transition-all duration-1000 ease-in-out"
+                  style={{ top: 25, left: 5, opacity: copiedVisible ? 1 : 0.5 }}
+                >
+                  Copied to clipboard
+                </p>
+              </div>
+
+              <u
+                className={showCursor ? "cursor-pointer" : ""}
+                onClick={() => {
+                  setCopied(true)
+                  setCopiedVisible(false)
+                }}
+              >
+                maayan@eve.space
+              </u>
+            </div>
             <p>to learn more</p>
           </div>
         </div>
@@ -57,7 +76,7 @@ export default function Home() {
             if (state === "CLOSED") {
               setState("OPEN")
               setShowCursor(false)
-              setTimeout(() => setFinishable(true), 1000)
+              setTimeout(() => setFinishable(true), 700)
             }
           }}
         >
