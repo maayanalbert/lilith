@@ -28,10 +28,14 @@ export default function Home() {
           className={`h-full w-full flex justify-center items-center absolute`}
         >
           <div
-            className="transition-all duration-500 delay-1000"
+            className="transition-all duration-500 delay-1000 flex flex-row gap-1.5"
             style={{ color: "gray", opacity: state === "FINISHED" ? 1 : 0 }}
           >
-            Contact maayan@eve.space to learn more
+            <p>Contact</p>
+            <a className="underline" href="mailto:maaayan@eve.space">
+              maayan@eve.space
+            </a>
+            <p>to learn more</p>
           </div>
         </div>
       )}
