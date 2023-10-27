@@ -58,7 +58,7 @@ export default function Home() {
             state === "CLOSED"
               ? "h-[66px] w-[66px] hover:h-[77px] hover:w-[77px] duration-300 cursor-pointer"
               : state === "OPEN"
-              ? `h-[${Math.min(500, innerWidth)}px] w-[500px] duration-700`
+              ? `sm:h-[500px] h-[400px] sm:w-[500px] w-[400px] duration-700`
               : "h-0 w-0 duration-700"
           }
          transition-all ease-in-out`}
