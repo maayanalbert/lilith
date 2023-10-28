@@ -28,7 +28,7 @@ export default function Home() {
           className={`h-full w-full flex justify-center items-center absolute`}
         >
           <div
-            className="transition-all duration-500 flex flex-row gap-1.5"
+            className="transition-all duration-500 flex flex-row gap-1.5 sm:text-lg"
             style={{ color: "gray", opacity: finishedVisible ? 1 : 0 }}
           >
             <p>Contact</p>
