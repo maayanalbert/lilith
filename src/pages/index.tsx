@@ -32,7 +32,9 @@ export default function Home() {
             style={{ color: "gray", opacity: finishedVisible ? 1 : 0 }}
           >
             <p>Contact</p>
-            <a href={"mailto:maaayan@eve.space"}>maayan@eve.space</a>
+            <a className="underline" href={"mailto:maaayan@eve.space"}>
+              maayan@eve.space
+            </a>
             <p>to learn more</p>
           </div>
         </div>
