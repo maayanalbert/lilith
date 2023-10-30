@@ -53,7 +53,7 @@ export default function Home() {
             state === "CLOSED"
               ? "h-[66px] bg-white w-[66px] hover:h-[77px] hover:w-[77px] duration-300"
               : state === "OPEN"
-              ? `shadow-[inset_0_0_10px_gray]
+              ? `
               ${showCursor ? "duration-300" : "duration-[2000ms]"}`
               : `h-0 w-0 duration-[2000ms]`
           }
