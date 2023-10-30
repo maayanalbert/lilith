@@ -45,23 +45,17 @@ export default function Home() {
         }`}
       >
         <div
-          className={`flex justify-center items-center fade-in-dot rounded-full ${
+          className={`flex justify-center items-center rounded-full ${
             showCursor ? "cursor-pointer" : "" // dot
           } ${
             state === "CLOSED"
-              ? "h-[66px] bg-white w-[66px] hover:h-[77px] hover:w-[77px] duration-300"
+              ? "h-[66px] w-[66px] hover:h-[77px] hover:w-[77px] duration-300]"
               : state === "OPEN"
-              ? `sm:h-[500px] sm:w-[500px] w-[400px] h-[400px] shadow-[inset_0_0_10px_gray]
+              ? `sm:h-[550px] sm:w-[550px] w-[400px] h-[400px]
               ${showCursor ? "duration-300" : "duration-700"}`
               : `h-0 w-0 duration-700`
           }
          transition-all ease-in-out`}
-          style={{
-            background:
-              state === "OPEN" || state === "FINISHED"
-                ? "rgb(240, 240, 240"
-                : "white",
-          }}
           onClick={() => {
             if (state === "CLOSED") {
               setState("OPEN")
@@ -74,14 +68,31 @@ export default function Home() {
           }}
         >
           <div
-            className={`whitespace-nowrap transition-all ease-in-out 
-            duration-1000 flex flex-row gap-1 text-xl select-none`}
+            className={`fade-in-dot rounded-full h-full w-full transition-all ease-in-out duration-700 
+            flex justify-center items-center overflow-hidden ${
+              state === "OPEN"
+                ? "shadow-[inset_0_0_20px_rgb(50_50_50)]"
+                : state === "FINISHED"
+                ? "shadow-[inset_0_0_10px_rgb(50_50_50)]"
+                : ""
+            }`}
             style={{
-              opacity: state === "OPEN" ? 1 : 0,
-              color: "rgb(44, 44, 44)",
+              background:
+                state === "OPEN" || state === "FINISHED"
+                  ? "rgb(225, 225, 225)"
+                  : "white",
             }}
           >
-            Eve is a space to talk to yourself
+            <div
+              className={`whitespace-nowrap transition-all ease-in-out 
+            duration-1000 flex flex-row gap-1 text-xl select-none`}
+              style={{
+                opacity: state === "OPEN" ? 1 : 0,
+                color: "rgb(44, 44, 44)",
+              }}
+            >
+              Eve is a space to talk to yourself
+            </div>
           </div>
         </div>
       </div>
