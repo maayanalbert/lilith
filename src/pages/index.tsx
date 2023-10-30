@@ -53,7 +53,7 @@ export default function Home() {
               : state === "OPEN"
               ? `sm:h-[500px] sm:w-[500px] w-[400px] h-[400px] shadow-[inset_0_0_10px_gray]
               ${showCursor ? "duration-300" : "duration-700"}`
-              : `sm:h-[500px] sm:w-[500px] w-[400px] h-[400px] duration-700 opacity-0`
+              : `h-0 w-0 duration-700`
           }
          transition-all ease-in-out`}
           style={{
