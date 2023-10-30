@@ -73,7 +73,7 @@ export default function Home() {
               state === "OPEN"
                 ? "shadow-[inset_0_0_20px_rgb(50_50_50)]"
                 : state === "FINISHED"
-                ? "shadow-[inset_0_0_10px_rgb(50_50_50)]"
+                ? "shadow-[inset_0_0_5px_gray]"
                 : ""
             }`}
             style={{
