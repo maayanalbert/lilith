@@ -8,14 +8,12 @@ import { useEffect, useState } from "react"
 export default function Home() {
   useEffect(() => {
     document.title = "Eve"
-    setInnerWidth(window.innerWidth)
   }, [])
 
   const [state, setState] = useState<"CLOSED" | "OPEN" | "FINISHED">("CLOSED")
   const [finishable, setFinishable] = useState(false)
   const [showCursor, setShowCursor] = useState(true)
   const [finishedVisible, setFinishedVisible] = useState(false)
-  const [innerWidth, setInnerWidth] = useState(0)
 
   useMouseMove(() => {
     if (state === "OPEN" && finishable) {
@@ -53,9 +51,9 @@ export default function Home() {
             state === "CLOSED"
               ? "h-[66px] bg-white w-[66px] hover:h-[77px] hover:w-[77px] duration-300"
               : state === "OPEN"
-              ? `
-              ${showCursor ? "duration-300" : "duration-[2000ms]"}`
-              : `h-0 w-0 duration-[2000ms]`
+              ? `sm:h-[500px] sm:w-[500px] w-[400px] h-[400px] shadow-[inset_0_0_10px_gray]
+              ${showCursor ? "duration-300" : "duration-700"}`
+              : `sm:h-[500px] sm:w-[500px] w-[400px] h-[400px] duration-700 opacity-0`
           }
          transition-all ease-in-out`}
           style={{
@@ -63,8 +61,6 @@ export default function Home() {
               state === "OPEN" || state === "FINISHED"
                 ? "rgb(240, 240, 240"
                 : "white",
-            width: state === "OPEN" ? innerWidth * 2 : undefined,
-            height: state === "OPEN" ? innerWidth * 2 : undefined,
           }}
           onClick={() => {
             if (state === "CLOSED") {
