@@ -1,5 +1,5 @@
-import { useMouseMove } from "@/utils/useMouseMove"
-import { set } from "lodash"
+import useEventListener from "@/utils/useEventListener"
+import { useMousePercentToCenterCss } from "@/utils/useMouseMove"
 import { useEffect, useState } from "react"
 
 /**
@@ -15,11 +15,17 @@ export default function Home() {
   const [showCursor, setShowCursor] = useState(true)
   const [finishedVisible, setFinishedVisible] = useState(false)
 
-  useMouseMove(() => {
-    if (state === "OPEN" && finishable) {
-      setShowCursor(true)
-    }
-  }, [state, finishable])
+  useMousePercentToCenterCss()
+
+  useEventListener(
+    "mousemove",
+    () => {
+      if (state === "OPEN" && finishable) {
+        setShowCursor(true)
+      }
+    },
+    [state, finishable]
+  )
 
   return (
     <div className={`${showCursor ? "" : "cursor-none"}  h-full w-full`}>
@@ -46,14 +52,14 @@ export default function Home() {
       >
         <div
           className={`flex justify-center items-center rounded-full ${
-            showCursor ? "cursor-pointer" : "" // dot
+            showCursor ? "cursor-pointer" : "" // womb
           } ${
             state === "CLOSED"
               ? "h-[66px] w-[66px] hover:h-[77px] hover:w-[77px] duration-300]"
               : state === "OPEN"
               ? `sm:h-[550px] sm:w-[550px] w-[400px] h-[400px]
-              ${showCursor ? "duration-300" : "duration-700"}`
-              : `h-0 w-0 duration-700`
+              ${showCursor ? "duration-300" : "duration-1000"}`
+              : `h-0 w-0 duration-1000`
           }
          transition-all ease-in-out`}
           onClick={() => {
@@ -68,13 +74,13 @@ export default function Home() {
           }}
         >
           <div
-            className={`fade-in-dot rounded-full h-full w-full transition-all ease-in-out duration-700 
+            className={`fade-in-womb rounded-full h-full w-full transition-all ease-in-out duration-1000 
             flex justify-center items-center overflow-hidden ${
               state === "OPEN"
                 ? "shadow-[inset_0_0_20px_rgb(50_50_50)]"
                 : state === "FINISHED"
                 ? "shadow-[inset_0_0_5px_gray]"
-                : ""
+                : "expand-womb"
             }`}
             style={{
               background:
@@ -89,6 +95,7 @@ export default function Home() {
               style={{
                 opacity: state === "OPEN" ? 1 : 0,
                 color: "rgb(44, 44, 44)",
+                transform: "scale(1.9)",
               }}
             >
               Eve is a space to talk to yourself
