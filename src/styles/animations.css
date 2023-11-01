@@ -17,3 +17,8 @@
     width: 100%;
   }
 }
+
+.scroll-your {
+  filter: blur(calc(var(--scroll) * 4px));
+  opacity: calc(1 - calc(var(--scroll) * 4.25));
+}
