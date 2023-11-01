@@ -1,10 +1,10 @@
-.fade-in-dot {
-  animation-name: fade-in-dot;
+.fade-in-womb {
+  animation-name: fade-in-womb;
   animation-duration: 800ms;
   animation-timing-function: ease-in-out;
 }
 
-@keyframes fade-in-dot {
+@keyframes fade-in-womb {
   0% {
     opacity: 0;
     height: 75%;
@@ -18,7 +18,7 @@
   }
 }
 
-.scroll-your {
-  filter: blur(calc(var(--scroll) * 4px));
-  opacity: calc(1 - calc(var(--scroll) * 4.25));
+.expand-womb {
+  transform: scale(calc(1 + var(--mouse-dist) * 1));
+  box-shadow: inset 0 0 calc(var(--mouse-dist) * 20px) rgb(50 50 50);
 }

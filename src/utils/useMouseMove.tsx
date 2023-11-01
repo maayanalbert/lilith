@@ -1,46 +1,28 @@
 import { Ref, RefObject, useEffect, useState } from "react"
+import useEventListener from "./useEventListener"
 
 /**
  * Called on mouse move
  */
-export function useMouseMove(
-  callback: (event: MouseEvent) => void,
-  deps?: any[]
-) {
-  const updateMouse = (event: MouseEvent) => {
-    callback(event)
+export function useMousePercentToCenterCss() {
+  const callback = (event: MouseEvent) => {
+    const dist = getDist(
+      event.clientX,
+      event.clientY,
+      window.innerWidth / 2,
+      window.innerHeight / 2
+    )
+
+    const maxDist = getDist(0, 0, window.innerWidth / 2, window.innerHeight / 2)
+
+    const percentToCenter = 1 - dist / maxDist
+    const val = dist < 66 ? 1 : percentToCenter
+    document.documentElement.style.setProperty("--mouse-dist", `${val}`)
   }
 
-  useEffect(() => {
-    // Attach the event listener to the document
-    document.addEventListener("mousemove", updateMouse)
-
-    // Clean up the event listener when the component unmounts
-    return () => {
-      document.removeEventListener("mousemove", updateMouse)
-    }
-  }, [...(deps ? deps : [])])
+  useEventListener("mousemove", callback)
 }
 
-// useEventListener(
-//   "scroll",
-//   () => {
-//     const scrollHeight = window.scrollY / (window.innerHeight + 1)
-//     const boundedScrollHeight = Math.max(Math.min(scrollHeight, 1), 0)
-
-//     // disable if virtual keyboard is open so we can type in the space name easter egg
-//     if (virtualKeyboardIsOpen) {
-//       document.documentElement.style.setProperty(
-//         "--scroll",
-//         `${0}` // the % of the way you have scrolled to the second page
-//       )
-//       return
-//     }
-
-//     document.documentElement.style.setProperty(
-//       "--scroll",
-//       `${boundedScrollHeight}` // the % of the way you have scrolled to the second page
-//     )
-//   },
-//   [virtualKeyboardIsOpen]
-// )
+function getDist(x1: number, y1: number, x2: number, y2: number) {
+  return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2))
+}
