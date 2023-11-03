@@ -1,0 +1,20 @@
+/**
+ * Map a number from one range to another
+ * From chat gpt wow!
+ */
+export function getMappedValue(
+  value: number,
+  fromLow: number,
+  fromHigh: number,
+  toLow: number,
+  toHigh: number
+) {
+  // Calculate the percentage of the original range that the value represents
+  const percentage = (value - fromLow) / (fromHigh - fromLow)
+  const boundedPercentage = Math.max(0, Math.min(1, percentage)) // bound or else depending on the easing function, can return NaN
+
+  // Use the percentage to map the value to the new range
+  const newValue = toLow + boundedPercentage * (toHigh - toLow)
+
+  return newValue
+}
