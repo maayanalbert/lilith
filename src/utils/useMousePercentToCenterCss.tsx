@@ -15,7 +15,7 @@ export function useMousePercentToCenterCss() {
     )
 
     const maxDist = getDist(0, 0, window.innerWidth / 2, window.innerHeight / 2)
-    const adjustedDist = dist < 132 ? 0 : dist - 132
+    const adjustedDist = dist <= 130 / 2 ? 0 : dist - 130 / 2 // perhaps make a bit smaller than radius
     const percentToCenter = 1 - adjustedDist / maxDist
     const val = percentToCenter
     document.documentElement.style.setProperty("--mouse-dist", `${val}`)

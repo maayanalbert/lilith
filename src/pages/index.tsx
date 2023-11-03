@@ -28,7 +28,7 @@ export default function Home() {
   )
 
   return (
-    <div className={`${showCursor ? "" : "cursor-none"}  h-full w-full`}>
+    <div className={`${!showCursor ? "cursor-none" : ""}  h-full w-full`}>
       {state === "FINISHED" && ( // learn more text
         <div
           className={`h-full w-full flex justify-center items-center absolute`}
@@ -55,7 +55,7 @@ export default function Home() {
             showCursor ? "cursor-pointer" : "" // womb
           } ${
             state === "CLOSED"
-              ? "h-[132px] w-[132px] duration-300]"
+              ? "h-[132px] w-[132px] hover:h-[150px] hover:w-[150px] duration-300"
               : state === "OPEN"
               ? `sm:h-[550px] sm:w-[550px] w-[400px] h-[400px]
               ${showCursor ? "duration-300" : "duration-1000"}`
@@ -77,7 +77,7 @@ export default function Home() {
             className={`fade-in-womb rounded-full h-full w-full bg-white
             flex justify-center items-center overflow-hidden ${
               state === "OPEN"
-                ? "shadow-[inset_0_0_20px_rgb(50_50_50)]"
+                ? "shadow-[inset_0_0_10px_rgb(50_50_50)]"
                 : state === "FINISHED"
                 ? "shadow-[inset_0_0_5px_gray]"
                 : `expand-womb`
