@@ -1,5 +1,5 @@
 import useEventListener from "@/utils/useEventListener"
-import { useMousePercentToCenterCss } from "@/utils/useMouseMove"
+import { useMousePercentToCenterCss } from "@/utils/useMousePercentToCenterCss"
 import { useEffect, useState } from "react"
 
 /**
@@ -28,7 +28,7 @@ export default function Home() {
   )
 
   return (
-    <div className={`${showCursor ? "" : "cursor-none"}  h-full w-full`}>
+    <div className={`${!showCursor ? "cursor-none" : ""}  h-full w-full`}>
       {state === "FINISHED" && ( // learn more text
         <div
           className={`h-full w-full flex justify-center items-center absolute`}
@@ -55,7 +55,7 @@ export default function Home() {
             showCursor ? "cursor-pointer" : "" // womb
           } ${
             state === "CLOSED"
-              ? "h-[66px] w-[66px] hover:h-[77px] hover:w-[77px] duration-300]"
+              ? "h-[132px] w-[132px] hover:h-[150px] hover:w-[150px] duration-300"
               : state === "OPEN"
               ? `sm:h-[550px] sm:w-[550px] w-[400px] h-[400px]
               ${showCursor ? "duration-300" : "duration-1000"}`
@@ -74,28 +74,23 @@ export default function Home() {
           }}
         >
           <div
-            className={`fade-in-womb rounded-full h-full w-full transition-all ease-in-out duration-1000 
+            className={`fade-in-womb rounded-full h-full w-full bg-white
             flex justify-center items-center overflow-hidden ${
               state === "OPEN"
-                ? "shadow-[inset_0_0_20px_rgb(50_50_50)]"
+                ? "shadow-[inset_0_0_10px_rgb(50_50_50)]"
                 : state === "FINISHED"
                 ? "shadow-[inset_0_0_5px_gray]"
-                : "expand-womb"
+                : `expand-womb`
             }`}
-            style={{
-              background:
-                state === "OPEN" || state === "FINISHED"
-                  ? "rgb(225, 225, 225)"
-                  : "white",
-            }}
           >
             <div
-              className={`whitespace-nowrap transition-all ease-in-out 
-            duration-1000 flex flex-row gap-1 text-xl select-none`}
+              className={`whitespace-nowrap flex flex-row gap-1 text-4xl select-none h-full w-full flex justify-center items-center rounded-full
+              transition-all ease-in-out duration-500 ${
+                state === "CLOSED" ? "opacity-0 hover:opacity-[.15]" : ""
+              }`}
               style={{
-                opacity: state === "OPEN" ? 1 : 0,
                 color: "rgb(44, 44, 44)",
-                transform: "scale(1.9)",
+                filter: state === "CLOSED" ? "blur(2px)" : undefined,
               }}
             >
               Eve is a space to talk to yourself

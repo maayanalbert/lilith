@@ -1,5 +1,6 @@
 import { Ref, RefObject, useEffect, useState } from "react"
 import useEventListener from "./useEventListener"
+import { getMappedValue } from "./getMappedValue"
 
 /**
  * Called on mouse move
@@ -14,10 +15,14 @@ export function useMousePercentToCenterCss() {
     )
 
     const maxDist = getDist(0, 0, window.innerWidth / 2, window.innerHeight / 2)
-
-    const percentToCenter = 1 - dist / maxDist
-    const val = dist < 66 ? 1 : percentToCenter
+    const adjustedDist = dist <= 130 / 2 ? 0 : dist - 130 / 2 // perhaps make a bit smaller than actual size
+    const percentToCenter = 1 - adjustedDist / maxDist
+    const val = percentToCenter
     document.documentElement.style.setProperty("--mouse-dist", `${val}`)
+
+    const mouseScale = getMappedValue(val, 0, 1, 0.5, 1)
+
+    document.documentElement.style.setProperty("--mouse-scale", `${mouseScale}`)
   }
 
   useEventListener("mousemove", callback)

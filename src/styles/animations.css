@@ -19,6 +19,6 @@
 }
 
 .expand-womb {
-  transform: scale(calc(1 + var(--mouse-dist) * 1));
-  box-shadow: inset 0 0 calc(var(--mouse-dist) * 20px) rgb(50 50 50);
+  transform: scale(calc(var(--mouse-scale)));
+  box-shadow: inset 0 0 calc(var(--mouse-dist) * 10px) rgb(50 50 50);
 }
