@@ -14,80 +14,59 @@ export default function Home() {
     document.title = "Eve"
   }, [])
 
-  const scrollPercent = useRef(0)
+  const scrollValue = useRef(startSize)
 
   useEffect(() => {
     document.documentElement.style.setProperty("--womb-size", `${startSize}px`)
-    document.documentElement.style.setProperty("--womb-percent", `0`)
-
-    document.documentElement.style.setProperty("--womb-eased-expo", `0`)
-    document.documentElement.style.setProperty("--womb-eased-sin", `0`)
+    document.documentElement.style.setProperty("--womb-blur", `0px`)
+    document.documentElement.style.setProperty("--text-scale", `1px`)
+    document.documentElement.style.setProperty("--text-opacity", `0`)
+    document.documentElement.style.setProperty("--text-blur", `2px`)
   })
 
   useEventListener(
     "wheel",
     (event: WheelEvent) => {
-      const maxSize = Math.min(
-        window.innerWidth * 2.2,
-        window.innerHeight * 2.2
+      const maxSize =
+        (getDist(0, 0, window.innerWidth / 2, window.innerHeight / 2) + 10) * 2
+
+      scrollValue.current = Math.min(
+        Math.max(startSize, scrollValue.current + event.deltaY),
+        maxSize
       )
 
-      const minSize = startSize
-      const fullDist = maxSize - minSize
+      const wombSize = scrollValue.current
+      document.documentElement.style.setProperty("--womb-size", `${wombSize}px`)
 
-      const deltaPercent = (event.deltaY * 1.2) / fullDist
+      const wombBlur = getMappedValue(wombSize, startSize, maxSize, 0, 10)
+      document.documentElement.style.setProperty("--womb-blur", `${wombBlur}px`)
 
-      scrollPercent.current = Math.min(
-        Math.max(0, scrollPercent.current + deltaPercent),
-        1
+      const textScale = getMappedValue(wombSize, startSize, maxSize, 1, 2)
+      document.documentElement.style.setProperty("--text-scale", `${textScale}`)
+
+      const textOpacity = getMappedValue(
+        wombSize,
+        startSize,
+        maxSize / 3.5,
+        0,
+        1,
+        easeInCubic
       )
-
-      const easeKeyframe = getMappedValue(
-        scrollPercent.current,
-        0,
-        1,
-        0,
-        1,
-        easeInQuad
-      )
-
-      let expoEasedKeyframe = getMappedValue(
-        scrollPercent.current * 2.5,
-        0,
-        1,
-        0,
-        1,
-        easeInExpo,
-        true,
-        0.5
-      )
-
-      let sinEasedKeyframe = getMappedValue(
-        scrollPercent.current,
-        0,
-        1,
-        0,
-        1,
-        undefined
-      )
-
-      const size = minSize + fullDist * easeKeyframe
-
-      document.documentElement.style.setProperty("--womb-size", `${size}px`)
       document.documentElement.style.setProperty(
-        "--womb-percent",
-        `${scrollPercent.current * 3}`
+        "--text-opacity",
+        `${textOpacity}`
       )
 
-      document.documentElement.style.setProperty(
-        "--womb-eased-expo",
-        `${expoEasedKeyframe}`
+      const textBlur = getMappedValue(
+        wombSize,
+        startSize,
+        maxSize / 3.5,
+        2,
+        0,
+        easeInCubic
       )
 
-      document.documentElement.style.setProperty(
-        "--womb-eased-sin",
-        `${sinEasedKeyframe}`
-      )
+      document.documentElement.style.setProperty("--text-blur", `${textBlur}px`)
     },
     []
   )
@@ -121,4 +100,16 @@ function easeInExpo(x: number): number {
 
 function easeInOutSine(x: number): number {
   return -(Math.cos(Math.PI * x) - 1) / 2
+}
+
+function getDist(x1: number, y1: number, x2: number, y2: number) {
+  return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2))
+}
+
+function easeInQuart(x: number): number {
+  return x * x * x * x
+}
+
+function easeInCubic(x: number): number {
+  return x * x * x
 }

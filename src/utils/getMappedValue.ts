@@ -10,19 +10,10 @@ export function getMappedValue(
   fromHigh: number,
   toLow: number,
   toHigh: number,
-  easingFunction?: (x: number) => number,
-  reverseRange: boolean = false,
-  reverseMargin: number = 0
+  easingFunction?: (x: number) => number
 ) {
   // Calculate the percentage of the original range that the value represents
-  let percentage = (value - fromLow) / (fromHigh - fromLow)
-
-  if (reverseRange) {
-    // ???
-    if (percentage > 1 + reverseMargin) {
-      percentage = 1 - (percentage - 1) + reverseMargin
-    }
-  }
+  const percentage = (value - fromLow) / (fromHigh - fromLow)
 
   const boundedPercentage = Math.max(0, Math.min(1, percentage)) // bound or else depending on the easing function, can return NaN
   const easedPercentage = easingFunction
