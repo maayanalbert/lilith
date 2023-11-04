@@ -122,8 +122,3 @@ function easeInExpo(x: number): number {
 function easeInOutSine(x: number): number {
   return -(Math.cos(Math.PI * x) - 1) / 2
 }
-
-// Ancient rabbinic texts state that, as Adam was one person, from whom the population of an entire world came forth
-// Ancient rabbinic texts state that
-
-// Ancient rabbinic texts state that as the entire world's population sprang from Adam, within each of us lies our own unique universe.
