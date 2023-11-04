@@ -18,27 +18,29 @@ export default function Home() {
 
   useEffect(() => {
     document.documentElement.style.setProperty("--womb-size", `${startSize}px`)
-    document.documentElement.style.setProperty("--overflow-status", "hidden")
+    document.documentElement.style.setProperty("--womb-percent", `0`)
+
+    document.documentElement.style.setProperty("--womb-eased-expo", `0`)
+    document.documentElement.style.setProperty("--womb-eased-sin", `0`)
   })
 
   useEventListener(
     "wheel",
     (event: WheelEvent) => {
       const maxSize = Math.min(
-        window.innerWidth * 0.77,
-        window.innerHeight * 0.77
+        window.innerWidth * 2.2,
+        window.innerHeight * 2.2
       )
 
       const minSize = startSize
-      const dist = maxSize - minSize
+      const fullDist = maxSize - minSize
 
-      const deltaPercent = event.deltaY / dist
+      const deltaPercent = (event.deltaY * 1.2) / fullDist
 
-      ;(scrollPercent.current = Math.max(
-        0,
-        scrollPercent.current + deltaPercent
-      )),
+      scrollPercent.current = Math.min(
+        Math.max(0, scrollPercent.current + deltaPercent),
         1
+      )
 
       const easeKeyframe = getMappedValue(
         scrollPercent.current,
@@ -49,33 +51,62 @@ export default function Home() {
         easeInQuad
       )
 
-      const size = minSize + dist * easeKeyframe
+      let expoEasedKeyframe = getMappedValue(
+        scrollPercent.current * 2.5,
+        0,
+        1,
+        0,
+        1,
+        easeInExpo,
+        true,
+        0.5
+      )
+
+      let sinEasedKeyframe =
+        scrollPercent.current * 2.5 < 1
+          ? 1
+          : getMappedValue(
+              scrollPercent.current * 2.5,
+              0,
+              1,
+              0,
+              1,
+              undefined,
+              true,
+              0.5
+            )
+
+      const size = minSize + fullDist * easeKeyframe
 
       document.documentElement.style.setProperty("--womb-size", `${size}px`)
       document.documentElement.style.setProperty(
         "--womb-percent",
-        `${scrollPercent.current}`
+        `${scrollPercent.current * 3}`
       )
+
       document.documentElement.style.setProperty(
-        "--overflow-status",
-        scrollPercent.current === 1 ? "auto" : "hidden"
+        "--womb-eased-expo",
+        `${expoEasedKeyframe}`
+      )
+
+      document.documentElement.style.setProperty(
+        "--womb-eased-sin",
+        `${sinEasedKeyframe}`
       )
     },
     []
   )
 
   return (
-    <div style={{ width: "100%", height: "200%" }}>
-      <div
-        className="w-full flex justify-center items-center"
-        style={{ height: "50%" }}
-      >
-        <div className="rounded-full expand-womb bg-white fade-in-womb flex h-full w-full justify-center items-center">
-          {/* <p className="whitespace-nowrap select-none">Welcome to Eve</p> */}
-        </div>
-      </div>
-      <div style={{ width: "100%", height: "50%" }}>
-        Rabbinic texts something something
+    <div
+      className="h-full flex justify-center items-center"
+      style={{ width: "300%", marginLeft: "-100%" }}
+    >
+      <div className="rounded-full expand-womb bg-white fade-in-womb" />
+      <div className="absolute flex h-full w-full justify-center items-center top-0">
+        <p className="whitespace-nowrap select-none reveal-text text-4xl">
+          Welcome to Eve
+        </p>
       </div>
     </div>
   )
@@ -85,5 +116,15 @@ function easeInQuad(x: number): number {
   return x * x
 }
 
+function easeInExpo(x: number): number {
+  return x === 0 ? 0 : Math.pow(2, 10 * x - 10)
+}
+
+function easeInOutSine(x: number): number {
+  return -(Math.cos(Math.PI * x) - 1) / 2
+}
+
 // Ancient rabbinic texts state that, as Adam was one person, from whom the population of an entire world came forth
 // Ancient rabbinic texts state that
+
+// Ancient rabbinic texts state that as the entire world sprang from Adam, within each of us lies

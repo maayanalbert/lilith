@@ -19,10 +19,12 @@
 .expand-womb {
   height: var(--womb-size);
   width: var(--womb-size);
-  box-shadow: inset 0 0 calc(var(--womb-percent) * 20px) rgb(50 50 50);
+  filter: blur(calc(var(--womb-percent) * 2px));
 }
 
-/* .womb-size {
-  transform: scale(calc(var(--mouse-scale)));
-  box-shadow: inset 0 0 calc(var(--mouse-dist) * 10px) rgb(50 50 50);
-} */
+.reveal-text {
+  filter: blur(calc((1 - var(--womb-eased-expo)) * 2px));
+  transform: scale(calc((1 + (1 - var(--womb-eased-sin)) * 0.25)));
+
+  opacity: var(--womb-eased-expo);
+}
