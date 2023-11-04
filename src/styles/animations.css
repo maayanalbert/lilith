@@ -1,24 +1,28 @@
 .fade-in-womb {
   animation-name: fade-in-womb;
-  animation-duration: 800ms;
+  animation-duration: 1200ms;
   animation-timing-function: ease-in-out;
 }
 
 @keyframes fade-in-womb {
   0% {
     opacity: 0;
-    height: 75%;
-    width: 75%;
+    transform: scale(0.75);
     filter: blur(2px);
   }
   100% {
     opacity: 1;
-    height: 100%;
-    width: 100%;
+    transform: scale(1);
   }
 }
 
 .expand-womb {
+  height: var(--womb-size);
+  width: var(--womb-size);
+  box-shadow: inset 0 0 calc(var(--womb-percent) * 20px) rgb(50 50 50);
+}
+
+/* .womb-size {
   transform: scale(calc(var(--mouse-scale)));
   box-shadow: inset 0 0 calc(var(--mouse-dist) * 10px) rgb(50 50 50);
-}
+} */

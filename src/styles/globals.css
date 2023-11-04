@@ -10,7 +10,7 @@ html,
 body {
   height: 100%;
   background-color: black;
-  overflow: hidden;
+  overflow: var(--overflow-status);
 }
 
 div#__next {
