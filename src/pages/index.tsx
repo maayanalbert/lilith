@@ -22,6 +22,7 @@ export default function Home() {
     document.documentElement.style.setProperty("--text-scale", `1px`)
     document.documentElement.style.setProperty("--text-opacity", `0`)
     document.documentElement.style.setProperty("--text-blur", `2px`)
+    document.documentElement.style.setProperty("--blurb-opacity", `0`)
   })
 
   useEventListener(
@@ -44,29 +45,66 @@ export default function Home() {
       const textScale = getMappedValue(wombSize, startSize, maxSize, 1, 2)
       document.documentElement.style.setProperty("--text-scale", `${textScale}`)
 
-      const textOpacity = getMappedValue(
-        wombSize,
-        startSize,
-        maxSize / 3.5,
-        0,
-        1,
-        easeInCubic
-      )
+      const textOpacity =
+        wombSize < (2 * maxSize) / 7
+          ? getMappedValue(
+              wombSize,
+              startSize,
+              (2 * maxSize) / 7,
+              0,
+              1,
+              easeInCubic
+            )
+          : wombSize > (3.75 * maxSize) / 7
+          ? getMappedValue(
+              wombSize,
+              (3.75 * maxSize) / 7,
+              (5 * maxSize) / 7,
+              1,
+              0,
+              easeInCubic
+            )
+          : 1
+
       document.documentElement.style.setProperty(
         "--text-opacity",
         `${textOpacity}`
       )
 
-      const textBlur = getMappedValue(
-        wombSize,
-        startSize,
-        maxSize / 3.5,
-        2,
-        0,
-        easeInCubic
-      )
+      const textBlur =
+        wombSize < (2 * maxSize) / 7
+          ? getMappedValue(
+              wombSize,
+              startSize,
+              (2 * maxSize) / 7,
+              2,
+              0,
+              easeInCubic
+            )
+          : wombSize > (3.75 * maxSize) / 7
+          ? getMappedValue(
+              wombSize,
+              (3.75 * maxSize) / 7,
+              (5 * maxSize) / 7,
+              0,
+              2,
+              easeInCubic
+            )
+          : 0
 
       document.documentElement.style.setProperty("--text-blur", `${textBlur}px`)
+
+      const blurbOpacity = getMappedValue(
+        wombSize,
+        (6 * maxSize) / 7,
+        maxSize,
+        0,
+        1
+      )
+      document.documentElement.style.setProperty(
+        "--blurb-opacity",
+        `${blurbOpacity}`
+      )
     },
     []
   )
@@ -82,10 +120,10 @@ export default function Home() {
           Welcome to Eve
         </p>
       </div>
-      {/* <div className="absolute" style={{ width: 500 }}>
+      <div className="absolute reveal-blurb" style={{ width: 500 }}>
         Ancient rabbinic texts state that as the entire world's population
         sprang from Adam, within each of us lies our own unique world.
-      </div> */}
+      </div>
     </div>
   )
 }

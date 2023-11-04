@@ -27,3 +27,7 @@
   transform: scale(var(--text-scale));
   opacity: var(--text-opacity);
 }
+
+.reveal-blurb {
+  opacity: var(--blurb-opacity);
+}
