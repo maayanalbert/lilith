@@ -31,10 +31,16 @@ export default function Home() {
     <div className={`${!showCursor ? "cursor-none" : ""}  h-full w-full`}>
       {state === "FINISHED" && ( // learn more text
         <div
-          className={`h-full w-full flex justify-center items-center absolute`}
+          className={`h-full w-full flex flex-col justify-center items-center absolute sm:gap-1.5 gap-1`}
         >
           <div
-            className="transition-all duration-500 flex flex-row gap-1.5 sm:text-lg"
+            className="transition-all duration-500 sm:text-xl text-lg"
+            style={{ color: "gray", opacity: finishedVisible ? 1 : 0 }}
+          >
+            <p>What's inside yours?</p>
+          </div>
+          <div
+            className="transition-all duration-500 flex flex-row gap-1.5 sm:text-base text-sm"
             style={{ color: "gray", opacity: finishedVisible ? 1 : 0 }}
           >
             <p>Contact</p>
@@ -84,7 +90,7 @@ export default function Home() {
             }`}
           >
             <div
-              className={`whitespace-nowrap flex flex-row gap-1 text-4xl select-none h-full w-full flex justify-center items-center rounded-full
+              className={`whitespace-nowrap flex flex-col sm:text-4xl text-2xl select-none h-full w-full justify-center items-center rounded-full
               transition-all ease-in-out duration-500 ${
                 state === "CLOSED" ? "opacity-0 hover:opacity-[.15]" : ""
               }`}
@@ -93,7 +99,21 @@ export default function Home() {
                 filter: state === "CLOSED" ? "blur(2px)" : undefined,
               }}
             >
-              Eve is a space to talk to yourself
+              Within each soul lies a universe
+              <div className="relative w-full">
+                <div
+                  className="absolute w-full text-center text-base top-4"
+                  style={{ color: "gray" }}
+                >
+                  <a
+                    className="underline"
+                    href="https://www.sefaria.org/Mishnah_Sanhedrin.3.8?lang=bi"
+                    target="_blank"
+                  >
+                    Rabbinic Precept
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
