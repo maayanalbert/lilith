@@ -62,19 +62,14 @@ export default function Home() {
         0.5
       )
 
-      let sinEasedKeyframe =
-        scrollPercent.current * 2.5 < 1
-          ? 1
-          : getMappedValue(
-              scrollPercent.current * 2.5,
-              0,
-              1,
-              0,
-              1,
-              undefined,
-              true,
-              0.5
-            )
+      let sinEasedKeyframe = getMappedValue(
+        scrollPercent.current,
+        0,
+        1,
+        0,
+        1,
+        undefined
+      )
 
       const size = minSize + fullDist * easeKeyframe
 
@@ -108,6 +103,10 @@ export default function Home() {
           Welcome to Eve
         </p>
       </div>
+      {/* <div className="absolute" style={{ width: 500 }}>
+        Ancient rabbinic texts state that as the entire world's population
+        sprang from Adam, within each of us lies our own unique world.
+      </div> */}
     </div>
   )
 }
@@ -127,4 +126,4 @@ function easeInOutSine(x: number): number {
 // Ancient rabbinic texts state that, as Adam was one person, from whom the population of an entire world came forth
 // Ancient rabbinic texts state that
 
-// Ancient rabbinic texts state that as the entire world sprang from Adam, within each of us lies
+// Ancient rabbinic texts state that as the entire world's population sprang from Adam, within each of us lies our own unique universe.

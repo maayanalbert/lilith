@@ -24,7 +24,7 @@
 
 .reveal-text {
   filter: blur(calc((1 - var(--womb-eased-expo)) * 2px));
-  transform: scale(calc((1 + (1 - var(--womb-eased-sin)) * 0.25)));
+  transform: scale(calc((1 + (var(--womb-eased-sin)) * 0.1)));
 
   opacity: var(--womb-eased-expo);
 }
