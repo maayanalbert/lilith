@@ -13,10 +13,10 @@ export default function Home() {
   }, [])
 
   const scrollValue = useRef(startSize)
-  const [blurbVisible, setBlurbVisible] = useState(false)
+  const [blurbVisible, setBlurbVisible] = useState(true)
 
   useEffect(() => {
-    document.documentElement.style.setProperty("--womb-size", `${startSize}px`)
+    document.documentElement.style.setProperty("--womb-size", `${500000}px`)
     document.documentElement.style.setProperty("--womb-blur", `0px`)
     document.documentElement.style.setProperty("--text-scale", `1px`)
     document.documentElement.style.setProperty("--text-opacity", `0`)
@@ -116,7 +116,7 @@ export default function Home() {
       </div>
 
       <div
-        className={`absolute flex flex-col w-[300px] sm:w-[500px] ${
+        className={`absolute flex flex-col w-[300px] sm:w-[450px] ${
           blurbVisible ? "" : "cursor-default"
         }`}
         style={{
@@ -127,16 +127,25 @@ export default function Home() {
           opacity: blurbVisible ? 1 : 0,
         }}
       >
-        <p style={{ fontSize: 18.5 }}>Eve is a space for you.</p>
-        <div className="h-6" />
-        <p className="text-lg" style={{ color: "rgb(69, 69, 69)" }}>
-          Ancient rabbinic texts state that as the earth's population sprang
+        {/* <p
+          className="text-base text-center"
+          style={{ color: "rgb(100, 100, 100)" }}
+        >
+          Eve is a space for you.
+        </p>
+        <div className="h-2" /> */}
+        <p
+          className="text-base text-center"
+          style={{ color: "rgb(100, 100, 100)" }}
+        >
+          Ancient rabbinic texts state that, as the earth's population sprang
           from Adam, within each of us lies our own world.
         </p>
-        <div className="h-6" />
+
+        {/* <div className="h-6" />
         <p className="text-lg" style={{ color: "rgb(69, 69, 69)" }}>
           Join the waitlist to discover yours
-        </p>
+        </p> */}
       </div>
     </div>
   )
