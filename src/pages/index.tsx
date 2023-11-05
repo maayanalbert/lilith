@@ -125,22 +125,25 @@ export default function Home() {
           transitionDelay: blurbVisible ? "300ms" : "0ms",
           transitionTimingFunction: "cubic-bezier(0.4, 0, 0.2, 1)",
           opacity: blurbVisible ? 1 : 0,
+          color: "rgb(88, 88, 88)",
         }}
       >
-        {/* <p
-          className="text-base text-center"
-          style={{ color: "rgb(100, 100, 100)" }}
-        >
-          Eve is a space for you.
+        <p className="text-base text-center">
+          Eve is a space for your thoughts.
         </p>
-        <div className="h-2" /> */}
-        <p
-          className="text-base text-center"
-          style={{ color: "rgb(100, 100, 100)" }}
-        >
+        <div className="h-4" />
+        <p className="text-base text-center">
           Ancient rabbinic texts state that, as the earth's population sprang
           from Adam, within each of us lies our own world.
         </p>
+        <div className="h-4" />
+        <p className="text-base text-center">
+          Within Eve, you'll uncover yours.
+        </p>
+        {/* <div className="h-4" />
+        <p className="text-base text-center">
+          Stay tuned for our first mobile app, launching 2024.
+        </p> */}
 
         {/* <div className="h-6" />
         <p className="text-lg" style={{ color: "rgb(69, 69, 69)" }}>
