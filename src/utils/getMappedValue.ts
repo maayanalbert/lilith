@@ -12,6 +12,7 @@ export function getMappedValue(
 ) {
   // Calculate the percentage of the original range that the value represents
   const percentage = (value - fromLow) / (fromHigh - fromLow)
+
   const boundedPercentage = Math.max(0, Math.min(1, percentage)) // bound or else depending on the easing function, can return NaN
   const easedPercentage = easingFunction
     ? easingFunction(boundedPercentage)
