@@ -15,15 +15,15 @@ export default function Home() {
   }, [])
 
   const scrollValue = useRef(startSize)
+  const [blurbVisible, setBlurbVisible] = useState(true)
 
   useEffect(() => {
-    document.documentElement.style.setProperty("--womb-size", `${startSize}px`)
+    document.documentElement.style.setProperty("--womb-size", `${500000}px`)
     document.documentElement.style.setProperty("--womb-blur", `0px`)
     document.documentElement.style.setProperty("--text-scale", `1px`)
     document.documentElement.style.setProperty("--text-opacity", `0`)
     document.documentElement.style.setProperty("--text-blur", `2px`)
-    document.documentElement.style.setProperty("--blurb-opacity", `0`)
-  })
+  }, [])
 
   useEventListener(
     "wheel",
@@ -46,23 +46,23 @@ export default function Home() {
       document.documentElement.style.setProperty("--text-scale", `${textScale}`)
 
       const textOpacity =
-        wombSize < (2 * maxSize) / 7
+        wombSize < (3.75 * maxSize) / 7
           ? getMappedValue(
               wombSize,
               startSize,
-              (2 * maxSize) / 7,
+              (3.75 * maxSize) / 7,
               0,
               1,
-              easeInCubic
+              easeInQuad
             )
-          : wombSize > (3.75 * maxSize) / 7
+          : wombSize > (6 * maxSize) / 7
           ? getMappedValue(
               wombSize,
-              (3.75 * maxSize) / 7,
+              (5 * maxSize) / 7,
               maxSize,
               1,
-              1,
-              easeInCubic
+              0,
+              easeInQuad
             )
           : 1
 
@@ -72,23 +72,23 @@ export default function Home() {
       )
 
       const textBlur =
-        wombSize < (2 * maxSize) / 7
+        wombSize < (3 * maxSize) / 7
           ? getMappedValue(
               wombSize,
               startSize,
-              (2 * maxSize) / 7,
+              (3 * maxSize) / 7,
               2,
               0,
-              easeInCubic
+              easeInQuad
             )
-          : wombSize > (3.75 * maxSize) / 7
+          : wombSize > (6 * maxSize) / 7
           ? getMappedValue(
               wombSize,
-              (3.75 * maxSize) / 7,
+              (6 * maxSize) / 7,
               maxSize,
               0,
-              0,
-              easeInCubic
+              2,
+              easeInQuad
             )
           : 0
 
@@ -99,6 +99,8 @@ export default function Home() {
         "--blurb-opacity",
         `${blurbOpacity}`
       )
+
+      setBlurbVisible(wombSize === maxSize)
     },
     []
   )
@@ -114,40 +116,57 @@ export default function Home() {
           Welcome to Eve
         </p>
       </div>
-      {/* <div className="absolute reveal-blurb" style={{ width: 500 }}>
-        Eve is a space for you.
-        <br />
-        <br />
-        Ancient rabbinic texts state that since the world's population sprang
-        from Adam, within each of us lies an entire world.
-        <br />
-        <br />
-        Join the waitlist to discover yours.
-      </div> */}
+      <div
+        className={`absolute flex flex-col gap-6`}
+        style={{
+          width: 500,
+          transitionProperty: "all",
+          transitionDuration: blurbVisible ? "500ms" : "0ms",
+          transitionDelay: blurbVisible ? "300ms" : "0ms",
+          transitionTimingFunction: "cubic-bezier(0.4, 0, 0.2, 1)",
+          opacity: blurbVisible ? 1 : 0,
+        }}
+      >
+        <p className="text-lg">Eve is a space for you.</p>
+        <p className="text-lg" style={{ color: "rgb(69, 69, 69)" }}>
+          Ancient rabbinic texts state that as the earth's population sprang
+          from Adam, within each of us lies our own world{" "}
+          <a
+            href="https://www.sefaria.org/Mishnah_Sanhedrin.4.5?lang=bi&with=all&lang2=en"
+            target="_blank"
+            className="underline"
+          >
+            [1]
+          </a>
+        </p>
+        <p className="text-lg" style={{ color: "rgb(69, 69, 69)" }}>
+          Join the waitlist to discover yours.
+        </p>
+      </div>
     </div>
   )
-}
-
-function easeInQuad(x: number): number {
-  return x * x
-}
-
-function easeInExpo(x: number): number {
-  return x === 0 ? 0 : Math.pow(2, 10 * x - 10)
 }
 
 function easeInOutSine(x: number): number {
   return -(Math.cos(Math.PI * x) - 1) / 2
 }
 
-function getDist(x1: number, y1: number, x2: number, y2: number) {
-  return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2))
+function easeInQuad(x: number): number {
+  return x * x
+}
+
+function easeInCubic(x: number): number {
+  return x * x * x
 }
 
 function easeInQuart(x: number): number {
   return x * x * x * x
 }
 
-function easeInCubic(x: number): number {
-  return x * x * x
+function easeInExpo(x: number): number {
+  return x === 0 ? 0 : Math.pow(2, 10 * x - 10)
+}
+
+function getDist(x1: number, y1: number, x2: number, y2: number) {
+  return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2))
 }
