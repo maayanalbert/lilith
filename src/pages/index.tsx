@@ -13,10 +13,10 @@ export default function Home() {
   }, [])
 
   const scrollValue = useRef(startSize)
-  const [blurbVisible, setBlurbVisible] = useState(true)
+  const [blurbVisible, setBlurbVisible] = useState(false)
 
   useEffect(() => {
-    document.documentElement.style.setProperty("--womb-size", `${500000}px`)
+    document.documentElement.style.setProperty("--womb-size", `${startSize}px`)
     document.documentElement.style.setProperty("--womb-blur", `0px`)
     document.documentElement.style.setProperty("--text-scale", `1px`)
     document.documentElement.style.setProperty("--text-opacity", `0`)
