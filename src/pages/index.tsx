@@ -1,7 +1,5 @@
 import { getMappedValue } from "@/utils/getMappedValue"
 import useEventListener from "@/utils/useEventListener"
-import { useMousePercentToCenterCss } from "@/utils/useMousePercentToCenterCss"
-import { get, min } from "lodash"
 import { useEffect, useRef, useState } from "react"
 
 const startSize = 77

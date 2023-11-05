@@ -1,5 +1,3 @@
-import { reverse } from "lodash"
-
 /**
  * Map a number from one range to another
  * From chat gpt wow!
