@@ -59,9 +59,9 @@ export default function Home() {
           ? getMappedValue(
               wombSize,
               (3.75 * maxSize) / 7,
-              (5 * maxSize) / 7,
+              maxSize,
               1,
-              0,
+              1,
               easeInCubic
             )
           : 1
@@ -85,22 +85,16 @@ export default function Home() {
           ? getMappedValue(
               wombSize,
               (3.75 * maxSize) / 7,
-              (5 * maxSize) / 7,
+              maxSize,
               0,
-              2,
+              0,
               easeInCubic
             )
           : 0
 
       document.documentElement.style.setProperty("--text-blur", `${textBlur}px`)
 
-      const blurbOpacity = getMappedValue(
-        wombSize,
-        (6 * maxSize) / 7,
-        maxSize,
-        0,
-        1
-      )
+      const blurbOpacity = wombSize === maxSize ? 1 : 0
       document.documentElement.style.setProperty(
         "--blurb-opacity",
         `${blurbOpacity}`
@@ -116,14 +110,20 @@ export default function Home() {
     >
       <div className="rounded-full expand-womb bg-white fade-in-womb" />
       <div className="absolute flex h-full w-full justify-center items-center top-0">
-        <p className="whitespace-nowrap select-none reveal-text text-4xl">
+        <p className="whitespace-nowrap select-none reveal-text sm:text-4xl text-xl pointer-none">
           Welcome to Eve
         </p>
       </div>
-      <div className="absolute reveal-blurb" style={{ width: 500 }}>
-        Ancient rabbinic texts state that as the entire world's population
-        sprang from Adam, within each of us lies our own unique world.
-      </div>
+      {/* <div className="absolute reveal-blurb" style={{ width: 500 }}>
+        Eve is a space for you.
+        <br />
+        <br />
+        Ancient rabbinic texts state that since the world's population sprang
+        from Adam, within each of us lies an entire world.
+        <br />
+        <br />
+        Join the waitlist to discover yours.
+      </div> */}
     </div>
   )
 }
