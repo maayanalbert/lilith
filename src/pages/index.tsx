@@ -15,10 +15,10 @@ export default function Home() {
   }, [])
 
   const scrollValue = useRef(startSize)
-  const [blurbVisible, setBlurbVisible] = useState(true)
+  const [blurbVisible, setBlurbVisible] = useState(false)
 
   useEffect(() => {
-    document.documentElement.style.setProperty("--womb-size", `${500000}px`)
+    document.documentElement.style.setProperty("--womb-size", `${startSize}px`)
     document.documentElement.style.setProperty("--womb-blur", `0px`)
     document.documentElement.style.setProperty("--text-scale", `1px`)
     document.documentElement.style.setProperty("--text-opacity", `0`)
@@ -117,30 +117,24 @@ export default function Home() {
         </p>
       </div>
       <div
-        className={`absolute flex flex-col gap-6`}
+        className={`absolute flex flex-col w-[300px] sm:w-[500px]`}
         style={{
-          width: 500,
-          transitionProperty: "all",
+          transitionProperty: "opacity",
           transitionDuration: blurbVisible ? "500ms" : "0ms",
           transitionDelay: blurbVisible ? "300ms" : "0ms",
           transitionTimingFunction: "cubic-bezier(0.4, 0, 0.2, 1)",
           opacity: blurbVisible ? 1 : 0,
         }}
       >
-        <p className="text-lg">Eve is a space for you.</p>
+        <p style={{ fontSize: 18.5 }}>Eve is a space for you.</p>
+        <div className="h-6" />
         <p className="text-lg" style={{ color: "rgb(69, 69, 69)" }}>
           Ancient rabbinic texts state that as the earth's population sprang
-          from Adam, within each of us lies our own world{" "}
-          <a
-            href="https://www.sefaria.org/Mishnah_Sanhedrin.4.5?lang=bi&with=all&lang2=en"
-            target="_blank"
-            className="underline"
-          >
-            [1]
-          </a>
+          from Adam, within each of us lies our own world.
         </p>
+        <div className="h-6" />
         <p className="text-lg" style={{ color: "rgb(69, 69, 69)" }}>
-          Join the waitlist to discover yours.
+          Join the waitlist to discover yours
         </p>
       </div>
     </div>
