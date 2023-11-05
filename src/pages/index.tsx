@@ -110,12 +110,15 @@ export default function Home() {
     >
       <div className="rounded-full expand-womb bg-white fade-in-womb" />
       <div className="absolute flex h-full w-full justify-center items-center top-0">
-        <p className="whitespace-nowrap select-none reveal-text sm:text-4xl text-xl pointer-none">
+        <p className="whitespace-nowrap select-none reveal-text sm:text-4xl text-xl cursor-default">
           Welcome to Eve
         </p>
       </div>
+
       <div
-        className={`absolute flex flex-col w-[300px] sm:w-[500px]`}
+        className={`absolute flex flex-col w-[300px] sm:w-[500px] ${
+          blurbVisible ? "" : "cursor-default"
+        }`}
         style={{
           transitionProperty: "opacity",
           transitionDuration: blurbVisible ? "500ms" : "0ms",
