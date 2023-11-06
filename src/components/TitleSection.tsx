@@ -33,8 +33,8 @@ function FirstBlurb({ blurbVisible }: Props) {
           }`}
       style={{
         transitionProperty: "opacity",
-        transitionDuration: blurbVisible ? "750ms" : "0ms",
-        transitionDelay: blurbVisible ? "250ms" : "0ms",
+        transitionDuration: "750ms",
+        transitionDelay: "250ms",
         transitionTimingFunction: "cubic-bezier(0.4, 0, 0.2, 1)",
         opacity: blurbVisible ? 1 : 0,
       }}
