@@ -2,7 +2,6 @@ import { MutableRefObject, useEffect, useRef } from "react"
 import {
   easeInCustom,
   easeInExpo,
-  easeInOutSine,
   easeInQuad,
   easeInQuart,
   easeInSine,
@@ -11,7 +10,6 @@ import {
 } from "./easingFns"
 import { getMappedValue } from "./getMappedValue"
 import useEventListener from "./useEventListener"
-import { time } from "console"
 
 const startSize = 77
 
@@ -20,8 +18,6 @@ export function useWheelAnimations(
   setIsInsideWomb: (isInsideWomb: boolean) => void
 ) {
   const wombSize = useRef(startSize)
-  const startTime = useRef(0)
-  const animationInterrupted = useRef(false)
 
   useEffect(() => {
     document.documentElement.style.setProperty("--html-overflow", `hidden`)
@@ -36,26 +32,6 @@ export function useWheelAnimations(
       `${startSize * 2}px`
     )
   }, [])
-
-  function animateZoom(timeStamp: number) {
-    if (animationInterrupted.current) return
-
-    const timeElapsed = timeStamp - startTime.current
-    const easeKeyframe = easeInOutSine(timeElapsed / 2000) // ms animation
-
-    const maxSize =
-      (getDist(0, 0, window.innerWidth / 2, window.innerHeight / 2) + 10) *
-      2 *
-      2
-
-    const wombSize = (maxSize - startSize) * easeKeyframe + startSize
-
-    updateWheelAnimations(wombSize, maxSize, setIsInsideWomb, scrollable)
-
-    if (timeElapsed < 2000) {
-      requestAnimationFrame(animateZoom)
-    }
-  }
 
   useEventListener(
     "wheel",
@@ -78,10 +54,6 @@ export function useWheelAnimations(
         setIsInsideWomb,
         scrollable
       )
-
-      if (wombSize.current > (2 * maxSize) / 7) {
-        animateZoom(performance.now())
-      }
     },
     []
   )
