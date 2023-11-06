@@ -27,3 +27,7 @@
   transform: scale(var(--text-scale));
   opacity: var(--text-opacity);
 }
+
+.footer-descend {
+  margin-top: var(--footer-margin-top);
+}

@@ -23,6 +23,7 @@ export default function Home() {
     document.documentElement.style.setProperty("--text-scale", `1px`)
     document.documentElement.style.setProperty("--text-opacity", `0`)
     document.documentElement.style.setProperty("--text-blur", `2px`)
+    document.documentElement.style.setProperty("--footer-margin-top", `-32px`)
   }, [])
 
   useEventListener(
@@ -32,11 +33,20 @@ export default function Home() {
         (getDist(0, 0, window.innerWidth / 2, window.innerHeight / 2) + 10) * 2
 
       scrollValue.current = Math.min(
-        Math.max(startSize, scrollValue.current + event.deltaY * 1.25),
+        Math.max(startSize, scrollValue.current + event.deltaY),
         maxSize
       )
 
       const wombSize = scrollValue.current
+      console.log(wombSize)
+
+      const footerMarginTop = Math.min(Math.max(-32, wombSize - 77 - 32), 0)
+
+      console.log(footerMarginTop)
+      document.documentElement.style.setProperty(
+        "--footer-margin-top",
+        `${footerMarginTop}px`
+      )
       document.documentElement.style.setProperty("--womb-size", `${wombSize}px`)
 
       const wombBlur = getMappedValue(wombSize, startSize, maxSize, 0, 10)
@@ -110,10 +120,20 @@ export default function Home() {
       <div className="w-full" style={{ height: "50%" }}>
         <TitleSection blurbVisible={blurbVisible} />
         <div
-          className="absolute w-full bottom-0 flex justify-center items-center"
-          style={{ height: 20, paddingLeft: 50, paddingRight: 50 }}
+          className="absolute w-full footer-descend"
+          style={{ height: 56, top: "100%" }}
         >
-          <div className="bg-white h-full w-full" style={{ width: 500 }} />
+          <div
+            className="w-full flex justify-center items-center font-light"
+            style={{
+              color: "gray",
+              borderTopWidth: 1,
+              borderColor: "gray",
+              padding: 16,
+            }}
+          >
+            Genesis - 3:13
+          </div>
         </div>
       </div>
       <div
