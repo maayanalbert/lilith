@@ -18,7 +18,7 @@ div#__next {
 }
 
 /* Highlight color */
-::selection {
-  background-color: white;
-  color: black;
-}
+/* ::selection {
+  background-color: black;
+  color: white;
+} */

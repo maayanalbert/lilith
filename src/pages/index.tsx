@@ -13,10 +13,10 @@ export default function Home() {
   }, [])
 
   const scrollValue = useRef(startSize)
-  const [blurbVisible, setBlurbVisible] = useState(false)
+  const [blurbVisible, setBlurbVisible] = useState(true)
 
   useEffect(() => {
-    document.documentElement.style.setProperty("--womb-size", `${startSize}px`)
+    document.documentElement.style.setProperty("--womb-size", `${50000000}px`)
     document.documentElement.style.setProperty("--womb-blur", `0px`)
     document.documentElement.style.setProperty("--text-scale", `1px`)
     document.documentElement.style.setProperty("--text-opacity", `0`)
@@ -104,52 +104,70 @@ export default function Home() {
   )
 
   return (
-    <div
-      className="h-full flex justify-center items-center"
-      style={{ width: "300%", marginLeft: "-100%" }}
-    >
-      <div className="rounded-full expand-womb bg-white fade-in-womb" />
-      <div className="absolute flex h-full w-full justify-center items-center top-0">
-        <p className="whitespace-nowrap select-none reveal-text sm:text-4xl text-xl cursor-default">
-          Welcome to Eve
-        </p>
-      </div>
-
+    <div className="w-full" style={{ height: "200%" }}>
       <div
-        className={`absolute flex flex-col w-[300px] sm:w-[450px] ${
-          blurbVisible ? "" : "cursor-default"
-        }`}
-        style={{
-          transitionProperty: "opacity",
-          transitionDuration: blurbVisible ? "500ms" : "0ms",
-          transitionDelay: blurbVisible ? "300ms" : "0ms",
-          transitionTimingFunction: "cubic-bezier(0.4, 0, 0.2, 1)",
-          opacity: blurbVisible ? 1 : 0,
-          color: "rgb(88, 88, 88)",
-        }}
+        className="flex justify-center items-center"
+        style={{ width: "300%", marginLeft: "-100%", height: "50%" }}
       >
-        <p className="text-base text-center">
-          Eve is a space for your thoughts.
-        </p>
-        <div className="h-4" />
-        <p className="text-base text-center">
-          Ancient rabbinic texts state that, as the earth's population sprang
-          from Adam, within each of us lies our own world.
-        </p>
-        <div className="h-4" />
-        <p className="text-base text-center">
-          Within Eve, you'll uncover yours.
-        </p>
-        {/* <div className="h-4" />
-        <p className="text-base text-center">
-          Stay tuned for our first mobile app, launching 2024.
-        </p> */}
+        <div className="rounded-full expand-womb bg-white fade-in-womb" />
+        <div className="absolute flex h-full w-full justify-center items-center top-0">
+          <p className="whitespace-nowrap select-none reveal-text sm:text-4xl text-xl cursor-default">
+            Welcome to Eve
+          </p>
+        </div>
 
-        {/* <div className="h-6" />
-        <p className="text-lg" style={{ color: "rgb(69, 69, 69)" }}>
-          Join the waitlist to discover yours
-        </p> */}
+        <div
+          className={`absolute flex flex-col w-[350px] sm:w-[520px] text-center sm:text-lg ${
+            blurbVisible ? "" : "cursor-default"
+          }`}
+          style={{
+            transitionProperty: "opacity",
+            transitionDuration: blurbVisible ? "500ms" : "0ms",
+            transitionDelay: blurbVisible ? "300ms" : "0ms",
+            transitionTimingFunction: "cubic-bezier(0.4, 0, 0.2, 1)",
+            opacity: blurbVisible ? 1 : 0,
+            color: "rgb(100, 100, 100)",
+          }}
+        >
+          <p className="sm:text-[19px]" style={{ color: "black" }}>
+            Eve is a space for your thoughts
+          </p>
+          <div className="h-6" />
+          <p>
+            Ancient rabbinic texts state that, as the earth's population sprang
+            from Adam, each human soul contains its own unique world.
+          </p>
+          <div className="h-6" />
+          <p>Within Eve, you'll uncover yours.</p>
+        </div>
       </div>
+      {/* <div
+        className="h-full w-full flex items-center justify-center"
+        style={{ marginTop: -500 }}
+      >
+        <div
+          className={`absolute flex flex-col w-[350px] sm:w-[520px] text-center sm:text-lg ${
+            blurbVisible ? "" : "cursor-default"
+          }`}
+          style={{
+            transitionProperty: "opacity",
+            transitionDuration: blurbVisible ? "500ms" : "0ms",
+            transitionDelay: blurbVisible ? "300ms" : "0ms",
+            transitionTimingFunction: "cubic-bezier(0.4, 0, 0.2, 1)",
+            opacity: blurbVisible ? 1 : 0,
+            color: "rgb(88, 88, 88)",
+          }}
+        >
+          <p>Eve is a space for your thoughts.</p>
+          <div className="h-6" />
+          <p>
+            Ancient rabbinic texts state that, as the earth's population sprang
+            from Adam, each human soul contains its own unique world.
+          </p>
+          <div className="h-6" />
+          <p>Within Eve, you'll uncover yours.</p>
+        </div>
+      </div> */}
     </div>
   )
 }
