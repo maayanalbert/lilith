@@ -1,3 +1,5 @@
+import { ChevronDownIcon } from "@heroicons/react/24/solid"
+
 interface Props {
   blurbVisible: boolean
 }
@@ -17,8 +19,7 @@ export default function TitleSection({ blurbVisible }: Props) {
           Welcome to Eve
         </p>
       </div>
-
-      <div
+      <div // text
         className={`absolute flex font-light 
           flex-col w-[350px] sm:w-[530px] text-center sm:text-lg ${
             blurbVisible ? "" : "cursor-default"
@@ -41,6 +42,16 @@ export default function TitleSection({ blurbVisible }: Props) {
         </p>
         <div className="h-6" />
         <p>Within Eve, you'll uncover yours.</p>
+        <div className="relative w-full">
+          <div className="absolute w-full flex justify-center items-center mt-20">
+            <ChevronDownIcon
+              className="h-8 w-8"
+              width={0.5}
+              stroke="white"
+              strokeWidth={0.5}
+            />
+          </div>
+        </div>
       </div>
     </div>
   )

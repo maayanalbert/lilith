@@ -137,35 +137,9 @@ export default function Home() {
     <div className="w-full" style={{ height: "200%" }}>
       <div className="w-full" style={{ height: "50%" }}>
         <TitleSection blurbVisible={isInsideWomb} />
-        <div
-          className="absolute w-full footer-descend"
-          style={{
-            height: 56,
-            top: "100%",
-          }}
-        >
-          <div
-            className={`w-full flex justify-center items-center 
-            ${isInsideWomb ? "font-light" : "font-normal"}
-            ${
-              isInsideWomb
-                ? "transition-all duration-[1000ms] delay-[750ms] ease-in-out"
-                : ""
-            }`}
-            style={{
-              color: isInsideWomb ? "white" : "black",
-              background: isInsideWomb ? "black" : "white",
-              padding: 16,
-              marginTop: isInsideWomb ? -32 : 0,
-              filter: footerBlurred ? "blur(2px)" : "none",
-            }}
-          >
-            Genesis - 3:13
-          </div>
-        </div>
       </div>
       <div
-        className="w-full flex items-center justify-center text-black"
+        className="w-full flex items-center justify-center bg-white text-black"
         style={{
           height: "50%",
           position: "relative",
