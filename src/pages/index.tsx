@@ -24,7 +24,6 @@ export default function Home() {
   useEffect(() => {
     // updated by wheel and scrolling
     document.documentElement.style.setProperty("--html-overflow", `hidden`)
-    document.documentElement.style.setProperty("--body-background", `black`)
   }, [])
 
   useEffect(() => {
@@ -46,12 +45,6 @@ export default function Home() {
       "--chevron-down-blur",
       `${chevronDownBlur}px`
     )
-
-    if (window.scrollY <= 0) {
-      scrollable.current = false
-      document.documentElement.style.setProperty("--html-overflow", `hidden`)
-      document.documentElement.style.setProperty("--body-background", `black`)
-    }
   })
 
   return (

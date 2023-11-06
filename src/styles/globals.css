@@ -13,7 +13,7 @@ html {
 
 body {
   height: 200%;
-  background-color: var(--body-background);
+  background-color: "white";
 }
 
 div#__next {

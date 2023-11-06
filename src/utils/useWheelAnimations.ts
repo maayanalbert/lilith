@@ -116,11 +116,7 @@ export function useWheelAnimations(
         scrollable.current = true
         setTimeout(() => {
           document.documentElement.style.setProperty("--html-overflow", `auto`)
-          document.documentElement.style.setProperty(
-            "--body-background",
-            `white`
-          )
-        }, 500)
+        }, 750)
       }
     },
     []
