@@ -16,9 +16,3 @@ body {
 div#__next {
   @apply h-full;
 }
-
-/* Highlight color */
-/* ::selection {
-  background-color: black;
-  color: white;
-} */

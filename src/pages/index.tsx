@@ -17,7 +17,9 @@ export default function Home() {
 
   const scrollValue = useRef(startSize)
   const [isInsideWomb, setIsInsideWomb] = useState(false)
-  const [footerBlurred, setFooterBlurred] = useState(false)
+  const [scrollable, setScrollable] = useState(false)
+
+  useEffect(() => {}, [scrollable])
 
   useEffect(() => {
     document.documentElement.style.setProperty("--womb-size", `${startSize}px`)
@@ -25,7 +27,6 @@ export default function Home() {
     document.documentElement.style.setProperty("--text-scale", `1px`)
     document.documentElement.style.setProperty("--text-opacity", `0`)
     document.documentElement.style.setProperty("--text-blur", `2px`)
-    document.documentElement.style.setProperty("--footer-margin-top", `-32px`)
     document.documentElement.style.setProperty("--body-overflow", `hidden`)
   }, [])
 
@@ -41,26 +42,8 @@ export default function Home() {
         maxSize
       )
 
-      const wombExpanding = scrollValue.current > oldScrollValue
       const wombSize = scrollValue.current
 
-      const footerMarginTop = Math.min(
-        Math.max(-32, scrollValue.current - 77 - 32),
-        0
-      )
-
-      if (wombSize === maxSize) {
-        setFooterBlurred(false)
-      } else if (scrollValue.current - 77 - 32 > 0) {
-        setFooterBlurred(true)
-      } else {
-        setFooterBlurred(false)
-      }
-
-      document.documentElement.style.setProperty(
-        "--footer-margin-top",
-        `${footerMarginTop}px`
-      )
       document.documentElement.style.setProperty("--womb-size", `${wombSize}px`)
 
       const wombBlur = getMappedValue(wombSize, startSize, maxSize, 0, 10)
@@ -126,9 +109,9 @@ export default function Home() {
 
       setIsInsideWomb(wombSize === maxSize)
 
-      // if (wombSize === maxSize) {
-      //   document.documentElement.style.setProperty("--body-overflow", `auto`)
-      // }
+      if (wombSize === maxSize) {
+        document.documentElement.style.setProperty("--body-overflow", `auto`)
+      }
     },
     []
   )
