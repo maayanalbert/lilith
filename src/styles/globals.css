@@ -22,3 +22,15 @@ div#__next {
   background-color: black;
   color: white;
 } */
+
+@font-face {
+  font-family: "Garamond";
+  src: url("../fonts/EBGaramond-Regular.ttf") format("truetype");
+  /* Safari, Android, iOS */
+  font-weight: normal;
+  font-style: normal;
+}
+
+.font-old {
+  font-family: "Garamond", serif;
+}
