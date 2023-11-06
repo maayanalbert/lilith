@@ -51,10 +51,10 @@ export default function Home() {
 
       if (wombSize === maxSize) {
         setFooterBlurred(false)
-      } else if (footerMarginTop === 0) {
-        setFooterBlurred(false)
       } else if (scrollValue.current - 77 - 32 > 0) {
         setFooterBlurred(true)
+      } else {
+        setFooterBlurred(false)
       }
 
       document.documentElement.style.setProperty(
@@ -133,6 +133,8 @@ export default function Home() {
     []
   )
 
+  console.log(footerBlurred)
+
   return (
     <div className="w-full" style={{ height: "200%" }}>
       <div className="w-full" style={{ height: "50%" }}>
@@ -155,8 +157,9 @@ export default function Home() {
             style={{
               // color: isInsideWomb ? "white" : "black",
               // background: isInsideWomb ? "black" : "white",
-              marginTop: isInsideWomb ? -32 : 0,
               filter: footerBlurred ? "blur(2px)" : "none",
+              opacity: footerBlurred ? 0 : 1,
+              marginTop: isInsideWomb ? -32 : 0,
             }}
           >
             <ChevronDownIcon
