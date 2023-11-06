@@ -1,12 +1,7 @@
-import TitleSection from "@/components/TitleSection"
-import { easeInQuad, easeInSine } from "@/utils/easingFns"
-import { getMappedValue } from "@/utils/getMappedValue"
-import useEventListener from "@/utils/useEventListener"
+import ExpandingTitle from "@/components/ExpandingTitle"
+import { FirstBlurb } from "@/components/FirstBlurb"
 import { useWheelAnimations } from "@/utils/useWheelAnimations"
-import { set } from "lodash"
 import { useEffect, useRef, useState } from "react"
-
-const startSize = 77
 
 /**
  * A wrapper for the main page
@@ -23,10 +18,13 @@ export default function Home() {
 
   return (
     <div className="w-full h-full">
-      <div className="w-full" style={{ height: "50%" }}>
-        <TitleSection blurbVisible={isInsideWomb} />
+      <div className="w-full overflow-hidden" style={{ height: "50%" }}>
+        <ExpandingTitle />
       </div>
-      <div
+      <div className="w-full" style={{ height: "50%" }}>
+        <FirstBlurb />
+      </div>
+      {/* <div
         className="w-full flex items-center justify-center bg-white text-black"
         style={{
           height: "50%",
@@ -43,7 +41,7 @@ export default function Home() {
             To learn more, contact <u>maayan@eve.space.</u>
           </p>
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }

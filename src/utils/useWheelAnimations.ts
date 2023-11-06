@@ -56,52 +56,28 @@ export function useWheelAnimations(
       )
       document.documentElement.style.setProperty("--text-scale", `${textScale}`)
 
-      const textOpacity =
-        wombSize.current < (3.75 * maxSize) / 7
-          ? getMappedValue(
-              wombSize.current,
-              startSize,
-              (3.75 * maxSize) / 7,
-              0,
-              1,
-              easeInSine
-            )
-          : wombSize.current > (6 * maxSize) / 7
-          ? getMappedValue(
-              wombSize.current,
-              (5 * maxSize) / 7,
-              maxSize,
-              1,
-              0,
-              easeInSine
-            )
-          : 1
+      const textOpacity = getMappedValue(
+        wombSize.current,
+        startSize,
+        (3.75 * maxSize) / 7,
+        0,
+        1,
+        easeInSine
+      )
 
       document.documentElement.style.setProperty(
         "--text-opacity",
         `${textOpacity}`
       )
 
-      const textBlur =
-        wombSize.current < (3 * maxSize) / 7
-          ? getMappedValue(
-              wombSize.current,
-              startSize,
-              (3 * maxSize) / 7,
-              2,
-              0,
-              easeInSine
-            )
-          : wombSize.current > (6 * maxSize) / 7
-          ? getMappedValue(
-              wombSize.current,
-              (6 * maxSize) / 7,
-              maxSize,
-              0,
-              2,
-              easeInSine
-            )
-          : 0
+      const textBlur = getMappedValue(
+        wombSize.current,
+        startSize,
+        (3 * maxSize) / 7,
+        2,
+        0,
+        easeInSine
+      )
 
       document.documentElement.style.setProperty("--text-blur", `${textBlur}px`)
 
