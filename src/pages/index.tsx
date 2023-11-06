@@ -21,7 +21,7 @@ export default function Home() {
   useWheelAnimations(scrollable, setIsInsideWomb)
 
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-full overflow-hidden">
       <div className="w-full relative" style={{ height: "50%" }}>
         <ExpandingTitle />
         <div className="h-full w-full absolute top-0">

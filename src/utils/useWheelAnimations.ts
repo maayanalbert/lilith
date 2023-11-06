@@ -1,5 +1,12 @@
 import { MutableRefObject, useEffect, useRef } from "react"
-import { easeInSine } from "./easingFns"
+import {
+  easeInExpo,
+  easeInQuad,
+  easeInQuart,
+  easeInSine,
+  easeOutQuad,
+  easeOutSine,
+} from "./easingFns"
 import { getMappedValue } from "./getMappedValue"
 import useEventListener from "./useEventListener"
 
@@ -26,7 +33,9 @@ export function useWheelAnimations(
       if (scrollable.current) return
 
       const maxSize =
-        (getDist(0, 0, window.innerWidth / 2, window.innerHeight / 2) + 10) * 2
+        (getDist(0, 0, window.innerWidth / 2, window.innerHeight / 2) + 10) *
+        2 *
+        2
 
       wombSize.current = Math.min(
         Math.max(startSize, wombSize.current + event.deltaY),
@@ -52,29 +61,23 @@ export function useWheelAnimations(
         startSize,
         maxSize,
         1,
-        2
+        12,
+        easeInQuad
       )
       document.documentElement.style.setProperty("--text-scale", `${textScale}`)
 
       const textOpacity =
-        wombSize.current < (3.75 * maxSize) / 7
+        wombSize.current < (2 * maxSize) / 7
           ? getMappedValue(
               wombSize.current,
               startSize,
-              (3.75 * maxSize) / 7,
+              (2 * maxSize) / 7,
               0,
               1,
               easeInSine
             )
-          : wombSize.current > (6 * maxSize) / 7
-          ? getMappedValue(
-              wombSize.current,
-              (5 * maxSize) / 7,
-              maxSize,
-              1,
-              0,
-              easeInSine
-            )
+          : wombSize.current > (3 * maxSize) / 7
+          ? getMappedValue(wombSize.current, (3 * maxSize) / 7, maxSize, 1, 0)
           : 1
 
       document.documentElement.style.setProperty(
@@ -83,24 +86,17 @@ export function useWheelAnimations(
       )
 
       const textBlur =
-        wombSize.current < (3 * maxSize) / 7
+        wombSize.current < (2 * maxSize) / 7
           ? getMappedValue(
               wombSize.current,
               startSize,
-              (3 * maxSize) / 7,
+              (2 * maxSize) / 7,
               2,
               0,
               easeInSine
             )
-          : wombSize.current > (6 * maxSize) / 7
-          ? getMappedValue(
-              wombSize.current,
-              (6 * maxSize) / 7,
-              maxSize,
-              0,
-              2,
-              easeInSine
-            )
+          : wombSize.current > (3 * maxSize) / 7
+          ? getMappedValue(wombSize.current, (3 * maxSize) / 7, maxSize, 0, 2)
           : 0
 
       document.documentElement.style.setProperty("--text-blur", `${textBlur}px`)
