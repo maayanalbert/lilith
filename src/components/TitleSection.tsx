@@ -42,8 +42,11 @@ export default function TitleSection({ blurbVisible }: Props) {
         </p>
         <div className="h-6" />
         <p>Within Eve, you'll uncover yours.</p>
-        <div className="relative w-full">
-          <div className="absolute w-full flex justify-center items-center mt-20">
+        <div className="relative w-full bg-black">
+          <div
+            className="absolute w-full flex justify-center items-center"
+            style={{ marginTop: `${33 / 2}vh` }}
+          >
             <ChevronDownIcon
               className="h-8 w-8"
               width={0.5}
