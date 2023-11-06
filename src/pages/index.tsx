@@ -22,20 +22,21 @@ export default function Home() {
 
   return (
     <div className="w-full h-full">
-      <div
-        className="w-full relative overflow-hidden"
-        style={{ height: "50%" }}
-      >
+      <div className="w-full relative" style={{ height: "50%" }}>
         <ExpandingTitle />
         <div className="h-full w-full absolute top-0">
           <FirstBlurb blurbVisible={isInsideWomb} />
         </div>
       </div>
-      <div className="w-full relative" style={{ height: "50%" }}>
+      <div
+        className="w-full"
+        style={{
+          height: "50%",
+          position: "relative",
+          zIndex: 1,
+        }}
+      >
         <SecondBlurb />
-        <div className="absolute bottom-0 w-full p-6 flex items-center justify-center font-light text-sm">
-          Copyright Eve Technologies 2024
-        </div>
       </div>
     </div>
   )

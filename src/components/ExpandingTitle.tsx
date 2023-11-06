@@ -1,7 +1,9 @@
+import { ChevronDownIcon } from "@heroicons/react/24/solid"
+
 export default function ExpandingTitle() {
   return (
     <div
-      className="flex flex-col justify-center items-center bg-black h-full"
+      className="flex justify-center items-center bg-black h-full"
       style={{
         width: "300%",
         marginLeft: "-100%",
@@ -13,11 +15,6 @@ export default function ExpandingTitle() {
           Welcome to Eve
         </p>
       </div>
-      {/* <div className="relative w-full flex justify-center items-center">
-        <div className="absolute" style={{ paddingTop: 350 }}>
-          <p className="text-white font-light">{"(scroll)"}</p>
-        </div>
-      </div> */}
     </div>
   )
 }
