@@ -3,6 +3,7 @@ import { easeInQuad, easeInSine } from "@/utils/easingFns"
 import { getMappedValue } from "@/utils/getMappedValue"
 import useEventListener from "@/utils/useEventListener"
 import { useEffect, useRef, useState } from "react"
+import { ChevronDownIcon } from "@heroicons/react/24/solid"
 
 const startSize = 77
 
@@ -15,7 +16,8 @@ export default function Home() {
   }, [])
 
   const scrollValue = useRef(startSize)
-  const [blurbVisible, setBlurbVisible] = useState(false)
+  const [isInsideWomb, setIsInsideWomb] = useState(false)
+  const [footerBlurred, setFooterBlurred] = useState(false)
 
   useEffect(() => {
     document.documentElement.style.setProperty("--womb-size", `${startSize}px`)
@@ -24,6 +26,7 @@ export default function Home() {
     document.documentElement.style.setProperty("--text-opacity", `0`)
     document.documentElement.style.setProperty("--text-blur", `2px`)
     document.documentElement.style.setProperty("--footer-margin-top", `-32px`)
+    document.documentElement.style.setProperty("--body-overflow", `hidden`)
   }, [])
 
   useEventListener(
@@ -32,17 +35,28 @@ export default function Home() {
       const maxSize =
         (getDist(0, 0, window.innerWidth / 2, window.innerHeight / 2) + 10) * 2
 
+      const oldScrollValue = scrollValue.current
       scrollValue.current = Math.min(
         Math.max(startSize, scrollValue.current + event.deltaY),
         maxSize
       )
 
+      const wombExpanding = scrollValue.current > oldScrollValue
       const wombSize = scrollValue.current
-      console.log(wombSize)
 
-      const footerMarginTop = Math.min(Math.max(-32, wombSize - 77 - 32), 0)
+      const footerMarginTop = Math.min(
+        Math.max(-32, scrollValue.current - 77 - 32),
+        0
+      )
 
-      console.log(footerMarginTop)
+      if (wombSize === maxSize) {
+        setFooterBlurred(false)
+      } else if (footerMarginTop === 0) {
+        setFooterBlurred(false)
+      } else if (scrollValue.current - 77 - 32 > 0) {
+        setFooterBlurred(true)
+      }
+
       document.documentElement.style.setProperty(
         "--footer-margin-top",
         `${footerMarginTop}px`
@@ -110,7 +124,11 @@ export default function Home() {
         `${blurbOpacity}`
       )
 
-      setBlurbVisible(wombSize === maxSize)
+      setIsInsideWomb(wombSize === maxSize)
+
+      // if (wombSize === maxSize) {
+      //   document.documentElement.style.setProperty("--body-overflow", `auto`)
+      // }
     },
     []
   )
@@ -118,21 +136,34 @@ export default function Home() {
   return (
     <div className="w-full" style={{ height: "200%" }}>
       <div className="w-full" style={{ height: "50%" }}>
-        <TitleSection blurbVisible={blurbVisible} />
+        <TitleSection blurbVisible={isInsideWomb} />
         <div
           className="absolute w-full footer-descend"
-          style={{ height: 56, top: "100%" }}
+          style={{
+            height: 56,
+            top: "100%",
+          }}
         >
           <div
-            className="w-full flex justify-center items-center font-light"
+            className={`w-full flex justify-center items-center 
+            ${isInsideWomb ? "font-light" : "font-normal"}
+            ${
+              isInsideWomb
+                ? "transition-all duration-[1000ms] delay-[750ms] ease-in-out"
+                : ""
+            }`}
             style={{
-              color: "gray",
-              borderTopWidth: 1,
-              borderColor: "gray",
-              padding: 16,
+              // color: isInsideWomb ? "white" : "black",
+              // background: isInsideWomb ? "black" : "white",
+              marginTop: isInsideWomb ? -32 : 0,
+              filter: footerBlurred ? "blur(2px)" : "none",
             }}
           >
-            Genesis - 3:13
+            <ChevronDownIcon
+              color={isInsideWomb ? "black" : "white"}
+              height={30}
+              width={30}
+            />
           </div>
         </div>
       </div>
