@@ -2,8 +2,8 @@ import TitleSection from "@/components/TitleSection"
 import { easeInQuad, easeInSine } from "@/utils/easingFns"
 import { getMappedValue } from "@/utils/getMappedValue"
 import useEventListener from "@/utils/useEventListener"
+import { set } from "lodash"
 import { useEffect, useRef, useState } from "react"
-import { ChevronDownIcon } from "@heroicons/react/24/solid"
 
 const startSize = 77
 
@@ -133,8 +133,6 @@ export default function Home() {
     []
   )
 
-  console.log(footerBlurred)
-
   return (
     <div className="w-full" style={{ height: "200%" }}>
       <div className="w-full" style={{ height: "50%" }}>
@@ -155,18 +153,14 @@ export default function Home() {
                 : ""
             }`}
             style={{
-              // color: isInsideWomb ? "white" : "black",
-              // background: isInsideWomb ? "black" : "white",
-              filter: footerBlurred ? "blur(2px)" : "none",
-              opacity: footerBlurred ? 0 : 1,
+              color: isInsideWomb ? "white" : "black",
+              background: isInsideWomb ? "black" : "white",
+              padding: 16,
               marginTop: isInsideWomb ? -32 : 0,
+              filter: footerBlurred ? "blur(2px)" : "none",
             }}
           >
-            <ChevronDownIcon
-              color={isInsideWomb ? "black" : "white"}
-              height={30}
-              width={30}
-            />
+            Genesis - 3:13
           </div>
         </div>
       </div>
