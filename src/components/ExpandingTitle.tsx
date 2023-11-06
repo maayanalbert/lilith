@@ -15,6 +15,9 @@ export default function ExpandingTitle() {
           Welcome to Eve
         </p>
       </div>
+      <div className="absolute">
+        <p className="text-white fade-in-hint expand-hint">{"(scroll)"}</p>
+      </div>
     </div>
   )
 }

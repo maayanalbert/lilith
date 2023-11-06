@@ -1,5 +1,6 @@
 import { MutableRefObject, useEffect, useRef } from "react"
 import {
+  easeInCustom,
   easeInExpo,
   easeInQuad,
   easeInQuart,
@@ -25,6 +26,12 @@ export function useWheelAnimations(
     document.documentElement.style.setProperty("--text-scale", `1px`)
     document.documentElement.style.setProperty("--text-opacity", `0`)
     document.documentElement.style.setProperty("--text-blur", `2px`)
+    document.documentElement.style.setProperty("--hint-scale", `1`)
+    document.documentElement.style.setProperty(
+      "--hint-dist",
+      `${startSize * 2}px`
+    )
+    document.documentElement.style.setProperty("--text-margin-left", `0px`)
   }, [])
 
   useEventListener(
@@ -55,6 +62,20 @@ export function useWheelAnimations(
         10
       )
       document.documentElement.style.setProperty("--womb-blur", `${wombBlur}px`)
+
+      const hintScale = getMappedValue(
+        wombSize.current,
+        startSize,
+        maxSize,
+        1,
+        24
+      )
+      document.documentElement.style.setProperty("--hint-scale", `${hintScale}`)
+
+      document.documentElement.style.setProperty(
+        "--hint-dist",
+        `${wombSize.current * 2}px`
+      )
 
       const textScale = getMappedValue(
         wombSize.current,
@@ -100,6 +121,19 @@ export function useWheelAnimations(
           : 0
 
       document.documentElement.style.setProperty("--text-blur", `${textBlur}px`)
+
+      const textMarginLeft = getMappedValue(
+        wombSize.current,
+        startSize,
+        maxSize,
+        0,
+        100
+      )
+
+      document.documentElement.style.setProperty(
+        "--text-margin-left",
+        `${textMarginLeft}px`
+      )
 
       const blurbOpacity = wombSize.current === maxSize ? 1 : 0
       document.documentElement.style.setProperty(

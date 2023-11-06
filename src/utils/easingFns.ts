@@ -14,6 +14,10 @@ export function easeInQuad(x: number): number {
   return x * x
 }
 
+export function easeInCustom(x: number): number {
+  return (x * x * x) / 2
+}
+
 export function easeOutQuad(x: number): number {
   return 1 - (1 - x) * (1 - x)
 }
