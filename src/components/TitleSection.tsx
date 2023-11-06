@@ -55,7 +55,7 @@ function FirstBlurb({ blurbVisible }: Props) {
           style={{ marginTop: `${33 / 2}vh` }}
         >
           <ChevronDownIcon
-            className="h-8 w-8 fade-chevron-down"
+            className="h-8 w-8"
             width={0.5}
             stroke="white"
             strokeWidth={0.5}

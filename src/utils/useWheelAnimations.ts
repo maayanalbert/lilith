@@ -12,6 +12,7 @@ export function useWheelAnimations(
   const wombSize = useRef(startSize)
 
   useEffect(() => {
+    document.documentElement.style.setProperty("--html-overflow", `hidden`)
     document.documentElement.style.setProperty("--womb-size", `${startSize}px`)
     document.documentElement.style.setProperty("--womb-blur", `0px`)
     document.documentElement.style.setProperty("--text-scale", `1px`)

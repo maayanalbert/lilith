@@ -27,8 +27,3 @@
   transform: scale(var(--text-scale));
   opacity: var(--text-opacity);
 }
-
-.fade-chevron-down {
-  opacity: var(--chevron-down-opacity);
-  filter: blur(var(--chevron-down-blur));
-}

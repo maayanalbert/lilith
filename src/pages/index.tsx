@@ -21,32 +21,6 @@ export default function Home() {
 
   useWheelAnimations(scrollable, setIsInsideWomb)
 
-  useEffect(() => {
-    // updated by wheel and scrolling
-    document.documentElement.style.setProperty("--html-overflow", `hidden`)
-  }, [])
-
-  useEffect(() => {
-    // updated by scrolling
-    document.documentElement.style.setProperty("--chevron-down-opacity", "1")
-    document.documentElement.style.setProperty("--chevron-down-blur", "0px")
-  }, [])
-
-  useEventListener("scroll", () => {
-    const chevronDownOpacity = getMappedValue(window.scrollY, 0, 85, 1, 0)
-
-    document.documentElement.style.setProperty(
-      "--chevron-down-opacity",
-      `${chevronDownOpacity}`
-    )
-
-    const chevronDownBlur = getMappedValue(window.scrollY, 0, 85, 0, 1)
-    document.documentElement.style.setProperty(
-      "--chevron-down-blur",
-      `${chevronDownBlur}px`
-    )
-  })
-
   return (
     <div className="w-full h-full">
       <div className="w-full" style={{ height: "50%" }}>
