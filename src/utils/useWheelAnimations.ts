@@ -31,7 +31,6 @@ export function useWheelAnimations(
       "--hint-dist",
       `${startSize * 2}px`
     )
-    document.documentElement.style.setProperty("--text-margin-left", `0px`)
   }, [])
 
   useEventListener(
@@ -121,19 +120,6 @@ export function useWheelAnimations(
           : 0
 
       document.documentElement.style.setProperty("--text-blur", `${textBlur}px`)
-
-      const textMarginLeft = getMappedValue(
-        wombSize.current,
-        startSize,
-        maxSize,
-        0,
-        100
-      )
-
-      document.documentElement.style.setProperty(
-        "--text-margin-left",
-        `${textMarginLeft}px`
-      )
 
       const blurbOpacity = wombSize.current === maxSize ? 1 : 0
       document.documentElement.style.setProperty(

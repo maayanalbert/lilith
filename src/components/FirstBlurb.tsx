@@ -1,23 +1,23 @@
 import { ChevronDownIcon } from "@heroicons/react/24/solid"
 
 interface Props {
-  blurbVisible: boolean
+  isVisible: boolean
 }
 
-export function FirstBlurb({ blurbVisible }: Props) {
+export function FirstBlurb({ isVisible }: Props) {
   return (
     <div className="h-full w-full flex items-center justify-center">
       <div // text
         className={`absolute flex font-light 
           flex-col w-[350px] sm:w-[530px] text-center sm:text-lg ${
-            blurbVisible ? "" : "cursor-default"
+            isVisible ? "" : "cursor-default"
           }`}
         style={{
           transitionProperty: "opacity",
           transitionDuration: "750ms",
           transitionDelay: "250ms",
           transitionTimingFunction: "cubic-bezier(0.4, 0, 0.2, 1)",
-          opacity: blurbVisible ? 1 : 0,
+          opacity: isVisible ? 1 : 0,
         }}
       >
         <p className="sm:text-xl text-lg font-normal">

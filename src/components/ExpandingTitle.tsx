@@ -16,7 +16,9 @@ export default function ExpandingTitle() {
         </p>
       </div>
       <div className="absolute">
-        <p className="text-white fade-in-hint expand-hint">{"(scroll)"}</p>
+        <p className="text-white fade-in-hint expand-hint font-light">
+          {"(scroll)"}
+        </p>
       </div>
     </div>
   )
