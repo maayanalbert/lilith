@@ -6,11 +6,14 @@
   font-family: "Helvetica", sans-serif;
 }
 
-html,
-body {
+html {
   height: 100%;
-  background-color: black;
-  overflow: var(--body-overflow);
+  overflow: var(--html-overflow);
+}
+
+body {
+  height: 200%;
+  background-color: var(--body-background);
 }
 
 div#__next {
