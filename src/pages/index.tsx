@@ -37,6 +37,9 @@ export default function Home() {
         }}
       >
         <SecondBlurb />
+        <div className="absolute bottom-0 w-full p-6 flex items-center justify-center font-light text-sm">
+          Copyright Eve Technologies 2024
+        </div>
       </div>
     </div>
   )
