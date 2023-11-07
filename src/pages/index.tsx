@@ -57,7 +57,7 @@ export default function Home() {
         <SecondBlurb isVisible={hasScrolled} />
         <div
           className="absolute bottom-0 w-full flex items-center justify-center font-light text-sm"
-          style={{ paddingBottom: "6vh" }}
+          style={{ paddingBottom: "8vh" }}
         >
           Copyright Eve Technologies 2024
         </div>
