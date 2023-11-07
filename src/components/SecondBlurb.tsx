@@ -18,7 +18,10 @@ export function SecondBlurb({ isVisible }: Props) {
         <div className="h-6" />
         <p>Eve will launch as a mobile app this summer.</p>
         <p>
-          To learn more, contact <u>maayan@eve.space.</u>
+          To learn more, contact{" "}
+          <a className="underline" href="mailto:maayan@eve.space">
+            maayan@eve.space.
+          </a>
         </p>
       </div>
     </div>

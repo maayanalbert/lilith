@@ -18,14 +18,14 @@ export default function Home() {
 
   const scrollable = useRef(false) // for timeout, need to set css property seperately
   const [isInsideWomb, setIsInsideWomb] = useState(false)
-  const [hasScrolled, setHasScrolled] = useState(true)
+  const [hasScrolled, setHasScrolled] = useState(false)
 
   useWheelAnimations(scrollable, setIsInsideWomb)
 
   useEventListener(
     "scroll",
     () => {
-      if (window.scrollY > window.innerHeight / 2) {
+      if (window.scrollY > window.innerHeight / 4) {
         setHasScrolled(true)
       }
     },
@@ -53,7 +53,7 @@ export default function Home() {
         <SecondBlurb isVisible={hasScrolled} />
         <div
           className="absolute bottom-0 w-full flex items-center justify-center font-light text-sm"
-          style={{ paddingBottom: "calc(2vh + 4*6px)" }}
+          style={{ paddingBottom: "6vh" }}
         >
           Copyright Eve Technologies 2024
         </div>
