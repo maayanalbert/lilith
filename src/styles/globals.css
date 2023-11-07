@@ -6,19 +6,16 @@
   font-family: "Helvetica", sans-serif;
 }
 
-html,
-body {
+html {
   height: 100%;
-  background-color: black;
-  overflow: hidden;
+  overflow: var(--html-overflow);
+}
+
+body {
+  height: 174%; /* 100vh + 100vh - 24vh */
+  background-color: "white";
 }
 
 div#__next {
   @apply h-full;
-}
-
-/* Highlight color */
-::selection {
-  background-color: white;
-  color: black;
 }
