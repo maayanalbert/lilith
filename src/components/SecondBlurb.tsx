@@ -41,7 +41,7 @@ export function SecondBlurb({ isVisible }: Props) {
 }
 
 function NotifyField() {
-  const [state, setState] = useState<"NOTIFY" | "EMAIL" | "EXIT">("NOTIFY")
+  const [state, setState] = useState<"NOTIFY" | "EMAIL" | "SENT">("NOTIFY")
   const [onEmailDelayed, setOnEmailDelayed] = useState(false)
   useEventListener("keydown", (e) => {
     if (e.key === "Shift") {
@@ -69,7 +69,7 @@ function NotifyField() {
          whitespace-nowrap
           ${state === "EMAIL" && "sm:w-[360px] w-[300px] bg-white"}
           ${state === "NOTIFY" && "hover:bg-red-600 bg-white w-[130px]"}
-          ${state === "EXIT" && "bg-red-600 bg-white w-[100px]"}
+          ${state === "SENT" && "bg-white w-0 h-0"}
           ${state !== "EMAIL" && "cursor-pointer"}
 
           `}
@@ -90,7 +90,7 @@ function NotifyField() {
     >
       <p
         className={`h-full w-full ${
-          state === "EXIT" ? "text-white" : "text-red-600 hover:text-white"
+          state === "SENT" ? "text-white" : "text-red-600 hover:text-white"
         } select-none`}
         style={{
           opacity: state === "EMAIL" ? 0 : 1,
@@ -103,7 +103,7 @@ function NotifyField() {
           }}`,
         }}
       >
-        {state === "NOTIFY" || state === "EMAIL" ? "Notify Me" : "Exit"}
+        {state === "NOTIFY" || state === "EMAIL" ? "Notify Me" : "Sent"}
       </p>
       <div
         className={`w-full h-full absolute top-0 w-full rounded-full left-0 pl-6 pr-4
@@ -123,10 +123,10 @@ function NotifyField() {
         />
         <ArrowRightIcon
           className={`cursor-pointer sm:h-[20px] sm:w-[20px] h-[18px] w-[18px]
-          ${state === "EXIT" ? "text-black" : "text-gray-400"} 
+          ${state === "SENT" ? "text-black" : "text-gray-400"} 
          ${!!email && "hover:text-black"}`}
           onClick={() => {
-            setState("EXIT")
+            setState("SENT")
             setTimeout(() => setOnEmailDelayed(false), 600)
           }}
         />
