@@ -65,13 +65,13 @@ function NotifyField() {
   return (
     <div
       ref={ref}
-      className={`rounded-full border border-red-600 py-2 relative 
-         whitespace-nowrap
-          ${state === "EMAIL" && "sm:w-[360px] w-[300px] bg-white"}
-          ${state === "NOTIFY" && "hover:bg-red-600 bg-white w-[130px]"}
-          ${state === "SENT" && "bg-white w-0 h-0"}
+      className={`rounded-full py-2 relative 
+         whitespace-nowrap border
+          ${state === "EMAIL" && "sm:w-[360px] w-[300px]"}
+          ${state === "NOTIFY" && "hover:bg-red-600 w-[130px]"}
           ${state !== "EMAIL" && "cursor-pointer"}
-
+          ${state !== "SENT" ? "border-red-600" : "border-white"}
+          ${state === "SENT" && "w-0"}
           `}
       style={{
         transitionProperty: "width, background",
@@ -103,7 +103,7 @@ function NotifyField() {
           }}`,
         }}
       >
-        {state === "NOTIFY" || state === "EMAIL" ? "Notify Me" : "Sent"}
+        {state === "NOTIFY" || state === "EMAIL" ? "Notify Me" : "X"}
       </p>
       <div
         className={`w-full h-full absolute top-0 w-full rounded-full left-0 pl-6 pr-4
