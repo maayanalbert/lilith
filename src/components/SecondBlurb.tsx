@@ -44,7 +44,10 @@ function NotifyField() {
   const [state, setState] = useState<"NOTIFY" | "EMAIL" | "EXIT">("NOTIFY")
   const [onEmailDelayed, setOnEmailDelayed] = useState(false)
   useEventListener("keydown", (e) => {
-    if (e.key === "Shift") setState("NOTIFY")
+    if (e.key === "Shift") {
+      setState("NOTIFY")
+      setOnEmailDelayed(false)
+    }
   })
 
   const ref = useRef<HTMLDivElement>(null)
@@ -64,9 +67,11 @@ function NotifyField() {
       ref={ref}
       className={`rounded-full border border-red-600 py-2 relative 
          whitespace-nowrap
-          ${state === "EMAIL" && "sm:w-[360px] w-[300px]"}
+          ${state === "EMAIL" && "sm:w-[360px] w-[300px] bg-white"}
+          ${state === "NOTIFY" && "hover:bg-red-600 bg-white w-[130px]"}
+          ${state === "EXIT" && "bg-red-600 bg-white w-[100px]"}
           ${state !== "EMAIL" && "cursor-pointer"}
-          ${state === "NOTIFY" && "hover:bg-red-600 bg-white"}
+
           `}
       style={{
         transitionProperty: "width, background",
@@ -84,7 +89,9 @@ function NotifyField() {
       }}
     >
       <p
-        className={`h-full w-full text-red-600 hover:text-white select-none`}
+        className={`h-full w-full ${
+          state === "EXIT" ? "text-white" : "text-red-600 hover:text-white"
+        } select-none`}
         style={{
           opacity: state === "EMAIL" ? 0 : 1,
           transitionProperty: "color, opacity",
