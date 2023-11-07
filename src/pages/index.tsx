@@ -22,6 +22,10 @@ export default function Home() {
 
   useWheelAnimations(scrollable, setIsInsideWomb)
 
+  useEffect(() => {
+    window.scrollTo(0, 0) // sometimes the page loads scrolled down
+  })
+
   useEventListener(
     "scroll",
     () => {
