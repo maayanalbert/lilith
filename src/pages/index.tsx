@@ -35,8 +35,13 @@ export default function Home() {
   })
 
   return (
-    <div className="w-full h-full overflow-hidden">
-      <div className="w-full relative" style={{ height: "100vh" }}>
+    <div className="w-full h-full overflow-hidden ">
+      <div
+        className="w-full relative"
+        style={{
+          height: "100svh", //https://stackoverflow.com/questions/37112218/css3-100vh-not-constant-in-mobile-browser
+        }}
+      >
         <ExpandingTitle />
         <div className="h-full w-full absolute top-0">
           <FirstBlurb isVisible={isInsideWomb} />
@@ -45,7 +50,7 @@ export default function Home() {
       <div
         className="w-full"
         style={{
-          height: "100vh",
+          height: "100svh",
           position: "relative",
           zIndex: 1,
           marginTop: "-20vh",
@@ -54,7 +59,7 @@ export default function Home() {
         <SecondBlurb isVisible={windowScrolled} />
         <div
           className="absolute bottom-0 w-full flex items-center justify-center font-light text-sm"
-          style={{ paddingBottom: "8vh" }}
+          style={{ paddingBottom: "8svh" }}
         >
           Copyright Eve Technologies 2024
         </div>
@@ -62,7 +67,7 @@ export default function Home() {
       <div // scroll overlay
         className="absolute top-0 w-full scrollbar-hidden"
         style={{
-          height: "100vh",
+          height: "100svh",
           overflow: "scroll",
           zIndex: mainPageScrollable ? -1 : 1,
         }}

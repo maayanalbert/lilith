@@ -9,14 +9,14 @@ export default function ExpandingTitle() {
         marginLeft: "-100%",
       }}
     >
-      <div className="rounded-full expand-womb bg-white fade-in-womb" />
+      <div className="rounded-full expand-womb bg-white sm:fade-in-womb" />
       <div className="absolute flex h-full w-full justify-center items-center top-0">
         <p className="whitespace-nowrap select-none reveal-text sm:text-4xl text-xl cursor-default">
           Welcome to Eve
         </p>
       </div>
       <div className="absolute">
-        <p className="text-white fade-in-hint expand-hint font-light">
+        <p className="text-white sm:fade-in-hint expand-hint font-light">
           {"(scroll)"}
         </p>
       </div>
