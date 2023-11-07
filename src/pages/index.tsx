@@ -47,11 +47,14 @@ export default function Home() {
           height: "100vh",
           position: "relative",
           zIndex: 1,
-          marginTop: "-33vh",
+          marginTop: "-26vh",
         }}
       >
         <SecondBlurb isVisible={hasScrolled} />
-        <div className="absolute bottom-0 w-full p-4 flex items-center justify-center font-light text-sm">
+        <div
+          className="absolute bottom-0 w-full flex items-center justify-center font-light text-sm"
+          style={{ paddingBottom: "calc(2vh + 4*6px)" }}
+        >
           Copyright Eve Technologies 2024
         </div>
       </div>
