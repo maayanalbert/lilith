@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { MutableRefObject, useEffect } from "react"
 
 /**
  * For using a window's event listener
@@ -6,15 +6,17 @@ import { useEffect } from "react"
 export default function useEventListener(
   eventName: string,
   handler: (_: any) => void,
-  dependancies?: any[]
+  dependancies: any[] = [],
+  ref?: MutableRefObject<HTMLElement | null>
 ) {
   useEffect(
     () => {
-      window.addEventListener(eventName, handler)
+      const element = ref ? ref.current : window
+      element?.addEventListener(eventName, handler)
       return () => {
-        window.removeEventListener(eventName, handler)
+        element?.removeEventListener(eventName, handler)
       }
     },
-    dependancies ? dependancies : []
+    dependancies // add the ref.current as a dependancy!
   )
 }

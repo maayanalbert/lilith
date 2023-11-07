@@ -19,3 +19,7 @@ body {
 div#__next {
   @apply h-full;
 }
+
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}

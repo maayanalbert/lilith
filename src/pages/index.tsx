@@ -4,7 +4,7 @@ import { SecondBlurb } from "@/components/SecondBlurb"
 import { easeInQuad, easeInSine } from "@/utils/easingFns"
 import { getMappedValue } from "@/utils/getMappedValue"
 import useEventListener from "@/utils/useEventListener"
-import { useWheelAnimations } from "@/utils/useWheelAnimations"
+import { useScrollAnimations } from "@/utils/useScrollAnimations"
 import { set } from "lodash"
 import { useEffect, useRef, useState } from "react"
 
@@ -16,26 +16,22 @@ export default function Home() {
     document.title = "Eve"
   }, [])
 
-  const scrollable = useRef(false) // for timeout, need to set css property seperately
+  const [mainPageScrollable, setMainPageScrollable] = useState(false)
   const [isInsideWomb, setIsInsideWomb] = useState(false)
   const [hasScrolled, setHasScrolled] = useState(false)
+  const scrollOverlayRef = useRef<HTMLDivElement>(null)
 
-  useWheelAnimations(scrollable, setIsInsideWomb)
+  useScrollAnimations(scrollOverlayRef, setMainPageScrollable, setIsInsideWomb)
 
-  useEffect(() => {
-    window.scrollTo(0, 0) // sometimes the page loads scrolled down
-  }, [])
+  // useEffect(() => {
+  //   window.scrollTo(0, 0) // sometimes the page loads scrolled down
+  // }, [])
 
-  useEventListener(
-    "scroll",
-    () => {
-      if (window.scrollY > window.innerHeight / 4) {
-        setHasScrolled(true)
-      }
-    },
-
-    []
-  )
+  // useEventListener("scroll", () => {
+  //   if (window.scrollY > window.innerHeight / 4) {
+  //     setHasScrolled(true)
+  //   }
+  // })
 
   return (
     <div className="w-full h-full overflow-hidden">
@@ -61,6 +57,17 @@ export default function Home() {
         >
           Copyright Eve Technologies 2024
         </div>
+      </div>
+      <div // scroll overlay
+        className="absolute top-0 w-full scrollbar-hidden"
+        style={{
+          height: "100vh",
+          overflow: "scroll",
+          pointerEvents: mainPageScrollable ? "none" : undefined,
+        }}
+        ref={scrollOverlayRef}
+      >
+        <div style={{ height: "10000vh" }} />
       </div>
     </div>
   )
