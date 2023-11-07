@@ -24,7 +24,7 @@ export default function Home() {
 
   useEffect(() => {
     window.scrollTo(0, 0) // sometimes the page loads scrolled down
-  })
+  }, [])
 
   useEventListener(
     "scroll",
