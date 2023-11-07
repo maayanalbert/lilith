@@ -23,3 +23,7 @@ div#__next {
 .scrollbar-hidden::-webkit-scrollbar {
   display: none;
 }
+
+input:focus {
+  outline: none;
+}
