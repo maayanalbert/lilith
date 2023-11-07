@@ -1,4 +1,4 @@
-import { ChevronDownIcon } from "@heroicons/react/24/solid"
+import { ArrowDownIcon, ChevronDownIcon } from "@heroicons/react/24/solid"
 
 interface Props {
   isVisible: boolean
@@ -33,10 +33,10 @@ export function FirstBlurb({ isVisible }: Props) {
         <div className="relative w-full bg-black">
           <div
             className="absolute w-full flex justify-center items-center"
-            style={{ marginTop: `${33 / 2}vh` }}
+            style={{ marginTop: `32.5vh` }}
           >
-            <ChevronDownIcon
-              className="h-8 w-8"
+            <ArrowDownIcon
+              className="h-6 w-6"
               width={0.5}
               stroke="white"
               strokeWidth={0.5}

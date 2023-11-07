@@ -18,7 +18,7 @@ export default function Home() {
 
   const scrollable = useRef(false) // for timeout, need to set css property seperately
   const [isInsideWomb, setIsInsideWomb] = useState(false)
-  const [hasScrolled, setHasScrolled] = useState(false)
+  const [hasScrolled, setHasScrolled] = useState(true)
 
   useWheelAnimations(scrollable, setIsInsideWomb)
 
@@ -35,7 +35,7 @@ export default function Home() {
 
   return (
     <div className="w-full h-full overflow-hidden">
-      <div className="w-full relative" style={{ height: "50%" }}>
+      <div className="w-full relative" style={{ height: "100vh" }}>
         <ExpandingTitle />
         <div className="h-full w-full absolute top-0">
           <FirstBlurb isVisible={isInsideWomb} />
@@ -44,9 +44,10 @@ export default function Home() {
       <div
         className="w-full"
         style={{
-          height: "50%",
+          height: "100vh",
           position: "relative",
           zIndex: 1,
+          marginTop: "-33vh",
         }}
       >
         <SecondBlurb isVisible={hasScrolled} />

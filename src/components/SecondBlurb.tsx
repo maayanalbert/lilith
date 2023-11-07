@@ -4,7 +4,7 @@ interface Props {
 
 export function SecondBlurb({ isVisible }: Props) {
   return (
-    <div className="w-full h-full flex items-center justify-center bg-white text-black">
+    <div className="w-full h-full flex items-center justify-center text-black">
       <div
         className="w-[350px] sm:w-[530px] text-center text-center sm:text-lg font-light"
         style={{
