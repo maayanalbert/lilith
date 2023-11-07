@@ -13,8 +13,9 @@ import useEventListener from "./useEventListener"
 
 const startSize = 77
 
-export function useWheelAnimations(
-  scrollable: MutableRefObject<boolean>,
+export function useScrollAnimations(
+  scrollOverlayRef: MutableRefObject<HTMLDivElement | null>,
+  setMainPageScrollable: (mainPageScrollable: boolean) => void,
   setIsInsideWomb: (isInsideWomb: boolean) => void
 ) {
   const wombSize = useRef(startSize)
@@ -34,28 +35,29 @@ export function useWheelAnimations(
   }, [])
 
   useEventListener(
-    "wheel",
-    (event: WheelEvent) => {
-      if (scrollable.current) return
+    "scroll",
+    () => {
+      if (!scrollOverlayRef.current) return
 
       const maxSize =
         (getDist(0, 0, window.innerWidth / 2, window.innerHeight / 2) + 10) *
         2 *
         2
 
-      wombSize.current = Math.min(
-        Math.max(startSize, wombSize.current + event.deltaY),
+      const wombSize = Math.min(
+        scrollOverlayRef.current.scrollTop + startSize,
         maxSize
       )
 
       updateWheelAnimations(
-        wombSize.current,
+        wombSize,
         maxSize,
         setIsInsideWomb,
-        scrollable
+        setMainPageScrollable
       )
     },
-    []
+    [updateWheelAnimations, scrollOverlayRef.current],
+    scrollOverlayRef
   )
 }
 
@@ -63,7 +65,7 @@ function updateWheelAnimations(
   wombSize: number,
   maxSize: number,
   setIsInsideWomb: (isInsideWomb: boolean) => void,
-  scrollable: MutableRefObject<boolean>
+  setMainPageScrollable: (mainPageScrollable: boolean) => void
 ) {
   document.documentElement.style.setProperty("--womb-size", `${wombSize}px`)
 
@@ -111,10 +113,10 @@ function updateWheelAnimations(
 
   setIsInsideWomb(wombSize === maxSize)
 
-  if (wombSize === maxSize && !scrollable.current) {
-    scrollable.current = true
+  if (wombSize === maxSize) {
     setTimeout(() => {
       document.documentElement.style.setProperty("--html-overflow", `auto`)
+      setMainPageScrollable(true)
     }, 750)
   }
 }
