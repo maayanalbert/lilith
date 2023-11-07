@@ -24,7 +24,9 @@ export default function Home() {
 
   useScrollAnimations(scrollOverlayRef, setMainPageScrollable, setIsInsideWomb)
 
-  typeof window !== "undefined" && mainPageScrollable && window.scrollTo(0, 0) // sometimes the page loads scrolled down
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   useEventListener("scroll", () => {
     if (window.scrollY > window.innerHeight / 4) {
