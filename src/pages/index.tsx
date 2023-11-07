@@ -6,6 +6,7 @@ import { getMappedValue } from "@/utils/getMappedValue"
 import useEventListener from "@/utils/useEventListener"
 import { useScrollAnimations } from "@/utils/useScrollAnimations"
 import { set } from "lodash"
+import { type } from "os"
 import { useEffect, useRef, useState } from "react"
 
 /**
@@ -23,9 +24,7 @@ export default function Home() {
 
   useScrollAnimations(scrollOverlayRef, setMainPageScrollable, setIsInsideWomb)
 
-  useEffect(() => {
-    window.scrollTo(0, 0) // sometimes the page loads scrolled down
-  }, [])
+  typeof window !== "undefined" && mainPageScrollable && window.scrollTo(0, 0) // sometimes the page loads scrolled down
 
   useEventListener("scroll", () => {
     if (window.scrollY > window.innerHeight / 4) {
