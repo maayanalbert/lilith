@@ -35,7 +35,7 @@ export function FirstBlurb({ isVisible }: Props) {
       </div>
       <div
         className="absolute w-full flex justify-center items-center bottom-0"
-        style={{ paddingBottom: `10vh` }}
+        style={{ paddingBottom: `8vh` }}
       >
         <ArrowDownIcon
           className="h-6 w-6"

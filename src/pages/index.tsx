@@ -47,7 +47,7 @@ export default function Home() {
           height: "100vh",
           position: "relative",
           zIndex: 1,
-          marginTop: "-26vh",
+          marginTop: "-20vh",
         }}
       >
         <SecondBlurb isVisible={hasScrolled} />

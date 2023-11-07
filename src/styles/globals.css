@@ -12,7 +12,7 @@ html {
 }
 
 body {
-  height: 174%; /* 100vh + 100vh - 24vh */
+  height: 180%; /* 100vh + 100vh - 24vh */
   background-color: "white";
 }
 
