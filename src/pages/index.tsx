@@ -18,20 +18,20 @@ export default function Home() {
 
   const [mainPageScrollable, setMainPageScrollable] = useState(false)
   const [isInsideWomb, setIsInsideWomb] = useState(false)
-  const [hasScrolled, setHasScrolled] = useState(false)
+  const [windowScrolled, setWindowScrolled] = useState(false)
   const scrollOverlayRef = useRef<HTMLDivElement>(null)
 
   useScrollAnimations(scrollOverlayRef, setMainPageScrollable, setIsInsideWomb)
 
-  // useEffect(() => {
-  //   window.scrollTo(0, 0) // sometimes the page loads scrolled down
-  // }, [])
+  useEffect(() => {
+    window.scrollTo(0, 0) // sometimes the page loads scrolled down
+  }, [])
 
-  // useEventListener("scroll", () => {
-  //   if (window.scrollY > window.innerHeight / 4) {
-  //     setHasScrolled(true)
-  //   }
-  // })
+  useEventListener("scroll", () => {
+    if (window.scrollY > window.innerHeight / 4) {
+      setWindowScrolled(true)
+    }
+  })
 
   return (
     <div className="w-full h-full overflow-hidden">
@@ -50,7 +50,7 @@ export default function Home() {
           marginTop: "-20vh",
         }}
       >
-        <SecondBlurb isVisible={hasScrolled} />
+        <SecondBlurb isVisible={windowScrolled} />
         <div
           className="absolute bottom-0 w-full flex items-center justify-center font-light text-sm"
           style={{ paddingBottom: "8vh" }}
@@ -63,7 +63,7 @@ export default function Home() {
         style={{
           height: "100vh",
           overflow: "scroll",
-          pointerEvents: mainPageScrollable ? "none" : undefined,
+          zIndex: mainPageScrollable ? -1 : 1,
         }}
         ref={scrollOverlayRef}
       >
