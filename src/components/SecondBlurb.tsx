@@ -33,8 +33,8 @@ export function SecondBlurb({ isVisible }: Props) {
             maayan@eve.space.
           </a>
         </p>
-        <div className="h-8" />
-        <NotifyField />
+        {/* <div className="h-8" />
+        <NotifyField /> */}
       </div>
     </div>
   )
@@ -45,11 +45,11 @@ function NotifyField() {
   const [state, setState] = useState<"NOTIFY" | "EMAIL">("NOTIFY")
   const [onEmailDelayed, setOnEmailDelayed] = useState(false)
   useEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
-      setState("NOTIFY")
-      setOnEmailDelayed(false)
-      setIsFinished(false)
-    }
+    // if (e.key === "Escape") {
+    //   setState("NOTIFY")
+    //   setOnEmailDelayed(false)
+    //   setIsFinished(false)
+    // }
 
     if (e.key === "Enter" && state === "EMAIL") {
       submitEmail()
