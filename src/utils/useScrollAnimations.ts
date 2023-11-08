@@ -11,7 +11,7 @@ import {
 import { getMappedValue } from "./getMappedValue"
 import useEventListener from "./useEventListener"
 
-const startSize = 77
+const startSize = 88
 
 export function useScrollAnimations(
   scrollOverlayRef: MutableRefObject<HTMLDivElement | null>,
