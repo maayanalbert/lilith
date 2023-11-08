@@ -75,9 +75,9 @@ function NotifyField() {
       flex justify-center items-center overflow-hidden rounded-full`}
         style={{
           transitionProperty: "width, transform",
-          transitionDuration: "600ms, 600ms",
-          transitionDelay: "0ms, 600ms",
-          transitionTimingFunction: easeInOut,
+          transitionDuration: "500ms, 500ms",
+          transitionDelay: "0ms, 500ms",
+          transitionTimingFunction: `${easeIn}, ${easeOut}`,
         }}
       >
         <div
@@ -156,32 +156,27 @@ function NotifyField() {
         </div>
       </div>
       <div
-        className={`absolute flex flex-col items-center top-0`}
+        className={`absolute flex flex-col items-center top-0 
+        transition-opacity duration-[600ms] ease-in delay-[1500ms]`}
         style={{
           pointerEvents: isFinished ? undefined : "none",
+          opacity: isFinished ? 1 : 0,
         }}
       >
-        <p
-          className={`text-gray-500 sm:text-base text-sm transition-opacity 
-        duration-[600ms] ease-in-out delay-[1500ms]`}
-          style={{
-            opacity: isFinished ? 1 : 0,
-          }}
-        >
+        <p className={`text-gray-500 sm:text-base text-sm`}>
           Your response has been submitted
         </p>
-        <div
-          className={`transition-opacity duration-[600ms] ease-in-out delay-[1500ms]`}
-          style={{
-            opacity: isFinished ? 1 : 0,
-          }}
-        >
+        <div>
           <div
-            className={`rounded-full border border-black px-4 py-1.5 sm:mt-3.5 mt-2
-        text-black cursor-pointer hover:bg-black hover:text-white transition-all 
-        duration-300 ease-in-out sm:text-base text-sm`}
+            className={`rounded-full sm:mt-3.5 mt-2
+         cursor-pointer transition-all
+        duration-300 ease-in-out sm:text-base text-sm relative flex items-center justify-center h-[100px] w-[100px]`}
           >
-            Exit Eve
+            <div
+              className="h-full w-full absolute rounded-full blur-[2px] bg-black"
+              style={{ zIndex: -1 }}
+            />
+            <p className="text-white">Exit Eve</p>
           </div>
         </div>
       </div>
