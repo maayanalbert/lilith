@@ -65,7 +65,7 @@ function NotifyField() {
   const [email, setEmail] = useState("")
 
   return (
-    <div className="sm:h-[47px] h-[43px] flex justify-center items-center">
+    <div className="sm:h-[47px] h-[43px] flex justify-center items-center relative w-full">
       <div
         className={`${
           isFinished
@@ -86,7 +86,10 @@ function NotifyField() {
          whitespace-nowrap border border-red-600
          ${isFinished ? "bg-red-600" : "bg-white"}
           ${state === "EMAIL" && "sm:w-[360px] w-[300px]"}
-          ${state === "NOTIFY" && "hover:bg-red-600 w-[130px]"}
+          ${
+            state === "NOTIFY" &&
+            "hover:bg-red-600 w-[130px] hover:text-white text-red-600"
+          }
           ${state !== "EMAIL" && "cursor-pointer"}
           `}
           style={{
@@ -106,7 +109,7 @@ function NotifyField() {
           }}
         >
           <p
-            className="h-full w-full text-red-600 hover:text-white select-none"
+            className="h-full w-full hover:text-white select-none"
             style={{
               opacity: state === "EMAIL" ? 0 : 1,
               transitionProperty: "color, opacity",
@@ -136,7 +139,7 @@ function NotifyField() {
               placeholder="email@domain.com"
               value={email}
               onChange={(event) => setEmail(event.target.value)}
-              className="bg-transparent"
+              className="bg-transparent w-full"
             />
             <div
               className={`rounded-full p-1.5 transition-all duration-200 ${
@@ -144,15 +147,44 @@ function NotifyField() {
               }`}
             >
               <ArrowRightIcon
-                className={`cursor-pointer sm:h-[20px] sm:w-[20px] h-[18px] w-[18px]
-         ${email ? "text-black" : "text-gray-400 "}`}
-                onClick={() => setIsFinished(true)}
+                className={`sm:h-[20px] sm:w-[20px] h-[18px] w-[18px]
+         ${email ? "text-black cursor-pointer" : "text-gray-400 "}`}
+                onClick={() => !!email && setIsFinished(true)}
               />
             </div>
           </div>
         </div>
       </div>
-      {/* <div className="absolute underline">Exit</div> */}
+      <div
+        className={`absolute flex flex-col items-center top-0`}
+        style={{
+          pointerEvents: isFinished ? undefined : "none",
+        }}
+      >
+        <p
+          className={`text-gray-500 sm:text-base text-sm transition-opacity 
+        duration-[600ms] ease-in-out delay-[1500ms]`}
+          style={{
+            opacity: isFinished ? 1 : 0,
+          }}
+        >
+          Your response has been submitted
+        </p>
+        <div
+          className={`transition-opacity duration-[600ms] ease-in-out delay-[1500ms]`}
+          style={{
+            opacity: isFinished ? 1 : 0,
+          }}
+        >
+          <div
+            className={`rounded-full border border-black px-4 py-1.5 sm:mt-3.5 mt-2
+        text-black cursor-pointer hover:bg-black hover:text-white transition-all 
+        duration-300 ease-in-out sm:text-base text-sm`}
+          >
+            Exit Eve
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
