@@ -45,11 +45,11 @@ function NotifyField() {
   const [state, setState] = useState<"NOTIFY" | "EMAIL">("NOTIFY")
   const [onEmailDelayed, setOnEmailDelayed] = useState(false)
   useEventListener("keydown", (e) => {
-    // if (e.key === "Escape") {
-    //   setState("NOTIFY")
-    //   setOnEmailDelayed(false)
-    //   setIsFinished(false)
-    // }
+    if (e.key === "Escape") {
+      setState("NOTIFY")
+      setOnEmailDelayed(false)
+      setIsFinished(false)
+    }
 
     if (e.key === "Enter" && state === "EMAIL") {
       submitEmail()
@@ -81,8 +81,8 @@ function NotifyField() {
       flex justify-center items-center overflow-hidden rounded-full h-[47px]`}
         style={{
           transitionProperty: "width, opacity, filter, transform",
-          transitionDuration: "500ms, 500ms, 500ms, 500ms",
-          transitionDelay: "0ms, 500ms, 500ms, 500ms",
+          transitionDuration: "400ms, 500ms, 500ms, 500ms",
+          transitionDelay: "0ms, 400ms, 400ms, 400ms",
           transitionTimingFunction: `${easeIn}, ${easeOut}, ${easeOut}, ${easeOut}`,
         }}
       >
