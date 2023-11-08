@@ -45,13 +45,12 @@ function NotifyField() {
   const [state, setState] = useState<"NOTIFY" | "EMAIL">("NOTIFY")
   const [onEmailDelayed, setOnEmailDelayed] = useState(false)
   useEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
-      setState("NOTIFY")
-      setOnEmailDelayed(false)
-      setIsFinished(false)
-    }
+    // if (e.key === "Escape") {
+    //   setState("NOTIFY")
+    //   setOnEmailDelayed(false)
+    //   setIsFinished(false)
+    // }
 
-    console.log(e.key)
     if (e.key === "Enter" && state === "EMAIL") {
       submitEmail()
     }
