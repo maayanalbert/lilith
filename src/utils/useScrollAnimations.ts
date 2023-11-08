@@ -38,7 +38,7 @@ export function useScrollAnimations(
     document.documentElement.style.setProperty("--hint-scale", `1`)
     document.documentElement.style.setProperty(
       "--hint-dist",
-      `${startSize * 2 + 25}px`
+      `${startSize * 2 + 20}px`
     )
     document.documentElement.style.setProperty(
       "--hint-letter-spacing",
@@ -151,7 +151,7 @@ function updateHintStyles(wombSize: number, maxSize: number) {
     wombSize,
     startSize,
     maxSize * 0.5,
-    startSize * 2 + 25,
+    startSize * 2 + 20,
     maxSize * 2.25
   )
 
