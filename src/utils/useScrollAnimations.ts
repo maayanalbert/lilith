@@ -19,12 +19,22 @@ export function useScrollAnimations(
   setIsInsideWomb: (isInsideWomb: boolean) => void
 ) {
   useEffect(() => {
+    const womb = document.querySelector(".womb") as HTMLDivElement | null
+    const title = document.querySelector(
+      ".title"
+    ) as HTMLParagraphElement | null
+
+    if (!womb || !title) return
+
+    womb.style.height = `${startSize}px`
+    womb.style.width = `${startSize}px`
+    womb.style.filter = `blur(0px)`
+
+    title.style.opacity = "0"
+    title.style.scale = "1"
+    title.style.filter = `blur(2px)`
+
     document.documentElement.style.setProperty("--html-overflow", `hidden`)
-    document.documentElement.style.setProperty("--womb-size", `${startSize}px`)
-    document.documentElement.style.setProperty("--womb-blur", `0px`)
-    document.documentElement.style.setProperty("--text-scale", `1px`)
-    document.documentElement.style.setProperty("--text-opacity", `0`)
-    document.documentElement.style.setProperty("--text-blur", `2px`)
     document.documentElement.style.setProperty("--hint-scale", `1`)
     document.documentElement.style.setProperty(
       "--hint-dist",
@@ -51,29 +61,80 @@ export function useScrollAnimations(
         maxSize
       )
 
-      updateWheelAnimations(
-        wombSize,
-        maxSize,
-        setIsInsideWomb,
-        setMainPageScrollable
-      )
+      updateWombStyles(wombSize, maxSize)
+      updateTitleStyle(wombSize, maxSize)
+      updateHintStyles(wombSize, maxSize)
+
+      setIsInsideWomb(wombSize === maxSize)
+
+      if (wombSize === maxSize) {
+        setTimeout(() => {
+          document.documentElement.style.setProperty("--html-overflow", `auto`)
+          setMainPageScrollable(true)
+        }, 750)
+      }
     },
-    [updateWheelAnimations, scrollOverlayRef.current],
+    [setIsInsideWomb, setMainPageScrollable, scrollOverlayRef.current],
     scrollOverlayRef
   )
 }
 
-function updateWheelAnimations(
-  wombSize: number,
-  maxSize: number,
-  setIsInsideWomb: (isInsideWomb: boolean) => void,
-  setMainPageScrollable: (mainPageScrollable: boolean) => void
-) {
-  document.documentElement.style.setProperty("--womb-size", `${wombSize}px`)
+/**
+ * Womb styles
+ */
+function updateWombStyles(wombSize: number, maxSize: number) {
+  const womb = document.querySelector(".womb") as HTMLDivElement | null
+  if (!womb) return
 
+  // update womb values
   const wombBlur = getMappedValue(wombSize, startSize, maxSize, 0, 10)
-  document.documentElement.style.setProperty("--womb-blur", `${wombBlur}px`)
 
+  womb.style.height = `${wombSize}px`
+  womb.style.width = `${wombSize}px`
+  womb.style.filter = `blur(${wombBlur}px)`
+}
+
+/**
+ * Title inside womb styles
+ */
+function updateTitleStyle(wombSize: number, maxSize: number) {
+  const title = document.querySelector(".title") as HTMLDivElement | null
+  if (!title) return
+
+  const titleScale = getMappedValue(
+    wombSize,
+    startSize,
+    maxSize,
+    1,
+    12,
+    easeInQuad
+  )
+
+  title.style.scale = `${titleScale}`
+
+  const titleOpacity =
+    wombSize < (2 * maxSize) / 7
+      ? getMappedValue(wombSize, startSize, (2 * maxSize) / 7, 0, 1, easeInSine)
+      : wombSize > (3 * maxSize) / 7
+      ? getMappedValue(wombSize, (3 * maxSize) / 7, maxSize, 1, 0)
+      : 1
+
+  title.style.opacity = `${titleOpacity}`
+
+  const titleBlur =
+    wombSize < (2 * maxSize) / 7
+      ? getMappedValue(wombSize, startSize, (2 * maxSize) / 7, 2, 0, easeInSine)
+      : wombSize > (3 * maxSize) / 7
+      ? getMappedValue(wombSize, (3 * maxSize) / 7, maxSize, 0, 2)
+      : 0
+
+  title.style.filter = `blur(${titleBlur}px)`
+}
+
+/**
+ * Hint styles
+ */
+function updateHintStyles(wombSize: number, maxSize: number) {
   const hintScale = getMappedValue(wombSize, startSize, maxSize, 1, 24)
   document.documentElement.style.setProperty("--hint-scale", `${hintScale}`)
 
@@ -99,49 +160,6 @@ function updateWheelAnimations(
     "--hint-letter-spacing",
     `${hintLetterSpacing}rem`
   )
-
-  const textScale = getMappedValue(
-    wombSize,
-    startSize,
-    maxSize,
-    1,
-    12,
-    easeInQuad
-  )
-  document.documentElement.style.setProperty("--text-scale", `${textScale}`)
-
-  const textOpacity =
-    wombSize < (2 * maxSize) / 7
-      ? getMappedValue(wombSize, startSize, (2 * maxSize) / 7, 0, 1, easeInSine)
-      : wombSize > (3 * maxSize) / 7
-      ? getMappedValue(wombSize, (3 * maxSize) / 7, maxSize, 1, 0)
-      : 1
-
-  document.documentElement.style.setProperty("--text-opacity", `${textOpacity}`)
-
-  const textBlur =
-    wombSize < (2 * maxSize) / 7
-      ? getMappedValue(wombSize, startSize, (2 * maxSize) / 7, 2, 0, easeInSine)
-      : wombSize > (3 * maxSize) / 7
-      ? getMappedValue(wombSize, (3 * maxSize) / 7, maxSize, 0, 2)
-      : 0
-
-  document.documentElement.style.setProperty("--text-blur", `${textBlur}px`)
-
-  const blurbOpacity = wombSize === maxSize ? 1 : 0
-  document.documentElement.style.setProperty(
-    "--blurb-opacity",
-    `${blurbOpacity}`
-  )
-
-  setIsInsideWomb(wombSize === maxSize)
-
-  if (wombSize === maxSize) {
-    setTimeout(() => {
-      document.documentElement.style.setProperty("--html-overflow", `auto`)
-      setMainPageScrollable(true)
-    }, 750)
-  }
 }
 
 function getDist(x1: number, y1: number, x2: number, y2: number) {
