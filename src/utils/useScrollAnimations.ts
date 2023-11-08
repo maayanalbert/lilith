@@ -148,16 +148,22 @@ function updateTitleStyle(wombSize: number, maxSize: number) {
  * Hint styles
  */
 function updateHintStyles(wombSize: number, maxSize: number) {
-  const hintScale = getMappedValue(wombSize, startSize, maxSize * 0.25, 1, 24)
+  const hintScale =
+    wombSize >= startSize
+      ? getMappedValue(wombSize, startSize, maxSize * 0.25, 1, 24)
+      : getMappedValue(wombSize, 0, startSize, 0, 1)
   document.documentElement.style.setProperty("--hint-scale", `${hintScale}`)
 
-  const hintDist = getMappedValue(
-    wombSize,
-    startSize,
-    maxSize * 0.5,
-    startSize * 2 + 20,
-    maxSize * 2.25
-  )
+  const hintDist =
+    wombSize >= startSize
+      ? getMappedValue(
+          wombSize,
+          startSize,
+          maxSize * 0.5,
+          startSize * 2 + 20,
+          maxSize * 2.25
+        )
+      : getMappedValue(wombSize, 0, startSize, 0, startSize * 2 + 20)
 
   document.documentElement.style.setProperty("--hint-dist", `${hintDist}px`)
 
