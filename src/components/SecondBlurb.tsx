@@ -41,12 +41,14 @@ export function SecondBlurb({ isVisible }: Props) {
 }
 
 function NotifyField() {
-  const [state, setState] = useState<"NOTIFY" | "EMAIL" | "SENT">("NOTIFY")
+  const [isFinished, setIsFinished] = useState(false)
+  const [state, setState] = useState<"NOTIFY" | "EMAIL">("NOTIFY")
   const [onEmailDelayed, setOnEmailDelayed] = useState(false)
   useEventListener("keydown", (e) => {
     if (e.key === "Shift") {
       setState("NOTIFY")
       setOnEmailDelayed(false)
+      setIsFinished(false)
     }
   })
 
@@ -64,72 +66,81 @@ function NotifyField() {
 
   return (
     <div
-      ref={ref}
-      className={`rounded-full py-2 relative 
-         whitespace-nowrap border
+      className={`${
+        isFinished ? "sm:w-[47px] w-[43px}" : "sm:w-[360px] w-[300px]"
+      } overflow-hidden
+      transition-all duration-700 ease-out flex justify-center 
+      items-center overflow-hidden rounded-full`}
+    >
+      <div
+        ref={ref}
+        className={`rounded-full py-[8px] relative 
+         whitespace-nowrap border border-red-600
+         ${isFinished ? "bg-red-600 sm:m-[23.5px] m-[21.5px]" : "bg-white m-0"}
           ${state === "EMAIL" && "sm:w-[360px] w-[300px]"}
           ${state === "NOTIFY" && "hover:bg-red-600 w-[130px]"}
           ${state !== "EMAIL" && "cursor-pointer"}
-          ${state !== "SENT" ? "border-red-600" : "border-white"}
-          ${state === "SENT" && "w-0"}
           `}
-      style={{
-        transitionProperty: "width, background",
-        transitionDuration: state === "EMAIL" ? "600ms, 300ms" : "700ms, 300ms",
-        transitionTimingFunction: easeInOut,
-      }}
-      onClick={() => {
-        if (state === "NOTIFY") {
-          setState("EMAIL")
-          setTimeout(() => {
-            setOnEmailDelayed(true)
-            inputRef.current?.focus()
-          }, 700)
-        }
-      }}
-    >
-      <p
-        className={`h-full w-full ${
-          state === "SENT" ? "text-white" : "text-red-600 hover:text-white"
-        } select-none`}
         style={{
-          opacity: state === "EMAIL" ? 0 : 1,
-          transitionProperty: "color, opacity",
+          transitionProperty: "width, background",
           transitionDuration:
-            state === "EMAIL" || onEmailDelayed ? "350ms" : "300ms",
-          transitionDelay: onEmailDelayed ? "350ms" : "0ms",
-          transitionTimingFunction: `ease-in, ${
-            state === "EMAIL" ? easeIn : easeOut
-          }}`,
+            state === "EMAIL" ? "600ms, 300ms" : "700ms, 300ms",
+          transitionTimingFunction: easeInOut,
+        }}
+        onClick={() => {
+          if (state === "NOTIFY") {
+            setState("EMAIL")
+            setTimeout(() => {
+              setOnEmailDelayed(true)
+              inputRef.current?.focus()
+            }, 700)
+          }
         }}
       >
-        {state === "NOTIFY" || state === "EMAIL" ? "Notify Me" : "X"}
-      </p>
-      <div
-        className={`w-full h-full absolute top-0 w-full rounded-full left-0 pl-6 pr-4
-        transition-opacity duration-[350ms] flex flex-row justify-between items-center`}
-        style={{
-          opacity: state === "EMAIL" ? 1 : 0,
-          pointerEvents: state === "EMAIL" ? undefined : "none",
-          transitionTimingFunction: state === "EMAIL" ? easeIn : easeOut,
-          transitionDelay: state === "EMAIL" ? "350ms" : "0ms",
-        }}
-      >
-        <input
-          ref={inputRef}
-          placeholder="email@domain.com"
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
-        />
-        <ArrowRightIcon
-          className={`cursor-pointer sm:h-[20px] sm:w-[20px] h-[18px] w-[18px]
-          ${state === "SENT" ? "text-black" : "text-gray-400"} 
-         ${!!email && "hover:text-black"}`}
-          onClick={() => {
-            setState("SENT")
-            setTimeout(() => setOnEmailDelayed(false), 600)
+        <p
+          className="h-full w-full text-red-600 hover:text-white select-none"
+          style={{
+            opacity: state === "EMAIL" ? 0 : 1,
+            transitionProperty: "color, opacity",
+            transitionDuration:
+              state === "EMAIL" || onEmailDelayed ? "350ms" : "300ms",
+            transitionDelay: onEmailDelayed ? "350ms" : "0ms",
+            transitionTimingFunction: `ease-in, ${
+              state === "EMAIL" ? easeIn : easeOut
+            }}`,
           }}
-        />
+        >
+          {state === "NOTIFY" || state === "EMAIL" ? "Notify Me" : "X"}
+        </p>
+        <div
+          className={`w-full h-full absolute top-0 w-full rounded-full left-0 pl-6 pr-[8px]
+        transition-opacity duration-[350ms] flex flex-row justify-between items-center`}
+          style={{
+            opacity: state === "EMAIL" && !isFinished ? 1 : 0,
+            pointerEvents: state === "EMAIL" ? undefined : "none",
+            transitionTimingFunction: state === "EMAIL" ? easeIn : easeOut,
+            transitionDelay: state === "EMAIL" && !isFinished ? "350ms" : "0ms",
+          }}
+        >
+          <input
+            ref={inputRef}
+            placeholder="email@domain.com"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+            className="bg-transparent"
+          />
+          <div
+            className={`rounded-full p-1.5 transition-all duration-200 ${
+              email && "hover:bg-gray-200"
+            }`}
+          >
+            <ArrowRightIcon
+              className={`cursor-pointer sm:h-[20px] sm:w-[20px] h-[18px] w-[18px]
+         ${email ? "text-black" : "text-gray-400 "}`}
+              onClick={() => setIsFinished(true)}
+            />
+          </div>
+        </div>
       </div>
     </div>
   )
