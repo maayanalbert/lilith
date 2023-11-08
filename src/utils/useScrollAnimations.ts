@@ -114,11 +114,11 @@ function updateTitleStyle(wombSize: number, maxSize: number) {
   title.style.scale = `${titleScale}`
 
   const titleOpacity =
-    wombSize < (2.5 * maxSize) / 7
+    wombSize < (2.75 * maxSize) / 7
       ? getMappedValue(
           wombSize,
           startSize,
-          (2.5 * maxSize) / 7,
+          (2.75 * maxSize) / 7,
           0,
           1,
           easeInSine
@@ -130,11 +130,11 @@ function updateTitleStyle(wombSize: number, maxSize: number) {
   title.style.opacity = `${titleOpacity}`
 
   const titleBlur =
-    wombSize < (2.5 * maxSize) / 7
+    wombSize < (2.75 * maxSize) / 7
       ? getMappedValue(
           wombSize,
           startSize,
-          (2.5 * maxSize) / 7,
+          (2.75 * maxSize) / 7,
           2,
           0,
           easeInSine

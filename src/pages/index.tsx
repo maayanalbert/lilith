@@ -22,9 +22,12 @@ export default function Home() {
 
   useScrollAnimations(scrollOverlayRef, setMainPageScrollable, setIsInsideWomb)
 
+  // should fix flashing on reset
   useEffect(() => {
-    window.scrollTo(0, 0)
     setIsReset(true)
+    return () => {
+      window.scrollTo(0, 0)
+    }
   }, [])
 
   useEventListener("scroll", () => {
