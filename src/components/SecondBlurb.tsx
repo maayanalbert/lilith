@@ -22,7 +22,7 @@ export function SecondBlurb({ isVisible }: Props) {
         className="w-[350px] sm:w-[530px] text-center flex flex-col items-center sm:text-lg font-light"
         style={{
           transitionProperty: "opacity",
-          transitionDuration: "750ms",
+          transitionDuration: "500ms",
           transitionTimingFunction: "cubic-bezier(0.4, 0, 0.2, 1)",
           opacity: isVisible ? 1 : 0,
         }}
