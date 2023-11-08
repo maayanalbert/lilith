@@ -1,6 +1,6 @@
 .womb-fade-in {
   animation-name: womb-fade-in;
-  animation-duration: 600ms;
+  animation-duration: 500ms;
   animation-timing-function: ease-in-out;
 }
 
@@ -19,7 +19,7 @@
 
 .hint-fade-in {
   animation-name: hint-fade-in;
-  animation-duration: 600ms;
+  animation-duration: 500ms;
   animation-timing-function: ease-out;
 }
 
