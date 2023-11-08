@@ -173,7 +173,7 @@ function updateHintStyles(wombSize: number, maxSize: number) {
   const hintOpacity = getMappedValue(
     wombSize,
     startSize,
-    startSize * 3,
+    startSize * 4,
     1,
     0,
     easeOutSine
