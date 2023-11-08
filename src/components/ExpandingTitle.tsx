@@ -1,8 +1,4 @@
-interface Props {
-  isRendered: boolean
-}
-
-export default function ExpandingTitle({ isRendered }: Props) {
+export default function ExpandingTitle() {
   return (
     <div
       className="flex justify-center items-center bg-black h-full"
@@ -11,11 +7,7 @@ export default function ExpandingTitle({ isRendered }: Props) {
         marginLeft: "-100%",
       }}
     >
-      <div
-        className={`rounded-full womb bg-white ${
-          isRendered ? "womb-fade-in" : ""
-        }`}
-      />
+      <div className="rounded-full womb bg-white womb-fade-in" />
       <div className="absolute flex h-full w-full justify-center items-center top-0">
         <p className="whitespace-nowrap select-none title sm:text-4xl text-xl cursor-default">
           Welcome to Eve
@@ -23,9 +15,7 @@ export default function ExpandingTitle({ isRendered }: Props) {
       </div>
       <div className="absolute">
         <p
-          className={`${
-            isRendered ? "hint-fade-in" : ""
-          } expand-hint font-light text-3xl`}
+          className="hint-fade-in expand-hint font-light text-3xl"
           style={{ color: "gray" }}
         >
           {"(scroll)"}

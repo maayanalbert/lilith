@@ -33,7 +33,7 @@ export default function Home() {
 
   return (
     <div
-      className="w-full h-full overflow-hidden" // constrains womb
+      className="w-full h-full overflow-hidden"
       style={{ opacity: isRendered ? 1 : 0 }}
     >
       <div
@@ -42,7 +42,7 @@ export default function Home() {
           height: "100svh", //https://stackoverflow.com/questions/37112218/css3-100vh-not-constant-in-mobile-browser
         }}
       >
-        <ExpandingTitle isRendered={isRendered} />
+        <ExpandingTitle />
         <div className="h-full w-full absolute top-0">
           <FirstBlurb isVisible={isInsideWomb} />
         </div>
