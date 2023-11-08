@@ -170,7 +170,7 @@ function NotifyField() {
           <div
             className={`rounded-full sm:mt-3.5 mt-2
          cursor-pointer transition-all
-        duration-300 ease-in-out sm:text-base text-sm relative flex items-center justify-center h-[100px] w-[100px]`}
+        duration-300 ease-in-out sm:text-base text-sm relative flex items-center justify-center h-[60px] w-[100px]`}
           >
             <div
               className="h-full w-full absolute rounded-full blur-[2px] bg-black"
