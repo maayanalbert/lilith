@@ -199,7 +199,7 @@ function NotifyField() {
       </div>
       <div
         className={`absolute 
-        transition-opacity duration-[600ms] ease-in delay-[1200ms]`}
+        transition-opacity duration-[500ms] ease-in delay-[1100ms]`}
         style={{
           pointerEvents: isFinished ? undefined : "none",
           opacity: isFinished ? 1 : 0,
