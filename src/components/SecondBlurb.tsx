@@ -69,15 +69,15 @@ function NotifyField() {
       <div
         className={`${
           isFinished
-            ? "sm:w-[47px] w-[43px] scale-0"
-            : "sm:w-[360px] w-[300px] scale-100"
+            ? "sm:w-[47px] w-[43px] opacity-0 blur-[8px] scale-0"
+            : "sm:w-[360px] w-[300px]"
         } 
       flex justify-center items-center overflow-hidden rounded-full`}
         style={{
-          transitionProperty: "width, transform",
-          transitionDuration: "500ms, 500ms",
-          transitionDelay: "0ms, 500ms",
-          transitionTimingFunction: `${easeIn}, ${easeOut}`,
+          transitionProperty: "width, opacity, filter, transform",
+          transitionDuration: "600ms, 600ms, 600ms, 600ms",
+          transitionDelay: "0ms, 600ms, 600ms, 600ms",
+          transitionTimingFunction: `${easeIn}, ${easeOut}, ${easeOut}, ${easeOut}`,
         }}
       >
         <div
@@ -157,13 +157,13 @@ function NotifyField() {
       </div>
       <div
         className={`absolute 
-        transition-opacity duration-[600ms] ease-in delay-[1500ms]`}
+        transition-opacity duration-[600ms] ease-in delay-[1200ms]`}
         style={{
           pointerEvents: isFinished ? undefined : "none",
           opacity: isFinished ? 1 : 0,
         }}
       >
-        <p className={`text-gray-500 sm:text-base text-sm`}>
+        <p className={`sm:text-base text-sm text-gray-500`}>
           Your response has been submitted
         </p>
       </div>

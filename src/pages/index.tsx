@@ -31,7 +31,7 @@ export default function Home() {
   }, [])
 
   useEventListener("scroll", () => {
-    if (window.scrollY > window.innerHeight / 4) {
+    if (window.scrollY > window.innerHeight * 0.4) {
       setWindowScrolled(true)
     }
   })
