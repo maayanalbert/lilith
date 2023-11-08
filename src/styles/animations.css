@@ -31,7 +31,6 @@
     filter: blur(0px);
   }
 }
-
 .hint-fade-in {
   animation-name: hint-fade-in;
   animation-duration: 1200ms;
@@ -42,7 +41,7 @@
   0% {
     opacity: 0;
   }
-  70% {
+  60% {
     opacity: 0;
     filter: blur(2px);
   }
