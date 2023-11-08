@@ -18,17 +18,8 @@ export default function Home() {
   const [isInsideWomb, setIsInsideWomb] = useState(false)
   const [windowScrolled, setWindowScrolled] = useState(false)
   const scrollOverlayRef = useRef<HTMLDivElement>(null)
-  const [isReset, setIsReset] = useState(false)
 
   useScrollAnimations(scrollOverlayRef, setMainPageScrollable, setIsInsideWomb)
-
-  // should fix flashing on reset
-  useEffect(() => {
-    setIsReset(true)
-    return () => {
-      window.scrollTo(0, 0)
-    }
-  }, [])
 
   useEventListener("scroll", () => {
     if (window.scrollY > window.innerHeight * 0.4) {
@@ -37,10 +28,7 @@ export default function Home() {
   })
 
   return (
-    <div
-      className="w-full h-full overflow-hidden"
-      style={{ opacity: isReset ? 1 : 0 }} // fixes flashing on reset(?)
-    >
+    <div className="w-full h-full overflow-hidden">
       <div
         className="w-full relative"
         style={{

@@ -35,6 +35,8 @@ export function useScrollAnimations(
     title.style.filter = `blur(2px)`
 
     document.documentElement.style.setProperty("--html-overflow", `hidden`)
+    document.documentElement.style.setProperty("--body-height", `100%`)
+
     document.documentElement.style.setProperty("--hint-scale", `1`)
     document.documentElement.style.setProperty(
       "--hint-dist",
@@ -72,6 +74,8 @@ export function useScrollAnimations(
       if (wombSize === maxSize) {
         setTimeout(() => {
           document.documentElement.style.setProperty("--html-overflow", `auto`)
+          document.documentElement.style.setProperty("--body-height", `180%`)
+
           setMainPageScrollable(true)
         }, 750)
       }
