@@ -75,8 +75,8 @@ function NotifyField() {
       flex justify-center items-center overflow-hidden rounded-full`}
         style={{
           transitionProperty: "width, opacity, filter, transform",
-          transitionDuration: "600ms, 600ms, 600ms, 600ms",
-          transitionDelay: "0ms, 600ms, 600ms, 600ms",
+          transitionDuration: "500ms, 500ms, 500ms, 500ms",
+          transitionDelay: "0ms, 500ms, 500ms, 500ms",
           transitionTimingFunction: `${easeIn}, ${easeOut}, ${easeOut}, ${easeOut}`,
         }}
       >
@@ -163,7 +163,7 @@ function NotifyField() {
           opacity: isFinished ? 1 : 0,
         }}
       >
-        <p className={`sm:text-base text-sm text-gray-500`}>
+        <p className={`sm:text-base text-sm text-gray-600`}>
           Your response has been submitted
         </p>
       </div>
