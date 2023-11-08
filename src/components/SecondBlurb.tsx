@@ -1,12 +1,15 @@
 import useEventListener from "@/utils/useEventListener"
 import useOutsideClick from "@/utils/useOutsideClick"
 import {
+  ArrowPathIcon,
   ArrowRightIcon,
   ArrowUpIcon,
   CheckIcon,
 } from "@heroicons/react/24/solid"
+import axios from "axios"
 import { set } from "lodash"
 import { useEffect, useRef, useState } from "react"
+import { useMutation } from "react-query"
 
 interface Props {
   isVisible: boolean
@@ -33,8 +36,8 @@ export function SecondBlurb({ isVisible }: Props) {
             maayan@eve.space.
           </a>
         </p>
-        {/* <div className="h-8" />
-        <NotifyField /> */}
+        <div className="h-8" />
+        <NotifyField />
       </div>
     </div>
   )
@@ -44,6 +47,7 @@ function NotifyField() {
   const [isFinished, setIsFinished] = useState(false)
   const [state, setState] = useState<"NOTIFY" | "EMAIL">("NOTIFY")
   const [onEmailDelayed, setOnEmailDelayed] = useState(false)
+  const [error, setError] = useState(false)
   useEventListener("keydown", (e) => {
     // if (e.key === "Escape") {
     //   setState("NOTIFY")
@@ -51,22 +55,45 @@ function NotifyField() {
     //   setIsFinished(false)
     // }
 
-    if (e.key === "Enter" && state === "EMAIL") {
-      submitEmail()
+    if (e.key === "Enter" && state === "EMAIL" && email) {
+      mutateAsync()
     }
   })
+
+  // mutate call for sending the email
+  const { mutateAsync } = useMutation(
+    () => {
+      const axiosCall = async () => {
+        axios.post(
+          "https://getform.io/f/f0b97eb1-3068-4702-8fbb-f9fd0061d3f2",
+          {
+            message: email,
+          },
+          { headers: { Accept: "application/json" } }
+        )
+      }
+      return axiosCall()
+    },
+    {
+      onSettled: (data, error) => {
+        if (error) {
+          setError(true)
+        } else {
+          setIsFinished(true)
+        }
+      },
+    }
+  )
 
   const ref = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
-  useOutsideClick(ref, () => {
-    if (state === "EMAIL") {
-      setState("NOTIFY")
-      setTimeout(() => setOnEmailDelayed(false), 100)
-    }
-  })
-
-  const submitEmail = () => !!email && setIsFinished(true)
+  // useOutsideClick(ref, () => {
+  //   if (state === "EMAIL") {
+  //     setState("NOTIFY")
+  //     setTimeout(() => setOnEmailDelayed(false), 100)
+  //   }
+  // })
 
   const [email, setEmail] = useState("")
 
@@ -81,8 +108,8 @@ function NotifyField() {
       flex justify-center items-center overflow-hidden rounded-full h-[47px]`}
         style={{
           transitionProperty: "width, opacity, filter, transform",
-          transitionDuration: "400ms, 500ms, 500ms, 500ms",
-          transitionDelay: "0ms, 400ms, 400ms, 400ms",
+          transitionDuration: "450ms, 500ms, 500ms, 500ms",
+          transitionDelay: "0ms, 450ms, 450ms, 450ms",
           transitionTimingFunction: `${easeIn}, ${easeOut}, ${easeOut}, ${easeOut}`,
         }}
       >
@@ -153,11 +180,19 @@ function NotifyField() {
                 email && "sm:hover:bg-gray-200"
               }`}
             >
-              <ArrowRightIcon
-                className={`sm:h-[20px] sm:w-[20px] h-[18px] w-[18px]
+              {error ? (
+                <ArrowPathIcon
+                  className={`sm:h-[20px] sm:w-[20px] h-[18px] w-[18px]
          ${email ? "text-black cursor-pointer" : "text-gray-400 "}`}
-                onClick={submitEmail}
-              />
+                  onClick={() => email && mutateAsync()}
+                />
+              ) : (
+                <ArrowRightIcon
+                  className={`sm:h-[20px] sm:w-[20px] h-[18px] w-[18px]
+         ${email ? "text-black cursor-pointer" : "text-gray-400 "}`}
+                  onClick={() => email && mutateAsync()}
+                />
+              )}
             </div>
           </div>
         </div>
