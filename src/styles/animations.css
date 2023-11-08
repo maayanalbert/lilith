@@ -1,6 +1,6 @@
 .womb-fade-in {
   animation-name: womb-fade-in;
-  animation-duration: 1000ms;
+  animation-duration: 750ms;
   animation-timing-function: ease-in;
 }
 
@@ -19,7 +19,7 @@
 
 .hint-fade-in {
   animation-name: hint-fade-in;
-  animation-duration: 1000ms;
+  animation-duration: 750ms;
   animation-timing-function: ease-in;
 }
 
@@ -28,7 +28,7 @@
     opacity: 0;
     filter: blur(2px);
   }
-  80% {
+  50% {
     opacity: 0;
     filter: blur(2px);
   }
