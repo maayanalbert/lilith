@@ -7,10 +7,10 @@
 
 @keyframes womb-fade-in-size {
   0% {
-    transform: scale(0);
+    transform: scale(0.6);
   }
   20% {
-    transform: scale(0);
+    transform: scale(0.6);
   }
   100% {
     transform: scale(1);
@@ -20,11 +20,11 @@
 @keyframes womb-fade-in-opacity {
   0% {
     opacity: 0;
-    filter: blur(3px);
+    filter: blur(1px);
   }
   20% {
     opacity: 0;
-    filter: blur(3px);
+    filter: blur(1px);
   }
   100% {
     opacity: 1;
@@ -34,16 +34,15 @@
 
 .hint-fade-in {
   animation-name: hint-fade-in;
-  animation-duration: 1000ms;
+  animation-duration: 1200ms;
   animation-timing-function: ease-out;
 }
 
 @keyframes hint-fade-in {
   0% {
     opacity: 0;
-    filter: blur(2px);
   }
-  85% {
+  70% {
     opacity: 0;
     filter: blur(2px);
   }
