@@ -1,12 +1,12 @@
 .womb-fade-in {
   animation-name: womb-fade-in;
   animation-duration: 750ms;
-  animation-timing-function: ease-in;
+  animation-timing-function: ease-in-out;
 }
 
 @keyframes womb-fade-in {
   0% {
-    opacity: 0.5;
+    opacity: 0.25;
     transform: scale(0.75);
     filter: blur(2px);
   }
@@ -20,7 +20,7 @@
 .hint-fade-in {
   animation-name: hint-fade-in;
   animation-duration: 750ms;
-  animation-timing-function: ease-in;
+  animation-timing-function: ease-out;
 }
 
 @keyframes hint-fade-in {
@@ -43,10 +43,5 @@
   margin-top: var(--hint-dist);
   filter: blur(var(--womb-blur));
   letter-spacing: var(--hint-letter-spacing);
-}
-
-.reveal-text {
-  filter: blur(var(--text-blur));
-  transform: scale(var(--text-scale));
-  opacity: var(--text-opacity);
+  opacity: var(--hint-opacity);
 }

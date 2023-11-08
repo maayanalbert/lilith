@@ -45,6 +45,7 @@ export function useScrollAnimations(
       `0.1rem`
     )
     document.documentElement.style.setProperty("--womb-blur", `0px`)
+    document.documentElement.style.setProperty("--hint-opacity", `1`)
   }, [])
 
   useEventListener(
@@ -115,14 +116,7 @@ function updateTitleStyle(wombSize: number, maxSize: number) {
 
   const titleOpacity =
     wombSize < (2.75 * maxSize) / 7
-      ? getMappedValue(
-          wombSize,
-          startSize,
-          (2.75 * maxSize) / 7,
-          0,
-          1,
-          easeInSine
-        )
+      ? getMappedValue(wombSize, startSize, (2.75 * maxSize) / 7, 0, 1)
       : wombSize > (3 * maxSize) / 7
       ? getMappedValue(wombSize, (3 * maxSize) / 7, maxSize, 1, 0)
       : 1
@@ -150,13 +144,13 @@ function updateTitleStyle(wombSize: number, maxSize: number) {
  * Hint styles
  */
 function updateHintStyles(wombSize: number, maxSize: number) {
-  const hintScale = getMappedValue(wombSize, startSize, maxSize, 1, 24)
+  const hintScale = getMappedValue(wombSize, startSize, maxSize * 0.25, 1, 24)
   document.documentElement.style.setProperty("--hint-scale", `${hintScale}`)
 
   const hintDist = getMappedValue(
     wombSize,
     startSize,
-    maxSize,
+    maxSize * 0.5,
     startSize * 2 + 25,
     maxSize * 2.25
   )
@@ -176,8 +170,18 @@ function updateHintStyles(wombSize: number, maxSize: number) {
     `${hintLetterSpacing}rem`
   )
 
-  const wombBlur = getMappedValue(wombSize, startSize, maxSize, 0, 10)
-  document.documentElement.style.setProperty("--womb-blur", `${wombBlur}px`)
+  const hintOpacity = getMappedValue(
+    wombSize,
+    startSize,
+    startSize * 3,
+    1,
+    0,
+    easeOutSine
+  )
+  document.documentElement.style.setProperty("--hint-opacity", `${hintOpacity}`)
+
+  const hintBlur = getMappedValue(wombSize, startSize, maxSize, 0, 20)
+  document.documentElement.style.setProperty("--womb-blur", `${hintBlur}px`)
 }
 
 function getDist(x1: number, y1: number, x2: number, y2: number) {
