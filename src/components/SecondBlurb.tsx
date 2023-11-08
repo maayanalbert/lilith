@@ -88,12 +88,12 @@ function NotifyField() {
   const ref = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
-  // useOutsideClick(ref, () => {
-  //   if (state === "EMAIL") {
-  //     setState("NOTIFY")
-  //     setTimeout(() => setOnEmailDelayed(false), 100)
-  //   }
-  // })
+  useOutsideClick(ref, () => {
+    if (state === "EMAIL") {
+      setState("NOTIFY")
+      setTimeout(() => setOnEmailDelayed(false), 100)
+    }
+  })
 
   const [email, setEmail] = useState("")
 
