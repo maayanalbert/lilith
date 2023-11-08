@@ -18,8 +18,6 @@ export function useScrollAnimations(
   setMainPageScrollable: (mainPageScrollable: boolean) => void,
   setIsInsideWomb: (isInsideWomb: boolean) => void
 ) {
-  const wombSize = useRef(startSize)
-
   useEffect(() => {
     document.documentElement.style.setProperty("--html-overflow", `hidden`)
     document.documentElement.style.setProperty("--womb-size", `${startSize}px`)
@@ -30,7 +28,11 @@ export function useScrollAnimations(
     document.documentElement.style.setProperty("--hint-scale", `1`)
     document.documentElement.style.setProperty(
       "--hint-dist",
-      `${startSize * 2}px`
+      `${startSize * 2 + 25}px`
+    )
+    document.documentElement.style.setProperty(
+      "--hint-letter-spacing",
+      `0.1rem`
     )
   }, [])
 
@@ -75,7 +77,28 @@ function updateWheelAnimations(
   const hintScale = getMappedValue(wombSize, startSize, maxSize, 1, 24)
   document.documentElement.style.setProperty("--hint-scale", `${hintScale}`)
 
-  document.documentElement.style.setProperty("--hint-dist", `${wombSize * 2}px`)
+  const hintDist = getMappedValue(
+    wombSize,
+    startSize,
+    maxSize,
+    startSize * 2 + 25,
+    maxSize * 2.25
+  )
+
+  document.documentElement.style.setProperty("--hint-dist", `${hintDist}px`)
+
+  const hintLetterSpacing = getMappedValue(
+    wombSize,
+    startSize,
+    maxSize,
+    0.1,
+    1.5
+  )
+
+  document.documentElement.style.setProperty(
+    "--hint-letter-spacing",
+    `${hintLetterSpacing}rem`
+  )
 
   const textScale = getMappedValue(
     wombSize,

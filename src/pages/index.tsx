@@ -1,12 +1,9 @@
 import ExpandingTitle from "@/components/ExpandingTitle"
 import { FirstBlurb } from "@/components/FirstBlurb"
 import { SecondBlurb } from "@/components/SecondBlurb"
-import { easeInQuad, easeInSine } from "@/utils/easingFns"
 import { getMappedValue } from "@/utils/getMappedValue"
 import useEventListener from "@/utils/useEventListener"
 import { useScrollAnimations } from "@/utils/useScrollAnimations"
-import { set } from "lodash"
-import { type } from "os"
 import { useEffect, useRef, useState } from "react"
 
 /**

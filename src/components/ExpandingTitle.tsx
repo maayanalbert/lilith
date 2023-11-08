@@ -1,5 +1,3 @@
-import { ChevronDownIcon } from "@heroicons/react/24/solid"
-
 export default function ExpandingTitle() {
   return (
     <div
@@ -16,7 +14,10 @@ export default function ExpandingTitle() {
         </p>
       </div>
       <div className="absolute">
-        <p className="text-white fade-in-hint expand-hint font-light">
+        <p
+          className="fade-in-hint expand-hint font-light text-3xl"
+          style={{ color: "gray" }}
+        >
           {"(scroll)"}
         </p>
       </div>
