@@ -156,7 +156,7 @@ function NotifyField() {
         </div>
       </div>
       <div
-        className={`absolute flex flex-col items-center top-0 
+        className={`absolute 
         transition-opacity duration-[600ms] ease-in delay-[1500ms]`}
         style={{
           pointerEvents: isFinished ? undefined : "none",
@@ -166,19 +166,6 @@ function NotifyField() {
         <p className={`text-gray-500 sm:text-base text-sm`}>
           Your response has been submitted
         </p>
-        <div>
-          <div
-            className={`rounded-full sm:mt-3.5 mt-2
-         cursor-pointer transition-all
-        duration-300 ease-in-out sm:text-base text-sm relative flex items-center justify-center h-[60px] w-[100px]`}
-          >
-            <div
-              className="h-full w-full absolute rounded-full blur-[2px] bg-black"
-              style={{ zIndex: -1 }}
-            />
-            <p className="text-white">Exit Eve</p>
-          </div>
-        </div>
       </div>
     </div>
   )
