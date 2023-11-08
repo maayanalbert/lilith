@@ -44,7 +44,6 @@ function NotifyField() {
   const [isFinished, setIsFinished] = useState(false)
   const [state, setState] = useState<"NOTIFY" | "EMAIL">("NOTIFY")
   const [onEmailDelayed, setOnEmailDelayed] = useState(false)
-  const [finishedAnimationDone, setFinishedAnimationDone] = useState(false)
   useEventListener("keydown", (e) => {
     if (e.key === "Shift") {
       setState("NOTIFY")
@@ -66,24 +65,18 @@ function NotifyField() {
   const [email, setEmail] = useState("")
 
   return (
-    <div
-      className={`${
-        finishedAnimationDone
-          ? "cursor-pointer hover:scale-150 hover:blur-[2px]"
-          : ""
-      } transition-all duration-[2000ms] ease-out`}
-    >
+    <div className="sm:h-[47px] h-[43px] flex justify-center items-center relative w-full">
       <div
         className={`${
           isFinished
-            ? "sm:w-[47px] w-[43px] blur-[1px]"
+            ? "sm:w-[47px] w-[43px] opacity-0 blur-[8px] scale-0"
             : "sm:w-[360px] w-[300px]"
         } 
       flex justify-center items-center overflow-hidden rounded-full`}
         style={{
           transitionProperty: "width, opacity, filter, transform",
-          transitionDuration: "600ms, 600ms, 1200ms, 600ms",
-          transitionDelay: "0ms, 600ms, 000ms, 600ms",
+          transitionDuration: "600ms, 600ms, 600ms, 600ms",
+          transitionDelay: "0ms, 600ms, 600ms, 600ms",
           transitionTimingFunction: `${easeIn}, ${easeOut}, ${easeOut}, ${easeOut}`,
         }}
       >
@@ -91,7 +84,7 @@ function NotifyField() {
           ref={ref}
           className={`rounded-full py-[8px] relative 
          whitespace-nowrap border border-red-600
-         ${isFinished ? "bg-black border-black" : "bg-white"}
+         ${isFinished ? "bg-red-600" : "bg-white"}
           ${state === "EMAIL" && "sm:w-[360px] w-[300px]"}
           ${
             state === "NOTIFY" &&
@@ -135,8 +128,7 @@ function NotifyField() {
         transition-opacity duration-[350ms] flex flex-row justify-between items-center`}
             style={{
               opacity: state === "EMAIL" && !isFinished ? 1 : 0,
-              pointerEvents:
-                state === "EMAIL" && !isFinished ? undefined : "none",
+              pointerEvents: state === "EMAIL" ? undefined : "none",
               transitionTimingFunction: state === "EMAIL" ? easeIn : easeOut,
               transitionDelay:
                 state === "EMAIL" && !isFinished ? "350ms" : "0ms",
@@ -157,16 +149,23 @@ function NotifyField() {
               <ArrowRightIcon
                 className={`sm:h-[20px] sm:w-[20px] h-[18px] w-[18px]
          ${email ? "text-black cursor-pointer" : "text-gray-400 "}`}
-                onClick={() => {
-                  if (email) {
-                    setIsFinished(true)
-                    setTimeout(() => setFinishedAnimationDone(true), 1200)
-                  }
-                }}
+                onClick={() => !!email && setIsFinished(true)}
               />
             </div>
           </div>
         </div>
+      </div>
+      <div
+        className={`absolute 
+        transition-opacity duration-[600ms] ease-in delay-[1200ms]`}
+        style={{
+          pointerEvents: isFinished ? undefined : "none",
+          opacity: isFinished ? 1 : 0,
+        }}
+      >
+        <p className={`sm:text-base text-sm text-gray-500`}>
+          Your response has been submitted
+        </p>
       </div>
     </div>
   )
