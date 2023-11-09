@@ -40,7 +40,7 @@
   0% {
     opacity: 0;
   }
-  60% {
+  55% {
     opacity: 0;
     filter: blur(2px);
   }
