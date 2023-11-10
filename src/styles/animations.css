@@ -31,7 +31,7 @@
 
 .hint-fade-in {
   animation-name: hint-fade-in-opacity;
-  animation-duration: 4200ms;
+  animation-duration: 4100ms;
   animation-timing-function: ease-in-out;
 }
 
@@ -39,7 +39,7 @@
   0% {
     opacity: 0;
   }
-  76% {
+  80% {
     opacity: 0;
   }
   100% {
