@@ -94,11 +94,11 @@ function updateWombStyles(wombSize: number, maxSize: number) {
   if (!womb) return
 
   // update womb values
-  const wombBlur = getMappedValue(wombSize, startSize, maxSize, 0, 10)
+  // const wombBlur = getMappedValue(wombSize, startSize, maxSize, 0, 10)
 
   womb.style.height = `${wombSize}px`
   womb.style.width = `${wombSize}px`
-  womb.style.filter = `blur(${wombBlur}px)`
+  // womb.style.filter = `blur(${wombBlur}px)`
 }
 
 /**
@@ -120,17 +120,17 @@ function updateTitleStyle(wombSize: number, maxSize: number) {
   title.style.scale = `${titleScale}`
 
   const titleOpacity =
-    wombSize < (2.75 * maxSize) / 7
+    wombSize < (3 * maxSize) / 7
       ? getMappedValue(
           wombSize,
           startSize,
-          (2.75 * maxSize) / 7,
+          (3 * maxSize) / 7,
           0,
           1,
           easeInCubic
         )
-      : wombSize > (3 * maxSize) / 7
-      ? getMappedValue(wombSize, (3 * maxSize) / 7, maxSize, 1, 0)
+      : wombSize > (3.25 * maxSize) / 7
+      ? getMappedValue(wombSize, (3.25 * maxSize) / 7, maxSize, 1, 0)
       : 1
 
   title.style.opacity = `${titleOpacity}`
