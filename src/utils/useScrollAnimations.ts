@@ -3,6 +3,7 @@ import {
   easeInCubic,
   easeInCustom,
   easeInExpo,
+  easeInOutSine,
   easeInQuad,
   easeInQuart,
   easeInSine,
@@ -12,12 +13,13 @@ import {
 import { getMappedValue } from "./getMappedValue"
 import useEventListener from "./useEventListener"
 
-const startSize = 88
+export const startSize = 88
 
 export function useScrollAnimations(
   scrollOverlayRef: MutableRefObject<HTMLDivElement | null>,
   setMainPageScrollable: (mainPageScrollable: boolean) => void,
-  setIsInsideWomb: (isInsideWomb: boolean) => void
+  setIsInsideWomb: (isInsideWomb: boolean) => void,
+  isInsideWomb: boolean
 ) {
   useEffect(() => {
     const womb = document.querySelector(".womb") as HTMLDivElement | null
@@ -54,12 +56,9 @@ export function useScrollAnimations(
   useEventListener(
     "scroll",
     () => {
-      if (!scrollOverlayRef.current) return
+      if (!scrollOverlayRef.current || isInsideWomb) return
 
-      const maxSize =
-        (getDist(0, 0, window.innerWidth / 2, window.innerHeight / 2) + 10) *
-        2 *
-        2
+      const maxSize = getMaxWombSize(window.innerWidth, window.innerHeight)
 
       const wombSize = Math.min(
         scrollOverlayRef.current.scrollTop + startSize,
@@ -112,25 +111,33 @@ function updateTitleStyle(wombSize: number, maxSize: number) {
     wombSize,
     startSize,
     maxSize,
-    0.5,
+    0.3,
     15,
     easeInQuad
   )
 
   title.style.scale = `${titleScale}`
 
+  const inflectionPoint = 4
   const titleOpacity =
-    wombSize < (3 * maxSize) / 7
+    wombSize < (inflectionPoint * maxSize) / 7
       ? getMappedValue(
           wombSize,
           startSize,
-          (3 * maxSize) / 7,
+          (inflectionPoint * maxSize) / 7,
           0,
           1,
-          easeInCubic
+          easeInOutSine
         )
-      : wombSize > (3.25 * maxSize) / 7
-      ? getMappedValue(wombSize, (3.25 * maxSize) / 7, maxSize, 1, 0)
+      : wombSize > (inflectionPoint * maxSize) / 7
+      ? getMappedValue(
+          wombSize,
+          (inflectionPoint * maxSize) / 7,
+          maxSize,
+          1,
+          0,
+          easeOutQuad
+        )
       : 1
 
   title.style.opacity = `${titleOpacity}`
@@ -169,19 +176,13 @@ function updateHintStyles(wombSize: number, maxSize: number) {
           startSize,
           maxSize * 0.5,
           startSize * 2 + 20,
-          maxSize * 2.25
+          maxSize * 2
         )
       : getMappedValue(wombSize, 0, startSize, 0, startSize * 2 + 20)
 
   document.documentElement.style.setProperty("--hint-dist", `${hintDist}px`)
 
-  const hintLetterSpacing = getMappedValue(
-    wombSize,
-    startSize,
-    maxSize,
-    0.1,
-    1.5
-  )
+  const hintLetterSpacing = getMappedValue(wombSize, startSize, maxSize, 0.1, 1)
 
   document.documentElement.style.setProperty(
     "--hint-letter-spacing",
@@ -202,6 +203,10 @@ function updateHintStyles(wombSize: number, maxSize: number) {
   // document.documentElement.style.setProperty("--womb-blur", `${hintBlur}px`)
 }
 
-function getDist(x1: number, y1: number, x2: number, y2: number) {
+export function getMaxWombSize(windowWidth: number, windowHeight: number) {
+  return (getDist(0, 0, windowWidth / 2, windowHeight / 2) + 10) * 2 * 2
+}
+
+export function getDist(x1: number, y1: number, x2: number, y2: number) {
   return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2))
 }

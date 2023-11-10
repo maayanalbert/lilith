@@ -39,7 +39,7 @@
   0% {
     opacity: 0;
   }
-  73% {
+  70% {
     opacity: 0;
   }
   100% {
@@ -53,4 +53,9 @@
   filter: blur(var(--womb-blur));
   letter-spacing: var(--hint-letter-spacing);
   opacity: var(--hint-opacity);
+}
+
+.fading-content {
+  transition-property: opacity;
+  transition-timing-function: ease-out;
 }

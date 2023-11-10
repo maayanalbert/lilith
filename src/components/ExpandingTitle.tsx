@@ -28,8 +28,7 @@ export default function ExpandingTitle() {
         <p
           className={`${
             windowWidth >= 640 && "hint-fade-in"
-          } expand-hint font-light text-3xl`}
-          style={{ color: "gray" }}
+          } expand-hint font-light text-3xl text-gray-500`}
         >
           {"(scroll)"}
         </p>

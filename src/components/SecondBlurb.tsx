@@ -13,9 +13,11 @@ import { useMutation } from "react-query"
 
 interface Props {
   isVisible: boolean
+  setExitHovering: (value: boolean) => void
+  setExited: (value: boolean) => void
 }
 
-export function SecondBlurb({ isVisible }: Props) {
+export function SecondBlurb({ isVisible, setExitHovering, setExited }: Props) {
   return (
     <div className="w-full h-full flex items-center justify-center">
       <div
@@ -27,33 +29,55 @@ export function SecondBlurb({ isVisible }: Props) {
           opacity: isVisible ? 1 : 0,
         }}
       >
-        <p className="text-lg sm:text-xl font-normal">Take a bite</p>
+        <p className="text-lg sm:text-xl font-normal fading-content">
+          Take a bite
+        </p>
         <div className="h-6" />
-        <p>Eve will launch as a mobile app this summer.</p>
-        <p>
+        <p className="fading-content">
+          Eve will launch as a mobile app this summer.
+        </p>
+        <p className="fading-content">
           To learn more, contact{" "}
           <a className="underline" href="mailto:maayan@eve.space">
             maayan@eve.space.
           </a>
         </p>
         <div className="h-8" />
-        <NotifyField />
+        <NotifyField setExitHovering={setExitHovering} setExited={setExited} />
       </div>
     </div>
   )
 }
 
-function NotifyField() {
+interface NotifyFieldProps {
+  setExitHovering: (value: boolean) => void
+  setExited: (value: boolean) => void
+}
+
+function NotifyField({ setExitHovering, setExited }: NotifyFieldProps) {
   const [isFinished, setIsFinished] = useState(false)
+  const [isFinishedDelayed, setIsFinishedDelayed] = useState(false)
   const [state, setState] = useState<"NOTIFY" | "EMAIL">("NOTIFY")
   const [onEmailDelayed, setOnEmailDelayed] = useState(false)
   const [error, setError] = useState(false)
+  const [mouseMovedSinceFinished, setMouseMovedSinceFinished] = useState(false)
+
+  useEventListener(
+    "mousemove",
+    () => isFinishedDelayed && setMouseMovedSinceFinished(true),
+    [isFinishedDelayed]
+  )
+
   useEventListener("keydown", (e) => {
-    // if (e.key === "Escape") {
-    //   setState("NOTIFY")
-    //   setOnEmailDelayed(false)
-    //   setIsFinished(false)
-    // }
+    if (e.key === "Escape") {
+      // reset for debugging
+      setState("NOTIFY")
+      setOnEmailDelayed(false)
+      setIsFinished(false)
+      setExitHovering(false)
+      setIsFinishedDelayed(false)
+      setExited(false)
+    }
 
     if (e.key === "Enter" && state === "EMAIL" && email) {
       mutateAsync()
@@ -63,6 +87,7 @@ function NotifyField() {
   // mutate call for sending the email
   const { mutateAsync } = useMutation(
     () => {
+      return
       const axiosCall = async () => {
         axios.post(
           "https://getform.io/f/f0b97eb1-3068-4702-8fbb-f9fd0061d3f2",
@@ -80,6 +105,7 @@ function NotifyField() {
           setError(true)
         } else {
           setIsFinished(true)
+          setTimeout(() => setIsFinishedDelayed(true), 1100)
         }
       },
     }
@@ -91,7 +117,7 @@ function NotifyField() {
   useOutsideClick(ref, () => {
     if (state === "EMAIL") {
       setState("NOTIFY")
-      setTimeout(() => setOnEmailDelayed(false), 100)
+      setTimeout(() => setOnEmailDelayed(false), 1100) // delay for submitted text appearing
     }
   })
 
@@ -103,7 +129,7 @@ function NotifyField() {
         className={`${
           isFinished
             ? "w-[47px] opacity-0 blur-[8px] scale-0"
-            : "sm:w-[360px] w-[330px]"
+            : "sm:w-[400px] w-[330px]"
         } 
       flex justify-center items-center overflow-hidden rounded-full h-[47px]`}
         style={{
@@ -118,7 +144,7 @@ function NotifyField() {
           className={`rounded-full relative h-full
          whitespace-nowrap border border-red-600
          ${isFinished ? "bg-red-600" : "bg-white"}
-          ${state === "EMAIL" && "sm:w-[360px] w-[330px]"}
+          ${state === "EMAIL" && "sm:w-[400px] w-[330px]"}
           ${
             state === "NOTIFY" &&
             "hover:bg-red-600 w-[130px] hover:text-white text-red-600"
@@ -205,9 +231,42 @@ function NotifyField() {
           opacity: isFinished ? 1 : 0,
         }}
       >
-        <p className={`sm:text-base text-sm text-gray-600`}>
-          Your response has been submitted
-        </p>
+        <div
+          className={`sm:text-base text-sm text-gray-600 flex flex-row gap-[5px]`}
+          style={{
+            pointerEvents:
+              isFinishedDelayed && mouseMovedSinceFinished ? undefined : "none",
+          }}
+        >
+          <p className="fading-content">
+            {"Your response has been submitted, "}
+          </p>
+          <u
+            className="text-red-600 cursor-pointer"
+            onMouseEnter={() => {
+              setExitHovering(true)
+              const fadingElements =
+                document.querySelectorAll(".fading-content")
+
+              fadingElements.forEach((element: any) => {
+                element.style.opacity = 0.65
+                element.style.transitionDuration = "300ms"
+              })
+            }}
+            onMouseLeave={() => {
+              setExitHovering(false)
+              const fadingElements =
+                document.querySelectorAll(".fading-content")
+              fadingElements.forEach((element: any) => {
+                element.style.opacity = 1
+                element.style.transitionDuration = "450ms"
+              })
+            }}
+            onClick={() => setExited(true)}
+          >
+            Exit Eve
+          </u>
+        </div>
       </div>
     </div>
   )

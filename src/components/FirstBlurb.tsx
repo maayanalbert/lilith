@@ -2,9 +2,10 @@ import { ArrowDownIcon, ChevronDownIcon } from "@heroicons/react/24/solid"
 
 interface Props {
   isVisible: boolean
+  exited: boolean
 }
 
-export function FirstBlurb({ isVisible }: Props) {
+export function FirstBlurb({ isVisible, exited }: Props) {
   return (
     <div
       className={`h-full w-full flex items-center justify-center ${
@@ -18,23 +19,25 @@ export function FirstBlurb({ isVisible }: Props) {
         opacity: isVisible ? 1 : 0,
       }}
     >
-      <div // text
-        className={`absolute flex font-light 
+      {!exited && (
+        <div // text
+          className={`absolute flex font-light fading-content
           flex-col w-[350px] sm:w-[530px] text-center sm:text-lg`}
-      >
-        <p className="sm:text-xl text-lg font-normal">
-          Eve is a space for your thoughts
-        </p>
-        <div className="h-6" />
-        <p>
-          Ancient rabbinic texts state that, as the earth's population sprang
-          from Adam, each human soul contains its own unique world.
-        </p>
-        <div className="h-6" />
-        <p>Within Eve, you'll uncover yours.</p>
-      </div>
+        >
+          <p className="sm:text-xl text-lg font-normal">
+            Eve is a space for your thoughts
+          </p>
+          <div className="h-6" />
+          <p>
+            Ancient rabbinic texts state that, as the earth's population sprang
+            from Adam, each human soul contains its own unique world.
+          </p>
+          <div className="h-6" />
+          <p>Within Eve, you'll uncover yours.</p>
+        </div>
+      )}
       <div
-        className="absolute w-full flex justify-center items-center bottom-0"
+        className="absolute w-full flex justify-center items-center bottom-0 fading-content"
         style={{ paddingBottom: `8svh` }}
       >
         <ArrowDownIcon
