@@ -87,7 +87,6 @@ function NotifyField({ setExitHovering, setExited }: NotifyFieldProps) {
   // mutate call for sending the email
   const { mutateAsync } = useMutation(
     () => {
-      return
       const axiosCall = async () => {
         axios.post(
           "https://getform.io/f/f0b97eb1-3068-4702-8fbb-f9fd0061d3f2",
