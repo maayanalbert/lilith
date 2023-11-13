@@ -35,21 +35,10 @@ export function useScrollAnimations(
 
     title.style.opacity = "0"
     title.style.scale = "1"
-    // title.style.filter = `blur(2px)`
 
     document.documentElement.style.setProperty("--html-overflow", `hidden`)
     document.documentElement.style.setProperty("--body-height", `100%`)
 
-    document.documentElement.style.setProperty("--hint-scale", `1`)
-    document.documentElement.style.setProperty(
-      "--hint-dist",
-      `${startSize * 2 + 20}px`
-    )
-    document.documentElement.style.setProperty(
-      "--hint-letter-spacing",
-      `0.1rem`
-    )
-    document.documentElement.style.setProperty("--womb-blur", `0px`)
     document.documentElement.style.setProperty("--hint-opacity", `1`)
   }, [])
 
@@ -74,7 +63,7 @@ export function useScrollAnimations(
       if (wombSize === maxSize) {
         setTimeout(() => {
           document.documentElement.style.setProperty("--html-overflow", `auto`)
-          document.documentElement.style.setProperty("--body-height", `180%`)
+          document.documentElement.style.setProperty("--body-height", `268svh`)
 
           setMainPageScrollable(true)
         }, 750)
@@ -92,12 +81,8 @@ function updateWombStyles(wombSize: number, maxSize: number) {
   const womb = document.querySelector(".womb") as HTMLDivElement | null
   if (!womb) return
 
-  // update womb values
-  // const wombBlur = getMappedValue(wombSize, startSize, maxSize, 0, 10)
-
   womb.style.height = `${wombSize}px`
   womb.style.width = `${wombSize}px`
-  // womb.style.filter = `blur(${wombBlur}px)`
 }
 
 /**
@@ -111,84 +96,29 @@ function updateTitleStyle(wombSize: number, maxSize: number) {
     wombSize,
     startSize,
     maxSize,
-    0.3,
-    15,
+    0.1,
+    1,
     easeInQuad
   )
 
   title.style.scale = `${titleScale}`
 
-  const inflectionPoint = 4
-  const titleOpacity =
-    wombSize < (inflectionPoint * maxSize) / 7
-      ? getMappedValue(
-          wombSize,
-          startSize,
-          (inflectionPoint * maxSize) / 7,
-          0,
-          1,
-          easeInOutSine
-        )
-      : wombSize > (inflectionPoint * maxSize) / 7
-      ? getMappedValue(
-          wombSize,
-          (inflectionPoint * maxSize) / 7,
-          maxSize,
-          1,
-          0,
-          easeOutQuad
-        )
-      : 1
+  const titleOpacity = getMappedValue(
+    wombSize,
+    startSize,
+    maxSize,
+    0,
+    1,
+    easeInOutSine
+  )
 
   title.style.opacity = `${titleOpacity}`
-
-  // const titleBlur =
-  //   wombSize < (2.75 * maxSize) / 7
-  //     ? getMappedValue(
-  //         wombSize,
-  //         startSize,
-  //         (2.75 * maxSize) / 7,
-  //         2,
-  //         0,
-  //         easeInSine
-  //       )
-  //     : wombSize > (3 * maxSize) / 7
-  //     ? getMappedValue(wombSize, (3 * maxSize) / 7, maxSize, 0, 2)
-  //     : 0
-
-  // title.style.filter = `blur(${titleBlur}px)`
 }
 
 /**
  * Hint styles
  */
 function updateHintStyles(wombSize: number, maxSize: number) {
-  const hintScale =
-    wombSize >= startSize
-      ? getMappedValue(wombSize, startSize, maxSize * 0.25, 1, 24)
-      : getMappedValue(wombSize, 0, startSize, 0, 1)
-  document.documentElement.style.setProperty("--hint-scale", `${hintScale}`)
-
-  const hintDist =
-    wombSize >= startSize
-      ? getMappedValue(
-          wombSize,
-          startSize,
-          maxSize * 0.5,
-          startSize * 2 + 20,
-          maxSize * 2
-        )
-      : getMappedValue(wombSize, 0, startSize, 0, startSize * 2 + 20)
-
-  document.documentElement.style.setProperty("--hint-dist", `${hintDist}px`)
-
-  const hintLetterSpacing = getMappedValue(wombSize, startSize, maxSize, 0.1, 1)
-
-  document.documentElement.style.setProperty(
-    "--hint-letter-spacing",
-    `${hintLetterSpacing}rem`
-  )
-
   const hintOpacity = getMappedValue(
     wombSize,
     startSize,
@@ -198,13 +128,10 @@ function updateHintStyles(wombSize: number, maxSize: number) {
     easeOutSine
   )
   document.documentElement.style.setProperty("--hint-opacity", `${hintOpacity}`)
-
-  // const hintBlur = getMappedValue(wombSize, startSize, maxSize, 0, 20)
-  // document.documentElement.style.setProperty("--womb-blur", `${hintBlur}px`)
 }
 
 export function getMaxWombSize(windowWidth: number, windowHeight: number) {
-  return (getDist(0, 0, windowWidth / 2, windowHeight / 2) + 10) * 2 * 2
+  return (getDist(0, 0, windowWidth / 2, windowHeight / 2) + 10) * 2 * 1.5
 }
 
 export function getDist(x1: number, y1: number, x2: number, y2: number) {

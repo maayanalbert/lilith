@@ -1,51 +1,22 @@
 import { ArrowDownIcon, ChevronDownIcon } from "@heroicons/react/24/solid"
 
 interface Props {
-  isVisible: boolean
-  exited: boolean
+  isInsideWomb: boolean
 }
 
-export function FirstBlurb({ isVisible, exited }: Props) {
+export function FirstBlurb({ isInsideWomb }: Props) {
   return (
-    <div
-      className={`h-full w-full flex items-center justify-center ${
-        isVisible ? "" : "cursor-default"
-      }`}
-      style={{
-        transitionProperty: "opacity",
-        transitionDuration: "750ms",
-        transitionDelay: "250ms",
-        transitionTimingFunction: "cubic-bezier(0.4, 0, 0.2, 1)",
-        opacity: isVisible ? 1 : 0,
-      }}
-    >
-      {!exited && (
-        <div // text
-          className={`absolute flex font-light fading-content
-          flex-col w-[350px] sm:w-[530px] text-center sm:text-lg`}
+    <div className="absolute flex flex-col h-full w-full justify-center items-center">
+      <p className="whitespace-nowrap select-none sm:text-8xl text-4xl cursor-default font-display">
+        Welcome to Eve
+      </p>
+      <div className="relative w-full flex justify-center sm:mt-5 mt-2">
+        <p
+          className="font-light font-display sm:text-3xl text-xl title-trimmings text-center"
+          style={{ opacity: isInsideWomb ? 1 : 0 }}
         >
-          <p className="sm:text-xl text-lg font-normal">
-            Eve is a space for your thoughts
-          </p>
-          <div className="h-6" />
-          <p>
-            Ancient rabbinic texts state that, as the earth's population sprang
-            from Adam, each human soul contains its own unique world.
-          </p>
-          <div className="h-6" />
-          <p>Within Eve, you'll uncover yours.</p>
-        </div>
-      )}
-      <div
-        className="absolute w-full flex justify-center items-center bottom-0 fading-content"
-        style={{ paddingBottom: `8svh` }}
-      >
-        <ArrowDownIcon
-          className="h-6 w-6"
-          width={0.5}
-          stroke="white"
-          strokeWidth={0.5}
-        />
+          A space for your thoughts
+        </p>
       </div>
     </div>
   )

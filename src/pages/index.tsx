@@ -1,13 +1,13 @@
-import ExpandingTitle from "@/components/ExpandingTitle"
 import { FirstBlurb } from "@/components/FirstBlurb"
-import { InnerWombShadow, easeInQuad } from "@/components/InnerWombShadow"
-import { SecondBlurb } from "@/components/SecondBlurb"
+import SecondBlurb from "@/components/SecondBlurb"
+import { ThirdBlurb } from "@/components/ThirdBlurb"
 import { getMappedValue } from "@/utils/getMappedValue"
 import useEventListener from "@/utils/useEventListener"
 import {
   getMaxWombSize,
   useScrollAnimations,
 } from "@/utils/useScrollAnimations"
+import { ArrowDownIcon } from "@heroicons/react/24/solid"
 import { useEffect, useRef, useState } from "react"
 
 /**
@@ -21,9 +21,9 @@ export default function Home() {
   const [mainPageScrollable, setMainPageScrollable] = useState(false)
   const [isInsideWomb, setIsInsideWomb] = useState(false)
   const [secondBlurbVisible, setSecondBlurbVisible] = useState(false)
+  const [thirdBlurbVisible, setThirdBlurbVisible] = useState(false)
+
   const scrollOverlayRef = useRef<HTMLDivElement>(null)
-  const [exitHovering, setExitHovering] = useState(false)
-  const [exited, setExited] = useState(false)
 
   useScrollAnimations(
     scrollOverlayRef,
@@ -33,74 +33,102 @@ export default function Home() {
   )
 
   useEventListener("scroll", () => {
-    if (window.scrollY > window.innerHeight * 0.4) {
+    const maxScrollY = document.body.scrollHeight - window.innerHeight
+
+    const scrollChunk = maxScrollY * 0.33
+
+    if (window.scrollY > scrollChunk * 0.5) {
       setSecondBlurbVisible(true)
+    }
+    if (window.scrollY > scrollChunk * 1.75) {
+      setThirdBlurbVisible(true)
     }
   })
 
+  const [windowWidth, setWindowWidth] = useState(640)
+
+  useEffect(() => {
+    setWindowWidth(window.innerWidth)
+  }, [])
+
   return (
     <>
-      {isInsideWomb && (
-        <div className="absolute h-full w-full">
-          <InnerWombShadow exitHovering={exitHovering} exited={exited} />
+      <div className="w-full h-full overflow-hidden relative">
+        <div className="absolute w-full bg-black" style={{ height: "100svh" }}>
+          <div className="relative h-full w-full">
+            <div
+              className="absolute"
+              style={{
+                transform: "translate(-50%, -50%)",
+                top: "50%",
+                left: "50%",
+              }}
+            >
+              <p
+                className={`${
+                  windowWidth >= 640 && "hint-enter"
+                } expand-hint font-light text-3xl text-zinc-500`}
+                style={{ paddingTop: 88 * 2 + 20 }}
+              >
+                {"(scroll)"}
+              </p>
+            </div>
+            <div
+              className={`rounded-full womb bg-white absolute ${
+                windowWidth >= 640 && "womb-enter"
+              }`}
+              style={{
+                transform: "translate(-50%, -50%)",
+                top: "50%",
+                left: "50%",
+              }}
+            />
+          </div>
         </div>
-      )}
-      <div className="w-full h-full overflow-hidden">
+
         <div
-          className="w-full h-fit"
+          className="w-full h-fit title"
           style={{
-            // hovering tansition
-            transform: `scale(${exitHovering || exited ? 0.96 : 1})`,
-            transformOrigin: "50% 75%",
-            transitionProperty: "all",
-            transitionDuration: exitHovering ? "300ms" : "450ms",
-            transitionTimingFunction: "ease-out",
+            transformOrigin: "50% calc(16.6666% + 60px)",
           }}
         >
           <div
-            className="w-full h-fit"
+            className="w-full relative"
             style={{
-              // exited transition
-              transform: `scale(${exited ? 0 : 1})`,
-              transformOrigin: "50% 72%",
-              transitionProperty: "all",
-              transitionDuration: "1000ms",
-              transitionTimingFunction: easeInQuad,
-              opacity: exited ? 0 : 1,
+              height: "100svh",
             }}
           >
-            <div
-              className="w-full relative"
-              style={{
-                height: "100svh", //https://stackoverflow.com/questions/37112218/css3-100vh-not-constant-in-mobile-browser
-              }}
-            >
-              {!isInsideWomb && <ExpandingTitle />}
-              <div className="h-full w-full absolute top-0">
-                <FirstBlurb isVisible={isInsideWomb} exited={exited} />
-              </div>
-            </div>
-            <div
-              className="w-full"
-              style={{
-                height: "100svh",
-                position: "relative",
-                zIndex: 1,
-                marginTop: "-20vh",
-              }}
-            >
-              <SecondBlurb
-                isVisible={secondBlurbVisible}
-                setExitHovering={setExitHovering}
-                setExited={setExited}
-              />
-              <div
-                className="absolute bottom-0 w-full flex items-center justify-center font-light text-sm fading-content"
-                style={{ paddingBottom: "8svh" }}
-              >
-                Copyright Eve Technologies 2024
-              </div>
-            </div>
+            <FirstBlurb isInsideWomb={isInsideWomb} />
+          </div>
+
+          <div
+            className="w-full"
+            style={{
+              height: "100svh",
+              position: "relative",
+              zIndex: 1,
+              marginTop: "-16vh",
+            }}
+          >
+            <SecondBlurb
+              isVisible={secondBlurbVisible}
+              isInsideWomb={isInsideWomb}
+            />
+          </div>
+
+          <div
+            className="w-full"
+            style={{
+              height: "100svh",
+              position: "relative",
+              zIndex: 1,
+              marginTop: "-16vh",
+            }}
+          >
+            <ThirdBlurb
+              isVisible={thirdBlurbVisible}
+              isInsideWomb={isInsideWomb}
+            />
           </div>
         </div>
       </div>

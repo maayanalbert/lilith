@@ -1,10 +1,10 @@
-.womb-fade-in {
-  animation-name: womb-fade-in-opacity, womb-fade-in-blur;
+.womb-enter {
+  animation-name: womb-enter-opacity, womb-enter-blur;
   animation-duration: 4000ms, 3333ms;
   animation-timing-function: ease-in, linear;
 }
 
-@keyframes womb-fade-in-opacity {
+@keyframes womb-enter-opacity {
   0% {
     opacity: 0;
   }
@@ -13,11 +13,10 @@
   }
   100% {
     opacity: 1;
-    filter: blur(0px);
   }
 }
 
-@keyframes womb-fade-in-blur {
+@keyframes womb-enter-blur {
   0% {
     filter: blur(5px);
   }
@@ -29,13 +28,13 @@
   }
 }
 
-.hint-fade-in {
-  animation-name: hint-fade-in-opacity;
+.hint-enter {
+  animation-name: hint-enter;
   animation-duration: 3850ms;
   animation-timing-function: ease-in-out;
 }
 
-@keyframes hint-fade-in-opacity {
+@keyframes hint-enter {
   0% {
     opacity: 0;
   }
@@ -55,7 +54,9 @@
   opacity: var(--hint-opacity);
 }
 
-.fading-content {
+.title-trimmings {
+  transition-duration: 500ms;
+  transition-delay: 250ms;
+  transition-timing-function: ease-in;
   transition-property: opacity;
-  transition-timing-function: ease-out;
 }

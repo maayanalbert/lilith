@@ -6,13 +6,17 @@
   font-family: "Helvetica", sans-serif;
 }
 
+.font-display {
+  font-family: "Helvetica Neueu", sans-serif;
+}
+
 html {
   height: 100%;
   overflow: var(--html-overflow);
 }
 
 body {
-  height: var(--body-height); /*  108%: 100vh + 100vh - 20vh */
+  height: var(--body-height); /*  268%: 100vh + 100vh - 16vh + 100vh - 16vh */
   background-color: white;
 }
 
