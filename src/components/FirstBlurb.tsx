@@ -12,7 +12,7 @@ export function FirstBlurb({ isInsideWomb }: Props) {
       </p>
       <div className="relative w-full flex justify-center sm:mt-5 mt-2">
         <p
-          className="font-light font-display sm:text-3xl text-xl title-trimmings text-center"
+          className="font-light font-display sm:text-3xl text-lg title-trimmings text-center"
           style={{ opacity: isInsideWomb ? 1 : 0 }}
         >
           A space for your thoughts
