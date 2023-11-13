@@ -63,8 +63,10 @@ export function useScrollAnimations(
       if (wombSize === maxSize) {
         setTimeout(() => {
           document.documentElement.style.setProperty("--html-overflow", `auto`)
-          document.documentElement.style.setProperty("--body-height", `268svh`)
-
+          document.documentElement.style.setProperty(
+            "--body-height",
+            `${100 + 100 - 16 + 100 - 16}svh`
+          )
           setMainPageScrollable(true)
         }, 750)
       }
@@ -103,14 +105,7 @@ function updateTitleStyle(wombSize: number, maxSize: number) {
 
   title.style.scale = `${titleScale}`
 
-  const titleOpacity = getMappedValue(
-    wombSize,
-    startSize,
-    maxSize,
-    0,
-    1,
-    easeInOutSine
-  )
+  const titleOpacity = getMappedValue(wombSize, startSize, maxSize, 0, 1)
 
   title.style.opacity = `${titleOpacity}`
 }

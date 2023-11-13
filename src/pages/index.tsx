@@ -89,7 +89,7 @@ export default function Home() {
         <div
           className="w-full h-fit title"
           style={{
-            transformOrigin: "50% calc(16.6666% + 60px)",
+            transformOrigin: "50% calc(16.6666% + 50px)",
           }}
         >
           <div
