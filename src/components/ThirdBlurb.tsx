@@ -14,21 +14,16 @@ import { useMutation } from "react-query"
 
 interface Props {
   isVisible: boolean
-  isInsideWomb: boolean
 }
 
-export function ThirdBlurb({ isVisible, isInsideWomb }: Props) {
+export function ThirdBlurb({ isVisible }: Props) {
   return (
     <div className="w-full h-full flex items-center justify-center">
       <div
         className="absolute w-full flex justify-center items-end top-0"
         style={{ height: `9svh` }}
       >
-        <ArrowDownIcon
-          width={20}
-          height={20}
-          style={{ opacity: isInsideWomb ? 1 : 0 }}
-        />
+        <ArrowDownIcon width={20} height={20} />
       </div>
       <div
         className="text-center flex flex-col items-center"
@@ -64,7 +59,7 @@ export function ThirdBlurb({ isVisible, isInsideWomb }: Props) {
       </div>
       <div
         className="absolute bottom-0 w-full flex flex-row justify-center font-light text-sm fading-content"
-        style={{ height: "8svh", opacity: isInsideWomb ? 1 : 0 }}
+        style={{ height: "8svh" }}
       >
         Copyright Eve Technologies 2023
       </div>

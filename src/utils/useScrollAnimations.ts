@@ -12,16 +12,20 @@ import {
 } from "./easingFns"
 import { getMappedValue } from "./getMappedValue"
 import useEventListener from "./useEventListener"
+import { set } from "lodash"
 
 export const startSize = 88
 
 export function useScrollAnimations(
   scrollOverlayRef: MutableRefObject<HTMLDivElement | null>,
-  setMainPageScrollable: (mainPageScrollable: boolean) => void,
-  setIsInsideWomb: (isInsideWomb: boolean) => void,
-  isInsideWomb: boolean,
-  setScrolled: (scrolled: boolean) => void
+  hasEnteredWomb: boolean,
+  setHasEnteredWomb: (_: boolean) => void,
+  setScrolled: (scrolled: boolean) => void,
+  setIsInsideWomb: (_: boolean) => void,
+  setHintVisible: (_: boolean) => void
 ) {
+  const wombSize = useRef(startSize)
+  const lastScrollTop = useRef<number | null>(null)
   useEffect(() => {
     const womb = document.querySelector(".womb") as HTMLDivElement | null
     const title = document.querySelector(
@@ -39,41 +43,79 @@ export function useScrollAnimations(
 
     document.documentElement.style.setProperty("--html-overflow", `hidden`)
     document.documentElement.style.setProperty("--body-height", `100%`)
-
     document.documentElement.style.setProperty("--hint-opacity", `1`)
+    document.documentElement.style.setProperty("--body-background", `black`)
   }, [])
+
+  // handle alternating between scroll overlay and window scrolling
+  // TODO: handle for mobile
+  useEventListener(
+    "wheel",
+    (event) => {
+      if (!scrollOverlayRef.current) return
+
+      const maxSize = getMaxWombSize(window.innerWidth, window.innerHeight)
+      const mainPageScrollable =
+        scrollOverlayRef.current.style.pointerEvents === "none"
+      if (mainPageScrollable && window.scrollY <= 0 && event.deltaY < 0) {
+        scrollOverlayRef.current.style.pointerEvents = "auto"
+      }
+      if (wombSize.current === maxSize && event.deltaY > 0) {
+        scrollOverlayRef.current.style.pointerEvents = "none"
+      }
+    },
+    [setHasEnteredWomb, scrollOverlayRef.current]
+  )
 
   useEventListener(
     "scroll",
     (event) => {
       setScrolled(true)
-      if (!scrollOverlayRef.current || isInsideWomb) return
+      if (!scrollOverlayRef.current) return
 
       const maxSize = getMaxWombSize(window.innerWidth, window.innerHeight)
 
-      const wombSize = Math.min(
-        scrollOverlayRef.current.scrollTop + startSize,
-        maxSize
-      )
+      if (lastScrollTop.current === null) {
+        lastScrollTop.current = scrollOverlayRef.current.scrollTop
+        return
+      } else {
+        const scrollDiff =
+          scrollOverlayRef.current.scrollTop - lastScrollTop.current
+        lastScrollTop.current = scrollOverlayRef.current.scrollTop
+        wombSize.current = Math.max(
+          Math.min(wombSize.current + scrollDiff, maxSize),
+          startSize
+        )
+      }
 
-      updateWombStyles(wombSize, maxSize)
-      updateTitleStyle(wombSize, maxSize)
-      updateHintStyles(wombSize, maxSize)
+      updateWombStyles(wombSize.current, maxSize)
+      updateTitleStyle(wombSize.current, maxSize)
+      updateHintStyles(wombSize.current, maxSize)
+      setIsInsideWomb(wombSize.current === maxSize)
 
-      setIsInsideWomb(wombSize === maxSize)
+      if (wombSize.current === startSize && hasEnteredWomb) {
+        setHintVisible(true)
+      }
 
-      if (wombSize === maxSize) {
-        setTimeout(() => {
-          document.documentElement.style.setProperty("--html-overflow", `auto`)
-          document.documentElement.style.setProperty(
-            "--body-height",
-            `${100 + 100 - 16 + 100 - 16}svh`
-          )
-          setMainPageScrollable(true)
-        }, 750)
+      if (wombSize.current === maxSize) {
+        if (!hasEnteredWomb) {
+          setHintVisible(false)
+        }
+        setHasEnteredWomb(true)
+
+        document.documentElement.style.setProperty("--html-overflow", `auto`)
+        document.documentElement.style.setProperty(
+          "--body-height",
+          `${100 + 100 - 16 + 100 - 16}svh`
+        )
+        document.documentElement.style.setProperty("--body-background", `white`)
+      } else {
+        document.documentElement.style.setProperty("--html-overflow", `hidden`)
+        document.documentElement.style.setProperty("--body-height", `100%`)
+        document.documentElement.style.setProperty("--body-background", `black`)
       }
     },
-    [setIsInsideWomb, setMainPageScrollable, scrollOverlayRef.current],
+    [setHasEnteredWomb, scrollOverlayRef.current, hasEnteredWomb],
     scrollOverlayRef
   )
 }

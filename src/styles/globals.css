@@ -17,7 +17,7 @@ html {
 
 body {
   height: var(--body-height); /*  268%: 100vh + 100vh - 16vh + 100vh - 16vh */
-  background-color: white;
+  background-color: var(--body-background);
 }
 
 div#__next {

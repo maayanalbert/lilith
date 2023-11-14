@@ -1,13 +1,8 @@
 import { FirstBlurb } from "@/components/FirstBlurb"
 import SecondBlurb from "@/components/SecondBlurb"
 import { ThirdBlurb } from "@/components/ThirdBlurb"
-import { getMappedValue } from "@/utils/getMappedValue"
 import useEventListener from "@/utils/useEventListener"
-import {
-  getMaxWombSize,
-  useScrollAnimations,
-} from "@/utils/useScrollAnimations"
-import { ArrowDownIcon } from "@heroicons/react/24/solid"
+import { useScrollAnimations } from "@/utils/useScrollAnimations"
 import { useEffect, useRef, useState } from "react"
 
 /**
@@ -18,8 +13,9 @@ export default function Home() {
     document.title = "Eve"
   }, [])
 
-  const [mainPageScrollable, setMainPageScrollable] = useState(false)
   const [isInsideWomb, setIsInsideWomb] = useState(false)
+  const [hintVisible, setHintVisible] = useState(true)
+  const [hasEnteredWomb, setHasEnteredWomb] = useState(false)
   const [secondBlurbVisible, setSecondBlurbVisible] = useState(false)
   const [thirdBlurbVisible, setThirdBlurbVisible] = useState(false)
   const [scrolled, setScrolled] = useState(false)
@@ -28,10 +24,11 @@ export default function Home() {
 
   useScrollAnimations(
     scrollOverlayRef,
-    setMainPageScrollable,
+    hasEnteredWomb,
+    setHasEnteredWomb,
+    setScrolled,
     setIsInsideWomb,
-    isInsideWomb,
-    setScrolled
+    setHintVisible
   )
 
   useEventListener(
@@ -60,13 +57,20 @@ export default function Home() {
                 transform: "translate(-50%, -50%)",
                 top: "50%",
                 left: "50%",
+                opacity: hintVisible ? 1 : 0,
+                transitionProperty: "opacity",
+                transitionDuration: "500ms",
+                transitionTimingFunction: "ease-in",
+                transitionDelay: "150ms",
               }}
             >
               <p
                 className={`hint-enter expand-hint font-light text-3xl text-zinc-500`}
-                style={{ paddingTop: 88 * 2 + 20 }}
+                style={{
+                  paddingTop: 88 * 2 + 20,
+                }}
               >
-                {"(scroll)"}
+                {hasEnteredWomb ? "Summer 2024" : "(scroll)"}
               </p>
             </div>
             <div
@@ -94,7 +98,7 @@ export default function Home() {
               height: "100svh",
             }}
           >
-            <FirstBlurb isInsideWomb={isInsideWomb} />
+            <FirstBlurb hasEnteredWomb={hasEnteredWomb} />
           </div>
 
           <div
@@ -104,11 +108,12 @@ export default function Home() {
               position: "relative",
               zIndex: 1,
               marginTop: "-16vh",
+              opacity: isInsideWomb ? 1 : 0,
             }}
           >
             <SecondBlurb
               isVisible={secondBlurbVisible}
-              isInsideWomb={isInsideWomb}
+              hasEnteredWomb={hasEnteredWomb}
             />
           </div>
 
@@ -119,12 +124,10 @@ export default function Home() {
               position: "relative",
               zIndex: 1,
               marginTop: "-16vh",
+              opacity: isInsideWomb ? 1 : 0,
             }}
           >
-            <ThirdBlurb
-              isVisible={thirdBlurbVisible}
-              isInsideWomb={isInsideWomb}
-            />
+            <ThirdBlurb isVisible={thirdBlurbVisible} />
           </div>
         </div>
       </div>
@@ -133,7 +136,6 @@ export default function Home() {
         style={{
           height: "100svh",
           overflow: "scroll",
-          zIndex: mainPageScrollable ? -1 : 1,
         }}
         ref={scrollOverlayRef}
       >

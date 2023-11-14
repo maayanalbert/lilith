@@ -1,11 +1,11 @@
 import { ArrowDownIcon } from "@heroicons/react/24/solid"
 
 interface Props {
-  isInsideWomb: boolean
+  hasEnteredWomb: boolean
   isVisible: boolean
 }
 
-export default function SecondBlurb({ isInsideWomb, isVisible }: Props) {
+export default function SecondBlurb({ hasEnteredWomb, isVisible }: Props) {
   return (
     <div className="h-full w-full flex justify-center items-center">
       <div
@@ -16,7 +16,7 @@ export default function SecondBlurb({ isInsideWomb, isVisible }: Props) {
           width={20}
           height={20}
           className="title-trimmings"
-          style={{ opacity: isInsideWomb ? 1 : 0 }}
+          style={{ opacity: hasEnteredWomb ? 1 : 0 }}
         />
       </div>
       <p
