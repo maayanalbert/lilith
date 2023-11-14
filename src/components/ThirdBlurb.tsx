@@ -58,7 +58,7 @@ export function ThirdBlurb({ isVisible, isInsideWomb }: Props) {
         className="absolute bottom-0 w-full flex flex-row justify-center font-light text-sm fading-content"
         style={{ height: "8svh", opacity: isInsideWomb ? 1 : 0 }}
       >
-        Copyright Eve Technologies 2024
+        Copyright Eve Technologies 2023
       </div>
     </div>
   )
