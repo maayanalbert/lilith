@@ -1,4 +1,4 @@
-import { MutableRefObject, useEffect, useRef } from "react"
+import { MutableRefObject, useEffect, useRef, useState } from "react"
 import {
   easeInCubic,
   easeInCustom,
@@ -19,7 +19,8 @@ export function useScrollAnimations(
   scrollOverlayRef: MutableRefObject<HTMLDivElement | null>,
   setMainPageScrollable: (mainPageScrollable: boolean) => void,
   setIsInsideWomb: (isInsideWomb: boolean) => void,
-  isInsideWomb: boolean
+  isInsideWomb: boolean,
+  setScrolled: (scrolled: boolean) => void
 ) {
   useEffect(() => {
     const womb = document.querySelector(".womb") as HTMLDivElement | null
@@ -44,7 +45,8 @@ export function useScrollAnimations(
 
   useEventListener(
     "scroll",
-    () => {
+    (event) => {
+      setScrolled(true)
       if (!scrollOverlayRef.current || isInsideWomb) return
 
       const maxSize = getMaxWombSize(window.innerWidth, window.innerHeight)

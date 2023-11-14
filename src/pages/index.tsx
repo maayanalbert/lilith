@@ -22,6 +22,7 @@ export default function Home() {
   const [isInsideWomb, setIsInsideWomb] = useState(false)
   const [secondBlurbVisible, setSecondBlurbVisible] = useState(false)
   const [thirdBlurbVisible, setThirdBlurbVisible] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
 
   const scrollOverlayRef = useRef<HTMLDivElement>(null)
 
@@ -29,19 +30,24 @@ export default function Home() {
     scrollOverlayRef,
     setMainPageScrollable,
     setIsInsideWomb,
-    isInsideWomb
+    isInsideWomb,
+    setScrolled
   )
 
-  useEventListener("scroll", () => {
-    const maxScrollY = document.body.scrollHeight - window.innerHeight
+  useEventListener(
+    "scroll",
+    () => {
+      const maxScrollY = document.body.scrollHeight - window.innerHeight
 
-    if (window.scrollY > maxScrollY * 0.33 * 0.5) {
-      setSecondBlurbVisible(true)
-    }
-    if (window.scrollY > maxScrollY * 0.66) {
-      setThirdBlurbVisible(true)
-    }
-  })
+      if (window.scrollY > maxScrollY * 0.33 * 0.5) {
+        setSecondBlurbVisible(true)
+      }
+      if (window.scrollY > maxScrollY * 0.66) {
+        setThirdBlurbVisible(true)
+      }
+    },
+    [setSecondBlurbVisible, setThirdBlurbVisible]
+  )
 
   return (
     <>
@@ -64,7 +70,9 @@ export default function Home() {
               </p>
             </div>
             <div
-              className={`rounded-full womb bg-white absolute womb-enter`}
+              className={`rounded-full womb bg-white absolute ${
+                !scrolled && "womb-enter"
+              }`}
               style={{
                 transform: "translate(-50%, -50%)",
                 top: "50%",

@@ -20,7 +20,7 @@ export default function SecondBlurb({ isInsideWomb, isVisible }: Props) {
         />
       </div>
       <p
-        className="font-display sm:text-2xl text-xl text-center font-light sm:w-[450px] w-[300px]"
+        className="font-display sm:text-2xl text-xl text-center font-light sm:w-[450px] w-[280px]"
         style={{
           lineHeight: 1.5,
           transitionProperty: "opacity",
@@ -29,8 +29,8 @@ export default function SecondBlurb({ isInsideWomb, isVisible }: Props) {
           opacity: isVisible ? 1 : 0,
         }}
       >
-        Eve is an intelligent environment that houses your thoughts, and
-        understands you fully.
+        Eve is an intelligent environment for your thoughts, that understands
+        you fully.
       </p>
     </div>
   )
