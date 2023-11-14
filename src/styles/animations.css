@@ -60,3 +60,7 @@
   transition-timing-function: ease-in;
   transition-property: opacity;
 }
+
+.womb-innards {
+  opacity: var(--womb-innards-opacity, 0);
+}

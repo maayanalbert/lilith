@@ -21,7 +21,6 @@ export function useScrollAnimations(
   hasEnteredWomb: boolean,
   setHasEnteredWomb: (_: boolean) => void,
   setScrolled: (scrolled: boolean) => void,
-  setIsInsideWomb: (_: boolean) => void,
   setHintVisible: (_: boolean) => void
 ) {
   const wombSize = useRef(startSize)
@@ -91,7 +90,20 @@ export function useScrollAnimations(
       updateWombStyles(wombSize.current, maxSize)
       updateTitleStyle(wombSize.current, maxSize)
       updateHintStyles(wombSize.current, maxSize)
-      setIsInsideWomb(wombSize.current === maxSize)
+
+      const wombInnardsOpacity = getMappedValue(
+        wombSize.current,
+        maxSize - 50,
+        maxSize,
+        0,
+        1,
+        easeInSine
+      )
+
+      document.documentElement.style.setProperty(
+        "--womb-innards-opacity",
+        `${wombInnardsOpacity}`
+      )
 
       if (wombSize.current === startSize && hasEnteredWomb) {
         setHintVisible(true)

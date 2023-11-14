@@ -13,7 +13,6 @@ export default function Home() {
     document.title = "Eve"
   }, [])
 
-  const [isInsideWomb, setIsInsideWomb] = useState(false)
   const [hintVisible, setHintVisible] = useState(true)
   const [hasEnteredWomb, setHasEnteredWomb] = useState(false)
   const [secondBlurbVisible, setSecondBlurbVisible] = useState(false)
@@ -27,7 +26,6 @@ export default function Home() {
     hasEnteredWomb,
     setHasEnteredWomb,
     setScrolled,
-    setIsInsideWomb,
     setHintVisible
   )
 
@@ -102,13 +100,12 @@ export default function Home() {
           </div>
 
           <div
-            className="w-full"
+            className="w-full womb-innards"
             style={{
               height: "100svh",
               position: "relative",
               zIndex: 1,
               marginTop: "-16vh",
-              opacity: isInsideWomb ? 1 : 0,
             }}
           >
             <SecondBlurb
@@ -118,13 +115,12 @@ export default function Home() {
           </div>
 
           <div
-            className="w-full"
+            className="w-full womb-innards"
             style={{
               height: "100svh",
               position: "relative",
               zIndex: 1,
               marginTop: "-16vh",
-              opacity: isInsideWomb ? 1 : 0,
             }}
           >
             <ThirdBlurb isVisible={thirdBlurbVisible} />
