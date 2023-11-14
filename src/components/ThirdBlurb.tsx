@@ -239,7 +239,7 @@ function NotifyField() {
         }}
       >
         <div
-          className={`sm:text-lg text-base text-gray-600 flex flex-row gap-[5px] whitespace-nowrap`}
+          className={`sm:text-lg text-base text-zinc-500 flex flex-row gap-[5px] whitespace-nowrap`}
           style={{
             pointerEvents:
               isFinishedDelayed && mouseMovedSinceFinished ? undefined : "none",
