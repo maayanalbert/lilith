@@ -46,7 +46,7 @@ export function ThirdBlurb({ isVisible }: Props) {
           className="font-light font-display sm:text-xl text-lg sm:w-[450px] w-[280px]"
           style={{ lineHeight: 1.5 }}
         >
-          She will launch as a mobile app this summer. For more information,
+          Eve will launch as a mobile app this summer. For more information,
           contact{" "}
           <a className="underline" href="mailto:maayan@eve.space">
             maayan@eve.space.
