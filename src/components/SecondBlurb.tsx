@@ -29,8 +29,8 @@ export default function SecondBlurb({ isInsideWomb, isVisible }: Props) {
           opacity: isVisible ? 1 : 0,
         }}
       >
-        Eve is an intelligent environment for your thoughts. She understands you
-        fully, in a way no one else can.
+        Eve is an intelligent environment for human thought. She understands her
+        users fully, in a way no one else can.
       </p>
     </div>
   )
