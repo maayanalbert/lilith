@@ -144,12 +144,19 @@ function updateTitleStyle(wombSize: number, maxSize: number) {
     maxSize,
     0.1,
     1,
-    easeInQuad
+    easeInSine
   )
 
   title.style.scale = `${titleScale}`
 
-  const titleOpacity = getMappedValue(wombSize, startSize, maxSize, 0, 1)
+  const titleOpacity = getMappedValue(
+    wombSize,
+    startSize,
+    maxSize,
+    0,
+    1,
+    easeInOutSine
+  )
 
   title.style.opacity = `${titleOpacity}`
 }
@@ -161,11 +168,12 @@ function updateHintStyles(wombSize: number, maxSize: number) {
   const hintOpacity = getMappedValue(
     wombSize,
     startSize,
-    window.innerHeight * 0.5 * 0.65,
+    startSize * 3 + 20,
     1,
     0,
     easeOutSine
   )
+
   document.documentElement.style.setProperty("--hint-opacity", `${hintOpacity}`)
 }
 
