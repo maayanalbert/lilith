@@ -35,19 +35,13 @@ export default function Home() {
   useEventListener("scroll", () => {
     const maxScrollY = document.body.scrollHeight - window.innerHeight
 
-    if (window.scrollY > maxScrollY * .33 * 0.5) {
+    if (window.scrollY > maxScrollY * 0.33 * 0.5) {
       setSecondBlurbVisible(true)
     }
-    if (window.scrollY > maxScrollY * .66) {
+    if (window.scrollY > maxScrollY * 0.66) {
       setThirdBlurbVisible(true)
     }
   })
-
-  const [windowWidth, setWindowWidth] = useState(640)
-
-  useEffect(() => {
-    setWindowWidth(window.innerWidth)
-  }, [])
 
   return (
     <>
@@ -63,18 +57,14 @@ export default function Home() {
               }}
             >
               <p
-                className={`${
-                  windowWidth >= 640 && "hint-enter"
-                } expand-hint font-light text-3xl text-zinc-500`}
+                className={`hint-enter expand-hint font-light text-3xl text-zinc-500`}
                 style={{ paddingTop: 88 * 2 + 20 }}
               >
                 {"(scroll)"}
               </p>
             </div>
             <div
-              className={`rounded-full womb bg-white absolute ${
-                windowWidth >= 640 && "womb-enter"
-              }`}
+              className={`rounded-full womb bg-white absolute womb-enter`}
               style={{
                 transform: "translate(-50%, -50%)",
                 top: "50%",
