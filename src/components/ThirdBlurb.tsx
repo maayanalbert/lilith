@@ -40,9 +40,14 @@ export function ThirdBlurb({ isVisible, isInsideWomb }: Props) {
         }}
       >
         <p
-          className="font-light sm:text-[20px] text-lg font-display sm:w-[450px] w-[280px]"
+          className="font-display sm:text-2xl text-xl"
           style={{ lineHeight: 1.5 }}
         >
+          Take a bite
+        </p>
+        <div className="h-6" />
+
+        <p className="font-light sm:text-xl text-lg sm:w-[450px] w-[280px]">
           She will launch as a mobile app this summer. For more information,
           contact{" "}
           <a className="underline" href="mailto:maayan@eve.space">
