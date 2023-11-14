@@ -29,7 +29,7 @@ export default function SecondBlurb({ isInsideWomb, isVisible }: Props) {
           opacity: isVisible ? 1 : 0,
         }}
       >
-        Eve is an intelligent entity that understands you, and exists as a
+        Eve is an intelligent entity that understands you, and takes the form of a
         digital space for your thoughts.
       </p>
     </div>
