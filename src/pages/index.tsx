@@ -35,12 +35,10 @@ export default function Home() {
   useEventListener("scroll", () => {
     const maxScrollY = document.body.scrollHeight - window.innerHeight
 
-    const scrollChunk = maxScrollY * 0.33
-
-    if (window.scrollY > scrollChunk * 0.5) {
+    if (window.scrollY > maxScrollY * .33 * 0.5) {
       setSecondBlurbVisible(true)
     }
-    if (window.scrollY > scrollChunk * 1.75) {
+    if (window.scrollY > maxScrollY * .66) {
       setThirdBlurbVisible(true)
     }
   })
