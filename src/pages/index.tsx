@@ -13,11 +13,12 @@ export default function Home() {
     document.title = "Eve"
   }, [])
 
-  const [hintVisible, setHintVisible] = useState(true)
   const [hasEnteredWomb, setHasEnteredWomb] = useState(false)
   const [secondBlurbVisible, setSecondBlurbVisible] = useState(false)
   const [thirdBlurbVisible, setThirdBlurbVisible] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [consoleLog, setConsoleLog] = useState("")
+  const [hasClosedWomb, setHasClosedWomb] = useState(false)
 
   const scrollOverlayRef = useRef<HTMLDivElement>(null)
 
@@ -26,7 +27,8 @@ export default function Home() {
     hasEnteredWomb,
     setHasEnteredWomb,
     setScrolled,
-    setHintVisible
+    setHasClosedWomb,
+    setConsoleLog
   )
 
   useEventListener(
@@ -34,10 +36,10 @@ export default function Home() {
     () => {
       const maxScrollY = document.body.scrollHeight - window.innerHeight
 
-      if (window.scrollY > maxScrollY * 0.33 * 0.5) {
+      if (window.scrollY > maxScrollY * 0.3) {
         setSecondBlurbVisible(true)
       }
-      if (window.scrollY > maxScrollY * 0.66) {
+      if (window.scrollY > maxScrollY * 0.7) {
         setThirdBlurbVisible(true)
       }
     },
@@ -55,11 +57,11 @@ export default function Home() {
                 transform: "translate(-50%, -50%)",
                 top: "50%",
                 left: "50%",
-                opacity: hintVisible ? 1 : 0,
-                transitionProperty: "opacity",
+                opacity: hasEnteredWomb && !hasClosedWomb ? 0 : 1,
+                transitionProperty: hasEnteredWomb ? "opacity" : undefined,
                 transitionDuration: "500ms",
                 transitionTimingFunction: "ease-in",
-                transitionDelay: "150ms",
+                transitionDelay: "200ms",
               }}
             >
               <p
@@ -83,13 +85,13 @@ export default function Home() {
             />
           </div>
         </div>
-
         <div
           className="w-full h-fit title"
           style={{
             transformOrigin: "50% calc(16.6666% + 50px)",
           }}
         >
+          <div className="fixed">{consoleLog}</div>
           <div
             className="w-full relative"
             style={{

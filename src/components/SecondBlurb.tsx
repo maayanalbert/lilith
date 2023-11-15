@@ -7,7 +7,7 @@ interface Props {
 
 export default function SecondBlurb({ hasEnteredWomb, isVisible }: Props) {
   return (
-    <div className="h-full w-full flex justify-center items-center">
+    <div className="h-full w-full flex flex-col justify-center items-center gap-8">
       <div
         className="absolute w-full flex justify-center items-end top-0"
         style={{ height: `9svh` }}
@@ -19,8 +19,9 @@ export default function SecondBlurb({ hasEnteredWomb, isVisible }: Props) {
           style={{ opacity: hasEnteredWomb ? 1 : 0 }}
         />
       </div>
-      <p
-        className="font-display sm:text-2xl text-xl text-center font-light sm:w-[450px] w-[280px]"
+      <div
+        className={`rounded-full border border-black flex justify-center 
+        items-center sm:h-[350px] sm:w-[350px] h-[250px] w-[250px] p-6`}
         style={{
           lineHeight: 1.5,
           transitionProperty: "opacity",
@@ -29,9 +30,10 @@ export default function SecondBlurb({ hasEnteredWomb, isVisible }: Props) {
           opacity: isVisible ? 1 : 0,
         }}
       >
-        Eve is an intelligent environment for human thought. She understands her
-        users fully, in a way no one else can.
-      </p>
+        <p className="font-display sm:text-[22px] text-lg text-center font-light sm:w-[420px w-[300px">
+          Eve is an intelligent environment for human thought.
+        </p>
+      </div>
     </div>
   )
 }

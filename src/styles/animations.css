@@ -30,7 +30,7 @@
 
 .hint-enter {
   animation-name: hint-enter;
-  animation-duration: 3850ms;
+  animation-duration: 3600ms;
   animation-timing-function: ease-in-out;
 }
 
@@ -46,17 +46,9 @@
   }
 }
 
-.expand-hint {
-  scale: var(--hint-scale);
-  margin-top: var(--hint-dist);
-  filter: blur(var(--womb-blur));
-  letter-spacing: var(--hint-letter-spacing);
-  opacity: var(--hint-opacity);
-}
-
 .title-trimmings {
   transition-duration: 500ms;
-  transition-delay: 250ms;
+  transition-delay: 200ms;
   transition-timing-function: ease-in;
   transition-property: opacity;
 }
