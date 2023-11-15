@@ -57,7 +57,12 @@ export default function Home() {
                 transform: "translate(-50%, -50%)",
                 top: "50%",
                 left: "50%",
-                opacity: hasEnteredWomb && !hasClosedWomb ? 0 : 1,
+                opacity:
+                  hasEnteredWomb &&
+                  !hasClosedWomb &&
+                  navigator.maxTouchPoints === 0
+                    ? 0
+                    : 1,
                 transitionProperty: hasEnteredWomb ? "opacity" : undefined,
                 transitionDuration: "500ms",
                 transitionTimingFunction: "ease-in",
