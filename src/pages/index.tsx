@@ -1,4 +1,5 @@
 import { FirstBlurb } from "@/components/FirstBlurb"
+import NavBar from "@/components/NavBar"
 import SecondBlurb from "@/components/SecondBlurb"
 import { ThirdBlurb } from "@/components/ThirdBlurb"
 import Womb from "@/components/Womb"
@@ -18,7 +19,6 @@ export default function Home() {
   const [secondBlurbVisible, setSecondBlurbVisible] = useState(false)
   const [thirdBlurbVisible, setThirdBlurbVisible] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const [consoleLog, setConsoleLog] = useState("")
   const [hasClosedWomb, setHasClosedWomb] = useState(false)
 
   const scrollOverlayRef = useRef<HTMLDivElement>(null)
@@ -28,8 +28,7 @@ export default function Home() {
     hasEnteredWomb,
     setHasEnteredWomb,
     setScrolled,
-    setHasClosedWomb,
-    setConsoleLog
+    setHasClosedWomb
   )
 
   useEventListener(
@@ -56,12 +55,19 @@ export default function Home() {
           scrolled={scrolled}
         />
         <div
-          className="w-full h-fit title"
+          className="title-trimmings" // should be inside transformed area but then fixed doesn't work
+          style={{ opacity: hasEnteredWomb ? 1 : 0 }}
+        >
+          <div className="womb-innards">
+            <NavBar />
+          </div>
+        </div>
+        <div
+          className="w-full h-fit title relative"
           style={{
             transformOrigin: "50% calc(16.6666% + 50px)",
           }}
         >
-          <div className="fixed">{consoleLog}</div>
           <div
             className="w-full relative"
             style={{

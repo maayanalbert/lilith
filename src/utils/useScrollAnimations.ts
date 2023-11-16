@@ -21,12 +21,10 @@ export function useScrollAnimations(
   hasEnteredWomb: boolean,
   setHasEnteredWomb: (_: boolean) => void,
   setScrolled: (scrolled: boolean) => void,
-  setHasClosedWomb: (_: boolean) => void,
-  setConsoleLog: (_: string) => void
+  setHasClosedWomb: (_: boolean) => void
 ) {
   const wombSize = useRef(startSize)
   const lastScrollTop = useRef<number | null>(null)
-  const [wombAtMax, setWombAtMax] = useState(false)
 
   useEffect(() => {
     const womb = document.querySelector(".womb") as HTMLDivElement | null
@@ -54,7 +52,9 @@ export function useScrollAnimations(
   useEventListener(
     "wheel",
     (event) => {
-      if (!scrollOverlayRef.current) return
+      const navbar = document.querySelector(".navbar") as HTMLDivElement | null
+
+      if (!scrollOverlayRef.current || !navbar) return
 
       const maxSize = getMaxWombSize(window.innerWidth, window.innerHeight)
       const mainPageScrollable =
@@ -63,9 +63,11 @@ export function useScrollAnimations(
       if (mainPageScrollable && window.scrollY <= 0 && event.deltaY < 0) {
         // shrink womb
         scrollOverlayRef.current.style.pointerEvents = "auto"
+        navbar.style.pointerEvents = "none" // need to disable navbar to allow scrolling inward when mouse is on it
       } else if (wombSize.current === maxSize && event.deltaY > 0) {
         // scroll within womb
         scrollOverlayRef.current.style.pointerEvents = "none"
+        navbar.style.pointerEvents = "auto"
       }
     },
     [setHasEnteredWomb, scrollOverlayRef.current]
