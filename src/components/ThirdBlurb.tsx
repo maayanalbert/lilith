@@ -153,8 +153,7 @@ function NotifyField() {
           `}
           style={{
             transitionProperty: "width, background",
-            transitionDuration:
-              state === "EMAIL" ? "600ms, 300ms" : "700ms, 300ms",
+            transitionDuration: "700ms, 300ms",
             transitionTimingFunction: easeInOut,
           }}
           onClick={() => {
