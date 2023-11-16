@@ -1,10 +1,9 @@
+import { useStateContext } from "@/StateContext"
 import { ArrowDownIcon, ChevronDownIcon } from "@heroicons/react/24/solid"
+import { useState } from "react"
 
-interface Props {
-  hasEnteredWomb: boolean
-}
-
-export function FirstBlurb({ hasEnteredWomb }: Props) {
+export function FirstBlurb() {
+  const { hasEnteredWomb } = useStateContext()
   return (
     <div className="absolute flex flex-col h-full w-full justify-center items-center">
       <p className="whitespace-nowrap select-none sm:text-8xl text-[42px] cursor-default font-display">

@@ -2,8 +2,9 @@ import "@/styles/globals.css"
 import "@/styles/animations.css"
 
 import type { AppProps } from "next/app"
-import { useMemo } from "react"
+import { useEffect, useMemo } from "react"
 import { QueryClient, QueryClientProvider } from "react-query"
+import { StateContextProvider } from "@/StateContext"
 
 export default function App({ Component, pageProps }: AppProps) {
   const queryClient = useMemo(
@@ -18,9 +19,15 @@ export default function App({ Component, pageProps }: AppProps) {
     []
   )
 
+  useEffect(() => {
+    document.title = "Eve"
+  }, [])
+
   return (
     <QueryClientProvider client={queryClient}>
-      <Component {...pageProps} />
+      <StateContextProvider>
+        <Component {...pageProps} />
+      </StateContextProvider>
     </QueryClientProvider>
   )
 }

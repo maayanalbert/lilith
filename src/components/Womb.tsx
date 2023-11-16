@@ -1,14 +1,7 @@
-interface Props {
-  hasEnteredWomb: boolean
-  hasClosedWomb: boolean
-  scrolled: boolean
-}
+import { useStateContext } from "@/StateContext"
 
-export default function Womb({
-  hasEnteredWomb,
-  hasClosedWomb,
-  scrolled,
-}: Props) {
+export default function Womb() {
+  const { hasEnteredWomb, hasClosedWomb, scrolled } = useStateContext()
   return (
     <div className="absolute w-full bg-black" style={{ height: "100svh" }}>
       <div className="relative h-full w-full">

@@ -1,35 +1,16 @@
+import { useStateContext } from "@/StateContext"
 import { FirstBlurb } from "@/components/FirstBlurb"
-import NavBar from "@/components/NavBar"
 import SecondBlurb from "@/components/SecondBlurb"
 import { ThirdBlurb } from "@/components/ThirdBlurb"
 import Womb from "@/components/Womb"
 import useEventListener from "@/utils/useEventListener"
-import { useScrollAnimations } from "@/utils/useScrollAnimations"
-import { useEffect, useRef, useState } from "react"
 
 /**
  * A wrapper for the main page
  */
 export default function Home() {
-  useEffect(() => {
-    document.title = "Eve"
-  }, [])
-
-  const [hasEnteredWomb, setHasEnteredWomb] = useState(false)
-  const [secondBlurbVisible, setSecondBlurbVisible] = useState(false)
-  const [thirdBlurbVisible, setThirdBlurbVisible] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
-  const [hasClosedWomb, setHasClosedWomb] = useState(false)
-
-  const scrollOverlayRef = useRef<HTMLDivElement>(null)
-
-  useScrollAnimations(
-    scrollOverlayRef,
-    hasEnteredWomb,
-    setHasEnteredWomb,
-    setScrolled,
-    setHasClosedWomb
-  )
+  const { setSecondBlurbVisible, setThirdBlurbVisible, scrollOverlayRef } =
+    useStateContext()
 
   useEventListener(
     "scroll",
@@ -49,11 +30,7 @@ export default function Home() {
   return (
     <>
       <div className="w-full h-full overflow-hidden relative">
-        <Womb
-          hasClosedWomb={hasClosedWomb}
-          hasEnteredWomb={hasClosedWomb}
-          scrolled={scrolled}
-        />
+        <Womb />
         {/* <div
           className="title-trimmings" // should be inside transformed area but then fixed doesn't work
           style={{ opacity: hasEnteredWomb ? 1 : 0 }}
@@ -74,7 +51,7 @@ export default function Home() {
               height: "100svh",
             }}
           >
-            <FirstBlurb hasEnteredWomb={hasEnteredWomb} />
+            <FirstBlurb />
           </div>
 
           <div
@@ -86,10 +63,7 @@ export default function Home() {
               marginTop: "-16vh",
             }}
           >
-            <SecondBlurb
-              isVisible={secondBlurbVisible}
-              hasEnteredWomb={hasEnteredWomb}
-            />
+            <SecondBlurb />
           </div>
 
           <div
@@ -101,7 +75,7 @@ export default function Home() {
               marginTop: "-16vh",
             }}
           >
-            <ThirdBlurb isVisible={thirdBlurbVisible} />
+            <ThirdBlurb />
           </div>
         </div>
       </div>

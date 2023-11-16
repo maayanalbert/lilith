@@ -1,3 +1,4 @@
+import { useStateContext } from "@/StateContext"
 import useEventListener from "@/utils/useEventListener"
 import useOutsideClick from "@/utils/useOutsideClick"
 import {
@@ -12,11 +13,8 @@ import { set } from "lodash"
 import { useEffect, useRef, useState } from "react"
 import { useMutation } from "react-query"
 
-interface Props {
-  isVisible: boolean
-}
-
-export function ThirdBlurb({ isVisible }: Props) {
+export function ThirdBlurb() {
+  const { thirdBlurbVisible } = useStateContext()
   return (
     <div className="w-full h-full flex items-center justify-center">
       <div
@@ -31,7 +29,7 @@ export function ThirdBlurb({ isVisible }: Props) {
           transitionProperty: "opacity",
           transitionDuration: "500ms",
           transitionTimingFunction: "cubic-bezier(0.4, 0, 0.2, 1)",
-          opacity: isVisible ? 1 : 0,
+          opacity: thirdBlurbVisible ? 1 : 0,
         }}
       >
         <p

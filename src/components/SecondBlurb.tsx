@@ -1,11 +1,8 @@
+import { useStateContext } from "@/StateContext"
 import { ArrowDownIcon } from "@heroicons/react/24/solid"
 
-interface Props {
-  hasEnteredWomb: boolean
-  isVisible: boolean
-}
-
-export default function SecondBlurb({ hasEnteredWomb, isVisible }: Props) {
+export default function SecondBlurb() {
+  const { hasEnteredWomb, secondBlurbVisible } = useStateContext()
   return (
     <div className="h-full w-full flex flex-col justify-center items-center gap-8">
       <div
@@ -27,7 +24,7 @@ export default function SecondBlurb({ hasEnteredWomb, isVisible }: Props) {
           transitionProperty: "opacity",
           transitionDuration: "500ms",
           transitionTimingFunction: "cubic-bezier(0.4, 0, 0.2, 1)",
-          opacity: isVisible ? 1 : 0,
+          opacity: secondBlurbVisible ? 1 : 0,
         }}
       >
         <p className="font-display sm:text-[22px] text-lg text-center font-light sm:w-[420px w-[300px">
