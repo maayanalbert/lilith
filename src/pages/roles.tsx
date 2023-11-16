@@ -47,7 +47,7 @@ export default function Roles() {
 
         <i>
           *If you're interested and truly exceptional, but don’t see your
-          background listed above, reach out regardless.
+          background listed, reach out regardless.
         </i>
       </div>
     </div>
