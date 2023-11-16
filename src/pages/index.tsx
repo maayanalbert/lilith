@@ -54,14 +54,14 @@ export default function Home() {
           hasEnteredWomb={hasClosedWomb}
           scrolled={scrolled}
         />
-        <div
+        {/* <div
           className="title-trimmings" // should be inside transformed area but then fixed doesn't work
           style={{ opacity: hasEnteredWomb ? 1 : 0 }}
         >
           <div className="womb-innards">
             <NavBar />
           </div>
-        </div>
+        </div> */}
         <div
           className="w-full h-fit title relative"
           style={{
