@@ -47,12 +47,12 @@
 }
 
 .title-trimmings {
-  transition-duration: 500ms;
-  transition-delay: 200ms;
+  transition-duration: 600ms;
+  transition-delay: 150ms;
   transition-timing-function: ease-in;
   transition-property: opacity;
 }
 
 .womb-innards {
-  opacity: var(--womb-innards-opacity, 0);
+  opacity: var(--womb-innards-opacity);
 }

@@ -1,5 +1,6 @@
 import { ReactNode, createContext, useContext, useRef, useState } from "react"
 import { useScrollAnimations } from "./utils/useScrollAnimations"
+import { set } from "lodash"
 
 interface StateContextType {
   hasEnteredWomb: boolean
@@ -8,8 +9,9 @@ interface StateContextType {
   thirdBlurbVisible: boolean
   setThirdBlurbVisible: (_: boolean) => void
   scrolled: boolean
-  hasClosedWomb: boolean
   scrollOverlayRef?: React.RefObject<HTMLDivElement>
+  wombIsClosed: boolean
+  isInsideWomb: boolean
 }
 
 /**
@@ -22,23 +24,26 @@ const StateContext = createContext<StateContextType>({
   thirdBlurbVisible: false,
   setThirdBlurbVisible: () => undefined,
   scrolled: false,
-  hasClosedWomb: false,
   scrollOverlayRef: undefined,
+  wombIsClosed: false,
+  isInsideWomb: false,
 })
 
 interface Props {
   children: ReactNode
+  startOpened: boolean
 }
 
 /**
  * Create the provider that everything that uses the context should be wrapped in
  */
-export function StateContextProvider({ children }: Props) {
-  const [hasEnteredWomb, setHasEnteredWomb] = useState(false)
+export function StateContextProvider({ children, startOpened }: Props) {
+  const [hasEnteredWomb, setHasEnteredWomb] = useState(startOpened)
   const [secondBlurbVisible, setSecondBlurbVisible] = useState(false)
   const [thirdBlurbVisible, setThirdBlurbVisible] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
-  const [hasClosedWomb, setHasClosedWomb] = useState(false)
+  const [scrolled, setScrolled] = useState(startOpened)
+  const [wombIsClosed, setWombIsClosed] = useState(!startOpened)
+  const [isInsideWomb, setIsInsideWomb] = useState(startOpened)
 
   const scrollOverlayRef = useRef<HTMLDivElement>(null)
 
@@ -47,7 +52,11 @@ export function StateContextProvider({ children }: Props) {
     hasEnteredWomb,
     setHasEnteredWomb,
     setScrolled,
-    setHasClosedWomb
+    setWombIsClosed,
+    setIsInsideWomb,
+    setSecondBlurbVisible,
+    setThirdBlurbVisible,
+    startOpened
   )
 
   return (
@@ -59,8 +68,9 @@ export function StateContextProvider({ children }: Props) {
         thirdBlurbVisible,
         setThirdBlurbVisible,
         scrolled,
-        hasClosedWomb,
         scrollOverlayRef,
+        wombIsClosed,
+        isInsideWomb,
       }}
     >
       {children}

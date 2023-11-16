@@ -1,7 +1,8 @@
 import { useStateContext } from "@/StateContext"
 
 export default function Womb() {
-  const { hasEnteredWomb, hasClosedWomb, scrolled } = useStateContext()
+  const { hasEnteredWomb, scrolled, wombIsClosed } = useStateContext()
+
   return (
     <div className="absolute w-full bg-black" style={{ height: "100svh" }}>
       <div className="relative h-full w-full">
@@ -11,10 +12,7 @@ export default function Womb() {
             transform: "translate(-50%, -50%)",
             top: "50%",
             left: "50%",
-            opacity:
-              hasEnteredWomb && !hasClosedWomb && navigator.maxTouchPoints === 0
-                ? 0
-                : 1,
+            opacity: hasEnteredWomb && !wombIsClosed ? 0 : 1,
             transitionProperty: hasEnteredWomb ? "opacity" : undefined,
             transitionDuration: "500ms",
             transitionTimingFunction: "ease-in",

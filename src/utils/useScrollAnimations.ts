@@ -1,18 +1,8 @@
 import { MutableRefObject, use, useEffect, useRef, useState } from "react"
-import {
-  easeInCubic,
-  easeInCustom,
-  easeInExpo,
-  easeInOutSine,
-  easeInQuad,
-  easeInQuart,
-  easeInSine,
-  easeOutQuad,
-  easeOutSine,
-} from "./easingFns"
+import { easeInSine, easeOutQuad } from "./easingFns"
 import { getMappedValue } from "./getMappedValue"
 import useEventListener from "./useEventListener"
-import { max, set } from "lodash"
+import { useRouter } from "next/router"
 
 export const startSize = 88
 
@@ -21,12 +11,18 @@ export function useScrollAnimations(
   hasEnteredWomb: boolean,
   setHasEnteredWomb: (_: boolean) => void,
   setScrolled: (scrolled: boolean) => void,
-  setHasClosedWomb: (_: boolean) => void
+  setWombIsClosed: (_: boolean) => void,
+  setIsInsideWomb: (_: boolean) => void,
+  setSecondBlurbVisible: (_: boolean) => void,
+  setThirdBlurbVisible: (_: boolean) => void,
+  startOpened: boolean
 ) {
   const wombSize = useRef(startSize)
   const lastScrollTop = useRef<number | null>(null)
+  const router = useRouter()
 
   useEffect(() => {
+    const maxSize = getMaxWombSize(window.innerWidth, window.innerHeight)
     const womb = document.querySelector(".womb") as HTMLDivElement | null
     const title = document.querySelector(
       ".title"
@@ -34,17 +30,33 @@ export function useScrollAnimations(
 
     if (!womb || !title) return
 
-    womb.style.height = `${startSize}px`
-    womb.style.width = `${startSize}px`
-    womb.style.filter = `blur(0px)`
+    womb.style.height = `${startOpened ? maxSize : startSize}px`
+    womb.style.width = `${startOpened ? maxSize : startSize}px`
 
-    title.style.opacity = "0"
+    title.style.opacity = startOpened ? "1" : "0"
     title.style.scale = "1"
 
-    document.documentElement.style.setProperty("--html-overflow", `hidden`)
-    document.documentElement.style.setProperty("--body-height", `100%`)
     document.documentElement.style.setProperty("--hint-opacity", `1`)
-    document.documentElement.style.setProperty("--body-background", `black`)
+
+    if (startOpened) {
+      scrollOverlayRef.current?.scrollTo(0, maxSize)
+      wombSize.current = maxSize
+    }
+
+    if (startOpened) {
+      document.documentElement.style.setProperty("--html-overflow", `auto`)
+      document.documentElement.style.setProperty(
+        "--body-height",
+        `${100 + 100 - 16 + 100 - 16}svh`
+      )
+      document.documentElement.style.setProperty("--body-background", `white`)
+      document.documentElement.style.setProperty("--womb-innards-opacity", "1")
+    } else {
+      document.documentElement.style.setProperty("--html-overflow", `hidden`)
+      document.documentElement.style.setProperty("--body-height", `100%`)
+      document.documentElement.style.setProperty("--body-background", `black`)
+      document.documentElement.style.setProperty("--womb-innards-opacity", "0")
+    }
   }, [])
 
   // handle alternating between scroll overlay and window scrolling
@@ -52,8 +64,6 @@ export function useScrollAnimations(
   useEventListener(
     "wheel",
     (event) => {
-      const navbar = document.querySelector(".navbar") as HTMLDivElement | null
-
       if (!scrollOverlayRef.current) return
 
       const maxSize = getMaxWombSize(window.innerWidth, window.innerHeight)
@@ -63,14 +73,16 @@ export function useScrollAnimations(
       if (mainPageScrollable && window.scrollY <= 0 && event.deltaY < 0) {
         // shrink womb
         scrollOverlayRef.current.style.pointerEvents = "auto"
-        if (navbar) navbar.style.pointerEvents = "none" // need to disable navbar to allow scrolling inward when mouse is on it
-      } else if (wombSize.current === maxSize && event.deltaY > 0) {
+      } else if (
+        wombSize.current === maxSize &&
+        event.deltaY > 0 &&
+        router.pathname === "/"
+      ) {
         // scroll within womb
         scrollOverlayRef.current.style.pointerEvents = "none"
-        if (navbar) navbar.style.pointerEvents = "auto"
       }
     },
-    [setHasEnteredWomb, scrollOverlayRef.current]
+    [setHasEnteredWomb, scrollOverlayRef.current, router.pathname]
   )
 
   // overlay scroll listener
@@ -119,13 +131,14 @@ export function useScrollAnimations(
         `${wombInnardsOpacity}`
       )
 
+      setWombIsClosed(wombSize.current === startSize)
+      setIsInsideWomb(wombSize.current === maxSize)
+
       if (wombSize.current === startSize) {
-        if (hasEnteredWomb) {
-          setHasClosedWomb(true)
-        }
+        router.push("/")
       }
 
-      if (wombSize.current === maxSize) {
+      if (wombSize.current === maxSize && router.pathname === "/") {
         setHasEnteredWomb(true)
         scrollOverlayRef.current.style.pointerEvents = "none" // for mobile
         document.documentElement.style.setProperty("--html-overflow", `auto`)
@@ -135,13 +148,22 @@ export function useScrollAnimations(
         )
         document.documentElement.style.setProperty("--body-background", `white`)
       } else {
+        setSecondBlurbVisible(false)
+        setThirdBlurbVisible(false)
         if (navigator.maxTouchPoints > 0) return
         document.documentElement.style.setProperty("--html-overflow", `hidden`)
         document.documentElement.style.setProperty("--body-height", `100%`)
         document.documentElement.style.setProperty("--body-background", `black`)
       }
     },
-    [setHasClosedWomb, setHasEnteredWomb, hasEnteredWomb],
+    [
+      setWombIsClosed,
+      setHasEnteredWomb,
+      hasEnteredWomb,
+      setIsInsideWomb,
+      router.pathname,
+      router,
+    ],
     scrollOverlayRef
   )
 }

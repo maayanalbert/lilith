@@ -1,8 +1,57 @@
 import { useStateContext } from "@/StateContext"
+import { easeInSine, easeOutQuad, easeOutSine } from "@/utils/easingFns"
+import { getMappedValue } from "@/utils/getMappedValue"
+import useEventListener from "@/utils/useEventListener"
+import { getDist } from "@/utils/useScrollAnimations"
 import { ArrowDownIcon } from "@heroicons/react/24/solid"
+import { useEffect, useRef } from "react"
 
 export default function SecondBlurb() {
-  const { hasEnteredWomb, secondBlurbVisible } = useStateContext()
+  const { isInsideWomb, secondBlurbVisible } = useStateContext()
+
+  const curTargetScale = useRef(0)
+
+  useEffect(() => {
+    const circle = document.querySelector(".circle") as HTMLDivElement | null
+    if (!circle) return
+
+    circle.style.scale = "1"
+    circle.style.opacity = "1"
+  }, [])
+
+  useEventListener("scroll", (event) => {
+    const circle = document.querySelector(".circle") as HTMLDivElement | null
+    if (!circle) return
+
+    const maxScrollY = document.body.scrollHeight - window.innerHeight
+
+    curTargetScale.current = getMappedValue(
+      window.scrollY,
+      0,
+      maxScrollY,
+      0.7,
+      1.3
+    )
+
+    const animate = (targetScale: number) => {
+      if (targetScale !== curTargetScale.current) return
+
+      const curScale = parseFloat(circle.style.scale)
+
+      const newScale = curScale * 0.95 + targetScale * 0.05
+
+      circle.style.scale = `${newScale}`
+      const opacity = getMappedValue(newScale, 1, 1.3, 1, 0, easeOutQuad)
+      circle.style.opacity = `${opacity}`
+
+      if (Math.abs(newScale - targetScale) > 0.01) {
+        requestAnimationFrame(() => animate(targetScale))
+      }
+    }
+
+    requestAnimationFrame(() => animate(curTargetScale.current))
+  })
+
   return (
     <div className="h-full w-full flex flex-col justify-center items-center gap-8">
       <div
@@ -12,13 +61,13 @@ export default function SecondBlurb() {
         <ArrowDownIcon
           width={20}
           height={20}
-          className="title-trimmings"
-          style={{ opacity: hasEnteredWomb ? 1 : 0 }}
+          className={isInsideWomb ? "title-trimmings" : undefined}
+          style={{ opacity: isInsideWomb ? 1 : 0 }}
         />
       </div>
       <div
-        className={`rounded-full border border-black flex justify-center 
-        items-center sm:h-[350px] sm:w-[350px] h-[250px] w-[250px] p-6`}
+        className={`flex justify-center relative
+        items-center sm:h-[350px] sm:w-[350px] h-[280px] w-[280px] p-6`}
         style={{
           lineHeight: 1.5,
           transitionProperty: "opacity",
@@ -27,7 +76,10 @@ export default function SecondBlurb() {
           opacity: secondBlurbVisible ? 1 : 0,
         }}
       >
-        <p className="font-display sm:text-[22px] text-lg text-center font-light sm:w-[420px w-[300px">
+        <div
+          className="rounded-full h-full w-full absolute border border-black circle" // the circle
+        />
+        <p className="font-display sm:text-[22px] text-lg text-center font-light">
           Eve is an intelligent environment for human thought.
         </p>
       </div>
