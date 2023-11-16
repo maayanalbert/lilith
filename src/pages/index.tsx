@@ -1,5 +1,6 @@
 import { useStateContext } from "@/StateContext"
 import { FirstBlurb } from "@/components/FirstBlurb"
+import NavBar from "@/components/NavBar"
 import SecondBlurb from "@/components/SecondBlurb"
 import { ThirdBlurb } from "@/components/ThirdBlurb"
 import Womb from "@/components/Womb"
@@ -31,14 +32,10 @@ export default function Home() {
     <>
       <div className="w-full h-full overflow-hidden relative">
         <Womb />
-        {/* <div
-          className="title-trimmings" // should be inside transformed area but then fixed doesn't work
-          style={{ opacity: hasEnteredWomb ? 1 : 0 }}
-        >
-          <div className="womb-innards">
-            <NavBar />
-          </div>
-        </div> */}
+
+        <div className="womb-innards">
+          <NavBar />
+        </div>
         <div
           className="w-full h-fit title relative"
           style={{
