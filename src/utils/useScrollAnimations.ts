@@ -54,7 +54,7 @@ export function useScrollAnimations(
     (event) => {
       const navbar = document.querySelector(".navbar") as HTMLDivElement | null
 
-      if (!scrollOverlayRef.current || !navbar) return
+      if (!scrollOverlayRef.current) return
 
       const maxSize = getMaxWombSize(window.innerWidth, window.innerHeight)
       const mainPageScrollable =
@@ -63,11 +63,11 @@ export function useScrollAnimations(
       if (mainPageScrollable && window.scrollY <= 0 && event.deltaY < 0) {
         // shrink womb
         scrollOverlayRef.current.style.pointerEvents = "auto"
-        navbar.style.pointerEvents = "none" // need to disable navbar to allow scrolling inward when mouse is on it
+        if (navbar) navbar.style.pointerEvents = "none" // need to disable navbar to allow scrolling inward when mouse is on it
       } else if (wombSize.current === maxSize && event.deltaY > 0) {
         // scroll within womb
         scrollOverlayRef.current.style.pointerEvents = "none"
-        navbar.style.pointerEvents = "auto"
+        if (navbar) navbar.style.pointerEvents = "auto"
       }
     },
     [setHasEnteredWomb, scrollOverlayRef.current]
