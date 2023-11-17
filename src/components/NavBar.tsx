@@ -26,12 +26,11 @@ export default function NavBar() {
               router.pathname === "/about"
                 ? "border-black"
                 : "border-[transparent]"
-            } hover:border-black cursor-pointer  
+            } hover:border-black cursor-pointer transition-all ease-in-out hover:duration-500 duration-[275ms]  
        text-center right-[70%] sm:text-left sm:mr-[50px] sm:right-[50%] pointer-events-auto`}
             style={{
               borderBottomWidth: 1,
               lineHeight: 1.15,
-              transition: "border-color 175ms ease-in-out",
             }}
             onClick={() => router.push("/about")}
           >
@@ -50,12 +49,11 @@ export default function NavBar() {
               router.pathname === "/roles"
                 ? "border-black"
                 : "border-[transparent]"
-            } cursor-pointer
+            } cursor-pointer transition-all ease-in-out hover:duration-500 duration-[275ms]
        text-center left-[70%] sm:text-right sm:ml-[50px] sm:left-[50%] pointer-events-auto`}
             style={{
               borderBottomWidth: 1,
               lineHeight: 1.1,
-              transition: "border-color 175ms ease-in-out",
             }}
             onClick={() => router.push("/roles")}
           >
