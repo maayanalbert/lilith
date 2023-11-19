@@ -22,21 +22,10 @@ export default function About() {
       }}
     >
       <div className="sm:w-[460px] w-[280px] font-light">
-        <p>
-          Eve is a New York based venture building AIs as environments, with the
-          goal of making a new type of{" "}
-          <a
-            className="underline pointer-events-auto"
-            target="_blank"
-            href="https://www.youtube.com/watch?v=KmuP8gsgWb8"
-          >
-            personal computer
-          </a>
-          .
-        </p>
+        <p className="font-normal">Eve is a seed stage venture in New York.</p>
         <br />
         <p>
-          Its founder is{" "}
+          It's lead by{" "}
           <a
             className="underline pointer-events-auto"
             target="_blank"
@@ -44,12 +33,19 @@ export default function About() {
           >
             Maayan Albert
           </a>
-          , a Carnegie Mellon alum whose work in authoring environments has
-          received industry wide recognition.
+          , a Carnegie Mellon alum whose work on{" "}
+          <a
+            className="underline pointer-events-auto"
+            target="_blank"
+            href="https://paper.dropbox.com/doc/Stamper-An-Artboard-Oriented-Programming-Environment-QXtfMXshBFBNCu6iCtx2J"
+          >
+            digital authoring environments
+          </a>{" "}
+          has received industry wide recognition.
         </p>
         <br />
         <p>
-          To learn more, please contact to{" "}
+          To learn more, contact{" "}
           <a
             className="underline pointer-events-auto"
             href="mailto:maayan@eve.space"

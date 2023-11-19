@@ -33,11 +33,11 @@ export function ThirdBlurb() {
         }}
       >
         <p
-          className="font-light font-display sm:text-xl text-lg sm:w-[450px] w-[280px]"
+          className="font-light font-display sm:text-xl text-lg sm:w-[520px] w-[300px]"
           style={{ lineHeight: 1.5 }}
         >
-          Eve is launching as a mobile app this summer. For more information,
-          contact{" "}
+          It's currently being developed as a consumer mobile app. For more
+          information, contact{" "}
           <a className="underline" href="mailto:maayan@eve.space">
             maayan@eve.space.
           </a>

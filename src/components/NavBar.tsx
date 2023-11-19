@@ -23,7 +23,7 @@ export default function NavBar() {
         >
           <p
             className={`absolute ${
-              router.pathname === "/about"
+              router.pathname === "/thesis"
                 ? "border-black"
                 : "border-[transparent]"
             } hover:border-black cursor-pointer transition-all ease-in-out hover:duration-500 duration-[275ms]  
@@ -32,9 +32,9 @@ export default function NavBar() {
               borderBottomWidth: 1,
               lineHeight: 1.15,
             }}
-            onClick={() => router.push("/about")}
+            onClick={() => router.push("/thesis")}
           >
-            About
+            Thesis
           </p>
 
           <div
@@ -46,7 +46,7 @@ export default function NavBar() {
           />
           <p
             className={`absolute hover:border-black ${
-              router.pathname === "/roles"
+              router.pathname === "/about"
                 ? "border-black"
                 : "border-[transparent]"
             } cursor-pointer transition-all ease-in-out hover:duration-500 duration-[275ms]
@@ -55,9 +55,9 @@ export default function NavBar() {
               borderBottomWidth: 1,
               lineHeight: 1.1,
             }}
-            onClick={() => router.push("/roles")}
+            onClick={() => router.push("/about")}
           >
-            Roles
+            About
           </p>
         </div>
       </div>

@@ -16,7 +16,7 @@ export function FirstBlurb() {
           } text-center`}
           style={{ opacity: isInsideWomb ? 1 : 0 }}
         >
-          A space for your thoughts
+          A space for your <a className="text-zinc-500">self</a>
         </p>
       </div>
     </div>

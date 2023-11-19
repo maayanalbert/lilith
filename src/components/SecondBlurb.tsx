@@ -67,7 +67,7 @@ export default function SecondBlurb() {
       </div>
       <div
         className={`flex justify-center relative
-        items-center sm:h-[350px] sm:w-[350px] h-[280px] w-[280px] p-6`}
+        items-center sm:h-[350px] sm:w-[350px] h-[280px] w-[280px] sm:p-10 p-6`}
         style={{
           lineHeight: 1.5,
           transitionProperty: "opacity",
@@ -80,7 +80,8 @@ export default function SecondBlurb() {
           className="rounded-full h-full w-full absolute border border-black circle" // the circle
         />
         <p className="font-display sm:text-[22px] text-lg text-center font-light">
-          Eve is an intelligent environment for human thought.
+          Eve is a space to record your thoughts and receive AI generated
+          insights
         </p>
       </div>
     </div>

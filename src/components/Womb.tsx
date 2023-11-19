@@ -25,7 +25,7 @@ export default function Womb() {
               paddingTop: 88 * 2 + 20,
             }}
           >
-            {hasEnteredWomb ? "Summer 2024" : "(scroll)"}
+            {hasEnteredWomb ? "Take a Bite" : "(scroll)"}
           </p>
         </div>
         <div
