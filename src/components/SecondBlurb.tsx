@@ -67,7 +67,7 @@ export default function SecondBlurb() {
       </div>
       <div
         className={`flex justify-center relative
-        items-center sm:h-[350px] sm:w-[350px] h-[280px] w-[280px] sm:p-10 p-6`}
+        items-center sm:h-[375px] sm:w-[375px] h-[280px] w-[280px] sm:p-12 p-6`}
         style={{
           lineHeight: 1.5,
           transitionProperty: "opacity",
