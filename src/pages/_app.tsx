@@ -5,9 +5,6 @@ import type { AppProps } from "next/app"
 import { useEffect, useMemo } from "react"
 import { QueryClient, QueryClientProvider } from "react-query"
 import { StateContextProvider } from "@/StateContext"
-import Womb from "@/components/Womb"
-import NavBar from "@/components/NavBar"
-import ScrollOverlay from "@/components/ScrollOverlay"
 import { useRouter } from "next/router"
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -32,14 +29,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
       <StateContextProvider startOpened={pathname !== "/"}>
-        <>
-          <div className="w-full h-full overflow-hidden relative">
-            <Womb />
-            <NavBar />
-            <Component {...pageProps} />
-          </div>
-          <ScrollOverlay />
-        </>
+        <Component {...pageProps} />
       </StateContextProvider>
     </QueryClientProvider>
   )

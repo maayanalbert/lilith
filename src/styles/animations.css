@@ -30,7 +30,7 @@
 
 .hint-enter {
   animation-name: hint-enter;
-  animation-duration: 3135ms;
+  animation-duration: 3050ms;
   animation-timing-function: ease-in-out;
 }
 
@@ -38,7 +38,7 @@
   0% {
     opacity: 0;
   }
-  67% {
+  70% {
     opacity: 0;
   }
   100% {
@@ -51,8 +51,4 @@
   transition-delay: 150ms;
   transition-timing-function: ease-in;
   transition-property: opacity;
-}
-
-.womb-innards {
-  opacity: var(--womb-innards-opacity);
 }

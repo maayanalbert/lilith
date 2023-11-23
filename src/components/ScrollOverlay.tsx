@@ -4,7 +4,7 @@ export default function ScrollOverlay() {
   const { scrollOverlayRef } = useStateContext()
   return (
     <div // scroll overlay
-      className="absolute top-0 w-full scrollbar-hidden"
+      className="absolute top-0 w-full scrollbar-hidden scroll-overlay"
       style={{
         height: "100svh",
         overflow: "scroll",

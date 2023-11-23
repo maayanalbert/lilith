@@ -1,63 +1,11 @@
-import { useStateContext } from "@/StateContext"
 import useEventListener from "@/utils/useEventListener"
 import useOutsideClick from "@/utils/useOutsideClick"
-import {
-  ArrowDownIcon,
-  ArrowPathIcon,
-  ArrowRightIcon,
-  ArrowUpIcon,
-  CheckIcon,
-} from "@heroicons/react/24/solid"
+import { ArrowPathIcon, ArrowRightIcon } from "@heroicons/react/24/solid"
 import axios from "axios"
-import { set } from "lodash"
-import { useEffect, useRef, useState } from "react"
+import { useRef, useState } from "react"
 import { useMutation } from "react-query"
 
-export function ThirdBlurb() {
-  const { thirdBlurbVisible } = useStateContext()
-  return (
-    <div className="w-full h-full flex items-center justify-center">
-      <div
-        className="absolute w-full flex justify-center items-end top-0"
-        style={{ height: `9svh` }}
-      >
-        <ArrowDownIcon width={20} height={20} />
-      </div>
-      <div
-        className="text-center flex flex-col items-center"
-        style={{
-          transitionProperty: "opacity",
-          transitionDuration: "500ms",
-          transitionTimingFunction: "cubic-bezier(0.4, 0, 0.2, 1)",
-          opacity: thirdBlurbVisible ? 1 : 0,
-        }}
-      >
-        <p
-          className="font-light font-display sm:text-xl text-lg sm:w-[520px] w-[300px]"
-          style={{ lineHeight: 1.5 }}
-        >
-          It's currently being developed as a consumer mobile app. For more
-          information, contact{" "}
-          <a className="underline" href="mailto:maayan@eve.space">
-            maayan@eve.space.
-          </a>
-        </p>
-        <div className="h-8" />
-        <div className="font-light sm:text-lg">
-          <NotifyField />
-        </div>
-      </div>
-      <div
-        className="absolute bottom-0 w-full flex flex-row justify-center font-light text-sm fading-content"
-        style={{ height: "8svh" }}
-      >
-        Copyright Eve Technologies 2023
-      </div>
-    </div>
-  )
-}
-
-function NotifyField() {
+export function EmailField() {
   const [isFinished, setIsFinished] = useState(false)
   const [isFinishedDelayed, setIsFinishedDelayed] = useState(false)
   const [state, setState] = useState<"NOTIFY" | "EMAIL">("NOTIFY")
@@ -129,7 +77,7 @@ function NotifyField() {
         className={`${
           isFinished
             ? "w-[47px] opacity-0 blur-[8px] scale-0"
-            : "sm:w-[400px] w-[330px]"
+            : "sm:w-[380px] w-[300px]"
         } 
       flex justify-center items-center overflow-hidden rounded-full h-[47px]`}
         style={{
@@ -142,19 +90,20 @@ function NotifyField() {
         <div
           ref={ref}
           className={`rounded-full relative h-full
-         whitespace-nowrap border border-red-600
-         ${isFinished ? "bg-red-600" : "bg-white"}
-          ${state === "EMAIL" && "sm:w-[400px] w-[330px]"}
+         whitespace-nowrap
+         ${isFinished ? "bg-white" : "bg-black"}
+          ${state === "EMAIL" && "sm:w-[380px] w-[300px] border-zinc-400"}
           ${
             state === "NOTIFY" &&
-            "hover:bg-red-600 w-[130px] hover:text-white text-red-600"
+            "hover:bg-white w-[130px] hover:text-black text-zinc-200 border-zinc-400 hover:border-white"
           }
           ${state !== "EMAIL" && "cursor-pointer"}
           `}
           style={{
-            transitionProperty: "width, background",
-            transitionDuration: "700ms, 300ms",
+            transitionProperty: "width, background, border-color",
+            transitionDuration: "700ms, 300ms, 700ms",
             transitionTimingFunction: easeInOut,
+            borderWidth: 1.75,
           }}
           onClick={() => {
             if (state === "NOTIFY") {
@@ -167,7 +116,7 @@ function NotifyField() {
           }}
         >
           <p
-            className="h-full w-full hover:text-white select-none flex justify-center items-center"
+            className="h-full w-full hover:text-black select-none flex justify-center items-center"
             style={{
               opacity: state === "EMAIL" ? 0 : 1,
               transitionProperty: "color, opacity",
@@ -179,7 +128,7 @@ function NotifyField() {
               }}`,
             }}
           >
-            {state === "NOTIFY" || state === "EMAIL" ? "Notify Me" : ""}
+            {state === "NOTIFY" || state === "EMAIL" ? "Take a Bite" : ""}
           </p>
           <div
             className={`w-full h-full absolute top-0 w-full rounded-full left-0 pr-[8px]
@@ -192,29 +141,36 @@ function NotifyField() {
                 state === "EMAIL" && !isFinished ? "350ms" : "0ms",
             }}
           >
+            {!email && (
+              <input // placeholder
+                value="email@domain.com"
+                disabled={true}
+                className="bg-transparent w-full pl-6 h-full text-zinc-500 absolute pointer-events-none"
+              />
+            )}
             <input
               ref={inputRef}
-              placeholder="email@domain.com"
               value={email}
               onChange={(event) => setEmail(event.target.value)}
-              className="bg-transparent w-full pl-6 h-full"
+              className="bg-transparent w-full pl-6 h-full text-white"
               type="email"
+              style={{ zIndex: 1 }}
             />
             <div
               className={`rounded-full p-1.5 transition-all duration-200 ${
-                email && "sm:hover:bg-gray-200"
+                email && "sm:hover:bg-zinc-700"
               }`}
             >
               {error ? (
                 <ArrowPathIcon
                   className={`sm:h-[20px] sm:w-[20px] h-[18px] w-[18px]
-         ${email ? "text-black cursor-pointer" : "text-gray-400 "}`}
+         ${email ? "text-white cursor-pointer" : "text-zinc-500 "}`}
                   onClick={() => email && mutateAsync()}
                 />
               ) : (
                 <ArrowRightIcon
                   className={`sm:h-[20px] sm:w-[20px] h-[18px] w-[18px]
-         ${email ? "text-black cursor-pointer" : "text-gray-400 "}`}
+         ${email ? "text-white cursor-pointer" : "text-zinc-500 "}`}
                   onClick={() => email && mutateAsync()}
                 />
               )}
@@ -237,7 +193,7 @@ function NotifyField() {
               isFinishedDelayed && mouseMovedSinceFinished ? undefined : "none",
           }}
         >
-          <p>Your response has been submitted.</p>
+          <p>Your response has been submitted</p>
         </div>
       </div>
     </div>

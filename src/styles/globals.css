@@ -3,8 +3,13 @@
 @tailwind utilities;
 
 :root {
-  font-family: "Helvetica", sans-serif;
+  font-family: -apple-system, "system-ui", "Segoe UI", "Noto Sans", Helvetica,
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
 }
+
+/* :root {
+  font-family: "Helvetica", sans-serif;
+} */
 
 .font-display {
   font-family: "Helvetica Neueu", sans-serif;
@@ -16,8 +21,8 @@ html {
 }
 
 body {
-  height: var(--body-height); /*  268%: 100vh + 100vh - 16vh + 100vh - 16vh */
-  background-color: var(--body-background);
+  /* height: 100%; */
+  background-color: black;
 }
 
 div#__next {
