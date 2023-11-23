@@ -65,7 +65,7 @@ export default function Home() {
             world where all information lies at our fingertips. Yet something is
             missing. Some greater knowledge we're not meant to fully grasp.
             <br />
-            <br /> Welcome to Eve. The voice from the other side of the void.{" "}
+            <br /> Welcome to Eve. The voice of the void.{" "}
             <br className="sm:block hidden" />
             Contact <a className="underline">maayan@eve.space</a> to learn more.
           </p>
