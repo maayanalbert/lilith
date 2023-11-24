@@ -72,12 +72,12 @@ export function EmailField() {
   const [email, setEmail] = useState("")
 
   return (
-    <div className="h-[47px] flex justify-center items-center relative w-full">
+    <div className="h-[47px] flex justify-center items-center relative w-full sm:text-sm">
       <div
         className={`${
           isFinished
             ? "w-[47px] opacity-0 blur-[8px] scale-0"
-            : "sm:w-[380px] w-[330px]"
+            : "sm:w-[433px] w-[300px]"
         } 
       flex justify-center items-center overflow-hidden rounded-full h-[47px]`}
         style={{
@@ -92,10 +92,10 @@ export function EmailField() {
           className={`rounded-full relative h-full
          whitespace-nowrap
          ${isFinished ? "bg-white" : "bg-black"}
-          ${state === "EMAIL" && "sm:w-[380px] w-[330px] border-zinc-400"}
+          ${state === "EMAIL" && "sm:w-[433px] w-[300px] border-zinc-400"}
           ${
             state === "NOTIFY" &&
-            "hover:bg-white w-[163px] hover:text-black text-zinc-200 border-zinc-400 hover:border-white"
+            "hover:bg-white w-[190px] sm:w-[165px] hover:text-black text-zinc-200 border-zinc-400 hover:border-white"
           }
           ${state !== "EMAIL" && "cursor-pointer"}
           `}
@@ -156,7 +156,7 @@ export function EmailField() {
             >
               {error ? (
                 <ArrowPathIcon
-                  className={`sm:h-[20px] sm:w-[20px] h-[18px] w-[18px]
+                  className={`h-[20px] sm:w-[20px] w-[18px]
          ${email ? "text-white cursor-pointer" : "text-zinc-500 "}`}
                   onClick={() => email && mutateAsync()}
                 />

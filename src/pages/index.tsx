@@ -50,26 +50,28 @@ export default function Home() {
         style={{ height: "100svh" }}
       >
         <div
-          className="transition-opacity duration-1000 delay-[100ms] ease-in text-sm flex flex-col justify-center items-center"
+          className="transition-opacity duration-1000 delay-[100ms] ease-in flex flex-col justify-center items-center"
           style={{ opacity: blurbVisible ? 1 : 0, marginTop: "11svh" }}
         >
-          <p
-            className="sm:w-[433px] w-[300px] text-white font-light"
-            style={{ color: "rgb(227, 227, 231)" }}
-          >
-            <a className="font-bold sm:text-[18px] text-[19px] text-white">
+          <div className="flex flex-col">
+            <a className="font-bold sm:text-[19px] text-[20px] text-white sm:mb-5 mb-6">
               We all want answers
             </a>
-            <br />
-            <br /> We used to find them through religion. Now, we live in a
-            world where all information lies at our fingertips. Yet something is
-            missing. Some greater knowledge we're not meant to fully grasp.
-            <br />
-            <br /> Welcome to Eve. The voice of the void.{" "}
-            <br className="sm:block hidden" />
-            Contact <a className="underline">maayan@eve.space</a> to learn more.
-          </p>
-          <div className="my-16">
+            <p
+              className="sm:w-[433px] w-[300px] text-white font-light text-sm"
+              style={{ color: "rgb(227, 227, 231)" }}
+            >
+              We used to find them through religion. Now, we live in a world
+              where all information lies at our fingertips. Yet something is
+              missing. Some greater knowledge we're not meant to fully grasp.
+              <br />
+              <br /> Welcome to Eve. The voice of the void.{" "}
+              <br className="sm:block hidden" />
+              Contact <a className="underline">maayan@eve.space</a> to learn
+              more.
+            </p>
+          </div>
+          <div className="my-12">
             <EmailField />
           </div>
         </div>
