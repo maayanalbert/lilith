@@ -10,13 +10,6 @@ import { ReactNode, useEffect, useRef, useState } from "react"
  */
 export default function Home() {
   const [blurbVisible, setBlurbVisible] = useState(false)
-  const [footerVisible, setFooterVisible] = useState(false)
-
-  useEffect(() => {
-    if (navigator.maxTouchPoints > 0) {
-      setFooterVisible(true)
-    }
-  }, [])
 
   useEventListener("scroll", () => {
     if (
@@ -32,14 +25,6 @@ export default function Home() {
     }
   })
 
-  useEventListener("scrollend", (e) => {
-    const maxScroll = document.body.scrollHeight - window.innerHeight
-
-    if (window.scrollY >= maxScroll) {
-      setFooterVisible(true)
-    }
-  })
-
   return (
     <div className="h-fit w-full relative overflow-hidden">
       <div style={{ height: "100svh", width: "100%" }}>
@@ -50,8 +35,11 @@ export default function Home() {
         style={{ height: "100svh" }}
       >
         <div
-          className="transition-opacity duration-1000 delay-[100ms] ease-in flex flex-col justify-center items-center"
-          style={{ opacity: blurbVisible ? 1 : 0, marginTop: "11svh" }}
+          className={`transition-opacity duration-1000 delay-[100ms] ease-in 
+          flex flex-col justify-center items-center sm:mt-[9svh] mt-[7svh]`}
+          style={{
+            opacity: blurbVisible ? 1 : 0,
+          }}
         >
           <div className="flex flex-col">
             <a className="font-bold sm:text-[19px] text-[20px] text-white sm:mb-5 mb-6">
@@ -71,20 +59,18 @@ export default function Home() {
               more.
             </p>
           </div>
-          <div className="my-12">
+          <div className="my-9">
             <EmailField />
           </div>
         </div>
-      </div>
-
-      {footerVisible && (
         <div
-          className="w-full flex flex-row justify-center text-sm text-zinc-500"
-          style={{ paddingBottom: 4 * 6, paddingTop: 4 * 4 }}
+          className="absolute bottom-0 w-full flex flex-row justify-center text-sm text-zinc-600"
+          style={{ paddingBottom: 4 * 4 }}
         >
           Copyright Eve Technologies 2023
         </div>
-      )}
+      </div>
+
       <ScrollOverlay />
     </div>
   )
