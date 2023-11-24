@@ -141,20 +141,13 @@ export function EmailField() {
                 state === "EMAIL" && !isFinished ? "350ms" : "0ms",
             }}
           >
-            {!email && (
-              <input // placeholder
-                value="email@domain.com"
-                disabled={true}
-                className="bg-transparent w-full pl-6 h-full text-zinc-400 absolute pointer-events-none"
-              />
-            )}
             <input
               ref={inputRef}
               value={email}
+              placeholder="email@domain.com"
               onChange={(event) => setEmail(event.target.value)}
               className="bg-transparent w-full pl-6 h-full text-white"
               type="email"
-              style={{ zIndex: 1 }}
             />
             <div
               className={`rounded-full p-1.5 transition-all duration-200 ${
