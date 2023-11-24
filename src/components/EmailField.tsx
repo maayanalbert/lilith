@@ -77,7 +77,7 @@ export function EmailField() {
         className={`${
           isFinished
             ? "w-[47px] opacity-0 blur-[8px] scale-0"
-            : "sm:w-[380px] w-[300px]"
+            : "sm:w-[380px] w-[330px]"
         } 
       flex justify-center items-center overflow-hidden rounded-full h-[47px]`}
         style={{
@@ -92,10 +92,10 @@ export function EmailField() {
           className={`rounded-full relative h-full
          whitespace-nowrap
          ${isFinished ? "bg-white" : "bg-black"}
-          ${state === "EMAIL" && "sm:w-[380px] w-[300px] border-zinc-400"}
+          ${state === "EMAIL" && "sm:w-[380px] w-[330px] border-zinc-400"}
           ${
             state === "NOTIFY" &&
-            "hover:bg-white w-[130px] hover:text-black text-zinc-200 border-zinc-400 hover:border-white"
+            "hover:bg-white w-[163px] hover:text-black text-zinc-200 border-zinc-400 hover:border-white"
           }
           ${state !== "EMAIL" && "cursor-pointer"}
           `}
@@ -128,7 +128,7 @@ export function EmailField() {
               }}`,
             }}
           >
-            {state === "NOTIFY" || state === "EMAIL" ? "Take a Bite" : ""}
+            {state === "NOTIFY" || state === "EMAIL" ? "Keep Me Informed" : ""}
           </p>
           <div
             className={`w-full h-full absolute top-0 w-full rounded-full left-0 pr-[8px]
