@@ -145,7 +145,7 @@ export function EmailField() {
               <input // placeholder
                 value="email@domain.com"
                 disabled={true}
-                className="bg-transparent w-full pl-6 h-full text-zinc-500 absolute pointer-events-none"
+                className="bg-transparent w-full pl-6 h-full text-zinc-400 absolute pointer-events-none"
               />
             )}
             <input
