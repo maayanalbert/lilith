@@ -35,13 +35,13 @@ export default function Home() {
         transition-opacity duration-1000 delay-[100ms] ease-in`}
         style={{ height: "100svh", opacity: blurbVisible ? 1 : 0 }}
       >
-        <div className="flex flex-col justify-center items-center sm:mt-[5svh]">
+        <div className="flex flex-col justify-center items-center -mt-[1svh] sm:mt-[4svh]">
           <div className="flex flex-col">
             <a className="font-bold sm:text-[19px] text-[20px] text-white sm:mb-5 mb-6">
               We all want answers
             </a>
             <p
-              className="sm:w-[433px] w-[300px] text-white font-light text-sm"
+              className="sm:w-[433px] w-[300px] text-white font-light text-[15px]"
               style={{ color: "rgb(227, 227, 231)" }}
             >
               We used to find them through religion. Now, despite having a world
