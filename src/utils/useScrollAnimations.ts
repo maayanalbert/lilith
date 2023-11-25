@@ -179,7 +179,7 @@ function updateTitleStyle(wombSize: number, maxSize: number) {
     wombSize,
     startSize,
     maxSize,
-    0.005,
+    0.0025,
     1,
     easeInCubic
   )
