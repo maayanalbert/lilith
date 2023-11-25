@@ -36,7 +36,7 @@ export default function Home() {
       >
         <div
           className={`transition-opacity duration-1000 delay-[100ms] ease-in 
-          flex flex-col justify-center items-center sm:mt-[9svh] mt-[7svh]`}
+          flex flex-col justify-center items-center sm:mt-[9svh] mt-[5svh]`}
           style={{
             opacity: blurbVisible ? 1 : 0,
           }}
