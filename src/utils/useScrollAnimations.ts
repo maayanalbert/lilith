@@ -31,6 +31,7 @@ export function useScrollAnimations(
   useEffect(() => {
     document.documentElement.style.setProperty("--hint-opacity", `1`)
     document.documentElement.style.setProperty("--html-overflow", `hidden`)
+    document.documentElement.style.setProperty("--body-height", `100%`)
 
     if (scrollOverlayRef.current) {
       const maxSize = Math.min(window.innerWidth, window.innerHeight)
@@ -76,8 +77,13 @@ export function useScrollAnimations(
       if (wombSize.current === maxSize) {
         setHasEnteredWomb(true)
         document.documentElement.style.setProperty("--html-overflow", `auto`)
+        document.documentElement.style.setProperty("--body-height", `100%`)
       } else {
         document.documentElement.style.setProperty("--html-overflow", `hidden`)
+        document.documentElement.style.setProperty(
+          "--body-height",
+          `fit-content`
+        )
       }
     },
     [
@@ -130,6 +136,10 @@ export function useScrollAnimations(
         setHasEnteredWomb(true)
         document.documentElement.style.setProperty("--html-overflow", `auto`)
         scrollOverlayRef.current?.style.setProperty("z-index", "-1")
+        document.documentElement.style.setProperty(
+          "--body-height",
+          `fit-content`
+        )
 
         const overflowScroll = (deltaY: number) => {
           if (!autoScrolling.current) return
