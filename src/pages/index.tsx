@@ -36,7 +36,7 @@ export default function Home() {
       >
         <div
           className={`transition-opacity duration-1000 delay-[100ms] ease-in 
-          flex flex-col justify-center items-center sm:mt-[9svh] mt-[5svh]`}
+          flex flex-col justify-center items-center sm:mt-[9svh]`}
           style={{
             opacity: blurbVisible ? 1 : 0,
           }}
@@ -49,8 +49,8 @@ export default function Home() {
               className="sm:w-[433px] w-[300px] text-white font-light text-sm"
               style={{ color: "rgb(227, 227, 231)" }}
             >
-              We used to find them through religion. Now, despite having a world of information
-              at our fingertips, something is missing.
+              We used to find them through religion. Now, despite having a world
+              of information at our fingertips, something is missing.
               <br />
               <br /> Welcome to Eve. The voice of the void.{" "}
               <br className="sm:block hidden" />
@@ -63,8 +63,7 @@ export default function Home() {
           </div>
         </div>
         <div
-          className="absolute bottom-0 w-full flex flex-row justify-center text-sm text-zinc-600"
-          style={{ paddingBottom: 4 * 4 }}
+          className={`absolute bottom-0 w-full flex flex-row justify-center text-sm text-zinc-600 sm:pb-4 pb-8`}
         >
           Copyright Eve Technologies 2023
         </div>
