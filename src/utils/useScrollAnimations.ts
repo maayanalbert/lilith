@@ -181,7 +181,7 @@ function updateTitleStyle(wombSize: number, maxSize: number) {
     maxSize,
     0.005,
     1,
-    easeInQuad
+    easeInCubic
   )
 
   title.style.scale = `${titleScale}`
