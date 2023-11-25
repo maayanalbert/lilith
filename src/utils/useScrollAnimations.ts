@@ -6,7 +6,13 @@ import {
   useRef,
   useState,
 } from "react"
-import { easeInQuad, easeInQuart, easeInSine, easeOutQuad } from "./easingFns"
+import {
+  easeInCubic,
+  easeInQuad,
+  easeInQuart,
+  easeInSine,
+  easeOutQuad,
+} from "./easingFns"
 import { getMappedValue } from "./getMappedValue"
 import useEventListener from "./useEventListener"
 
@@ -63,7 +69,7 @@ export function useScrollAnimations(
         startSize
       )
 
-      updateWombStyles(wombSize.current, maxSize * 0.9)
+      updateWombStyles(wombSize.current, maxSize * 0.95)
       updateTitleStyle(wombSize.current, maxSize)
       setWombIsClosed(wombSize.current === startSize)
 
@@ -116,7 +122,7 @@ export function useScrollAnimations(
         startSize
       )
 
-      updateWombStyles(wombSize.current, maxSize * 0.9)
+      updateWombStyles(wombSize.current, maxSize * 0.95)
       updateTitleStyle(wombSize.current, maxSize)
       setWombIsClosed(wombSize.current === startSize)
 
@@ -173,9 +179,9 @@ function updateTitleStyle(wombSize: number, maxSize: number) {
     wombSize,
     startSize,
     maxSize,
-    0.001,
+    0.005,
     1,
-    easeInQuart
+    easeInQuad
   )
 
   title.style.scale = `${titleScale}`
