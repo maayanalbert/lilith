@@ -49,9 +49,8 @@ export default function Home() {
               className="sm:w-[433px] w-[300px] text-white font-light text-sm"
               style={{ color: "rgb(227, 227, 231)" }}
             >
-              We used to find them through religion. Now, we live in a world
-              where all information lies at our fingertips. Yet something is
-              missing. Some greater knowledge we're not meant to fully grasp.
+              We used to find them through religion. Now, despite having a world of information
+              at our fingertips, something is missing.
               <br />
               <br /> Welcome to Eve. The voice of the void.{" "}
               <br className="sm:block hidden" />
