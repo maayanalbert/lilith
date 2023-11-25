@@ -128,7 +128,7 @@ export function EmailField() {
               }}`,
             }}
           >
-            {state === "NOTIFY" || state === "EMAIL" ? "Keep Me Informed" : ""}
+            {state === "NOTIFY" || state === "EMAIL" ? "Get early access" : ""}
           </p>
           <div
             className={`w-full h-full absolute top-0 w-full rounded-full left-0 pr-[8px]
@@ -180,13 +180,16 @@ export function EmailField() {
         }}
       >
         <div
-          className={`sm:text-lg text-base text-zinc-500 flex flex-row gap-[5px] whitespace-nowrap`}
+          className={`sm:text-lg text-base text-zinc-600 flex flex-row gap-[5px] whitespace-nowrap`}
           style={{
             pointerEvents:
               isFinishedDelayed && mouseMovedSinceFinished ? undefined : "none",
           }}
         >
-          <p>Your response has been submitted</p>
+          <p className="text-center sm:text-[15px] text-sm">
+            Your response has been submitted, <br className="sm:hidden" /> we'll
+            keep you in the loop.
+          </p>
         </div>
       </div>
     </div>
