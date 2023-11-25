@@ -63,7 +63,7 @@ export default function Home() {
           </div>
         </div>
         <div
-          className={`absolute bottom-0 w-full flex flex-row justify-center text-sm text-zinc-600 sm:pb-4 pb-8`}
+          className={`absolute bottom-0 w-full flex flex-row justify-center text-sm text-zinc-600 sm:pb-[18px] pb-8`}
         >
           Copyright Eve Technologies 2023
         </div>
