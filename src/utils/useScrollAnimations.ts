@@ -20,6 +20,7 @@ export function useScrollAnimations(
 ) {
   const wombSize = useRef(startSize)
   const lastOverlayY = useRef(0)
+  const autoScrolling = useRef(false)
 
   useEffect(() => {
     document.documentElement.style.setProperty("--hint-opacity", `1`)
@@ -83,6 +84,14 @@ export function useScrollAnimations(
   )
 
   useEventListener(
+    "touchstart",
+    (event) => {
+      autoScrolling.current = false
+    },
+    []
+  )
+
+  useEventListener(
     // won't fire on desktop because overlay index is -1
     "scroll",
     () => {
@@ -117,6 +126,7 @@ export function useScrollAnimations(
         scrollOverlayRef.current?.style.setProperty("z-index", "-1")
 
         const overflowScroll = (deltaY: number) => {
+          if (!autoScrolling.current) return
           const newDelta = deltaY * 0.9
           window.scrollBy(0, newDelta)
           if (newDelta > 0.01) {
@@ -124,6 +134,7 @@ export function useScrollAnimations(
           }
         }
 
+        autoScrolling.current = true
         overflowScroll(deltaY)
       }
     },
