@@ -45,10 +45,3 @@
     opacity: 1;
   }
 }
-
-.title-trimmings {
-  transition-duration: 600ms;
-  transition-delay: 150ms;
-  transition-timing-function: ease-in;
-  transition-property: opacity;
-}
