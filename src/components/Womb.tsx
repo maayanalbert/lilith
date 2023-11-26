@@ -23,7 +23,7 @@ export default function Womb() {
             hasEnteredWomb ? "text-[27px]" : "text-3xl"
           } text-zinc-500`}
           style={{
-            paddingTop: 88 * 2 + 20,
+            paddingTop: hasEnteredWomb ? 88 * 2 + 13 : 88 * 2 + 20,
           }}
         >
           {hasEnteredWomb ? "Take a Bite" : "(scroll)"}
