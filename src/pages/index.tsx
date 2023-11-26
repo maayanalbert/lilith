@@ -37,7 +37,7 @@ export default function Home() {
       >
         <div className="flex flex-col justify-center items-center -mt-[6svh] sm:mt-[5svh]">
           <div className="flex flex-col">
-            <a className="font-bold sm:text-[22px] text-[20px] text-white sm:mb-5 mb-6">
+            <a className="font-bold sm:text-[22px] text-[21px] text-white sm:mb-5 mb-6">
               We all want answers
             </a>
             <p
