@@ -203,7 +203,7 @@ export function EmailField() {
           }}
         >
           <p className="text-center sm:text-[15px] text-sm">
-            Your response has been submitted
+            Your response has been submitted.
           </p>
         </div>
       </div>
