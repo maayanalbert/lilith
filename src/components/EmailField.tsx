@@ -72,7 +72,7 @@ export function EmailField() {
   const [email, setEmail] = useState("")
 
   return (
-    <div className="h-[47px] flex justify-center items-center relative w-full sm:text-[15px]">
+    <div className="flex flex-col justify-center items-center relative w-full sm:text-[15px]">
       <div
         className={`${
           isFinished
@@ -95,7 +95,7 @@ export function EmailField() {
           ${state === "EMAIL" && "sm:w-[433px] w-[300px] border-zinc-400"}
           ${
             state === "NOTIFY" &&
-            "hover:bg-white w-[190px] sm:w-[165px] hover:text-black text-zinc-200 border-zinc-400 hover:border-white"
+            "hover:bg-white w-[135px] sm:w-[130px] hover:text-black text-zinc-200 border-zinc-400 hover:border-white"
           }
           ${state !== "EMAIL" && "cursor-pointer"}
           `}
@@ -128,7 +128,7 @@ export function EmailField() {
               }}`,
             }}
           >
-            {state === "NOTIFY" || state === "EMAIL" ? "Get early access" : ""}
+            {state === "NOTIFY" || state === "EMAIL" ? "Reach Out" : ""}
           </p>
           <div
             className={`w-full h-full absolute top-0 w-full rounded-full left-0 pr-[8px]
@@ -171,9 +171,26 @@ export function EmailField() {
           </div>
         </div>
       </div>
+      <div className="relative w-full flex justify-center">
+        <div
+          className="absolute text-zinc-600 text-sm mt-3 sm:w-[433px] w-[300px] text-center px-2"
+          style={{
+            transitionProperty: "opacity",
+            transitionDuration:
+              state === "EMAIL" && !isFinished ? "700ms" : "300ms",
+            transitionDelay: state === "EMAIL" && !isFinished ? "350ms" : "0ms",
+            transitionTimingFunction: easeInOut,
+            opacity: !isFinished && state === "EMAIL" ? 1 : 0,
+          }}
+        >
+          We're currently speaking to investors and industry experts.
+          <br className="hidden sm:block" /> If you're a good fit, we'll be in
+          touch.{" "}
+        </div>
+      </div>
+
       <div
-        className={`absolute 
-        transition-opacity duration-[500ms] ease-in delay-[1100ms]`}
+        className={`absolute transition-opacity duration-[500ms] ease-in delay-[1100ms]`}
         style={{
           pointerEvents: isFinished ? undefined : "none",
           opacity: isFinished ? 1 : 0,
@@ -187,8 +204,7 @@ export function EmailField() {
           }}
         >
           <p className="text-center sm:text-[15px] text-sm">
-            Your response has been submitted, <br className="sm:hidden" /> we'll
-            keep you in the loop.
+            Your response has been submitted
           </p>
         </div>
       </div>
