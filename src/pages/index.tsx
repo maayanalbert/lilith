@@ -50,7 +50,7 @@ export default function Home() {
               <br /> Welcome to Eve. The voice of the void.
             </p>
           </div>
-          <div className="my-[34px] text-sm">
+          <div className="mt-[32px] mb-[34px] text-sm">
             <EmailField />
           </div>
         </div>
