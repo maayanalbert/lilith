@@ -173,7 +173,7 @@ export function EmailField() {
       </div>
       <div className="relative w-full flex justify-center">
         <div
-          className="absolute text-zinc-600 text-sm mt-3 sm:w-[433px] w-[300px] text-center px-2"
+          className="absolute sm:text-zinc-600 text-zinc-500 text-sm mt-3 sm:w-[433px] w-[300px] text-center px-2"
           style={{
             transitionProperty: "opacity",
             transitionDuration:
@@ -183,9 +183,8 @@ export function EmailField() {
             opacity: !isFinished && state === "EMAIL" ? 1 : 0,
           }}
         >
-          We're currently speaking to investors and industry experts.
-          <br className="hidden sm:block" /> If you're a good fit, we'll be in
-          touch.{" "}
+          We're currently speaking with investors.
+          <br /> If you're a fit, we'll be in touch.{" "}
         </div>
       </div>
 
