@@ -48,7 +48,7 @@ export default function Womb() {
         }}
       >
         <div className="flex flex-col h-full w-full justify-center items-center">
-          <p className="whitespace-nowrap select-none sm:text-6xl text-3xl cursor-default font-display sm:-mt-3 -mt-1">
+          <p className="whitespace-nowrap select-none sm:text-[84px] text-[34px] cursor-default font-display sm:-mt-3 -mt-1">
             Welcome to Eve
           </p>
         </div>
