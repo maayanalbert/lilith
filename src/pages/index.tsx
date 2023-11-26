@@ -35,7 +35,7 @@ export default function Home() {
         transition-opacity duration-1000 delay-[100ms] ease-in`}
         style={{ height: "100svh", opacity: blurbVisible ? 1 : 0 }}
       >
-        <div className="flex flex-col justify-center items-center -mt-[1svh] sm:mt-[5svh]">
+        <div className="flex flex-col justify-center items-center -mt-[6svh] sm:mt-[5svh]">
           <div className="flex flex-col">
             <a className="font-bold sm:text-[22px] text-[20px] text-white sm:mb-5 mb-6">
               We all want answers
