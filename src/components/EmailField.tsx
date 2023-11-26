@@ -72,7 +72,7 @@ export function EmailField() {
   const [email, setEmail] = useState("")
 
   return (
-    <div className="h-[47px] flex justify-center items-center relative w-full sm:text-sm">
+    <div className="h-[47px] flex justify-center items-center relative w-full sm:text-[15px]">
       <div
         className={`${
           isFinished

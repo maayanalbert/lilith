@@ -37,20 +37,17 @@ export default function Home() {
       >
         <div className="flex flex-col justify-center items-center -mt-[1svh] sm:mt-[4svh]">
           <div className="flex flex-col">
-            <a className="font-bold sm:text-[19px] text-[20px] text-white sm:mb-5 mb-6">
+            <a className="font-bold sm:text-[22px] text-[20px] text-white sm:mb-5 mb-6">
               We all want answers
             </a>
             <p
-              className="sm:w-[433px] w-[300px] text-white font-light text-[15px]"
+              className="sm:w-[433px] w-[300px] text-white font-light sm:text-[14px] text-[15px]"
               style={{ color: "rgb(227, 227, 231)" }}
             >
               We used to find them through religion. Now, despite having a world
               of information at our fingertips, something is missing.
               <br />
-              <br /> Welcome to Eve. The voice of the void.{" "}
-              {/* <br className="sm:block hidden" />
-              Contact <a className="underline">maayan@eve.space</a> to learn
-              more. */}
+              <br /> Welcome to Eve. The voice of the void.
             </p>
           </div>
           <div className="my-9">
