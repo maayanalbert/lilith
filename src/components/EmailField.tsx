@@ -12,6 +12,7 @@ export function EmailField() {
   const [onEmailDelayed, setOnEmailDelayed] = useState(false)
   const [error, setError] = useState(false)
   const [mouseMovedSinceFinished, setMouseMovedSinceFinished] = useState(false)
+  const [email, setEmail] = useState("")
 
   useEventListener(
     "mousemove",
@@ -19,19 +20,24 @@ export function EmailField() {
     [isFinishedDelayed]
   )
 
-  useEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
-      // reset for debugging
-      setState("NOTIFY")
-      setOnEmailDelayed(false)
-      setIsFinished(false)
-      setIsFinishedDelayed(false)
-    }
+  useEventListener(
+    "keydown",
+    (e) => {
+      if (e.key === "Escape") {
+        // reset for debugging
+        setState("NOTIFY")
+        setOnEmailDelayed(false)
+        setIsFinished(false)
+        setIsFinishedDelayed(false)
+      }
 
-    if (e.key === "Enter" && state === "EMAIL" && email) {
-      mutateAsync()
-    }
-  })
+      console.log(e.key)
+      if (e.key === "Enter" && state === "EMAIL" && email) {
+        mutateAsync()
+      }
+    },
+    [state, email]
+  )
 
   // mutate call for sending the email
   const { mutateAsync } = useMutation(
@@ -68,8 +74,6 @@ export function EmailField() {
       setTimeout(() => setOnEmailDelayed(false), 1100) // delay for submitted text appearing
     }
   })
-
-  const [email, setEmail] = useState("")
 
   return (
     <div className="flex flex-col justify-center items-center relative w-full sm:text-[15px]">
@@ -183,8 +187,8 @@ export function EmailField() {
             opacity: !isFinished && state === "EMAIL" ? 1 : 0,
           }}
         >
-          We're currently speaking with investors.
-          <br /> If you're a fit, we'll be in touch.{" "}
+          We’re currently speaking with investors.
+          <br /> If you're a fit, we’ll be in touch.{" "}
         </div>
       </div>
 
