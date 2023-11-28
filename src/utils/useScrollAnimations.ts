@@ -191,7 +191,9 @@ function updateTitleStyle(wombSize: number, maxSize: number) {
   const titleOpacity =
     wombSize < maxSize * 0.975
       ? getMappedValue(wombSize, startSize, maxSize * 0.5, 0, 1, easeOutQuad)
-      : getMappedValue(wombSize, maxSize * 0.975, maxSize, 1, 0, easeInQuad)
+      : navigator.maxTouchPoints === 0
+      ? getMappedValue(wombSize, maxSize * 0.975, maxSize, 1, 0, easeInQuad)
+      : 1
 
   title.style.opacity = `${titleOpacity}`
 }

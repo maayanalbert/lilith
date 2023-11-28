@@ -25,14 +25,6 @@ export default function Home() {
     }
   })
 
-  useEffect(() => {
-    if (blurbVisible) {
-      const title = document.querySelector(".title") as HTMLDivElement | null
-      if (!title) return
-      title.style.opacity = "1"
-    }
-  }, [blurbVisible])
-
   return (
     <div className="h-fit w-full relative overflow-hidden">
       <div style={{ height: "100svh", width: "100%" }}>
