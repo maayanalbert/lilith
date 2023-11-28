@@ -1,6 +1,6 @@
 .womb-enter {
   animation-name: womb-enter-opacity, womb-enter-blur;
-  animation-duration: 3800ms, 3166ms;
+  animation-duration: 3800ms, 3800ms;
   animation-timing-function: ease-in, linear;
 }
 
@@ -30,7 +30,7 @@
 
 .hint-enter {
   animation-name: hint-enter;
-  animation-duration: 3050ms;
+  animation-duration: 3800ms;
   animation-timing-function: ease-in-out;
 }
 
@@ -38,7 +38,7 @@
   0% {
     opacity: 0;
   }
-  72% {
+  80% {
     opacity: 0;
   }
   100% {
