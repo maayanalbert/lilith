@@ -177,7 +177,7 @@ export function EmailField() {
       </div>
       <div className="relative w-full flex justify-center">
         <div
-          className="absolute sm:text-zinc-600 text-zinc-500 text-sm mt-3 sm:w-[433px] w-[300px] text-center px-2"
+          className="absolute sm:text-zinc-600 text-zinc-500 text-sm mt-5 sm:w-[433px] w-[300px] text-center px-2"
           style={{
             transitionProperty: "opacity",
             transitionDuration:
