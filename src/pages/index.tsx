@@ -35,7 +35,7 @@ export default function Home() {
         transition-opacity duration-1000 delay-[100ms] ease-in`}
         style={{ height: "100svh", opacity: blurbVisible ? 1 : 0 }}
       >
-        <div className="flex flex-col justify-center items-center -mt-[11svh] sm:mt-[0svh]">
+        <div className="flex flex-col justify-center items-center -mt-[10svh] sm:mt-[0svh]">
           <div className="flex flex-col">
             <a className="font-bold sm:text-[22px] text-[21px] text-white sm:mb-5 mb-6">
               We all want answers
@@ -50,7 +50,7 @@ export default function Home() {
               <br /> Welcome to Eve. The voice of the void.
             </p>
           </div>
-          <div className="mt-[32px] mb-[34px] text-sm">
+          <div className="mt-[32px] mb-[34px]">
             <EmailField />
           </div>
         </div>
