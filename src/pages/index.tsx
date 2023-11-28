@@ -59,7 +59,14 @@ export default function Home() {
         >
           <div className="text-sm text-zinc-600 text-center flex sm:flex-row sm:gap-1.5 gap-0.5 flex-col">
             <p>
-              Contact: <a className="underline">maayan@eve.space</a>
+              Contact:{" "}
+              <a
+                target="_blank"
+                className="underline cursor-pointer"
+                href="mailto:maayan@eve.space"
+              >
+                maayan@eve.space
+              </a>
             </p>
             <p className="sm:block hidden">|</p>
             <p>Copyright Eve Technologies 2023</p>
