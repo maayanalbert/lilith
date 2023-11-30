@@ -55,7 +55,7 @@ export default function Home() {
           </div>
         </div>
         <div
-          className={`absolute bottom-0 w-full flex flex-row justify-center sm:pb-[19px] pb-8`}
+          className={`absolute bottom-0 w-full flex flex-row justify-center sm:pb-6 pb-8`}
         >
           <div className="text-sm text-zinc-600 text-center flex sm:flex-row sm:gap-1.5 gap-0.5 flex-col">
             <p>
