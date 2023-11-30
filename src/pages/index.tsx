@@ -1,29 +1,15 @@
 import { EmailField } from "@/components/EmailField"
-import ScrollOverlay from "@/components/ScrollOverlay"
 import Womb from "@/components/Womb"
 import { getMappedValue } from "@/utils/getMappedValue"
 import useEventListener from "@/utils/useEventListener"
+import { useScrollAnimations } from "@/utils/useScrollAnimations"
 import { ReactNode, useEffect, useRef, useState } from "react"
 
 /**
  * A wrapper for the main page
  */
 export default function Home() {
-  const [blurbVisible, setBlurbVisible] = useState(false)
-
-  useEventListener("scroll", () => {
-    if (
-      navigator.maxTouchPoints === 0 &&
-      window.scrollY >= (window.innerHeight * 7) / 8
-    ) {
-      setBlurbVisible(true)
-    } else if (
-      navigator.maxTouchPoints > 0 &&
-      window.scrollY >= (window.innerHeight * 3) / 8
-    ) {
-      setBlurbVisible(true)
-    }
-  })
+  useScrollAnimations()
 
   return (
     <div className="h-fit w-full relative overflow-hidden">
@@ -31,11 +17,10 @@ export default function Home() {
         <Womb />
       </div>
       <div
-        className={`w-full flex flex-col justify-center items-center relative mt-[10svh] 
-        transition-opacity duration-1000 delay-[100ms] ease-in`}
-        style={{ height: "100svh", opacity: blurbVisible ? 1 : 0 }}
+        className={`w-full flex flex-col justify-center items-center relative mt-[10svh]`}
+        style={{ height: "100svh" }}
       >
-        <div className="flex flex-col justify-center items-center -mt-[10svh] sm:mt-[1svh]">
+        <div className="flex flex-col justify-center items-center -mt-[10svh] sm:mt-[1svh] blurb">
           <div className="flex flex-col">
             <a className="font-bold sm:text-[22px] text-[21px] text-white sm:mb-5 mb-6">
               We all want answers
@@ -73,8 +58,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-
-      <ScrollOverlay />
     </div>
   )
 }

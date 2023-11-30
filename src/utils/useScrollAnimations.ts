@@ -8,192 +8,106 @@ import {
 } from "react"
 import {
   easeInCubic,
+  easeInExpo,
   easeInQuad,
   easeInQuart,
   easeInSine,
   easeOutQuad,
+  easeOutSine,
 } from "./easingFns"
 import { getMappedValue } from "./getMappedValue"
 import useEventListener from "./useEventListener"
 
 export const startSize = 88
 
-export function useScrollAnimations(
-  setHasEnteredWomb: (_: boolean) => void,
-  setScrolled: (scrolled: boolean) => void,
-  setWombIsClosed: (_: boolean) => void,
-  scrollOverlayRef: RefObject<HTMLDivElement>
-) {
-  const wombSize = useRef(startSize)
-  const lastOverlayY = useRef(0)
-  const autoScrolling = useRef(false)
-
+export function useScrollAnimations() {
+  const renderTime = useRef(0)
+  const scrolledEarly = useRef(false)
+  const hasPassedShrinkCutoff = useRef(false)
   useEffect(() => {
-    document.documentElement.style.setProperty("--hint-opacity", `1`)
-    document.documentElement.style.setProperty("--html-overflow", `hidden`)
-
-    if (scrollOverlayRef.current) {
-      const maxSize = Math.min(window.innerWidth, window.innerHeight)
-
-      scrollOverlayRef.current.scrollTo(0, maxSize * 10)
-      lastOverlayY.current = maxSize * 10
-      if (navigator.maxTouchPoints > 0) {
-        scrollOverlayRef.current.style.zIndex = "1"
-      } else {
-        scrollOverlayRef.current.style.zIndex = "-1"
-      }
-    }
-    const womb = document.querySelector(".womb") as HTMLDivElement | null
-
-    if (!womb) return
-
-    womb.style.height = `${startSize}px`
-    womb.style.width = `${startSize}px`
-
-    const title = document.querySelector(".title") as HTMLDivElement | null
-    if (!title) return
-
-    title.style.opacity = "0"
-
-    return () => window.scrollTo(0, 0)
+    renderTime.current = Date.now()
   }, [])
 
-  useEventListener(
-    "wheel",
-    (event) => {
-      if (window.scrollY > 0) return
-      setScrolled(true)
+  useEventListener("scroll", () => {
+    if (Date.now() - renderTime.current < 3800) {
+      scrolledEarly.current = true
+    }
 
-      const maxSize = Math.min(window.innerWidth, window.innerHeight)
+    const innerHeight = window.visualViewport
+      ? window.visualViewport.height
+      : window.innerHeight
 
-      wombSize.current = Math.max(
-        Math.min(wombSize.current + event.deltaY * 0.25, maxSize),
-        startSize
-      )
+    const womb = document.querySelector(".womb") as HTMLDivElement | null
+    if (!womb) return
 
-      updateWombStyles(wombSize.current, maxSize * 0.95)
-      updateTitleStyle(wombSize.current, maxSize)
-      setWombIsClosed(wombSize.current === startSize)
+    const shrinkCutoff = startSize * 1.6
 
-      if (wombSize.current === maxSize) {
-        setHasEnteredWomb(true)
-        document.documentElement.style.setProperty("--html-overflow", `auto`)
-      } else {
-        document.documentElement.style.setProperty("--html-overflow", `hidden`)
-      }
-    },
-    [
-      setHasEnteredWomb,
-      setWombIsClosed,
-      setScrolled,
-      updateWombStyles,
-      updateTitleStyle,
-    ]
-  )
+    if (window.scrollY > shrinkCutoff) {
+      hasPassedShrinkCutoff.current = true
+    }
 
-  useEventListener(
-    "touchstart",
-    (event) => {
-      autoScrolling.current = false
-    },
-    []
-  )
+    const width =
+      scrolledEarly.current && !hasPassedShrinkCutoff.current
+        ? 1
+        : getMappedValue(window.scrollY, 0, shrinkCutoff, startSize, 1)
 
-  useEventListener(
-    // won't fire on desktop because overlay index is -1
-    "scroll",
-    () => {
-      const maxSize = Math.min(window.innerWidth, window.innerHeight)
+    const maxScrollY = document.body.scrollHeight - innerHeight
+    const height =
+      scrolledEarly.current && !hasPassedShrinkCutoff.current
+        ? 1
+        : window.scrollY < shrinkCutoff
+        ? getMappedValue(window.scrollY, 0, shrinkCutoff, startSize, 1)
+        : getMappedValue(
+            window.scrollY,
+            shrinkCutoff,
+            maxScrollY,
+            1,
+            document.body.scrollHeight - innerHeight - 275
+          )
 
-      if (
-        window.scrollY > 0 ||
-        !scrollOverlayRef.current ||
-        wombSize.current === maxSize
-      )
-        return
+    womb.style.width = width.toString() + "px"
+    womb.style.height = height.toString() + "px"
 
-      const deltaY = scrollOverlayRef.current.scrollTop - lastOverlayY.current
-      if (deltaY > 0) {
-        // because we start lastOverlayY.current at 10 * maxSize
-        setScrolled(true)
-      }
-      lastOverlayY.current = scrollOverlayRef.current.scrollTop
+    const marginTop =
+      scrolledEarly.current && !hasPassedShrinkCutoff.current
+        ? Math.max(startSize / 2, window.scrollY / 2)
+        : window.scrollY / 2
+    womb.style.marginTop = marginTop.toString() + "px"
 
-      wombSize.current = Math.max(
-        Math.min(wombSize.current + deltaY * 0.25, maxSize),
-        startSize
-      )
+    const wombOpacity = getMappedValue(
+      window.scrollY,
+      shrinkCutoff,
+      maxScrollY,
+      1,
+      0,
+      easeInSine
+    )
 
-      updateWombStyles(wombSize.current, maxSize * 0.95)
-      updateTitleStyle(wombSize.current, maxSize)
-      setWombIsClosed(wombSize.current === startSize)
+    womb.style.opacity = wombOpacity.toString()
 
-      if (wombSize.current === maxSize) {
-        setHasEnteredWomb(true)
-        document.documentElement.style.setProperty("--html-overflow", `auto`)
-        scrollOverlayRef.current?.style.setProperty("z-index", "-1")
+    const hint = document.querySelector(".hint") as HTMLDivElement | null
+    if (!hint) return
 
-        const overflowScroll = (deltaY: number) => {
-          if (!autoScrolling.current) return
-          const newDelta = deltaY * 0.9
-          window.scrollBy(0, newDelta)
-          if (newDelta > 0.01) {
-            requestAnimationFrame(() => overflowScroll(newDelta))
-          }
-        }
+    const hintOpacity =
+      scrolledEarly.current && !hasPassedShrinkCutoff.current
+        ? 0
+        : getMappedValue(window.scrollY, 0, shrinkCutoff, 1, 0, easeOutSine)
 
-        autoScrolling.current = true
-        overflowScroll(deltaY)
-      }
-    },
-    [
-      setHasEnteredWomb,
-      setWombIsClosed,
-      setScrolled,
-      updateWombStyles,
-      updateTitleStyle,
-    ],
-    scrollOverlayRef
-  )
-}
+    hint.style.opacity = hintOpacity.toString()
+    hint.style.marginTop = marginTop.toString() + "px"
 
-/**
- * Womb styles
- */
-function updateWombStyles(wombSize: number, maxSize: number) {
-  const womb = document.querySelector(".womb") as HTMLDivElement | null
-  if (!womb) return
+    const blurb = document.querySelector(".blurb") as HTMLDivElement | null
+    if (!blurb) return
 
-  const boundedWomb = Math.min(wombSize, maxSize)
+    const blurbOpacity = getMappedValue(
+      window.scrollY,
+      innerHeight * 0.75,
+      maxScrollY,
+      0,
+      1,
+      easeInSine
+    )
 
-  womb.style.height = `${boundedWomb}px`
-  womb.style.width = `${boundedWomb}px`
-}
-
-/**
- * Title inside womb styles
- */
-function updateTitleStyle(wombSize: number, maxSize: number) {
-  const title = document.querySelector(".title") as HTMLDivElement | null
-  if (!title) return
-
-  const titleScale = getMappedValue(
-    wombSize,
-    startSize,
-    maxSize,
-    0.0025,
-    1,
-    easeInCubic
-  )
-
-  title.style.scale = `${titleScale}`
-
-  const titleOpacity =
-    wombSize < maxSize * 0.975
-      ? getMappedValue(wombSize, startSize, maxSize * 0.5, 0, 1, easeOutQuad)
-      : navigator.maxTouchPoints === 0
-      ? getMappedValue(wombSize, maxSize * 0.975, maxSize, 1, 0, easeInQuad)
-      : 1
-
-  title.style.opacity = `${titleOpacity}`
+    blurb.style.opacity = blurbOpacity.toString()
+  })
 }

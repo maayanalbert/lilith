@@ -1,7 +1,22 @@
-import { useStateContext } from "@/StateContext"
+import useEventListener from "@/utils/useEventListener"
+import { set } from "lodash"
+import { useState } from "react"
 
 export default function Womb() {
-  const { hasEnteredWomb, wombIsClosed, scrolled } = useStateContext()
+  const [scrolled, setScrolled] = useState(false)
+  const [scrolledToBottom, setScrolledToBottom] = useState(false)
+
+  useEventListener(
+    "scroll",
+    () => {
+      setScrolled(true)
+      const maxScroll = document.body.scrollHeight - window.innerHeight
+      if (window.scrollY >= maxScroll) {
+        setScrolledToBottom(true)
+      }
+    },
+    []
+  )
 
   return (
     <div className="w-full relative" style={{ height: "100svh" }}>
@@ -11,48 +26,37 @@ export default function Womb() {
           transform: "translate(-50%, -50%)",
           top: "50%",
           left: "50%",
-          opacity: hasEnteredWomb && !wombIsClosed ? 0 : 1,
-          transitionProperty: hasEnteredWomb ? "opacity" : undefined,
-          transitionDuration: "500ms",
-          transitionTimingFunction: "ease-in",
-          transitionDelay: "200ms",
         }}
       >
-        <p
-          className={`hint-enter expand-hint font-light ${
-            hasEnteredWomb ? "text-[27px]" : "text-3xl"
+        <div
+          className={`${
+            !scrolled && "hint-enter"
+          } font-light w-full flex flex-row justify-center ${
+            scrolledToBottom ? "text-[27px]" : "text-3xl"
           } text-zinc-500`}
           style={{
-            paddingTop: hasEnteredWomb ? 88 * 2 + 13 : 88 * 2 + 20,
+            marginTop: scrolledToBottom ? 88 * 2 + 13 : 88 * 2,
           }}
         >
-          {hasEnteredWomb ? "Take a Bite" : "(scroll)"}
-        </p>
+          <p className="hint">
+            {scrolledToBottom ? "Take a Bite" : "(scroll)"}
+          </p>
+        </div>
       </div>
       <div // womb
-        className={`womb absolute ${!scrolled && "womb-enter"}`}
+        className={`womb absolute rounded-full ${
+          !scrolled && "womb-enter"
+        }  bg-white`}
         style={{
           transform: "translate(-50%, -50%)",
           top: "50%",
           left: "50%",
           transformOrigin: "50% 50%",
+          zIndex: -1,
+          height: 88,
+          width: 88,
         }}
-      >
-        <div className="bg-white h-full w-full rounded-full circle" />
-      </div>
-      <div // title
-        className="title absolute h-full w-full"
-        style={{
-          height: "100svh",
-          transformOrigin: "50% 50%",
-        }}
-      >
-        <div className="flex flex-col h-full w-full justify-center items-center">
-          <p className="whitespace-nowrap select-none sm:text-[80px] text-[34px] cursor-default font-display sm:-mt-3 -mt-1">
-            Welcome to Eve
-          </p>
-        </div>
-      </div>
+      />
     </div>
   )
 }
