@@ -1,4 +1,5 @@
 import useEventListener from "@/utils/useEventListener"
+import { startSize } from "@/utils/useScrollAnimations"
 import { set } from "lodash"
 import { useState } from "react"
 
@@ -32,10 +33,10 @@ export default function Womb() {
           className={`${
             !scrolled && "hint-enter"
           } font-light w-full flex flex-row justify-center ${
-            scrolledToBottom ? "text-[27px]" : "text-3xl"
+            scrolledToBottom ? "text-[24px]" : "text-[20px]"
           } text-zinc-500`}
           style={{
-            marginTop: scrolledToBottom ? 88 * 2 + 13 : 88 * 2,
+            marginTop: scrolledToBottom ? startSize * 1.8 : startSize * 1.55,
           }}
         >
           <p className="hint">
@@ -53,8 +54,8 @@ export default function Womb() {
           left: "50%",
           transformOrigin: "50% 50%",
           zIndex: -1,
-          height: 88,
-          width: 88,
+          height: startSize,
+          width: startSize,
         }}
       />
     </div>
