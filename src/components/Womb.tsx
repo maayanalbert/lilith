@@ -36,7 +36,7 @@ export default function Womb() {
             scrolledToBottom ? "text-[24px]" : "text-[24px]"
           } text-zinc-500`}
           style={{
-            marginTop: scrolledToBottom ? startSize * 1.8 : startSize * 1.8,
+            marginTop: scrolledToBottom ? startSize * 1.8 : startSize * 1.85,
           }}
         >
           <p className="hint">
