@@ -22,11 +22,11 @@ export default function Home() {
       >
         <div className="flex flex-col justify-center items-center -mt-[10svh] sm:mt-[1svh] blurb">
           <div className="flex flex-col">
-            <a className="font-bold sm:text-[28px] text-[28px] text-white mb-5">
+            <a className="font-bold sm:text-[27px] text-[28px] text-white mb-5">
               Welcome to Eve
             </a>
             <p
-              className="sm:w-[433px] w-[300px] text-white font-light sm:text-[14.5px] text-[15px]"
+              className="sm:w-[433px] w-[300px] text-white font-light sm:text-[14px] text-[15px]"
               style={{ color: "rgb(227, 227, 231)" }}
             >
               Eve is an AI emotional support companion for young women to help
