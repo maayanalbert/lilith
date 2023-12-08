@@ -5,17 +5,11 @@ import { useState } from "react"
 
 export default function Womb() {
   const [scrolled, setScrolled] = useState(false)
-  const [scrolledToBottom, setScrolledToBottom] = useState(false)
 
   useEventListener(
     "scroll",
-    () => {
-      setScrolled(true)
-      const maxScroll = document.body.scrollHeight - window.innerHeight
-      if (window.scrollY >= maxScroll) {
-        setScrolledToBottom(true)
-      }
-    },
+    () => setScrolled(true),
+
     []
   )
 
@@ -32,16 +26,12 @@ export default function Womb() {
         <div
           className={`${
             !scrolled && "hint-enter"
-          } font-light w-full flex flex-row justify-center ${
-            scrolledToBottom ? "text-[24px]" : "text-[24px]"
-          } text-zinc-500`}
+          } font-light w-full flex flex-row justify-center text-[24px] text-zinc-500`}
           style={{
-            marginTop: scrolledToBottom ? startSize * 1.8 : startSize * 1.85,
+            marginTop: startSize * 1.85,
           }}
         >
-          <p className="hint">
-            {scrolledToBottom ? "Take a Bite" : "(scroll)"}
-          </p>
+          <p className="hint">{"(scroll)"}</p>
         </div>
       </div>
       <div // womb

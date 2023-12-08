@@ -23,7 +23,7 @@ export default function Home() {
         <div className="flex flex-col justify-center items-center -mt-[10svh] sm:mt-[1svh] blurb">
           <div className="flex flex-col">
             <a className="font-bold sm:text-[22px] text-[21px] text-white sm:mb-5 mb-6">
-              We all want answers
+              Welcome to Eve
             </a>
             <p
               className="sm:w-[433px] w-[300px] text-white font-light sm:text-[14px] text-[15px]"
