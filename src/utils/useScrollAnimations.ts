@@ -18,7 +18,7 @@ import {
 import { getMappedValue } from "./getMappedValue"
 import useEventListener from "./useEventListener"
 
-export const startSize = 88
+export const startSize = 84
 
 export function useScrollAnimations() {
   const renderTime = useRef(0)

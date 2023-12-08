@@ -26,9 +26,9 @@ export default function Womb() {
         <div
           className={`${
             !scrolled && "hint-enter"
-          } font-light w-full flex flex-row justify-center text-[24px] text-zinc-500`}
+          } font-light w-full flex flex-row justify-center text-[27px] text-zinc-500`}
           style={{
-            marginTop: startSize * 1.85,
+            marginTop: startSize * 2,
           }}
         >
           <p className="hint">{"(scroll)"}</p>

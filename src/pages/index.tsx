@@ -29,22 +29,10 @@ export default function Home() {
               className="sm:w-[433px] w-[300px] text-white font-light sm:text-[14px] text-[15px]"
               style={{ color: "rgb(227, 227, 231)" }}
             >
-              We used to find them through religion. Now, despite having a world
-              of information at our fingertips, something is missing.
+              Eve is an emotional support companion for young women to help them
+              navigate their 20s.
               <br />
-              <br /> Welcome to Eve. The voice of the void.
-            </p>
-          </div>
-          <div className="mt-[32px] mb-[34px]">
-            <EmailField />
-          </div>
-        </div>
-        <div
-          className={`absolute bottom-0 w-full flex flex-row justify-center sm:pb-6 pb-8`}
-        >
-          <div className="text-sm text-zinc-600 text-center flex sm:flex-row sm:gap-1.5 gap-0.5 flex-col">
-            <p>
-              Contact:{" "}
+              <br /> To learn more, contact{" "}
               <a
                 target="_blank"
                 className="underline cursor-pointer"
@@ -52,8 +40,17 @@ export default function Home() {
               >
                 maayan@eve.space
               </a>
+              .
             </p>
-            <p className="sm:block hidden">|</p>
+          </div>
+          <div className="mt-[32px] mb-[34px]">
+            <EmailField />
+          </div>
+        </div>
+        <div
+          className={`absolute bottom-0 w-full flex flex-row justify-center sm:pb-[22px] pb-8`}
+        >
+          <div className="text-sm text-zinc-600 text-center ">
             <p>Copyright Eve Technologies 2023</p>
           </div>
         </div>
