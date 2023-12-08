@@ -18,7 +18,7 @@ import {
 import { getMappedValue } from "./getMappedValue"
 import useEventListener from "./useEventListener"
 
-export const startSize = 84
+export const startSize = 88
 
 export function useScrollAnimations() {
   const renderTime = useRef(0)
@@ -32,6 +32,8 @@ export function useScrollAnimations() {
     if (Date.now() - renderTime.current < 3800) {
       scrolledEarly.current = true
     }
+
+    const isMobile = window.innerWidth < 640
 
     const innerHeight = window.visualViewport
       ? window.visualViewport.height
@@ -62,17 +64,18 @@ export function useScrollAnimations() {
             shrinkCutoff,
             maxScrollY,
             1,
-            document.body.scrollHeight - innerHeight - 250
-          )
+            document.body.scrollHeight - innerHeight - (isMobile ? 150 : 250)
+          ) * (isMobile ? 2 : 1)
 
     womb.style.width = width.toString() + "px"
     womb.style.height = height.toString() + "px"
 
+    // remove marginTop on mobile because animation is jumpy anyways
     const marginTop =
       scrolledEarly.current && !hasPassedShrinkCutoff.current
         ? Math.max(startSize / 2, window.scrollY / 2)
         : window.scrollY / 2
-    womb.style.marginTop = marginTop.toString() + "px"
+    womb.style.marginTop = isMobile ? "0px" : marginTop.toString() + "px"
 
     const wombOpacity = getMappedValue(
       window.scrollY,
