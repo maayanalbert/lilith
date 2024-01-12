@@ -6,12 +6,7 @@ import { useState } from "react"
 export default function Womb() {
   const [scrolled, setScrolled] = useState(false)
 
-  useEventListener(
-    "scroll",
-    () => setScrolled(true),
-
-    []
-  )
+  useEventListener("scroll", () => setScrolled(true), [])
 
   return (
     <div className="w-full relative" style={{ height: "100svh" }}>
@@ -31,7 +26,7 @@ export default function Womb() {
             marginTop: startSize * 2,
           }}
         >
-          <p className="hint">{"(scroll)"}</p>
+          <p className="hint cursor-default select-none">{"(scroll)"}</p>
         </div>
       </div>
       <div // womb
