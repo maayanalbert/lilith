@@ -29,8 +29,8 @@ export default function Home() {
               className="sm:w-[433px] w-[300px] text-white font-light sm:text-[14px] text-[15px]"
               style={{ color: "rgb(227, 227, 231)" }}
             >
-              When you can't quite voice your thoughts, much less to another
-              human. Welcome to Eve, a space for your thoughts.
+              When you can't quite grasp your thoughts, much less voice them to
+              another human. Welcome to Eve, a space for your thoughts.
               <br />
               <br /> To learn more, contact{" "}
               <a
