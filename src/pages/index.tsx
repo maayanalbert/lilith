@@ -51,7 +51,7 @@ export default function Home() {
           className={`absolute bottom-0 w-full flex flex-row justify-center sm:pb-[22px] pb-8`}
         >
           <div className="text-sm text-zinc-600 text-center ">
-            <p>Copyright Eve Technologies 2023</p>
+            <p>Copyright Eve Technologies 2024</p>
           </div>
         </div>
       </div>
