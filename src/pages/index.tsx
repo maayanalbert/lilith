@@ -20,17 +20,17 @@ export default function Home() {
         className={`w-full flex flex-col justify-center items-center relative mt-[10svh]`}
         style={{ height: "100svh" }}
       >
-        <div className="flex flex-col justify-center items-center -mt-[10svh] sm:mt-[1svh] blurb">
+        <div className="flex flex-col justify-center items-center -mt-[10svh] sm:mt-[3svh] blurb">
           <div className="flex flex-col">
-            <a className="font-bold sm:text-[27px] text-[28px] text-white mb-5">
+            <a className="font-bold sm:text-[28.5px] text-[28px] text-white mb-5">
               Who do you talk to?
             </a>
             <p
-              className="sm:w-[433px] w-[300px] text-white font-light sm:text-[14px] text-[15px]"
+              className="sm:w-[433px] w-[300px] text-white font-light sm:text-[15px] text-[15px]"
               style={{ color: "rgb(227, 227, 231)" }}
             >
               When you can't quite grasp your thoughts, much less voice them to
-              another human. Welcome to Eve, a space for just that.
+              another human. Welcome to Eve, your safe space.
               <br />
               <br /> To learn more, contact{" "}
               <a
