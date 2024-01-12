@@ -30,7 +30,7 @@ export default function Home() {
               style={{ color: "rgb(227, 227, 231)" }}
             >
               When you can't quite grasp your thoughts, much less voice them to
-              another human. Welcome to Eve, a space for your thoughts.
+              another human. Welcome to Eve, a space for just that.
               <br />
               <br /> To learn more, contact{" "}
               <a
