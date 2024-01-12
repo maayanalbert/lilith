@@ -20,24 +20,24 @@ export function EmailField() {
     [isFinishedDelayed]
   )
 
-  useEventListener(
-    "keydown",
-    (e) => {
-      if (e.key === "Escape") {
-        // reset for debugging
-        setState("NOTIFY")
-        setOnEmailDelayed(false)
-        setIsFinished(false)
-        setIsFinishedDelayed(false)
-      }
+  // useEventListener(
+  //   "keydown",
+  //   (e) => {
+  //     if (e.key === "Escape") {
+  //       // reset for debugging
+  //       setState("NOTIFY")
+  //       setOnEmailDelayed(false)
+  //       setIsFinished(false)
+  //       setIsFinishedDelayed(false)
+  //     }
 
-      console.log(e.key)
-      if (e.key === "Enter" && state === "EMAIL" && email) {
-        mutateAsync()
-      }
-    },
-    [state, email]
-  )
+  //     console.log(e.key)
+  //     if (e.key === "Enter" && state === "EMAIL" && email) {
+  //       mutateAsync()
+  //     }
+  //   },
+  //   [state, email]
+  // )
 
   // mutate call for sending the email
   const { mutateAsync } = useMutation(
@@ -173,22 +173,6 @@ export function EmailField() {
               )}
             </div>
           </div>
-        </div>
-      </div>
-      <div className="relative w-full flex justify-center">
-        <div
-          className="absolute sm:text-zinc-600 text-zinc-500 text-sm mt-[26px] sm:w-[433px] w-[300px] text-center px-2"
-          style={{
-            transitionProperty: "opacity",
-            transitionDuration:
-              state === "EMAIL" && !isFinished ? "700ms" : "300ms",
-            transitionDelay: state === "EMAIL" && !isFinished ? "350ms" : "0ms",
-            transitionTimingFunction: easeInOut,
-            opacity: !isFinished && state === "EMAIL" ? 1 : 0,
-          }}
-        >
-          We’re currently speaking with investors.
-          <br /> If you're a fit, we’ll be in touch.{" "}
         </div>
       </div>
 
