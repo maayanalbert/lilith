@@ -1,12 +1,22 @@
 import useEventListener from "@/utils/useEventListener"
-import { startSize } from "@/utils/useScrollAnimations"
+import { shrinkCutoff, startSize } from "@/utils/useScrollAnimations"
 import { set } from "lodash"
 import { useState } from "react"
 
 export default function Womb() {
   const [scrolled, setScrolled] = useState(false)
+  const [passedShrinkCutoff, setPassedShrinkCutoff] = useState(false)
 
-  useEventListener("scroll", () => setScrolled(true), [])
+  useEventListener(
+    "scroll",
+    () => {
+      setScrolled(true)
+      if (window.scrollY > shrinkCutoff) {
+        setPassedShrinkCutoff(true)
+      }
+    },
+    []
+  )
 
   return (
     <div className="w-full relative" style={{ height: "100svh" }}>
@@ -26,7 +36,9 @@ export default function Womb() {
             marginTop: startSize * 2,
           }}
         >
-          <p className="hint cursor-default select-none">{"(scroll)"}</p>
+          <p className="hint cursor-default select-none">
+            {passedShrinkCutoff ? "Take a Bite" : "(scroll)"}
+          </p>
         </div>
       </div>
       <div // womb

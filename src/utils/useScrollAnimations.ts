@@ -6,19 +6,12 @@ import {
   useRef,
   useState,
 } from "react"
-import {
-  easeInCubic,
-  easeInExpo,
-  easeInQuad,
-  easeInQuart,
-  easeInSine,
-  easeOutQuad,
-  easeOutSine,
-} from "./easingFns"
+import { easeInSine, easeOutQuad, easeOutSine } from "./easingFns"
 import { getMappedValue } from "./getMappedValue"
 import useEventListener from "./useEventListener"
 
 export const startSize = 88
+export const shrinkCutoff = startSize * 1.6
 
 export function useScrollAnimations() {
   const renderTime = useRef(0)
@@ -41,8 +34,6 @@ export function useScrollAnimations() {
 
     const womb = document.querySelector(".womb") as HTMLDivElement | null
     if (!womb) return
-
-    const shrinkCutoff = startSize * 1.6
 
     if (window.scrollY > shrinkCutoff) {
       hasPassedShrinkCutoff.current = true
