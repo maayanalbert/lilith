@@ -20,7 +20,7 @@ export default function Home() {
         className={`w-full flex flex-col justify-center items-center relative mt-[10svh]`}
         style={{ height: "100svh" }}
       >
-        <div className="flex flex-col justify-center items-center -mt-[10svh] sm:mt-[3svh] blurb">
+        <div className="flex flex-col justify-center items-center -mt-[9svh] sm:mt-[3svh] blurb">
           <div className="flex flex-col">
             <a className="font-bold sm:text-[28.5px] text-[28px] text-white mb-5">
               Who do you talk to?
