@@ -1,9 +1,5 @@
 import { EmailField } from "@/components/EmailField"
-import Womb from "@/components/Womb"
-import { getMappedValue } from "@/utils/getMappedValue"
-import useEventListener from "@/utils/useEventListener"
 import { useScrollAnimations } from "@/utils/useScrollAnimations"
-import { ReactNode, useEffect, useRef, useState } from "react"
 
 /**
  * A wrapper for the main page
