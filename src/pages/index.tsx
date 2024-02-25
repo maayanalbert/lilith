@@ -15,7 +15,7 @@ export default function Home() {
       >
         <div className="flex flex-col justify-center items-center -mt-[9svh] sm:mt-[2svh] blurb">
           <div className="flex flex-col text-center justify-center items-center">
-            <a className="font-bold sm:text-[36px] text-[35px] text-white mb-6">
+            <a className="font-bold sm:text-[36px] text-[36px] text-white mb-6">
               Welcome to Eve
             </a>
             <a className="sm:w-full w-[300px]">
