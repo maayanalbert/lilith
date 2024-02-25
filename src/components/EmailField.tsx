@@ -76,7 +76,7 @@ export function EmailField() {
   })
 
   return (
-    <div className="flex flex-col justify-center items-center relative w-full sm:text-[15px]">
+    <div className="flex flex-col justify-center items-center relative w-full sm:text-[15.5px]">
       <div
         className={`${
           isFinished ? "w-[47px] opacity-0 blur-[8px] scale-0" : "w-[288px]"
