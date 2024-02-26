@@ -6,7 +6,7 @@ I guess technically that's this readme I'm writing it now<br />
 
 Hi<br />
 My name's Maayan<br />
-I'd like to make something good<br />
+I'd like to build something that lasts<br />
 
 If there is a birth<br />
 This is it<br />
