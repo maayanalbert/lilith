@@ -23,8 +23,8 @@ export default function Home() {
                 className="text-white font-light sm:text-[15.5px] text-[15px] sm:leading-relaxed"
                 style={{ color: "rgb(235, 235, 240)" }}
               >
-                Eve is an AI diary for young women to improve their mental
-                health. <br /> <br className="sm:hidden" /> To learn more,
+                Eve is an AI diary for young women to help them navigate their
+                thoughts. <br /> <br className="sm:hidden" /> To learn more,
                 contact{" "}
                 <a
                   target="_blank"
