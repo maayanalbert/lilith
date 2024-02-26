@@ -20,7 +20,7 @@ export default function Home() {
             </a>
             <div className="sm:w-full w-[300px]">
               <p
-                className="text-white font-light sm:text-[15.5px] text-[15px]"
+                className="text-white font-light sm:text-[15.5px] text-[15px] sm:leading-relaxed"
                 style={{ color: "rgb(235, 235, 240)" }}
               >
                 Eve is an AI diary for young women to improve their mental
