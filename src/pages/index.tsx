@@ -15,16 +15,17 @@ export default function Home() {
       >
         <div className="flex flex-col justify-center items-center -mt-[9svh] sm:mt-[2svh] blurb">
           <div className="flex flex-col text-center justify-center items-center">
-            <a className="font-bold sm:text-[36px] text-[35.5px] text-white mb-6">
+            <a className="font-bold sm:text-[35px] text-[35px] text-white mb-6">
               Welcome to Eve
             </a>
-            <a className="sm:w-full w-[300px]">
+            <div className="sm:w-full w-[300px]">
               <p
                 className="text-white font-light sm:text-[15.5px] text-[15px]"
                 style={{ color: "rgb(235, 235, 240)" }}
               >
-                Eve is an AI diary for young women to improve their
-                mental health. <br /> <br className="sm:hidden" /> To learn more, contact{" "}
+                Eve is an AI diary for young women to improve their mental
+                health. <br /> <br className="sm:hidden" /> To learn more,
+                contact{" "}
                 <a
                   target="_blank"
                   className="underline cursor-pointer"
@@ -34,7 +35,7 @@ export default function Home() {
                 </a>
                 .
               </p>
-            </a>
+            </div>
           </div>
           <div className="mt-[44px] mb-[34px]">
             <EmailField />
