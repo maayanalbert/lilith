@@ -24,7 +24,8 @@ export default function Home() {
                 style={{ color: "rgb(235, 235, 240)" }}
               >
                 Eve is an AI diary for young women to help
-                <br /> them navigate their thoughts. <br /> <br /> Contact{" "}
+                <br /> them communicate with their higher selves. <br /> <br />{" "}
+                Contact{" "}
                 <a
                   target="_blank"
                   className="underline cursor-pointer"
