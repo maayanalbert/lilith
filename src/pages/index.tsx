@@ -37,7 +37,7 @@ export default function Home() {
               </p>
             </div>
           </div>
-          <div className="mt-[41px] mb-[34px]">
+          <div className="mt-[34px] mb-[34px]">
             <EmailField />
           </div>
         </div>
