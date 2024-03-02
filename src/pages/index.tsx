@@ -9,6 +9,9 @@ export default function Home() {
 
   return (
     <div className="h-fit w-full relative overflow-hidden">
+      {/* <div style={{ height: "100svh", width: "100%" }}>
+        <Womb />
+      </div> */}
       <div
         className={`w-full flex flex-col justify-center items-center relative`}
         style={{ height: "100svh" }}
