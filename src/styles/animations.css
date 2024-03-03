@@ -18,28 +18,71 @@
 
 @keyframes womb-enter-blur {
   0% {
-    filter: blur(30px);
+    filter: blur(5px);
   }
   10% {
-    filter: blur(30px);
+    filter: blur(5px);
   }
   100% {
     filter: blur(0px);
   }
 }
 
-.hint-enter {
-  animation-name: hint-enter;
+.title-enter {
+  animation-name: title-enter;
   animation-duration: 3800ms;
-  animation-timing-function: ease-in-out;
+  animation-timing-function: cubic-bezier(0.64, 0, 0.78, 0);
 }
 
-@keyframes hint-enter {
+@keyframes title-enter {
   0% {
     opacity: 0;
   }
-  89% {
+  20% {
     opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.womb-breathe {
+  animation-delay: 3800ms;
+  animation-name: womb-breathe;
+  animation-duration: 5s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes womb-breathe {
+  0% {
+    filter: blur(0px);
+    transform: scale(1);
+  }
+  50% {
+    filter: blur(1.5px);
+    transform: scale(1.025);
+  }
+  100% {
+    filter: blur(0px);
+    transform: scale(1);
+  }
+}
+
+.title-breathe {
+  animation-delay: 3800ms;
+  animation-name: title-breathe;
+  animation-duration: 5s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes title-breathe {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
   }
   100% {
     opacity: 1;

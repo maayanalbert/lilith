@@ -1,4 +1,5 @@
 import { EmailField } from "@/components/EmailField"
+import Womb from "@/components/Womb"
 import { useScrollAnimations } from "@/utils/useScrollAnimations"
 
 /**
@@ -9,44 +10,28 @@ export default function Home() {
 
   return (
     <div className="h-fit w-full relative overflow-hidden">
-      {/* <div style={{ height: "100svh", width: "100%" }}>
+      <div style={{ height: "100svh", width: "100%" }}>
         <Womb />
-      </div> */}
+      </div>
       <div
-        className={`w-full flex flex-col justify-center items-center relative`}
-        style={{ height: "100svh" }}
+        className={`w-full flex flex-col justify-center items-center absolute top-0`}
+        style={{ height: "100svh", zIndex: -1 }}
       >
-        <div className="flex flex-col justify-center items-center -mt-[9svh] sm:mt-[2svh] blurb">
-          <div className="flex flex-col text-center justify-center items-center">
-            <a className="font-bold text-[35px] text-white mb-6">
-              Welcome to Eve
-            </a>
-            <div className="sm:w-full w-[300px]">
-              <p
-                className="text-white font-light sm:text-[15.5px] text-[15px] sm:leading-relaxed"
-                style={{ color: "rgb(235, 235, 240)" }}
-              >
-                Eve is an AI diary for young women to help
-                <br /> them better understand their inner selves. <br /> <br />
-                Contact{" "}
-                <a
-                  target="_blank"
-                  className="underline cursor-pointer"
-                  href="mailto:maayan@eve.space"
-                >
-                  maayan@eve.space
-                </a>{" "}
-                to learn more
-              </p>
-            </div>
-          </div>
-          <div className="mt-[34px] mb-[34px]">
-            <EmailField />
-          </div>
-        </div>
         <div
-          className={`absolute bottom-0 w-full flex flex-row justify-center sm:pb-[22px] pb-8`}
+          className={`absolute bottom-0 w-full flex flex-col justify-center sm:pb-[22px] pb-8`}
         >
+          <div className="text-sm text-zinc-500 text-center pb-1">
+            Contact{" "}
+            <a
+              target="_blank"
+              className="underline cursor-pointer"
+              href="mailto:maayan@eve.space"
+            >
+              maayan@eve.space
+            </a>{" "}
+            to learn more.
+          </div>
+
           <div className="text-sm text-zinc-600 text-center ">
             <p>Copyright Eve Technologies 2024</p>
           </div>
