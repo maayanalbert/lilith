@@ -76,10 +76,10 @@ export function EmailField() {
   })
 
   return (
-    <div className="font-light flex flex-col justify-center items-center relative w-full sm:text-[15.5px]">
+    <div className="flex flex-col justify-center items-center relative w-full sm:text-[15px]">
       <div
         className={`${
-          isFinished ? "w-[47px] opacity-0 blur-[8px] scale-0" : "w-[225px]"
+          isFinished ? "w-[47px] opacity-0 blur-[8px] scale-0" : "w-[266px]"
         } 
       flex justify-center items-center overflow-hidden rounded-full h-[47px]`}
         style={{
@@ -94,10 +94,10 @@ export function EmailField() {
           className={`rounded-full relative h-full
          whitespace-nowrap
          ${isFinished ? "bg-white" : "bg-black"}
-          ${state === "EMAIL" && "w-[225px] border-zinc-600"}
+          ${state === "EMAIL" && "w-[266px] border-zinc-400"}
           ${
             state === "NOTIFY" &&
-            "hover:bg-white w-[135px] sm:w-[130px] hover:text-black text-zinc-200 border-zinc-600 hover:border-white"
+            "hover:bg-white w-[135px] sm:w-[130px] hover:text-black text-zinc-200 hover:border-white border-zinc-700 hover:border-white"
           }
           ${state !== "EMAIL" && "cursor-pointer"}
           `}
@@ -130,7 +130,7 @@ export function EmailField() {
               }}`,
             }}
           >
-            {state === "NOTIFY" || state === "EMAIL" ? "Reach Out" : ""}
+            {state === "NOTIFY" || state === "EMAIL" ? "Get Access" : ""}
           </p>
           <div
             className={`w-full h-full absolute top-0 w-full rounded-full left-0 pr-[8px]

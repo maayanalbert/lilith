@@ -1,6 +1,6 @@
 .womb-enter {
   animation-name: womb-enter-opacity, womb-enter-blur;
-  animation-duration: 1000ms;
+  animation-duration: 3800ms, 3800ms;
   animation-timing-function: ease-in, linear;
 }
 
@@ -18,27 +18,27 @@
 
 @keyframes womb-enter-blur {
   0% {
-    filter: blur(5px);
+    filter: blur(30px);
   }
   10% {
-    filter: blur(5px);
+    filter: blur(30px);
   }
   100% {
     filter: blur(0px);
   }
 }
 
-.title-enter {
-  animation-name: title-enter;
-  animation-duration: 1000ms;
-  animation-timing-function: cubic-bezier(0.64, 0, 0.78, 0);
+.hint-enter {
+  animation-name: hint-enter;
+  animation-duration: 3800ms;
+  animation-timing-function: ease-in-out;
 }
 
-@keyframes title-enter {
+@keyframes hint-enter {
   0% {
     opacity: 0;
   }
-  20% {
+  89% {
     opacity: 0;
   }
   100% {
@@ -47,44 +47,27 @@
 }
 
 .womb-breathe {
-  animation-delay: 1000ms;
   animation-name: womb-breathe;
-  animation-duration: 5s;
+  animation-duration: 4s;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
 }
 
 @keyframes womb-breathe {
-  0% {
+  3% {
     filter: blur(0px);
     transform: scale(1);
   }
-  50% {
-    filter: blur(1.5px);
+  45% {
+    filter: blur(1.75px);
     transform: scale(1.025);
   }
-  100% {
+  55% {
+    filter: blur(1.75px);
+    transform: scale(1.025);
+  }
+  97% {
     filter: blur(0px);
     transform: scale(1);
-  }
-}
-
-.title-breathe {
-  animation-delay: 3800ms;
-  animation-name: title-breathe;
-  animation-duration: 5s;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-}
-
-@keyframes title-breathe {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
-  100% {
-    opacity: 1;
   }
 }

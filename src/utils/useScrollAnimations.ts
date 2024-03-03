@@ -55,7 +55,7 @@ export function useScrollAnimations() {
             shrinkCutoff,
             maxScrollY,
             1,
-            document.body.scrollHeight - innerHeight - (isMobile ? 150 : 250)
+            document.body.scrollHeight - innerHeight - (isMobile ? 150 : 450)
           ) * (isMobile ? 2 : 1)
 
     womb.style.width = width.toString() + "px"
