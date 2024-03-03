@@ -11,12 +11,12 @@ export default function Womb() {
       style={{ height: "100svh" }}
     >
       <div // womb
-        className="womb-enter w-full h-full absolute flex justify-center items-center rounded-full"
+        className={`womb-enter w-full h-full absolute 
+        flex justify-center items-center rounded-full sm:mt-[-50px] mt-[-75px]`}
         style={{
           height: 350,
           width: 350,
           zIndex: -1,
-          marginTop: -50,
         }}
       >
         <div
@@ -28,8 +28,8 @@ export default function Womb() {
         />
       </div>
       <div // text
-        className="flex flex-col justify-center items-center title-enter"
-        style={{ marginTop: -15 }}
+        className={`flex flex-col justify-center 
+        items-center title-enter sm:mt-[-15px] mt-[-60px]`}
       >
         <p className="font-thin text-[37px] text-white">Welcome to Eve</p>
         <p className="font-thin text-white text-center">
