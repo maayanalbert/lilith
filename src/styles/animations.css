@@ -1,6 +1,6 @@
 .womb-enter {
   animation-name: womb-enter-opacity, womb-enter-blur;
-  animation-duration: 3000ms, 3000ms;
+  animation-duration: 2000ms, 2000ms;
   animation-timing-function: ease-in, linear;
 }
 
@@ -30,7 +30,7 @@
 
 .title-enter {
   animation-name: title-enter;
-  animation-duration: 3000ms;
+  animation-duration: 2000ms;
   animation-timing-function: cubic-bezier(0.64, 0, 0.78, 0);
 }
 
