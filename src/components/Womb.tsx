@@ -20,7 +20,7 @@ export default function Womb() {
         }}
       >
         <div
-          className={`womb-breathe rounded-full border border-white`}
+          className={`womb-breathe rounded-full border border-zinc-500`}
           style={{
             height: 350,
             width: 350,

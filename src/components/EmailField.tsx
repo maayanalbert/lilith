@@ -94,10 +94,10 @@ export function EmailField() {
           className={`rounded-full relative h-full
          whitespace-nowrap
          ${isFinished ? "bg-white" : "bg-black"}
-          ${state === "EMAIL" && "w-[225px] border-zinc-800"}
+          ${state === "EMAIL" && "w-[225px] border-zinc-600"}
           ${
             state === "NOTIFY" &&
-            "hover:bg-white w-[135px] sm:w-[130px] hover:text-black text-zinc-200 border-zinc-800 hover:border-white"
+            "hover:bg-white w-[135px] sm:w-[130px] hover:text-black text-zinc-200 border-zinc-600 hover:border-white"
           }
           ${state !== "EMAIL" && "cursor-pointer"}
           `}
