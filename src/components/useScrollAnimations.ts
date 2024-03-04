@@ -6,7 +6,7 @@ import {
   useRef,
   useState,
 } from "react"
-import { easeInSine, easeOutQuad, easeOutSine } from "../utils/easingFns"
+import { easeInSine, easeOutSine } from "../utils/easingFns"
 import { getMappedValue } from "../utils/getMappedValue"
 import useEventListener from "../utils/useEventListener"
 import useKeyboardIsOpen from "../utils/useKeyboardHeight"
@@ -23,7 +23,6 @@ export function useScrollAnimations() {
   }, [])
 
   const keyboardIsOpen = useKeyboardIsOpen()
-  console.log(keyboardIsOpen)
 
   useEventListener("scroll", () => {
     if (Date.now() - renderTime.current < 3800) {
