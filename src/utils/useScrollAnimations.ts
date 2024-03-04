@@ -9,6 +9,7 @@ import {
 import { easeInSine, easeOutQuad, easeOutSine } from "./easingFns"
 import { getMappedValue } from "./getMappedValue"
 import useEventListener from "./useEventListener"
+import useKeyboardIsOpen from "./useKeyboardHeight"
 
 export const startSize = 88
 export const shrinkCutoff = startSize * 1.6
@@ -20,6 +21,9 @@ export function useScrollAnimations() {
   useEffect(() => {
     renderTime.current = Date.now()
   }, [])
+
+  const keyboardIsOpen = useKeyboardIsOpen()
+  console.log(keyboardIsOpen)
 
   useEventListener("scroll", () => {
     if (Date.now() - renderTime.current < 3800) {
@@ -71,7 +75,7 @@ export function useScrollAnimations() {
     const wombOpacity = getMappedValue(
       window.scrollY,
       shrinkCutoff,
-      maxScrollY,
+      isMobile ? maxScrollY - 50 : maxScrollY,
       1,
       0,
       easeInSine
@@ -96,7 +100,7 @@ export function useScrollAnimations() {
     const blurbOpacity = getMappedValue(
       window.scrollY,
       innerHeight * 0.75,
-      maxScrollY,
+      isMobile ? maxScrollY - 50 : maxScrollY,
       0,
       1,
       easeInSine

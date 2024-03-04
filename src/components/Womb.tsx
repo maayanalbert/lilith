@@ -45,7 +45,7 @@ export default function Womb() {
       </div>
       <div // wrapper on womb for breathing animation
         className={`h-full w-full absolute flex 
-        items-center justify-center ${isCircle ? "womb-breathe" : ""}`}
+        items-center justify-center`}
         style={{ zIndex: -1 }}
       >
         <div // womb

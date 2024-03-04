@@ -189,7 +189,7 @@ export function EmailField() {
           }}
         >
           <p className="text-center sm:text-[15px] text-sm">
-            Your response has been submitted
+            We'll notify you when a slot becomes available
           </p>
         </div>
       </div>

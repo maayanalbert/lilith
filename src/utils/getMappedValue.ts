@@ -10,6 +10,8 @@ export function getMappedValue(
   toHigh: number,
   easingFunction?: (x: number) => number
 ) {
+  if (value > fromHigh) return toHigh
+  if (value < fromLow) return toLow
   // Calculate the percentage of the original range that the value represents
   const percentage = (value - fromLow) / (fromHigh - fromLow)
 
