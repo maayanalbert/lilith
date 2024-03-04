@@ -43,3 +43,13 @@ body * {
 input::placeholder {
   color: rgb(113 113 122);
 }
+
+::selection {
+  background-color: white;
+  color: black; /* Set the text color to ensure readability */
+}
+
+::-moz-selection {
+  background-color: white;
+  color: b;
+}

@@ -1,6 +1,6 @@
 .womb-enter {
   animation-name: womb-enter-opacity, womb-enter-blur;
-  animation-duration: 3800ms, 3800ms;
+  animation-duration: 3s;
   animation-timing-function: ease-in, linear;
 }
 
@@ -18,10 +18,10 @@
 
 @keyframes womb-enter-blur {
   0% {
-    filter: blur(30px);
+    filter: blur(20px);
   }
   10% {
-    filter: blur(30px);
+    filter: blur(20px);
   }
   100% {
     filter: blur(0px);
@@ -30,7 +30,7 @@
 
 .hint-enter {
   animation-name: hint-enter;
-  animation-duration: 3800ms;
+  animation-duration: 2s;
   animation-timing-function: ease-in-out;
 }
 
@@ -38,7 +38,7 @@
   0% {
     opacity: 0;
   }
-  89% {
+  33% {
     opacity: 0;
   }
   100% {
