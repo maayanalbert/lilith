@@ -1,5 +1,5 @@
 import useEventListener from "@/utils/useEventListener"
-import { shrinkCutoff, startSize } from "@/utils/useScrollAnimations"
+import { shrinkCutoff, startSize } from "@/components/useScrollAnimations"
 import { set } from "lodash"
 import { useState } from "react"
 

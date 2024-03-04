@@ -6,12 +6,12 @@ import {
   useRef,
   useState,
 } from "react"
-import { easeInSine, easeOutQuad, easeOutSine } from "./easingFns"
-import { getMappedValue } from "./getMappedValue"
-import useEventListener from "./useEventListener"
-import useKeyboardIsOpen from "./useKeyboardHeight"
+import { easeInSine, easeOutQuad, easeOutSine } from "../utils/easingFns"
+import { getMappedValue } from "../utils/getMappedValue"
+import useEventListener from "../utils/useEventListener"
+import useKeyboardIsOpen from "../utils/useKeyboardHeight"
 
-export const startSize = 88
+export const startSize = 96
 export const shrinkCutoff = startSize * 1.6
 
 export function useScrollAnimations() {
