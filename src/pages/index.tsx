@@ -1,9 +1,14 @@
 import { EmailField } from "@/components/EmailField"
-import Womb from "@/components/Womb"
-import { getMappedValue } from "@/utils/getMappedValue"
-import useEventListener from "@/utils/useEventListener"
 import { useScrollAnimations } from "@/components/useScrollAnimations"
 import { ReactNode, useEffect, useRef, useState } from "react"
+import { Cormorant_Garamond } from "next/font/google"
+import { ChevronDownIcon } from "@heroicons/react/24/solid"
+
+const poemFont = Cormorant_Garamond({
+  weight: "400",
+  subsets: ["latin"],
+  // style: ["italic"],
+})
 
 /**
  * A wrapper for the main page
@@ -17,18 +22,32 @@ export default function Home() {
         className="flex justify-center items-center"
         style={{ height: "100svh", width: "100%" }}
       >
-        <div className="flex flex-col items-center poem sm:mt-0 -mt-[12svh]">
-          <p className="text-zinc-200 leading-[2.1]" style={{ fontSize: 18 }}>
-            The Brain is just the weight of God—
-            <br /> For—Heft them—Pound for Pound—
-            <br /> And they will differ—if they do—
-            <br /> As Syllable from Sound—
-          </p>
+        <div className="flex flex-col items-center poem">
           <p
-            className="cursor-default select-none hint-enter text-zinc-500 tracking-wider"
-            style={{ fontSize: 18, marginTop: 30 }}
+            className={`md:-mt-[24px] -mt-[50px] text-zinc-200 md:leading-[1.9] tracking-[0.01em] 
+            md:text-[48px] text-[28px]  ${poemFont.className}`}
           >
-            {"(scroll)"}
+            The Brain is just <br className="sm:hidden" />
+            the weight of God—
+            <br />
+            <br className="md:hidden" />
+            For—Heft them—
+            <br className="md:hidden" />
+            Pound for Pound—
+            <br />
+            <br className="md:hidden" />
+            And they will differ— <br className="md:hidden" />
+            if they do—
+            <br />
+            <br className="md:hidden" />
+            As Syllable from Sound—
+          </p>
+
+          <p className={`relative w-full flex flex-col items-center`}>
+            <ChevronDownIcon
+              color="gray"
+              className="w-8 h-8 absolute md:mt-[88px] mt-[50px]"
+            />
           </p>
         </div>
       </div>
@@ -40,7 +59,7 @@ export default function Home() {
           className="bg-white line"
           style={{
             width: 1,
-            marginTop: "calc(50svh + 180px)",
+            marginTop: "calc(50svh + 300px)",
           }}
         />
       </div>
@@ -66,13 +85,12 @@ export function Blurb() {
           An AI diary for young women
         </p>
       </div>
-      <p
-        className="hint text-zinc-200 mt-7 mb-10 text-center sm:w-[450px] w-[300px]"
-        style={{ textIndent: 30 }}
-      >
-        Eve is a space to think, a space to question, a space to learn. Where
-        your consciousness melds with that which is greater than any one of us.
-        A space for the soul.
+      <p className="hint text-zinc-200 mt-7 mb-10 text-center sm:w-[450px] w-[300px]">
+        Eve is a space to think, a space <br className="sm:hidden" /> to
+        question, a space
+        <br className="sm:block hidden" /> to learn. Where your consciousness
+        melds with that which is greater than any one of us. A space for the
+        soul.
       </p>
       <EmailField />
     </div>

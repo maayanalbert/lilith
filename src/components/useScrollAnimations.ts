@@ -32,7 +32,7 @@ export function useScrollAnimations() {
       0,
       maxScrollY,
       0,
-      isMobile ? window.innerHeight / 2 - 100 : window.innerHeight / 2
+      isMobile ? window.innerHeight / 2 - 100 : window.innerHeight / 2 - 100
     )
 
     line.style.height = lineHeight.toString() + "px"
