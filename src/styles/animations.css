@@ -30,7 +30,7 @@
 
 .hint-enter {
   animation-name: hint-enter;
-  animation-duration: 3s;
+  animation-duration: 4s;
   animation-timing-function: ease-in-out;
 }
 
