@@ -1,13 +1,17 @@
 import { EmailField } from "@/components/EmailField"
 import { useScrollAnimations } from "@/components/useScrollAnimations"
 import { ReactNode, useEffect, useRef, useState } from "react"
-import { Cormorant_Garamond } from "next/font/google"
 import { ChevronDownIcon } from "@heroicons/react/24/solid"
+import {
+  Amiri,
+  Cormorant,
+  Cormorant_SC,
+  Cormorant_Upright,
+} from "next/font/google"
 
-const poemFont = Cormorant_Garamond({
+const poemFont = Cormorant({
   weight: "400",
   subsets: ["latin"],
-  // style: ["italic"],
 })
 
 /**
@@ -24,7 +28,7 @@ export default function Home() {
       >
         <div className="flex flex-col items-center poem">
           <p
-            className={`md:-mt-[24px] -mt-[50px] text-zinc-200 md:leading-[1.9] tracking-[0.01em] 
+            className={`md:-mt-[24px] -mt-[50px] text-zinc-200 md:leading-[1.95] tracking-[0.005em] 
             md:text-[48px] text-[28px]  ${poemFont.className}`}
           >
             The Brain is just <br className="sm:hidden" />
@@ -42,13 +46,11 @@ export default function Home() {
             <br className="md:hidden" />
             As Syllable from Sound—
           </p>
-
-          <p className={`relative w-full flex flex-col items-center`}>
-            <ChevronDownIcon
-              color="gray"
-              className="w-8 h-8 hint-enter absolute md:mt-[78px] mt-[50px]"
-            />
-          </p>
+          <div className={`relative w-full`}>
+            <div className="absolute w-full flex flex-col items-center justify-center h-[25svh]">
+              <ChevronDownIcon color="gray" className="w-8 h-8 hint-enter" />
+            </div>
+          </div>
         </div>
       </div>
       <div // line
