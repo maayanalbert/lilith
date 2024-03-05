@@ -9,7 +9,12 @@ import {
   Cormorant_Upright,
 } from "next/font/google"
 
-const poemFont = Cormorant({
+const amiri = Amiri({
+  weight: "400",
+  subsets: ["latin"],
+})
+
+const cormorant = Cormorant({
   weight: "400",
   subsets: ["latin"],
 })
@@ -20,6 +25,11 @@ const poemFont = Cormorant({
 export default function Home() {
   useScrollAnimations()
 
+  const [windowWidth, setWindowWidth] = useState(10000000)
+  useEffect(() => {
+    setWindowWidth(window.innerWidth)
+  }, [])
+
   return (
     <div className="h-fit w-full relative overflow-hidden">
       <div // poem
@@ -28,8 +38,10 @@ export default function Home() {
       >
         <div className="flex flex-col items-center poem">
           <p
-            className={`md:-mt-[24px] -mt-[50px] text-zinc-200 md:leading-[1.95] tracking-[0.005em] 
-            md:text-[48px] text-[28px]  ${poemFont.className}`}
+            className={`md:-mt-[24px] -mt-[50px] text-zinc-200 md:leading-[1.9] tracking-[0.005em] 
+            md:text-[48px] text-[28px] ${
+              windowWidth < 768 ? amiri.className : cormorant.className
+            }`}
           >
             The Brain is just <br className="sm:hidden" />
             the weight of God—
