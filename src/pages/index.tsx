@@ -46,7 +46,7 @@ export default function Home() {
           <p className={`relative w-full flex flex-col items-center`}>
             <ChevronDownIcon
               color="gray"
-              className="w-8 h-8 absolute md:mt-[88px] mt-[50px]"
+              className="w-8 h-8 hint-enter absolute md:mt-[78px] mt-[50px]"
             />
           </p>
         </div>
