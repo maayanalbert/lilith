@@ -30,6 +30,15 @@ export default function Home() {
     setWindowWidth(window.innerWidth)
   }, [])
 
+  const [poemColors, setPoemColors] = useState([
+    "text-white",
+    "text-zinc-200",
+    "text-zinc-400",
+    "text-zinc-500",
+  ])
+
+  console.log(poemColors)
+
   return (
     <div className="h-fit w-full relative overflow-hidden">
       <div // poem
@@ -37,33 +46,30 @@ export default function Home() {
         style={{ height: "100svh", width: "100%" }}
       >
         <div className="flex flex-col items-center poem">
-          <p
+          <div
             className={`md:-mt-[24px] -mt-[50px] lg:leading-[2.5] leading-[1.75] tracking-[0.055em] 
             lg:text-[44px] text-[24px]`}
             style={{ fontWeight: "300" }}
           >
-            <a className="text-white">
+            <p className={poemColors[0]}>
               The Brain is just <br className="lg:hidden" />
               the weight of God—
-            </a>
-            <br />
+            </p>
             <br className="lg:hidden" />
-            <a className="text-zinc-200">
+            <p className={poemColors[1]}>
               For—Heft them— <a className="text-black text-black">____</a>
               <br className="lg:hidden" />
               Pound for Pound—
-            </a>
-            <br />
+            </p>
             <br className="lg:hidden" />
-            <a className="text-zinc-400">
+            <p className={poemColors[2]}>
               And they will differ— <a className="text-black">___</a>
               <br className="lg:hidden" />
               if they do—
-            </a>
-            <br />
+            </p>
             <br className="lg:hidden" />
-            <a className="text-zinc-500">As Syllable from Sound—</a>
-          </p>
+            <p className={poemColors[3]}>As Syllable from Sound—</p>
+          </div>
           <div className={`relative w-full`}>
             <div className="absolute w-full flex flex-col items-center justify-center h-[25svh]">
               <ChevronDownIcon className="w-8 h-8 hint-enter text-zinc-600" />
