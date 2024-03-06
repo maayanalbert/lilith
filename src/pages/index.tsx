@@ -38,29 +38,35 @@ export default function Home() {
       >
         <div className="flex flex-col items-center poem">
           <p
-            className={`md:-mt-[24px] -mt-[50px] text-zinc-200 md:leading-[1.9] tracking-[0.005em] 
-            md:text-[48px] text-[28px] ${
-              windowWidth < 768 ? amiri.className : cormorant.className
-            }`}
+            className={`md:-mt-[24px] -mt-[50px] lg:leading-[2.5] leading-[1.75] tracking-[0.055em] 
+            lg:text-[44px] text-[24px]`}
+            style={{ fontWeight: "300" }}
           >
-            The Brain is just <br className="sm:hidden" />
-            the weight of God—
+            <a className="text-white">
+              The Brain is just <br className="lg:hidden" />
+              the weight of God—
+            </a>
             <br />
-            <br className="md:hidden" />
-            For—Heft them—
-            <br className="md:hidden" />
-            Pound for Pound—
+            <br className="lg:hidden" />
+            <a className="text-zinc-200">
+              For—Heft them— <a className="text-black text-black">____</a>
+              <br className="lg:hidden" />
+              Pound for Pound—
+            </a>
             <br />
-            <br className="md:hidden" />
-            And they will differ— <br className="md:hidden" />
-            if they do—
+            <br className="lg:hidden" />
+            <a className="text-zinc-400">
+              And they will differ— <a className="text-black">___</a>
+              <br className="lg:hidden" />
+              if they do—
+            </a>
             <br />
-            <br className="md:hidden" />
-            As Syllable from Sound—
+            <br className="lg:hidden" />
+            <a className="text-zinc-500">As Syllable from Sound—</a>
           </p>
           <div className={`relative w-full`}>
             <div className="absolute w-full flex flex-col items-center justify-center h-[25svh]">
-              <ChevronDownIcon color="gray" className="w-8 h-8 hint-enter" />
+              <ChevronDownIcon className="w-8 h-8 hint-enter text-zinc-600" />
             </div>
           </div>
         </div>
