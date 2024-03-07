@@ -1,51 +1,17 @@
 import { EmailField } from "@/components/EmailField"
+import Womb from "@/components/Womb"
 import { useScrollAnimations } from "@/components/useScrollAnimations"
-import { ReactNode, useEffect, useRef, useState } from "react"
-import { ChevronDownIcon } from "@heroicons/react/24/solid"
-import useLandingAnimation from "@/components/useLandingAnimation"
 
 /**
  * A wrapper for the main page
  */
 export default function Home() {
   useScrollAnimations()
-  // useLandingAnimation()
 
   return (
     <div className="h-fit w-full relative overflow-hidden">
-      <div // title
-        className="flex justify-center items-center"
-        style={{ height: "100svh", width: "100%" }}
-      >
-        <div className="flex flex-col items-center title">
-          <div className={`sm:-mt-[0] -mt-[50px]`}>
-            <div className="flex flex-col items-center">
-              <p
-                className="tracking-[0.055em] text-white lg:text-[112px] text-[48px] text-center"
-                style={{ fontWeight: "600" }}
-              >
-                Welcome <br className="sm:hidden" /> to Eve
-              </p>
-            </div>
-          </div>
-          <div className={`relative w-full`}>
-            <div className="absolute w-full flex flex-col items-center justify-center h-[50svh]">
-              <ChevronDownIcon className="w-8 h-8 hint-enter text-zinc-600" />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div // line
-        className="absolute top-0 w-full flex flex-col items-center"
-        style={{ height: "200svh", zIndex: -1 }}
-      >
-        <div
-          className="bg-white line"
-          style={{
-            width: 1,
-            marginTop: "calc(50svh + 300px)",
-          }}
-        />
+      <div style={{ height: "100svh", width: "100%" }}>
+        <Womb />
       </div>
       <div
         className={`w-full flex flex-col justify-center items-center relative`}
@@ -60,13 +26,24 @@ export default function Home() {
 
 export function Blurb() {
   return (
-    <div className="flex flex-col justify-center items-center sm:-mt-10 -mt-[15svh] blurb">
-      <p className="hint text-zinc-200 mt-7 mb-10 text-center sm:w-full w-[300px]">
+    <div className="flex flex-col justify-center items-center sm:-mt-4 -mt-[10svh] blurb">
+      <div className="flex flex-col items-center">
+        <a
+          className="sm:text-[44px] text-[36px] text-white"
+          style={{ fontWeight: "700" }}
+        >
+          Welcome to Eve
+        </a>
+        <p className="sm:w-[433px] w-[300px] text-zinc-500 text-center font-light">
+          An AI diary for young women
+        </p>
+      </div>
+      <p className="hint text-zinc-200 mt-7 mb-10 text-center sm:w-[450px] w-[300px]">
         Eve is a space to think, a space <br className="sm:hidden" /> to
-        question, a space to learn.
-        <br className="sm:block hidden" /> Where your consciousness melds with
-        that which is greater than any one of us.
-        <br className="sm:block hidden" /> A space for the soul.
+        question, a space
+        <br className="sm:block hidden" /> to learn. Where your consciousness
+        melds with that which is greater than any one of us. A space for the
+        soul.
       </p>
       <EmailField />
     </div>

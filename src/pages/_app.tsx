@@ -5,7 +5,6 @@ import type { AppProps } from "next/app"
 import { useEffect, useMemo } from "react"
 import { QueryClient, QueryClientProvider } from "react-query"
 import { useRouter } from "next/router"
-import useLandingAnimation from "@/components/useLandingAnimation"
 
 export default function App({ Component, pageProps }: AppProps) {
   const { pathname } = useRouter()

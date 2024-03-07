@@ -79,7 +79,7 @@ export function EmailField() {
     <div className="flex flex-col justify-center items-center relative w-full sm:text-[15px]">
       <div
         className={`${
-          isFinished ? "w-[47px] opacity-0 blur-[8px] scale-0" : "w-[270px]"
+          isFinished ? "w-[47px] opacity-0 blur-[8px] scale-0" : "w-[266px]"
         } 
       flex justify-center items-center overflow-hidden rounded-full h-[47px]`}
         style={{
@@ -94,10 +94,10 @@ export function EmailField() {
           className={`rounded-full relative h-full
          whitespace-nowrap
          ${isFinished ? "bg-white" : "bg-black"}
-          ${state === "EMAIL" && "w-[270px] border-zinc-400"}
+          ${state === "EMAIL" && "w-[266px] border-zinc-400"}
           ${
             state === "NOTIFY" &&
-            "hover:bg-white w-[135px] sm:w-[130px] hover:text-black text-zinc-200 hover:border-white border-zinc-600 hover:border-white"
+            "hover:bg-white w-[135px] sm:w-[130px] hover:text-black text-zinc-200 hover:border-white border-zinc-700 hover:border-white"
           }
           ${state !== "EMAIL" && "cursor-pointer"}
           `}

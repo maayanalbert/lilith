@@ -6,60 +6,92 @@ import {
   useRef,
   useState,
 } from "react"
-import { easeInOutSine, easeInSine, easeOutSine } from "../utils/easingFns"
+import { easeInSine, easeOutSine } from "../utils/easingFns"
 import { getMappedValue } from "../utils/getMappedValue"
 import useEventListener from "../utils/useEventListener"
 import useKeyboardIsOpen from "../utils/useKeyboardHeight"
 
-export const startSize = 96
+export const startSize = 122
 export const shrinkCutoff = startSize * 1.6
 
 export function useScrollAnimations() {
+  const renderTime = useRef(0)
+  const scrolledEarly = useRef(false)
+  const hasPassedShrinkCutoff = useRef(false)
+  useEffect(() => {
+    renderTime.current = Date.now()
+  }, [])
+
+  const keyboardIsOpen = useKeyboardIsOpen()
+
   useEventListener("scroll", () => {
+    if (Date.now() - renderTime.current < 3800) {
+      scrolledEarly.current = true
+    }
+
     const isMobile = window.innerWidth < 640
 
     const innerHeight = window.visualViewport
       ? window.visualViewport.height
       : window.innerHeight
 
+    const womb = document.querySelector(".womb") as HTMLDivElement | null
+    if (!womb) return
+
+    if (window.scrollY > shrinkCutoff) {
+      hasPassedShrinkCutoff.current = true
+    }
+
+    const width =
+      scrolledEarly.current && !hasPassedShrinkCutoff.current
+        ? 1
+        : getMappedValue(window.scrollY, 0, shrinkCutoff, startSize, 1)
+
     const maxScrollY = document.body.scrollHeight - innerHeight
+    const height =
+      scrolledEarly.current && !hasPassedShrinkCutoff.current
+        ? 1
+        : window.scrollY < shrinkCutoff
+        ? getMappedValue(window.scrollY, 0, shrinkCutoff, startSize, 1)
+        : getMappedValue(
+            window.scrollY,
+            shrinkCutoff,
+            maxScrollY,
+            1,
+            document.body.scrollHeight - innerHeight - (isMobile ? 150 : 450)
+          ) * (isMobile ? 2 : 1)
 
-    const line = document.querySelector(".line") as HTMLDivElement | null
-    if (!line) return
+    womb.style.width = width.toString() + "px"
+    womb.style.height = height.toString() + "px"
 
-    const lineHeight = getMappedValue(
+    // remove marginTop on mobile because animation is jumpy anyways
+    const marginTop =
+      scrolledEarly.current && !hasPassedShrinkCutoff.current
+        ? Math.max(startSize / 2, window.scrollY / 2)
+        : window.scrollY / 2
+    womb.style.marginTop = isMobile ? "0px" : marginTop.toString() + "px"
+
+    const wombOpacity = getMappedValue(
       window.scrollY,
-      0,
-      maxScrollY,
-      0,
-      isMobile ? window.innerHeight / 2 - 100 : window.innerHeight / 2 - 100
-    )
-
-    line.style.height = lineHeight.toString() + "px"
-
-    const lineOpacity = getMappedValue(
-      window.scrollY,
-      window.innerHeight * 0.5,
+      shrinkCutoff,
       isMobile ? maxScrollY - 50 : maxScrollY,
       1,
-      0
+      0,
+      easeInSine
     )
 
-    line.style.opacity = lineOpacity.toString()
+    womb.style.opacity = wombOpacity.toString()
 
-    const title = document.querySelector(".title") as HTMLDivElement | null
-    if (!title) return
+    const hint = document.querySelector(".hint") as HTMLDivElement | null
+    if (!hint) return
 
-    const hintOpacity = getMappedValue(
-      window.scrollY,
-      0,
-      innerHeight * 0.25,
-      1,
-      0,
-      easeOutSine
-    )
+    const hintOpacity =
+      scrolledEarly.current && !hasPassedShrinkCutoff.current
+        ? 0
+        : getMappedValue(window.scrollY, 0, shrinkCutoff, 1, 0, easeOutSine)
 
-    title.style.opacity = hintOpacity.toString()
+    hint.style.opacity = hintOpacity.toString()
+    hint.style.marginTop = marginTop.toString() + "px"
 
     const blurb = document.querySelector(".blurb") as HTMLDivElement | null
     if (!blurb) return
