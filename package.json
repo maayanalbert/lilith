@@ -26,7 +26,10 @@
     "react-dom": "18.2.0",
     "react-query": "^3.39.3",
     "tailwindcss": "^3.2.7",
+    "three": "^0.162.0",
     "typescript": "4.9.5"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@types/three": "^0.162.0"
+  }
 }

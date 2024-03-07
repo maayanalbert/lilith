@@ -2,58 +2,34 @@ import { EmailField } from "@/components/EmailField"
 import { useScrollAnimations } from "@/components/useScrollAnimations"
 import { ReactNode, useEffect, useRef, useState } from "react"
 import { ChevronDownIcon } from "@heroicons/react/24/solid"
+import useLandingAnimation from "@/components/useLandingAnimation"
 
 /**
  * A wrapper for the main page
  */
 export default function Home() {
   useScrollAnimations()
-
-  const [windowWidth, setWindowWidth] = useState(10000000)
-  useEffect(() => {
-    setWindowWidth(window.innerWidth)
-  }, [])
-
-  const [poemColors, setPoemColors] = useState([
-    "text-white",
-    "text-zinc-200",
-    "text-zinc-400",
-    "text-zinc-500",
-  ])
+  // useLandingAnimation()
 
   return (
     <div className="h-fit w-full relative overflow-hidden">
-      <div // poem
+      <div // title
         className="flex justify-center items-center"
         style={{ height: "100svh", width: "100%" }}
       >
         <div className="flex flex-col items-center poem">
-          <div
-            className={`md:-mt-[24px] -mt-[50px] lg:leading-[2.5] leading-[1.75] tracking-[0.055em] 
-            lg:text-[44px] text-[24px]`}
-            style={{ fontWeight: "300" }}
-          >
-            <p className={poemColors[0]}>
-              The Brain is just <br className="lg:hidden" />
-              the weight of God—
-            </p>
-            <br className="lg:hidden" />
-            <p className={poemColors[1]}>
-              For—Heft them— <a className="text-black text-black">____</a>
-              <br className="lg:hidden" />
-              Pound for Pound—
-            </p>
-            <br className="lg:hidden" />
-            <p className={poemColors[2]}>
-              And they will differ— <a className="text-black">___</a>
-              <br className="lg:hidden" />
-              if they do—
-            </p>
-            <br className="lg:hidden" />
-            <p className={poemColors[3]}>As Syllable from Sound—</p>
+          <div className={`sm:-mt-[0] -mt-[50px]`}>
+            <div className="flex flex-col items-center">
+              <p
+                className="tracking-[0.055em] text-white lg:text-[112px] text-[48px] text-center"
+                style={{ fontWeight: "600" }}
+              >
+                Welcome <br className="sm:hidden" /> to Eve
+              </p>
+            </div>
           </div>
           <div className={`relative w-full`}>
-            <div className="absolute w-full flex flex-col items-center justify-center h-[25svh]">
+            <div className="absolute w-full flex flex-col items-center justify-center h-[50svh]">
               <ChevronDownIcon className="w-8 h-8 hint-enter text-zinc-600" />
             </div>
           </div>
@@ -84,21 +60,13 @@ export default function Home() {
 
 export function Blurb() {
   return (
-    <div className="flex flex-col justify-center items-center sm:-mt-14 -mt-[15svh] blurb">
-      <div className="flex flex-col items-center">
-        <a className="text-[34px] text-white" style={{ fontWeight: "700" }}>
-          Welcome to Eve
-        </a>
-        <p className="sm:w-[433px] w-[300px] text-zinc-500 text-center font-light">
-          An AI diary for young women
-        </p>
-      </div>
-      <p className="hint text-zinc-200 mt-7 mb-10 text-center sm:w-[450px] w-[300px]">
+    <div className="flex flex-col justify-center items-center sm:-mt-10 -mt-[15svh] blurb">
+      <p className="hint text-zinc-200 mt-7 mb-10 text-center sm:w-full w-[300px]">
         Eve is a space to think, a space <br className="sm:hidden" /> to
-        question, a space
-        <br className="sm:block hidden" /> to learn. Where your consciousness
-        melds with that which is greater than any one of us. A space for the
-        soul.
+        question, a space to learn.
+        <br className="sm:block hidden" /> Where your consciousness melds with
+        that which is greater than any one of us.
+        <br className="sm:block hidden" /> A space for the soul.
       </p>
       <EmailField />
     </div>
