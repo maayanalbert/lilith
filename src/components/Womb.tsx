@@ -33,7 +33,7 @@ export default function Womb() {
             !scrolled && "hint-enter"
           } font-light w-full flex flex-row justify-center text-[27px] text-zinc-500`}
           style={{
-            marginTop: startSize * 2,
+            marginTop: startSize * 1.9,
           }}
         >
           <p className="hint cursor-default select-none">
