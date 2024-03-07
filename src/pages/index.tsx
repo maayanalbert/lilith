@@ -17,7 +17,7 @@ export default function Home() {
         className="flex justify-center items-center"
         style={{ height: "100svh", width: "100%" }}
       >
-        <div className="flex flex-col items-center poem">
+        <div className="flex flex-col items-center title">
           <div className={`sm:-mt-[0] -mt-[50px]`}>
             <div className="flex flex-col items-center">
               <p

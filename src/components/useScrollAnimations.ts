@@ -47,8 +47,8 @@ export function useScrollAnimations() {
 
     line.style.opacity = lineOpacity.toString()
 
-    const poem = document.querySelector(".poem") as HTMLDivElement | null
-    if (!poem) return
+    const title = document.querySelector(".title") as HTMLDivElement | null
+    if (!title) return
 
     const hintOpacity = getMappedValue(
       window.scrollY,
@@ -59,7 +59,7 @@ export function useScrollAnimations() {
       easeOutSine
     )
 
-    poem.style.opacity = hintOpacity.toString()
+    title.style.opacity = hintOpacity.toString()
 
     const blurb = document.querySelector(".blurb") as HTMLDivElement | null
     if (!blurb) return
