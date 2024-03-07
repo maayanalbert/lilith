@@ -2,22 +2,6 @@ import { EmailField } from "@/components/EmailField"
 import { useScrollAnimations } from "@/components/useScrollAnimations"
 import { ReactNode, useEffect, useRef, useState } from "react"
 import { ChevronDownIcon } from "@heroicons/react/24/solid"
-import {
-  Amiri,
-  Cormorant,
-  Cormorant_SC,
-  Cormorant_Upright,
-} from "next/font/google"
-
-const amiri = Amiri({
-  weight: "400",
-  subsets: ["latin"],
-})
-
-const cormorant = Cormorant({
-  weight: "400",
-  subsets: ["latin"],
-})
 
 /**
  * A wrapper for the main page
@@ -36,8 +20,6 @@ export default function Home() {
     "text-zinc-400",
     "text-zinc-500",
   ])
-
-  console.log(poemColors)
 
   return (
     <div className="h-fit w-full relative overflow-hidden">

@@ -1,33 +1,3 @@
-.womb-enter {
-  animation-name: womb-enter-opacity, womb-enter-blur;
-  animation-duration: 3s;
-  animation-timing-function: ease-in, linear;
-}
-
-@keyframes womb-enter-opacity {
-  0% {
-    opacity: 0;
-  }
-  10% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes womb-enter-blur {
-  0% {
-    filter: blur(20px);
-  }
-  10% {
-    filter: blur(20px);
-  }
-  100% {
-    filter: blur(0px);
-  }
-}
-
 .hint-enter {
   animation-name: hint-enter;
   animation-duration: 4s;
@@ -43,31 +13,5 @@
   }
   100% {
     opacity: 1;
-  }
-}
-
-.womb-breathe {
-  animation-name: womb-breathe;
-  animation-duration: 4s;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-}
-
-@keyframes womb-breathe {
-  3% {
-    filter: blur(0px);
-    transform: scale(1);
-  }
-  45% {
-    filter: blur(1.75px);
-    transform: scale(1.025);
-  }
-  55% {
-    filter: blur(1.75px);
-    transform: scale(1.025);
-  }
-  97% {
-    filter: blur(0px);
-    transform: scale(1);
   }
 }
