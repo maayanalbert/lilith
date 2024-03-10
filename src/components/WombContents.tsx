@@ -112,12 +112,16 @@ export default function WombContents() {
 function Blurb() {
   return (
     <div className="flex flex-col justify-center items-center sm:-mt-2 -mt-[10svh]">
-      <p className="text-white mb-10 text-left sm:w-full w-[273px] tracking-wider font-light">
-        Eve is a tool to augment emotional intelligence.{" "}
-        <br className="sm:block hidden" />
-        It is currently under development and will be{" "}
-        <br className="sm:block hidden" />
-        released later this year.
+      <p className="sm:block hidden text-white mb-10 text-left  tracking-wider font-light">
+        Welcome to Eve, a tool to augment emotional
+        <br /> intelligence. It is currently under development <br /> and will
+        be released later this year.
+      </p>
+      <p className="sm:hidden text-white mb-10 text-left w-[273px] tracking-wider font-light">
+        Eve is a tool to augment emotional
+        <br className="sm:block hidden" /> intelligence. It is currently under
+        development <br className="sm:block hidden" /> and will be released
+        later this year.
       </p>
       <EmailField />
     </div>
