@@ -81,6 +81,7 @@ function setup(p5: P5CanvasInstance) {
 /**
  * Called continuously to draw the animation
  */
+
 function draw(p5: P5CanvasInstance) {
   const step = getMappedValue(
     scrollY,
