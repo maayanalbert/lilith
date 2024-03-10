@@ -150,7 +150,7 @@ export function EmailField() {
               value={email}
               placeholder="email@domain.com"
               onChange={(event) => setEmail(event.target.value)}
-              className="bg-transparent w-full pl-6 h-full text-white"
+              className="bg-transparent w-full pl-6 h-full text-white tracking-wider"
               type="email"
             />
             <div
