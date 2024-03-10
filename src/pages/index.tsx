@@ -27,7 +27,11 @@ export default function Home() {
         <Hint />
       </div>
       <ReleaseDate />
-      <div className="absolute w-full flex items-center">
+      <div
+        className={`absolute w-full flex items-center ${
+          !scrolled && "womb-enter" // for mobile
+        }`}
+      >
         <WombContents />
       </div>
     </div>
@@ -40,7 +44,7 @@ let scrollY = 0
 const arcStep = 10
 
 const minScrollY = 0
-const minStep = 10
+let minStep = 10 // will update if on mobile
 
 let maxStep = 0 // resize with window
 let minArcRatio = 0 // resize with scroll
@@ -68,6 +72,10 @@ function setup(p5: P5CanvasInstance) {
   maxScrollY = getMaxScrollY()
 
   maxStep = maxScrollY / numIterations
+
+  if (navigator.maxTouchPoints > 1) {
+    minStep = 3
+  }
 }
 
 /**
@@ -82,6 +90,11 @@ function draw(p5: P5CanvasInstance) {
     maxStep,
     easeInSine
   )
+
+  const isMobile = navigator.maxTouchPoints > 1
+  if (isMobile) {
+    p5.translate(0, -window.innerHeight * 0.35)
+  }
 
   var targetMinArcRatio = getMappedValue(scrollY, minScrollY, maxScrollY, 0, 1)
 
@@ -99,7 +112,7 @@ function draw(p5: P5CanvasInstance) {
       0,
       1,
       0,
-      40,
+      isMobile ? 20 : 40,
       easeInSine
     )
 

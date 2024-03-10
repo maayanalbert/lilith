@@ -3,7 +3,7 @@ import { EmailField } from "./EmailField"
 import { getMappedValue } from "@/utils/getMappedValue"
 import { easeInOutSine, easeInQuad, easeInSine } from "@/utils/easingFns"
 import getDistance from "@/utils/getDistance"
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 export function getMaxScrollY() {
   return 3 * getDistance(window.innerWidth / 2, window.innerHeight / 2, 0, 0)
@@ -13,6 +13,22 @@ export default function WombContents() {
   const scrollY = useRef(0)
   const [fullyScrolled, setFullyScrolled] = useState(false)
   const curAnimationId = useRef(0)
+
+  useEffect(() => {
+    const contents = document.querySelector(
+      ".womb-contents"
+    ) as HTMLDivElement | null
+    if (!contents) return
+
+    contents.style.opacity = "0"
+    contents.style.scale = "0"
+
+    if (navigator.maxTouchPoints > 1) {
+      contents.style.opacity = "1"
+      contents.style.scale = "1"
+      setFullyScrolled(true)
+    }
+  }, [])
   useEventListener("wheel", (event) => {
     const maxScrollY = getMaxScrollY()
 
@@ -36,7 +52,7 @@ export default function WombContents() {
       maxScrollY,
       0,
       1,
-      easeInQuad
+      easeInSine
     )
 
     const animate = (
@@ -76,17 +92,15 @@ export default function WombContents() {
       className={`w-full flex flex-col justify-center items-center relative womb-contents`}
       style={{
         height: "100svh",
-        opacity: 0,
         transformOrigin: "center",
-        scale: 0,
       }}
     >
-      <Blurb fullyScrolled={fullyScrolled} />
+      <Blurb />
       <div
         className="w-full flex items-center"
         style={{
           opacity: fullyScrolled ? 1 : 0,
-          transitionDuration: fullyScrolled ? "500ms" : "",
+          transitionDuration: fullyScrolled ? "500ms" : "0ms",
         }}
       >
         <Footer />
@@ -95,19 +109,16 @@ export default function WombContents() {
   )
 }
 
-interface BlurbProps {
-  fullyScrolled: boolean
-}
-
-function Blurb({ fullyScrolled }: BlurbProps) {
+function Blurb() {
   return (
-    <div className="flex flex-col justify-center items-center sm:-mt-4 -mt-[10svh]">
-      <p className="hint text-white mb-10 text-left sm:w-full w-[300px] tracking-wider font-light">
-        Eve is a tool to augment emotional intelligence. <br />
-        It is currently under development and will be <br />
+    <div className="flex flex-col justify-center items-center sm:-mt-2 sm:-mt-[10svh]">
+      <p className="text-white mb-10 text-left sm:w-full w-[273px] tracking-wider font-light">
+        Eve is a tool to augment emotional intelligence.{" "}
+        <br className="sm:block hidden" />
+        It is currently under development and will be{" "}
+        <br className="sm:block hidden" />
         released later this year.
       </p>
-
       <EmailField />
     </div>
   )
