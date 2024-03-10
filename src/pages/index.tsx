@@ -35,12 +35,12 @@ export default function Home() {
 }
 
 // need to put this all in the same file for some reason, will find workaround at some point
-const numIterations = 48
+const numIterations = 24
 let scrollY = 0
 const arcStep = 10
 
 const minScrollY = 0
-const minStep = 5.1
+const minStep = 10
 
 let maxStep = 0 // resize with window
 let minArcRatio = 0 // resize with scroll
@@ -94,7 +94,14 @@ function draw(p5: P5CanvasInstance) {
   xoff += 0.011
   yoff += 0.005
   for (var i = 1; i < numIterations; i += 1) {
-    const strokeWeightVal = p5.noise(xoff, i) * 13
+    const strokeWeightVal = getMappedValue(
+      p5.noise(xoff, i),
+      0,
+      1,
+      0,
+      40,
+      easeInSine
+    )
 
     const scrollAdjustedStrokeWeight = getMappedValue(
       step,
@@ -128,7 +135,7 @@ function draw(p5: P5CanvasInstance) {
       easeOutCirc
     )
 
-    p5.arc(p5.windowWidth / 2, p5.windowHeight / 2, size, size, yArc, xArc)
+    p5.ellipse(p5.windowWidth / 2, p5.windowHeight / 2, size, size, yArc, xArc)
   }
 }
 
