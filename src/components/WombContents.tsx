@@ -6,7 +6,7 @@ import getDistance from "@/utils/getDistance"
 import { useEffect, useRef, useState } from "react"
 
 export function getMaxScrollY() {
-  return 3 * getDistance(window.innerWidth / 2, window.innerHeight / 2, 0, 0)
+  return 4 * getDistance(window.innerWidth / 2, window.innerHeight / 2, 0, 0)
 }
 
 export default function WombContents() {
@@ -52,7 +52,7 @@ export default function WombContents() {
       maxScrollY,
       0,
       1,
-      easeInSine
+      easeInQuad
     )
 
     const animate = (
