@@ -158,6 +158,19 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@p5-wrapper/next@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@p5-wrapper/next/-/next-1.0.2.tgz#b941c498601afd2bccdd06ba9443c4ab870faf2a"
+  integrity sha512-5J2c4LeubTKSiLrfwOIBvxLu12c+ihWfI02AnztEnEn+UsBf3GU3CuOoL19+IeMopfBsN/sYA9foX0BhU9Jz2A==
+
+"@p5-wrapper/react@^4.3.4":
+  version "4.3.4"
+  resolved "https://registry.yarnpkg.com/@p5-wrapper/react/-/react-4.3.4.tgz#7d1faa39a488f6743694d3aa2daea62f9da3c66f"
+  integrity sha512-FPmwK69lp6D2yWbBXX74FBeBAmv0ZlZsnsku5a2ISEThGp1O7+a9ALwHREF+QT3bfuqtY76iUacR8lSeq5wf+Q==
+  dependencies:
+    microdiff "^1.3.2"
+    p5 ">=1.4.1 <2.0.0"
+
 "@pkgr/utils@^2.3.1":
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/@pkgr/utils/-/utils-2.3.1.tgz#0a9b06ffddee364d6642b3cd562ca76f55b34a03"
@@ -1708,6 +1721,11 @@ meshoptimizer@~0.18.1:
   resolved "https://registry.yarnpkg.com/meshoptimizer/-/meshoptimizer-0.18.1.tgz#cdb90907f30a7b5b1190facd3b7ee6b7087797d8"
   integrity sha512-ZhoIoL7TNV4s5B6+rx5mC//fw8/POGyNxS/DZyCJeiZ12ScLfVwRE/GfsxwiTkMYYD5DmK2/JXnEVXqL4rF+Sw==
 
+microdiff@^1.3.2:
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/microdiff/-/microdiff-1.3.2.tgz#b4fec53aca97371d5409a354913a65be2daec11d"
+  integrity sha512-pKy60S2febliZIbwdfEQKTtL5bLNxOyiRRmD400gueYl9XcHyNGxzHSlJWn9IMHwYXT0yohPYL08+bGozVk8cQ==
+
 micromatch@^4.0.4, micromatch@^4.0.5:
   version "4.0.5"
   resolved "https://registry.yarnpkg.com/micromatch/-/micromatch-4.0.5.tgz#bc8999a7cbbf77cdc89f132f6e467051b49090c6"
@@ -1940,6 +1958,11 @@ p-locate@^5.0.0:
   integrity sha512-LaNjtRWUBY++zB5nE/NwcaoMylSPk+S+ZHNB1TzdbMJMny6dynpAGt7X/tl/QYq3TIeE6nxHppbo2LGymrG5Pw==
   dependencies:
     p-limit "^3.0.2"
+
+"p5@>=1.4.1 <2.0.0":
+  version "1.9.1"
+  resolved "https://registry.yarnpkg.com/p5/-/p5-1.9.1.tgz#3bcd9f8950b4175fbe417fbe98382240ae8deb31"
+  integrity sha512-TpuCll0KwyY8jyQbY9j4wCt+pA3Qv0egd4MqkrhJ58pBgdj5im5XsKpP/64gepDilJXTk126vWXiNAPeSezNdg==
 
 parent-module@^1.0.0:
   version "1.0.1"

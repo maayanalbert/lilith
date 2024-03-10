@@ -97,7 +97,7 @@ export function EmailField() {
           ${state === "EMAIL" && "w-[266px] border-zinc-400"}
           ${
             state === "NOTIFY" &&
-            "hover:bg-white w-[135px] sm:w-[130px] hover:text-black text-zinc-200 hover:border-white border-zinc-700 hover:border-white"
+            "hover:bg-white w-[162px] hover:text-black text-zinc-200 hover:border-white border-zinc-700 hover:border-white"
           }
           ${state !== "EMAIL" && "cursor-pointer"}
           `}
@@ -130,7 +130,7 @@ export function EmailField() {
               }}`,
             }}
           >
-            {state === "NOTIFY" || state === "EMAIL" ? "Get Access" : ""}
+            {state === "NOTIFY" || state === "EMAIL" ? "Get Early Access" : ""}
           </p>
           <div
             className={`w-full h-full absolute top-0 w-full rounded-full left-0 pr-[8px]

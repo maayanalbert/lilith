@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.0.17",
+    "@p5-wrapper/next": "^1.0.2",
+    "@p5-wrapper/react": "^4.3.4",
     "@types/lodash": "^4.14.191",
     "@types/node": "18.14.2",
     "@types/react": "18.0.28",

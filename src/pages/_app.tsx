@@ -23,6 +23,19 @@ export default function App({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
     document.title = "Eve"
+
+    // append p5 tag
+    // Create a script element
+    const scriptElement = document.createElement("script")
+
+    // Set the type attribute
+    scriptElement.type = "text/javascript"
+
+    // Set the source attribute
+    scriptElement.src = "https://cdn.jsdelivr.net/npm/p5@1.3.1/lib/p5.min.js"
+
+    // Append the script element to the head of the document
+    document.head.appendChild(scriptElement)
   }, [])
 
   return (
