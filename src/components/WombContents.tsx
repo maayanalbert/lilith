@@ -111,7 +111,7 @@ export default function WombContents() {
 
 function Blurb() {
   return (
-    <div className="flex flex-col justify-center items-center sm:-mt-2 sm:-mt-[10svh]">
+    <div className="flex flex-col justify-center items-center sm:-mt-2 -mt-[10svh]">
       <p className="text-white mb-10 text-left sm:w-full w-[273px] tracking-wider font-light">
         Eve is a tool to augment emotional intelligence.{" "}
         <br className="sm:block hidden" />
