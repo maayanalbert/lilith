@@ -20,24 +20,24 @@ export function EmailField() {
     [isFinishedDelayed]
   )
 
-  // useEventListener(
-  //   "keydown",
-  //   (e) => {
-  //     if (e.key === "Escape") {
-  //       // reset for debugging
-  //       setState("NOTIFY")
-  //       setOnEmailDelayed(false)
-  //       setIsFinished(false)
-  //       setIsFinishedDelayed(false)
-  //     }
+  useEventListener(
+    "keydown",
+    (e) => {
+      // if (e.key === "Escape") {
+      //   // reset for debugging
+      //   setState("NOTIFY")
+      //   setOnEmailDelayed(false)
+      //   setIsFinished(false)
+      //   setIsFinishedDelayed(false)
+      // }
 
-  //     console.log(e.key)
-  //     if (e.key === "Enter" && state === "EMAIL" && email) {
-  //       mutateAsync()
-  //     }
-  //   },
-  //   [state, email]
-  // )
+      // console.log(e.key)
+      if (e.key === "Enter" && state === "EMAIL" && email) {
+        mutateAsync()
+      }
+    },
+    [state, email]
+  )
 
   // mutate call for sending the email
   const { mutateAsync } = useMutation(
@@ -184,14 +184,14 @@ export function EmailField() {
         }}
       >
         <div
-          className={`sm:text-lg text-base text-zinc-600 flex flex-row gap-[5px] whitespace-nowrap`}
+          className={`sm:text-lg text-base text-zinc-500 flex flex-row gap-[5px]`}
           style={{
             pointerEvents:
               isFinishedDelayed && mouseMovedSinceFinished ? undefined : "none",
           }}
         >
-          <p className="text-center sm:text-[15px] text-sm">
-            We'll notify you when a slot becomes available
+          <p className="text-right tracking-wider">
+            Thank you, we'll notify you when a slot becomes available.
           </p>
         </div>
       </div>
