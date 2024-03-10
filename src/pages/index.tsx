@@ -26,10 +26,10 @@ export default function Home() {
       <div className="absolute w-full flex items-center">
         <Hint />
       </div>
+      <ReleaseDate />
       <div className="absolute w-full flex items-center">
         <WombContents />
       </div>
-      <ReleaseDate />
     </div>
   )
 }

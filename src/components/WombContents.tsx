@@ -1,7 +1,7 @@
 import useEventListener from "@/utils/useEventListener"
 import { EmailField } from "./EmailField"
 import { getMappedValue } from "@/utils/getMappedValue"
-import { easeInOutSine, easeInSine } from "@/utils/easingFns"
+import { easeInOutSine, easeInQuad, easeInSine } from "@/utils/easingFns"
 import getDistance from "@/utils/getDistance"
 import { useRef, useState } from "react"
 
@@ -28,16 +28,16 @@ export default function WombContents() {
     ) as HTMLDivElement | null
     if (!contents) return
 
-    const targetOpacity = getMappedValue(
+    const targetOpacity = getMappedValue(scrollY.current, 0, maxScrollY, 0, 1)
+
+    const targetScale = getMappedValue(
       scrollY.current,
       0,
       maxScrollY,
       0,
       1,
-      easeInSine
+      easeInQuad
     )
-
-    const targetScale = getMappedValue(scrollY.current, 0, maxScrollY, 0, 1)
 
     const animate = (
       animationId: number,
@@ -82,7 +82,15 @@ export default function WombContents() {
       }}
     >
       <Blurb fullyScrolled={fullyScrolled} />
-      <Footer />
+      <div
+        className="w-full flex items-center"
+        style={{
+          opacity: fullyScrolled ? 1 : 0,
+          transitionDuration: fullyScrolled ? "500ms" : "",
+        }}
+      >
+        <Footer />
+      </div>
     </div>
   )
 }
@@ -94,24 +102,7 @@ interface BlurbProps {
 function Blurb({ fullyScrolled }: BlurbProps) {
   return (
     <div className="flex flex-col justify-center items-center sm:-mt-4 -mt-[10svh]">
-      <div className="flex flex-col items-center">
-        <a
-          className="sm:text-[42px] text-[36px] text-white"
-          style={{ fontWeight: "700" }}
-        >
-          Welcome to Eve
-        </a>
-        <p
-          className="sm:w-[433px] w-[300px] text-zinc-500 text-center"
-          style={{
-            opacity: fullyScrolled ? 1 : 0,
-            transitionDuration: fullyScrolled ? "500ms" : "",
-          }}
-        >
-          A second brain for emotional intelligence
-        </p>
-      </div>
-      <p className="hint text-zinc-200 mt-7 mb-10 text-center sm:w-full w-[300px]">
+      <p className="hint text-white mb-10 text-left sm:w-full w-[300px] tracking-wider font-light">
         Eve is a tool to augment emotional intelligence. <br />
         It is currently under development and will be <br />
         released later this year.
