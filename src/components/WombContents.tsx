@@ -111,7 +111,7 @@ export default function WombContents() {
 
 function Blurb() {
   return (
-    <div className="flex flex-col justify-center items-center sm:-mt-2 -mt-[10svh]">
+    <div className="flex flex-col justify-center items-center sm:-mt-5 -mt-[10svh]">
       <p className="sm:block hidden text-white mb-10 text-left  tracking-wider font-light">
         Welcome to Eve, a tool to augment emotional
         <br /> intelligence. It is currently under development <br /> and will

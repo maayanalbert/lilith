@@ -81,9 +81,9 @@ export function EmailField() {
         className={`${
           isFinished
             ? "w-[47px] opacity-0 blur-[8px] scale-0"
-            : "sm:w-[375px] w-[272px]"
+            : "sm:w-[364px] w-[273px]"
         } 
-      flex justify-center items-center overflow-hidden rounded-full h-[47px]`}
+      flex justify-center items-center overflow-hidden rounded-none h-[47px]`}
         style={{
           transitionProperty: "width, opacity, filter, transform",
           transitionDuration: "450ms, 500ms, 500ms, 500ms",
@@ -93,19 +93,19 @@ export function EmailField() {
       >
         <div
           ref={ref}
-          className={`rounded-full relative h-full
+          className={`rounded-none relative h-full
          whitespace-nowrap
          ${isFinished ? "bg-white" : "bg-black"}
-          ${state === "EMAIL" && "w-[375px] border-zinc-400"}
+          ${state === "EMAIL" && "sm:w-[364px] w-[273px] border-zinc-400"}
           ${
             state === "NOTIFY" &&
-            "hover:bg-white sm:w-[175px] w-[180px] hover:text-black text-zinc-200 hover:border-white border-zinc-400 hover:border-white"
+            "hover:bg-white sm:w-[175px] w-[180px] hover:text-black text-zinc-200 hover:border-white border-zinc-500 hover:border-white"
           }
           ${state !== "EMAIL" && "cursor-pointer"}
           `}
           style={{
             transitionProperty: "width, background, border-color",
-            transitionDuration: "700ms, 300ms, 700ms",
+            transitionDuration: "1000ms, 500ms, 1000ms",
             transitionTimingFunction: easeInOut,
             borderWidth: 1.75,
           }}
@@ -125,8 +125,8 @@ export function EmailField() {
               opacity: state === "EMAIL" ? 0 : 1,
               transitionProperty: "color, opacity",
               transitionDuration:
-                state === "EMAIL" || onEmailDelayed ? "350ms" : "300ms",
-              transitionDelay: onEmailDelayed ? "350ms" : "0ms",
+                state === "EMAIL" || onEmailDelayed ? "500ms" : "300ms",
+              transitionDelay: onEmailDelayed ? "500ms" : "0ms",
               transitionTimingFunction: `ease-in, ${
                 state === "EMAIL" ? easeIn : easeOut
               }}`,
@@ -135,7 +135,7 @@ export function EmailField() {
             {state === "NOTIFY" || state === "EMAIL" ? "Get Early Access" : ""}
           </p>
           <div
-            className={`w-full h-full absolute top-0 w-full rounded-full left-0 pr-[8px]
+            className={`w-full h-full absolute top-0 w-full rounded-none left-0 pr-[8px]
         transition-opacity duration-[350ms] flex flex-row justify-between items-center`}
             style={{
               opacity: state === "EMAIL" && !isFinished ? 1 : 0,
@@ -154,7 +154,7 @@ export function EmailField() {
               type="email"
             />
             <div
-              className={`rounded-full p-1.5 transition-all duration-200 ${
+              className={`rounded-none p-1.5 transition-all duration-200 ${
                 email && "sm:hover:bg-zinc-700"
               }`}
             >
@@ -184,14 +184,14 @@ export function EmailField() {
         }}
       >
         <div
-          className={`sm:text-lg text-base text-zinc-500 flex flex-row gap-[5px]`}
+          className={`text-zinc-500 flex flex-row gap-[5px]`}
           style={{
             pointerEvents:
               isFinishedDelayed && mouseMovedSinceFinished ? undefined : "none",
           }}
         >
           <p className="text-right tracking-wider">
-            Thank you, we'll notify you when a slot becomes available.
+            Thank you, we'll notify you when a spot becomes available.
           </p>
         </div>
       </div>
