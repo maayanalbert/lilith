@@ -1,6 +1,6 @@
 .womb-enter {
   animation-name: womb-enter-opacity;
-  animation-duration: 3000ms;
+  animation-duration: 2800ms;
   animation-timing-function: cubic-bezier(0.7, 0, 0.84, 0); /* ease in expo */
 }
 
@@ -15,7 +15,7 @@
 
 .hint-enter {
   animation-name: hint-enter;
-  animation-duration: 3700ms;
+  animation-duration: 3500ms;
   animation-timing-function: ease-in-out;
 }
 
@@ -23,36 +23,10 @@
   0% {
     opacity: 0;
   }
-  89% {
+  80% {
     opacity: 0;
   }
   100% {
     opacity: 1;
-  }
-}
-
-.womb-breathe {
-  animation-name: womb-breathe;
-  animation-duration: 4s;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-}
-
-@keyframes womb-breathe {
-  3% {
-    filter: blur(0px);
-    transform: scale(1);
-  }
-  45% {
-    filter: blur(1.75px);
-    transform: scale(1.025);
-  }
-  55% {
-    filter: blur(1.75px);
-    transform: scale(1.025);
-  }
-  97% {
-    filter: blur(0px);
-    transform: scale(1);
   }
 }
