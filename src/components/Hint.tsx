@@ -1,37 +1,23 @@
 import useEventListener from "@/utils/useEventListener"
 import { set } from "lodash"
 import { useEffect, useRef, useState } from "react"
-import { getMaxScrollY } from "./WombContents"
 import { getMappedValue } from "@/utils/getMappedValue"
 import { easeInSine } from "@/utils/easingFns"
+import {
+  getMaxScrollY,
+  useScrollEventListener,
+} from "@/utils/scrollEventListeners"
 
 export default function ReleaseDate() {
-  const scrollY = useRef(0)
   const hasDisappeared = useRef(false)
-  const launchTime = useRef(0)
-  const [isMobile, setIsMobile] = useState(false)
 
-  useEffect(() => {
-    launchTime.current = Date.now()
-    if (navigator.maxTouchPoints > 0) {
-      setIsMobile(true)
-    }
-  }, [])
-
-  useEventListener("wheel", (event) => {
-    const maxScrollY = getMaxScrollY()
-
-    scrollY.current = Math.min(
-      Math.max(0, scrollY.current + event.deltaY),
-      maxScrollY
-    )
-
+  useScrollEventListener(() => {
     const hint = document.querySelector(".hint") as HTMLDivElement | null
     if (!hint) return
 
-    const opacity = getMappedValue(scrollY.current, 0, 200, 1, 0)
+    const opacity = getMappedValue(window.scrollY, 0, 200, 1, 0)
 
-    if (scrollY.current > 200) {
+    if (window.scrollY > 200) {
       hasDisappeared.current = true
     }
 
@@ -56,9 +42,7 @@ export default function ReleaseDate() {
             opacity: 0.9,
           }}
         >
-          {!isMobile && (
-            <p className={`hint cursor-default select-none`}>{"(SCROLL)"}</p>
-          )}
+          <p className={`hint cursor-default select-none`}>{"(SCROLL)"}</p>
         </div>
       </div>
     </div>

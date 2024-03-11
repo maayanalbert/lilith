@@ -4,56 +4,26 @@ import { getMappedValue } from "@/utils/getMappedValue"
 import { easeInOutSine, easeInQuad, easeInSine } from "@/utils/easingFns"
 import getDistance from "@/utils/getDistance"
 import { useEffect, useRef, useState } from "react"
-
-export function getMaxScrollY() {
-  return 4 * getDistance(window.innerWidth / 2, window.innerHeight / 2, 0, 0)
-}
+import {
+  getMaxScrollY,
+  useScrollEventListener,
+} from "@/utils/scrollEventListeners"
 
 export default function WombContents() {
-  const scrollY = useRef(0)
   const [fullyScrolled, setFullyScrolled] = useState(false)
   const curAnimationId = useRef(0)
 
-  useEffect(() => {
-    const contents = document.querySelector(
-      ".womb-contents"
-    ) as HTMLDivElement | null
-    if (!contents) return
-
-    contents.style.opacity = "0"
-    contents.style.scale = "0"
-
-    if (navigator.maxTouchPoints > 1) {
-      contents.style.opacity = "1"
-      contents.style.scale = "1"
-      setFullyScrolled(true)
-    }
-  }, [])
-  useEventListener("wheel", (event) => {
-    const maxScrollY = getMaxScrollY()
-
-    scrollY.current = Math.min(
-      Math.max(0, scrollY.current + event.deltaY),
-      maxScrollY
-    )
-
-    setFullyScrolled(scrollY.current === maxScrollY)
+  useScrollEventListener((scrollRatio) => {
+    setFullyScrolled(scrollRatio > 0.99)
 
     const contents = document.querySelector(
       ".womb-contents"
     ) as HTMLDivElement | null
     if (!contents) return
 
-    const targetOpacity = getMappedValue(scrollY.current, 0, maxScrollY, 0, 1)
+    const targetOpacity = getMappedValue(scrollRatio, 0, 0.99, 0, 1)
 
-    const targetScale = getMappedValue(
-      scrollY.current,
-      0,
-      maxScrollY,
-      0,
-      1,
-      easeInQuad
-    )
+    const targetScale = getMappedValue(scrollRatio, 0, 0.99, 0, 1, easeInQuad)
 
     const animate = (
       animationId: number,
@@ -93,6 +63,8 @@ export default function WombContents() {
       style={{
         height: "100svh",
         transformOrigin: "center",
+        opacity: 0,
+        scale: 0,
       }}
     >
       <Blurb />
@@ -111,7 +83,7 @@ export default function WombContents() {
 
 function Blurb() {
   return (
-    <div className="flex flex-col justify-center items-center sm:-mt-5 -mt-[10svh]">
+    <div className="flex flex-col justify-center items-center sm:-mt-5 -mt-5">
       <p className="sm:block hidden text-white mb-10 text-left  tracking-wider font-light">
         Welcome to Eve, a tool to augment emotional
         <br /> intelligence. It is currently under development <br /> and will

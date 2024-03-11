@@ -3,11 +3,16 @@ import { NextReactP5Wrapper } from "@p5-wrapper/next"
 import { getMappedValue } from "@/utils/getMappedValue"
 import { easeInSine, easeOutCirc, easeOutSine } from "@/utils/easingFns"
 import getDistance from "@/utils/getDistance"
-import WombContents, { getMaxScrollY } from "@/components/WombContents"
-import { useState } from "react"
+import WombContents from "@/components/WombContents"
+import { use, useEffect, useMemo, useRef, useState } from "react"
 import useEventListener from "@/utils/useEventListener"
 import Hint from "@/components/Hint"
 import ReleaseDate from "@/components/ReleaseDate"
+import {
+  addScrollEventListenerSafe,
+  getMaxScrollY,
+  useScrollEventListener,
+} from "@/utils/scrollEventListeners"
 
 /**
  * A wrapper for the main page
@@ -18,32 +23,41 @@ export default function Home() {
     setScrolled(true)
   })
 
+  const [maxScrollY, setMaxScrollY] = useState(0)
+
+  useEffect(() => setMaxScrollY(getMaxScrollY()), [])
+
   return (
-    <div>
-      <div className={`${!scrolled && "womb-enter"} absolute`}>
-        <NextReactP5Wrapper sketch={sketch} />
+    <div className="w-full">
+      <div className="fixed w-full" style={{ height: "100svh" }}>
+        <div className={`${!scrolled && "womb-enter"} absolute`}>
+          <NextReactP5Wrapper sketch={sketch} />
+        </div>
+        <div className="absolute w-full flex items-center">
+          <Hint />
+        </div>
+        <ReleaseDate />
+        <div
+          className={`absolute w-full flex items-center ${
+            !scrolled && "womb-enter" // for mobile
+          }`}
+        >
+          <WombContents />
+        </div>
       </div>
-      <div className="absolute w-full flex items-center">
-        <Hint />
-      </div>
-      <ReleaseDate />
       <div
-        className={`absolute w-full flex items-center ${
-          !scrolled && "womb-enter" // for mobile
-        }`}
-      >
-        <WombContents />
-      </div>
+        className="w-full absolute top-0"
+        style={{ height: maxScrollY, zIndex: -1 }}
+      />
     </div>
   )
 }
 
 // need to put this all in the same file for some reason, will find workaround at some point
 const numIterations = 24
-let scrollY = 0
+let scrollRatio = 0
 const arcStep = 10
 
-const minScrollY = 0
 let minStep = 10 // will update if on mobile
 
 let maxStep = 0 // resize with window
@@ -59,23 +73,28 @@ let yArc = 0.2
 function sketch(p5: P5CanvasInstance) {
   p5.setup = () => setup(p5)
   p5.draw = () => draw(p5)
-  p5.mouseWheel = (event: { delta: number }) => mouseWheel(p5, event)
   p5.windowResized = () => windowResized(p5)
+
+  addScrollEventListenerSafe((receivedScrollRatio) => {
+    scrollRatio = receivedScrollRatio
+
+    if (scrollY >= maxScrollY) {
+      p5.noLoop()
+    } else {
+      p5.loop()
+    }
+  })
 }
 
 /**
  * Called first on initial render
  */
 function setup(p5: P5CanvasInstance) {
-  p5.createCanvas(p5.windowWidth, p5.windowHeight)
+  p5.createCanvas(window.innerWidth, window.innerHeight)
 
   maxScrollY = getMaxScrollY()
 
   maxStep = maxScrollY / numIterations
-
-  if (navigator.maxTouchPoints > 1) {
-    minStep = 3
-  }
 }
 
 /**
@@ -83,21 +102,9 @@ function setup(p5: P5CanvasInstance) {
  */
 
 function draw(p5: P5CanvasInstance) {
-  const step = getMappedValue(
-    scrollY,
-    minScrollY,
-    maxScrollY,
-    minStep,
-    maxStep,
-    easeInSine
-  )
+  const step = getMappedValue(scrollRatio, 0, 1, minStep, maxStep, easeInSine)
 
-  const isMobile = navigator.maxTouchPoints > 1
-  if (isMobile) {
-    p5.translate(0, -window.innerHeight * 0.35)
-  }
-
-  var targetMinArcRatio = getMappedValue(scrollY, minScrollY, maxScrollY, 0, 1)
+  var targetMinArcRatio = getMappedValue(scrollRatio, 0, 1, 0, 1)
 
   minArcRatio = minArcRatio * 0.9 + targetMinArcRatio * 0.1
 
@@ -113,7 +120,7 @@ function draw(p5: P5CanvasInstance) {
       0,
       1,
       0,
-      isMobile ? 20 : 40,
+      40,
       easeInSine
     )
 
@@ -149,22 +156,19 @@ function draw(p5: P5CanvasInstance) {
       easeOutCirc
     )
 
-    p5.ellipse(p5.windowWidth / 2, p5.windowHeight / 2, size, size, yArc, xArc)
-  }
-}
-
-function mouseWheel(p5: P5CanvasInstance, event: { delta: number }) {
-  scrollY = Math.max(minScrollY, Math.min(scrollY + event.delta, maxScrollY))
-
-  if (scrollY >= maxScrollY) {
-    p5.noLoop()
-  } else {
-    p5.loop()
+    p5.ellipse(
+      window.innerWidth / 2,
+      window.innerHeight / 2,
+      size,
+      size,
+      yArc,
+      xArc
+    )
   }
 }
 
 function windowResized(p5: P5CanvasInstance) {
-  p5.resizeCanvas(p5.windowWidth, p5.windowHeight)
+  p5.resizeCanvas(window.innerWidth, window.innerHeight)
 
   maxScrollY = getMaxScrollY()
   maxStep = maxScrollY / numIterations

@@ -17,20 +17,15 @@
 
 html {
   height: 100%;
+  background-color: black;
 }
 
 body {
   height: 100%;
-  background-color: black;
-  overflow: hidden;
 }
 
 div#__next {
   @apply h-full;
-}
-
-.scrollbar-hidden::-webkit-scrollbar {
-  display: none;
 }
 
 input:focus {
@@ -43,4 +38,14 @@ body * {
 
 input::placeholder {
   color: rgb(113 113 122);
+}
+
+/* For WebKit browsers (Chrome, Safari) */
+html::-webkit-scrollbar {
+  display: none;
+}
+
+/* For Firefox */
+html {
+  scrollbar-width: none;
 }

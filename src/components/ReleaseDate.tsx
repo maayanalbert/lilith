@@ -1,12 +1,14 @@
 import useEventListener from "@/utils/useEventListener"
 import { set } from "lodash"
 import { useEffect, useRef, useState } from "react"
-import { getMaxScrollY } from "./WombContents"
 import { getMappedValue } from "@/utils/getMappedValue"
 import { easeInSine } from "@/utils/easingFns"
+import {
+  getMaxScrollY,
+  useScrollEventListener,
+} from "@/utils/scrollEventListeners"
 
 export default function Hint() {
-  const scrollY = useRef(0)
   const hintDisappeared = useRef(false)
   const launchTime = useRef(0)
 
@@ -14,22 +16,20 @@ export default function Hint() {
     launchTime.current = Date.now()
   }, [])
 
-  useEventListener("wheel", (event) => {
-    const maxScrollY = getMaxScrollY()
-
-    scrollY.current = Math.min(
-      Math.max(0, scrollY.current + event.deltaY),
-      maxScrollY
-    )
-
+  useScrollEventListener(() => {
     const releaseDate = document.querySelector(
       ".release-date"
     ) as HTMLDivElement | null
     if (!releaseDate) return
 
-    const opacity = getMappedValue(scrollY.current, 0, 200, 1, 0)
+    const opacity =
+      navigator.maxTouchPoints > 1
+        ? window.scrollY > 0
+          ? 0
+          : 1
+        : getMappedValue(window.scrollY, 0, 200, 1, 0)
 
-    if (scrollY.current > 200) {
+    if (window.scrollY > 200) {
       hintDisappeared.current = true
     }
 
