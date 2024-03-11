@@ -11,13 +11,13 @@ import {
 export default function ReleaseDate() {
   const hasDisappeared = useRef(false)
 
-  useScrollEventListener(() => {
+  useScrollEventListener((_, absoluteScroll) => {
     const hint = document.querySelector(".hint") as HTMLDivElement | null
     if (!hint) return
 
-    const opacity = getMappedValue(window.scrollY, 0, 200, 1, 0)
+    const opacity = getMappedValue(absoluteScroll, 0, 200, 1, 0)
 
-    if (window.scrollY > 200) {
+    if (absoluteScroll > 200) {
       hasDisappeared.current = true
     }
 

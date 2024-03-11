@@ -16,7 +16,7 @@ export default function Hint() {
     launchTime.current = Date.now()
   }, [])
 
-  useScrollEventListener(() => {
+  useScrollEventListener((_, absoluteScroll) => {
     const releaseDate = document.querySelector(
       ".release-date"
     ) as HTMLDivElement | null
@@ -24,12 +24,12 @@ export default function Hint() {
 
     const opacity =
       navigator.maxTouchPoints > 1
-        ? window.scrollY > 0
+        ? absoluteScroll > 0
           ? 0
           : 1
-        : getMappedValue(window.scrollY, 0, 200, 1, 0)
+        : getMappedValue(absoluteScroll, 0, 200, 1, 0)
 
-    if (window.scrollY > 200) {
+    if (absoluteScroll > 200) {
       hintDisappeared.current = true
     }
 

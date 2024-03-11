@@ -11,7 +11,6 @@ import ReleaseDate from "@/components/ReleaseDate"
 import {
   addScrollEventListenerSafe,
   getMaxScrollY,
-  useScrollEventListener,
 } from "@/utils/scrollEventListeners"
 
 /**

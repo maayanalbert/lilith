@@ -5,14 +5,14 @@ import getDistance from "./getDistance"
 
 // for react
 export function useScrollEventListener(
-  callback: (scrollRatio: number) => void,
+  callback: (scrollRatio: number, absoluteScroll: number) => void,
   dependancies: any[] = []
 ) {
   useEffect(() => {
     const processedCallBack = () => {
       const scrollRatio =
         window.scrollY / (getMaxScrollY() - window.innerHeight)
-      callback(scrollRatio)
+      callback(scrollRatio, window.scrollY)
     }
     window.addEventListener("scroll", processedCallBack)
     return () => {
