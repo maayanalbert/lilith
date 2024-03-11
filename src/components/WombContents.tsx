@@ -4,10 +4,7 @@ import { getMappedValue } from "@/utils/getMappedValue"
 import { easeInOutSine, easeInQuad, easeInSine } from "@/utils/easingFns"
 import getDistance from "@/utils/getDistance"
 import { useEffect, useRef, useState } from "react"
-import {
-  getMaxScrollY,
-  useScrollEventListener,
-} from "@/utils/scrollEventListeners"
+import { useScrollEventListener } from "@/utils/scrollEventListeners"
 
 export default function WombContents() {
   const [fullyScrolled, setFullyScrolled] = useState(false)

@@ -3,10 +3,7 @@ import { set } from "lodash"
 import { useEffect, useRef, useState } from "react"
 import { getMappedValue } from "@/utils/getMappedValue"
 import { easeInSine } from "@/utils/easingFns"
-import {
-  getMaxScrollY,
-  useScrollEventListener,
-} from "@/utils/scrollEventListeners"
+import { useScrollEventListener } from "@/utils/scrollEventListeners"
 
 export default function ReleaseDate() {
   const hasDisappeared = useRef(false)
