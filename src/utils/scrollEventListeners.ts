@@ -84,7 +84,7 @@ function getProcessedCallback(
  */
 export function getMaxScrollY() {
   return (
-    (isMobile() ? 6 : 5) *
+    (isMobile() ? 6 : 4) *
     getDistance(window.innerWidth / 2, window.innerHeight / 2, 0, 0)
   )
 }
