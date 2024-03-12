@@ -87,7 +87,7 @@ function Blurb() {
         be released later this year.
       </p>
       <p className="sm:hidden text-white mb-10 text-left w-[273px] tracking-wider font-light">
-        Eve is a tool to augment emotional
+        Welcome to Eve, a tool to augment emotional
         <br className="sm:block hidden" /> intelligence. It is currently under
         development <br className="sm:block hidden" /> and will be released
         later this year.
