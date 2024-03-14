@@ -1,5 +1,5 @@
 import useEventListener from "@/utils/useEventListener"
-import { EmailField } from "./EmailField"
+import { EmailField, MOBILE_BLURB_WIDTH } from "./EmailField"
 import { getMappedValue } from "@/utils/getMappedValue"
 import { easeInOutSine, easeInQuad, easeInSine } from "@/utils/easingFns"
 import getDistance from "@/utils/getDistance"
@@ -88,13 +88,17 @@ function Blurb() {
         <br /> intelligence. It is currently under development <br /> and will
         be released later this year.
       </p>
-      <p className="sm:hidden mb-10 text-left w-[273px] font-light text-zinc-100">
-        Welcome to Eve, a tool to augment emotional
+      <p
+        className="sm:hidden mb-10 text-left font-light text-zinc-100"
+        style={{ width: MOBILE_BLURB_WIDTH }}
+      >
+        <a className="font-bold text-white">Welcome to Eve,</a> a tool to
+        augment emotional
         <br className="sm:block hidden" /> intelligence. It is currently under
         development <br className="sm:block hidden" /> and will be released
         later this year.
       </p>
-      <div className="text-zinc-200">
+      <div className="text-zinc-200 font-light">
         <EmailField />
       </div>
     </div>

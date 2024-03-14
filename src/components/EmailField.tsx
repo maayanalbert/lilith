@@ -11,6 +11,7 @@ type FieldState = "GET_ACCESS" | "EMAIL" | "DONE"
 const EMAIL_TRANSITION_DURATION = 0.65
 const GET_ACCESS_HIGHLIGHT_DURATION = "200ms"
 const DONE_FIELD_FADE_DURATION = 200
+export const MOBILE_BLURB_WIDTH = 273
 
 export function EmailField() {
   const [state, setState] = useState<FieldState>("GET_ACCESS")
@@ -63,16 +64,17 @@ export function EmailField() {
   return (
     <div
       ref={ref}
-      className={`relative flex justify-center items-center sm:text-[15px] ${
+      className={`relative flex justify-center w-fit items-center sm:text-[15px] ${
         state === "GET_ACCESS" ? "cursor-pointer" : ""
       }`}
       onClick={() => {
         setState("EMAIL")
-        setFieldWidth(emailFieldWidth)
+        setFieldWidth(
+          window.innerWidth < 640 ? MOBILE_BLURB_WIDTH : emailFieldWidth
+        )
       }}
       onMouseOver={() => setMouseOverField(true)}
       onMouseOut={() => setMouseOverField(false)}
-      style={{ width: emailFieldWidth }}
     >
       <div
         className="relative flex justify-center items-center"
