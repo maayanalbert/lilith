@@ -82,12 +82,14 @@ function Blurb() {
   return (
     <div className="flex flex-col justify-center items-center sm:-mt-5 -mt-5">
       <p className="sm:block hidden text-white mb-10 text-left  tracking-wider font-light">
-        Welcome to Eve, a tool to augment emotional
+        <a style={{ fontWeight: 700 }}>Welcome to Eve,</a> a tool to augment
+        emotional
         <br /> intelligence. It is currently under development <br /> and will
         be released later this year.
       </p>
       <p className="sm:hidden text-white mb-10 text-left w-[273px] tracking-wider font-light">
-        Welcome to Eve, a tool to augment emotional
+        <a style={{ fontWeight: 500 }}>Welcome to Eve,</a> a tool to augment
+        emotional
         <br className="sm:block hidden" /> intelligence. It is currently under
         development <br className="sm:block hidden" /> and will be released
         later this year.
