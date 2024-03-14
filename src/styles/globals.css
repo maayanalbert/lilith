@@ -49,3 +49,15 @@ html::-webkit-scrollbar {
 html {
   scrollbar-width: none;
 }
+
+/* Highlights */
+::-moz-selection {
+  /* Code for Firefox */
+  color: black;
+  background: white;
+}
+
+::selection {
+  color: black;
+  background: white;
+}

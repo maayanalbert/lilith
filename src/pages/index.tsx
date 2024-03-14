@@ -111,7 +111,7 @@ function draw(p5: P5CanvasInstance) {
   p5.background(0, 0, 0)
   p5.noFill()
 
-  xoff += 0.011
+  xoff += 0.00625 // need to speed this up when using squircles for some reason
   yoff += 0.005
   for (var i = 1; i < numIterations; i += 1) {
     const strokeWeightVal = getMappedValue(
