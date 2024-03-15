@@ -41,7 +41,7 @@ export default function Hint() {
         className="text-white text-xs text-zinc-200 tracking-wider release-date"
         style={{ opacity: 0 }}
       >
-        FALL 2024
+        SUMMER 2024
       </p>
     </div>
   )
