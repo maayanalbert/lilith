@@ -93,9 +93,8 @@ function Blurb() {
         style={{ width: MOBILE_BLURB_WIDTH }}
       >
         <a className="font-bold text-white">Welcome to Eve,</a> a tool to
-        augment emotional
-        <br className="sm:block hidden" /> intelligence. It is currently under
-        development <br className="sm:block hidden" /> and will be released
+        augment emotional intelligence.
+        <br /> It is currently under development <br /> and will be released
         later this year.
       </p>
       <div className="text-zinc-200 font-light w-full flex justify-center">
