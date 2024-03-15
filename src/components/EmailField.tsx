@@ -64,7 +64,7 @@ export function EmailField() {
   return (
     <div
       ref={ref}
-      className={`relative flex justify-center w-fit items-center sm:text-[15px] ${
+      className={`relative flex justify-center ${state === "DONE" ? "w-full" : "w-fit"} items-center sm:text-[15px] ${
         state === "GET_ACCESS" ? "cursor-pointer" : ""
       }`}
       onClick={() => {
