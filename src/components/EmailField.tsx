@@ -258,7 +258,7 @@ function EmailContents({
     () => {
       const axiosCall = async () => {
         axios.post(
-          "https://getform.io/f/f0b97eb1-3068-4702-8fbb-f9fd0061d3f2",
+          "https://getform.io/f/paqxgwvb",
           {
             message: email,
           },
