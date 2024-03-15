@@ -98,7 +98,7 @@ function Blurb() {
         development <br className="sm:block hidden" /> and will be released
         later this year.
       </p>
-      <div className="text-zinc-200 font-light">
+      <div className="text-zinc-200 font-light w-full flex justify-center">
         <EmailField />
       </div>
     </div>

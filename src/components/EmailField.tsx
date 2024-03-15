@@ -64,7 +64,9 @@ export function EmailField() {
   return (
     <div
       ref={ref}
-      className={`relative flex justify-center ${state === "DONE" ? "w-full" : "w-fit"} items-center sm:text-[15px] ${
+      className={`relative flex justify-center ${
+        state === "DONE" ? "w-full" : "w-fit"
+      } items-center sm:text-[15px] ${
         state === "GET_ACCESS" ? "cursor-pointer" : ""
       }`}
       onClick={() => {
@@ -355,7 +357,3 @@ function SubmitButton({
     </div>
   )
 }
-
-const easeInOut = "cubic-bezier(0.4, 0, 0.2, 1)"
-const easeIn = "cubic-bezier(0.4, 0, 1, 1)"
-const easeOut = "cubic-bezier(0, 0, 0.2, 1)"
