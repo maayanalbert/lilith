@@ -14,7 +14,7 @@ const DONE_FIELD_FADE_DURATION = 200
 export const MOBILE_BLURB_WIDTH = 273
 
 export function EmailField() {
-  const [state, setState] = useState<FieldState>("DONE")
+  const [state, setState] = useState<FieldState>("GET_ACCESS")
   const fieldHeight = 47
   const borderWidth = 1
   const cornerRadius = 15
