@@ -83,19 +83,18 @@ function Blurb() {
   return (
     <div className="flex flex-col justify-center items-center sm:-mt-5 -mt-5 tracking-wider">
       <p className="sm:block hidden mb-10 text-left font-light text-zinc-100">
-        <a className="font-bold text-white">Welcome to Eve,</a> a tool to
-        augment emotional
-        <br /> intelligence. It is currently under development <br /> and will
-        be released later this year.
+        <a className="font-bold text-white">Welcome to Eve,</a> a AI emotional
+        support companion.
+        <br /> It is currently under development and will be released <br />
+        later this year.
       </p>
       <p
         className="sm:hidden mb-10 text-left font-light text-zinc-100"
         style={{ width: MOBILE_BLURB_WIDTH }}
       >
-        <a className="font-bold text-white">Welcome to Eve,</a> a tool to
-        augment emotional intelligence.
-        <br /> It is currently under development <br /> and will be released
-        later this year.
+        <a className="font-bold text-white">Welcome to Eve,</a> an AI emotional
+        support companion. It is currently under development and will be
+        released later this year.
       </p>
       <div className="text-zinc-200 font-light w-full flex justify-center">
         <EmailField />
