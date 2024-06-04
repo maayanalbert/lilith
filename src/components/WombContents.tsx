@@ -83,18 +83,33 @@ function Blurb() {
   return (
     <div className="flex flex-col justify-center items-center sm:-mt-5 -mt-5 tracking-wider">
       <p className="sm:block hidden mb-10 text-left font-light text-zinc-100">
-        <a className="font-bold text-white">Welcome to Eve,</a> a AI emotional
-        support companion.
-        <br /> It is currently under development and will be released <br />
-        later this year.
+        <a className="font-bold text-white">Welcome to Eve,</a> an AI emotional
+        support companion <br /> that will super power emotional intelligence.
+        The beta <br /> just launched, and is available on the App Store{" "}
+        <a
+          href="https://apps.apple.com/us/app/eve-emotional-support-ai/id6450841150"
+          target="_blank"
+          className="underline cursor-pointer"
+        >
+          here
+        </a>
+        .
       </p>
       <p
-        className="sm:hidden mb-10 text-left font-light text-zinc-100"
+        className="sm:hidden mb-10 text-left font-light text-white"
         style={{ width: MOBILE_BLURB_WIDTH }}
       >
         <a className="font-bold text-white">Welcome to Eve,</a> an AI emotional
-        support companion. It is currently under development and will be
-        released later this year.
+        support companion that will super power emotional intelligence. <br />
+        The Beta just launched, and is available on the App Store{" "}
+        <a
+          href="https://apps.apple.com/us/app/eve-emotional-support-ai/id6450841150"
+          target="_blank"
+          className="underline cursor-pointer"
+        >
+          here
+        </a>
+        .
       </p>
       <div className="text-zinc-200 font-light w-full flex justify-center">
         <EmailField />

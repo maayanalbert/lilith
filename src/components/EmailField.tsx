@@ -58,7 +58,7 @@ export function EmailField() {
   const fieldGetAccessToEmailTransition = {
     type: "tween",
     duration: EMAIL_TRANSITION_DURATION,
-    ease: state === "EMAIL" ? "easeOut" : "easeIn",
+    ease: state === "EMAIL" ? "easeOut" : "easeInOut",
   }
 
   return (
@@ -93,8 +93,8 @@ export function EmailField() {
           xmlns="http://www.w3.org/2000/svg"
           className={
             (mouseOverField && state === "GET_ACCESS") || state === "DONE"
-              ? "fill-zinc-300"
-              : "fill-zinc-400"
+              ? "fill-zinc-200"
+              : "fill-zinc-300"
           }
           transition={fieldGetAccessToEmailTransition}
           style={{
@@ -117,7 +117,7 @@ export function EmailField() {
           xmlns="http://www.w3.org/2000/svg"
           className={`absolute ${
             (mouseOverField && state === "GET_ACCESS") || state === "DONE"
-              ? "fill-zinc-300"
+              ? "fill-zinc-200"
               : "fill-black"
           }`}
           transition={fieldGetAccessToEmailTransition}
@@ -208,8 +208,17 @@ function GetAccessContents({
       //   transitionTimingFunction: `ease-in`,
       // }}
     >
-      <p className="h-full w-full select-none flex justify-center items-center">
-        Get Early Access
+      <p
+        className={`h-full w-full select-none flex justify-center items-center ${
+          mouseOverField ? "font-medium" : ""
+        }`}
+        style={{
+          transitionProperty: "all",
+          transitionDuration: GET_ACCESS_HIGHLIGHT_DURATION,
+          transitionTimingFunction: `ease-in-out`,
+        }}
+      >
+        Reach Out
       </p>
     </motion.div>
   )
