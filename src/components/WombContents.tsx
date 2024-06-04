@@ -84,8 +84,9 @@ function Blurb() {
     <div className="flex flex-col justify-center items-center sm:-mt-5 -mt-5 tracking-wider">
       <p className="sm:block hidden mb-10 text-left font-light text-zinc-100">
         <a className="font-bold text-white">Welcome to Eve,</a> an AI emotional
-        support companion <br /> that will super power emotional intelligence.
-        The beta <br /> just launched, and is available on the App Store{" "}
+        support companion <br /> that will democratize therapy. The beta just
+        launched, <br />
+        and is available on the App Store{" "}
         <a
           href="https://apps.apple.com/us/app/eve-emotional-support-ai/id6450841150"
           target="_blank"
@@ -100,8 +101,9 @@ function Blurb() {
         style={{ width: MOBILE_BLURB_WIDTH }}
       >
         <a className="font-bold text-white">Welcome to Eve,</a> an AI emotional
-        support companion that will super power emotional intelligence. <br />
-        The Beta just launched, and is available on the App Store{" "}
+        support companion that will democratize therapy. The Beta just launched,
+        and is available <br />
+        on the App Store{" "}
         <a
           href="https://apps.apple.com/us/app/eve-emotional-support-ai/id6450841150"
           target="_blank"
