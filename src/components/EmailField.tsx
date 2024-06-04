@@ -93,7 +93,7 @@ export function EmailField() {
           xmlns="http://www.w3.org/2000/svg"
           className={
             (mouseOverField && state === "GET_ACCESS") || state === "DONE"
-              ? "fill-zinc-200"
+              ? "fill-zinc-100"
               : "fill-zinc-300"
           }
           transition={fieldGetAccessToEmailTransition}
@@ -117,7 +117,7 @@ export function EmailField() {
           xmlns="http://www.w3.org/2000/svg"
           className={`absolute ${
             (mouseOverField && state === "GET_ACCESS") || state === "DONE"
-              ? "fill-zinc-200"
+              ? "fill-zinc-100"
               : "fill-black"
           }`}
           transition={fieldGetAccessToEmailTransition}
