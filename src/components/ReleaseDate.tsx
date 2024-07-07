@@ -41,7 +41,7 @@ export default function Hint() {
         className="text-white text-xs text-zinc-200 tracking-wider release-date"
         style={{ opacity: 0 }}
       >
-        TAKE A BITE
+        WELCOME TO EVE
       </p>
     </div>
   )
