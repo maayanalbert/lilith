@@ -36,13 +36,28 @@ export default function Hint() {
   })
 
   return (
-    <div className="absolute w-full h-full flex items-center justify-center">
-      <p
-        className="text-white text-xs text-zinc-200 tracking-wider release-date"
-        style={{ opacity: 0 }}
+    <div className="absolute w-full h-full release-date" style={{ opacity: 0 }}>
+      <div className="absolute w-full h-full flex items-center justify-center">
+        <p className="text-white text-xs text-zinc-200 tracking-wider">
+          WELCOME TO EVE
+        </p>
+      </div>
+      <div
+        className={`absolute bottom-0 w-full flex flex-col justify-center sm:pb-[16px] pb-6`}
       >
-        WELCOME TO EVE
-      </p>
+        <div className="text-sm text-zinc-500 text-center">
+          <p>
+            Inspired by Interstellar's{" "}
+            <a
+              href="https://cerncourier.com/a/building-gargantua/"
+              target="_blank"
+              className="underline cursor-pointer"
+            >
+              black hole
+            </a>
+          </p>
+        </div>
+      </div>
     </div>
   )
 }

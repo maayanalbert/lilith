@@ -80,10 +80,11 @@ export default function WombContents() {
 function Blurb() {
   return (
     <div className="flex flex-col justify-center items-center sm:-mt-5 -mt-5 tracking-wider">
-      <div className="sm:block hidden mb-10 text-left font-light text-zinc-100 w-[420px]">
+      <div className="sm:block hidden mb-10 text-left font-light text-zinc-100">
         <a className="font-bold text-white">Welcome to Eve.</a> We are exploring
-        the space of AI companions and the role they will play in our lives
-        following the AI revolution. If you're curious to learn more, reach out.
+        the space of AI companions <br /> and the role they will play in our
+        lives following the AI revolution.
+        <br /> If you're curious to learn more, reach out.
       </div>
       <p
         className="sm:hidden mb-10 text-left font-light text-white"
