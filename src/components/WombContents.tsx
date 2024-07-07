@@ -1,9 +1,7 @@
-import useEventListener from "@/utils/useEventListener"
 import { EmailField, MOBILE_BLURB_WIDTH } from "./EmailField"
 import { getMappedValue } from "@/utils/getMappedValue"
-import { easeInOutSine, easeInQuad, easeInSine } from "@/utils/easingFns"
-import getDistance from "@/utils/getDistance"
-import { useEffect, useRef, useState } from "react"
+import { easeInQuad } from "@/utils/easingFns"
+import { useRef, useState } from "react"
 import { useScrollEventListener } from "@/utils/scrollEventListeners"
 
 export default function WombContents() {
@@ -82,34 +80,18 @@ export default function WombContents() {
 function Blurb() {
   return (
     <div className="flex flex-col justify-center items-center sm:-mt-5 -mt-5 tracking-wider">
-      <p className="sm:block hidden mb-10 text-left font-light text-zinc-100">
-        <a className="font-bold text-white">Welcome to Eve,</a> an AI emotional
-        support companion <br /> The inital product just launched, and is
-        available on <br /> the App Store{" "}
-        <a
-          href="https://apps.apple.com/us/app/eve-emotional-support-ai/id6450841150"
-          target="_blank"
-          className="underline cursor-pointer"
-        >
-          here
-        </a>
-        .
-      </p>
+      <div className="sm:block hidden mb-10 text-left font-light text-zinc-100 w-[420px]">
+        <a className="font-bold text-white">Welcome to Eve.</a> We are exploring
+        the space of AI companions and the role they will play in our lives
+        following the AI revolution. If you're curious to learn more, reach out.
+      </div>
       <p
         className="sm:hidden mb-10 text-left font-light text-white"
         style={{ width: MOBILE_BLURB_WIDTH }}
       >
-        <a className="font-bold text-white">Welcome to Eve,</a> an AI emotional
-        support companion. The initial product just launched, and is available
-        on the App Store{" "}
-        <a
-          href="https://apps.apple.com/us/app/eve-emotional-support-ai/id6450841150"
-          target="_blank"
-          className="underline cursor-pointer"
-        >
-          here
-        </a>
-        .
+        <a className="font-bold text-white">Welcome to Eve.</a> We are exploring
+        the space of AI companions and the role they will play in our lives
+        following the AI revolution. If you're curious to learn more, reach out.
       </p>
       <div className="text-zinc-200 font-light w-full flex justify-center">
         <EmailField />
