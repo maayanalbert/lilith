@@ -57,7 +57,7 @@ const numIterations = 24
 let scrollRatio = 0
 const arcStep = 10
 
-let minStep = 10.5 // will update if on mobile
+let minStep = 11.5 // will update if on mobile
 
 let maxStep = 0 // resize with window
 let minArcRatio = 0 // resize with scroll
@@ -119,7 +119,7 @@ function draw(p5: P5CanvasInstance) {
       0,
       1,
       0,
-      45,
+      50,
       easeInSine
     )
 

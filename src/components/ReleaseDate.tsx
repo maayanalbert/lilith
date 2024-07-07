@@ -19,6 +19,11 @@ export default function Hint() {
     ) as HTMLDivElement | null
     if (!releaseDate) return
 
+    const interstellar = document.querySelector(
+      ".interstellar"
+    ) as HTMLDivElement | null
+    if (!interstellar) return
+
     const opacity =
       navigator.maxTouchPoints > 1
         ? absoluteScroll > 0
@@ -30,22 +35,27 @@ export default function Hint() {
       hintDisappeared.current = true
     }
 
-    releaseDate.style.opacity = hintDisappeared.current
+    releaseDate.style.opacity = opacity.toString()
+
+    interstellar.style.opacity = hintDisappeared.current
       ? opacity.toString()
       : "0"
   })
 
   return (
-    <div className="absolute w-full h-full release-date" style={{ opacity: 0 }}>
-      <div className="absolute w-full h-full flex items-center justify-center">
-        <p className="text-white text-xs text-zinc-200 tracking-wider">
+    <div className="absolute w-full h-full">
+      <div className="absolute w-full h-full flex items-center justify-center welcome-enter">
+        <p className="text-white text-sm text-zinc-200 tracking-wider release-date">
           WELCOME TO EVE
         </p>
       </div>
       <div
         className={`absolute bottom-0 w-full flex flex-col justify-center sm:pb-[16px] pb-6`}
       >
-        <div className="text-sm text-zinc-500 text-center">
+        <div
+          className="text-sm text-zinc-500 text-center interstellar"
+          style={{ opacity: 0 }}
+        >
           <p>
             Inspired by Interstellar's{" "}
             <a

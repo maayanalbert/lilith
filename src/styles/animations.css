@@ -15,7 +15,7 @@
 
 .hint-enter {
   animation-name: hint-enter;
-  animation-duration: 3500ms;
+  animation-duration: 3000ms;
   animation-timing-function: ease-in-out;
 }
 
@@ -24,6 +24,21 @@
     opacity: 0;
   }
   80% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.welcome-enter {
+  animation-name: welcome-enter;
+  animation-duration: 2800ms;
+  animation-timing-function: ease-in;
+}
+
+@keyframes welcome-enter {
+  0% {
     opacity: 0;
   }
   100% {

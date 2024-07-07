@@ -32,9 +32,9 @@ export default function ReleaseDate() {
         }}
       >
         <div
-          className={`hint-enter tracking-wider w-full flex flex-row justify-center text-[16px] text-zinc-500 `}
+          className={`hint-enter tracking-wider w-full flex flex-row justify-center text-sm text-zinc-500 `}
           style={{
-            marginTop: 361,
+            marginTop: 360,
             fontWeight: 500,
             opacity: 0.9,
           }}
