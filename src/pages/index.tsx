@@ -57,7 +57,7 @@ const numIterations = 24
 let scrollRatio = 0
 const arcStep = 10
 
-let minStep = 11.5 // will update if on mobile
+let minStep = 11 // will update if on mobile
 
 let maxStep = 0 // resize with window
 let minArcRatio = 0 // resize with scroll
@@ -69,6 +69,8 @@ let yoff = 0.3
 let xArc = 0.1
 let yArc = 0.2
 
+let wombOpacity = 0.5
+
 function sketch(p5: P5CanvasInstance) {
   p5.setup = () => setup(p5)
   p5.draw = () => draw(p5)
@@ -76,7 +78,6 @@ function sketch(p5: P5CanvasInstance) {
 
   addScrollEventListenerSafe((receivedScrollRatio) => {
     scrollRatio = receivedScrollRatio
-
     if (scrollY >= maxScrollY) {
       p5.noLoop()
     } else {
@@ -105,6 +106,8 @@ function draw(p5: P5CanvasInstance) {
 
   var targetMinArcRatio = getMappedValue(scrollRatio, 0, 1, 0, 1)
 
+  const hintDisappearCuttof = 200 / maxScrollY
+  const wombOpacity = p5.map(scrollRatio, 0, hintDisappearCuttof, 0.5, 1)
   minArcRatio = minArcRatio * 0.9 + targetMinArcRatio * 0.1
 
   p5.noiseDetail(1, 0.9)
@@ -128,7 +131,7 @@ function draw(p5: P5CanvasInstance) {
       minStep,
       maxStep,
       strokeWeightVal,
-      strokeWeightVal * 10
+      strokeWeightVal * 5
     )
     p5.strokeWeight(scrollAdjustedStrokeWeight)
     xArc = p5.constrain(
@@ -142,7 +145,8 @@ function draw(p5: P5CanvasInstance) {
       p5.PI * 2
     )
 
-    const grayVal = getMappedValue(i, 0, numIterations, 0, 255, easeInSine)
+    const grayVal =
+      getMappedValue(i, 0, numIterations, 0, 255, easeInSine) * wombOpacity
 
     p5.stroke(grayVal, grayVal, grayVal)
 

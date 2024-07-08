@@ -61,6 +61,7 @@ export default function WombContents() {
         opacity: 0,
         scale: 0,
         pointerEvents: !fullyScrolled ? "none" : "all",
+        display: !fullyScrolled ? "none" : undefined,
       }}
     >
       <Blurb />

@@ -34,7 +34,7 @@ export default function ReleaseDate() {
         <div
           className={`hint-enter tracking-wider w-full flex flex-row justify-center text-sm text-zinc-500 `}
           style={{
-            marginTop: 360,
+            marginTop: 365,
             fontWeight: 500,
             opacity: 0.9,
           }}
