@@ -6,10 +6,13 @@ import { useScrollEventListener } from "@/utils/scrollEventListeners"
 
 export default function WombContents() {
   const [fullyScrolled, setFullyScrolled] = useState(false)
+  const [noScrolled, setNoScrolled] = useState(true)
+
   const curAnimationId = useRef(0)
 
   useScrollEventListener((scrollRatio) => {
     setFullyScrolled(scrollRatio > 0.99)
+    setNoScrolled(scrollRatio < 0.01)
 
     const contents = document.querySelector(
       ".womb-contents"
@@ -61,7 +64,7 @@ export default function WombContents() {
         opacity: 0,
         scale: 0,
         pointerEvents: !fullyScrolled ? "none" : "all",
-        display: !fullyScrolled ? "none" : undefined,
+        display: noScrolled ? "none" : undefined,
       }}
     >
       <Blurb />
