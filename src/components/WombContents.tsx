@@ -82,8 +82,8 @@ function Blurb() {
     <div className="flex flex-col justify-center items-center sm:-mt-5 -mt-5 tracking-wider">
       <div className="sm:block hidden mb-10 text-left font-light text-zinc-100">
         <a className="font-bold text-white">Welcome to Eve.</a> We are exploring
-        the space of AI companions <br /> and the role they will play in our
-        lives following the AI revolution.
+        the space of AI personas and <br /> the role they will play in our lives
+        in this new era of technology.
         <br /> If you're curious to learn more, reach out.
       </div>
       <p
@@ -91,8 +91,8 @@ function Blurb() {
         style={{ width: MOBILE_BLURB_WIDTH }}
       >
         <a className="font-bold text-white">Welcome to Eve.</a> We are exploring
-        the space of AI companions and the role they will play in our lives
-        following the AI revolution. If you're curious to learn more, reach out.
+        the space of AI personas and the role they will play in our lives in
+        this new era of technology. If you're curious to learn more, reach out.
       </p>
       <div className="text-zinc-200 font-light w-full flex justify-center">
         <EmailField />

@@ -45,7 +45,10 @@ export default function Hint() {
   return (
     <div className="absolute w-full h-full">
       <div className="absolute w-full h-full flex items-center justify-center welcome-enter">
-        <p className="text-white text-sm text-zinc-200 tracking-wider release-date">
+        <p
+          className="text-white text-sm text-zinc-200 tracking-wider release-date font-bold"
+          style={{ fontWeight: 400 }}
+        >
           WELCOME TO EVE
         </p>
       </div>
@@ -57,7 +60,7 @@ export default function Hint() {
           style={{ opacity: 0 }}
         >
           <p>
-            Inspired by Interstellar's{" "}
+            Inspired by the Interstellar's{" "}
             <a
               href="https://cerncourier.com/a/building-gargantua/"
               target="_blank"
