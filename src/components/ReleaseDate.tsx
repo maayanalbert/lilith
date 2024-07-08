@@ -46,7 +46,7 @@ export default function Hint() {
     <div className="absolute w-full h-full">
       <div className="absolute w-full h-full flex items-center justify-center welcome-enter">
         <p
-          className="text-white text-[15px] text-zinc-200 tracking-wider release-date font-bold"
+          className="text-white text-[15px] text-white tracking-wider release-date font-bold"
           style={{ fontWeight: 500 }}
         >
           WELCOME TO EVE
