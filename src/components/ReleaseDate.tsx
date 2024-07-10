@@ -8,6 +8,7 @@ import { useScrollEventListener } from "@/utils/scrollEventListeners"
 export default function Hint() {
   const hintDisappeared = useRef(false)
   const launchTime = useRef(0)
+  const [noScroll, setNoScroll] = useState(false) // doesn't show up initially because set to false
 
   useEffect(() => {
     launchTime.current = Date.now()
@@ -18,11 +19,6 @@ export default function Hint() {
       ".release-date"
     ) as HTMLDivElement | null
     if (!releaseDate) return
-
-    const interstellar = document.querySelector(
-      ".interstellar"
-    ) as HTMLDivElement | null
-    if (!interstellar) return
 
     const opacity =
       navigator.maxTouchPoints > 1
@@ -36,10 +32,7 @@ export default function Hint() {
     }
 
     releaseDate.style.opacity = opacity.toString()
-
-    interstellar.style.opacity = hintDisappeared.current
-      ? opacity.toString()
-      : "0"
+    setNoScroll(absoluteScroll === 0)
   })
 
   return (
@@ -56,8 +49,11 @@ export default function Hint() {
         className={`absolute bottom-0 w-full flex flex-col justify-center sm:pb-[16px] pb-6`}
       >
         <div
-          className="text-sm text-zinc-500 text-center interstellar"
-          style={{ opacity: 0 }}
+          className="text-sm text-zinc-500 text-center"
+          style={{
+            opacity: noScroll ? 1 : 0,
+            transitionDuration: noScroll ? "2000ms" : "0ms",
+          }}
         >
           <p>
             Inspired by the Interstellar's{" "}
