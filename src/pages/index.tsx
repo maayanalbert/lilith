@@ -107,12 +107,13 @@ function draw(p5: P5CanvasInstance) {
   var targetMinArcRatio = getMappedValue(scrollRatio, 0, 1, 0, 1)
 
   const hintDisappearCuttof = 200 / maxScrollY
-  const wombOpacity = p5.map(
+  const wombOpacity = getMappedValue(
     scrollRatio,
     0,
     hintDisappearCuttof,
     minWombOpacity,
-    1
+    1,
+    easeInSine
   )
   minArcRatio = minArcRatio * 0.9 + targetMinArcRatio * 0.1
 
