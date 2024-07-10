@@ -69,7 +69,8 @@ let yoff = 0.3
 let xArc = 0.1
 let yArc = 0.2
 
-let wombOpacity = 0.5
+let minWombOpacity = 0.35
+let wombOpacity = minWombOpacity
 
 function sketch(p5: P5CanvasInstance) {
   p5.setup = () => setup(p5)
@@ -107,7 +108,7 @@ function draw(p5: P5CanvasInstance) {
   var targetMinArcRatio = getMappedValue(scrollRatio, 0, 1, 0, 1)
 
   const hintDisappearCuttof = 200 / maxScrollY
-  const wombOpacity = p5.map(scrollRatio, 0, hintDisappearCuttof, 0.5, 1)
+  const wombOpacity = p5.map(scrollRatio, 0, hintDisappearCuttof, minWombOpacity, 1)
   minArcRatio = minArcRatio * 0.9 + targetMinArcRatio * 0.1
 
   p5.noiseDetail(1, 0.9)
