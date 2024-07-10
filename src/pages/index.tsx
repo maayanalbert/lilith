@@ -57,7 +57,7 @@ const numIterations = 24
 let scrollRatio = 0
 const arcStep = 10
 
-let minStep = 11 // will update if on mobile
+let minStep = 10 // will update if on mobile
 
 let maxStep = 0 // resize with window
 let minArcRatio = 0 // resize with scroll
@@ -69,7 +69,7 @@ let yoff = 0.3
 let xArc = 0.1
 let yArc = 0.2
 
-let minWombOpacity = 0.25
+let minWombOpacity = 0.2
 
 function sketch(p5: P5CanvasInstance) {
   p5.setup = () => setup(p5)
