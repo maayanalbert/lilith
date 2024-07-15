@@ -69,7 +69,7 @@ let yoff = 0.3
 let xArc = 0.1
 let yArc = 0.2
 
-let minWombOpacity = 0.2
+let minWombOpacity = 0.5
 
 function sketch(p5: P5CanvasInstance) {
   p5.setup = () => setup(p5)
