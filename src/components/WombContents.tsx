@@ -115,9 +115,9 @@ function Footer() {
         <a
           target="_blank"
           className="underline cursor-pointer"
-          href="mailto:maayan@eve.space"
+          href="mailto:maayan.albert@gmail.com"
         >
-          maayan@eve.space
+          maayan.albert@gmail.com
         </a>{" "}
         to learn more
       </div>
